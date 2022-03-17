@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>backOI-0314 | Hexo</title>
+  <meta name="description" content="如果有什么东西磨灭了我的一时兴起，那就磨灭了罢。如果没有，请让我多少写一些，你爱听，或者是你不爱听的东西。写给自己看。我说，我不太记得小学都做过些什么。爷爷说他记得，他记得村里的老师每天两次去劝他去读书，记得在课上画鲁迅，记得校长看到那幅画觉得又像又不像，记得语文老师问“为什么东北的树又高又硬”，然后翻窗出去的男孩子尽数罚站。我想，我也应该记得些，并不遥远的，清晰而模糊的生活。qq邮箱的第一封邮件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="backOI-0314">
+<meta property="og:url" content="http://emoairx.github.io/blog/2022/01/14/backOI/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如果有什么东西磨灭了我的一时兴起，那就磨灭了罢。如果没有，请让我多少写一些，你爱听，或者是你不爱听的东西。写给自己看。我说，我不太记得小学都做过些什么。爷爷说他记得，他记得村里的老师每天两次去劝他去读书，记得在课上画鲁迅，记得校长看到那幅画觉得又像又不像，记得语文老师问“为什么东北的树又高又硬”，然后翻窗出去的男孩子尽数罚站。我想，我也应该记得些，并不遥远的，清晰而模糊的生活。qq邮箱的第一封邮件">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-14T07:13:11.095Z">
+<meta property="article:modified_time" content="2022-03-15T15:28:27.639Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="随笔">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2022/01/14/backOI/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/typeA/" rel="tag">typeA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/typeA/" style="font-size: 13px;">typeA</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/03/17/diary220317/" class="title">220317</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-17T13:03:56.612Z" itemprop="datePublished">2022-03-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/03/15/diary220315/" class="title">220315</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-15T15:04:29.143Z" itemprop="datePublished">2022-03-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/03/13/diary220313/" class="title">220313</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-13T12:34:43.760Z" itemprop="datePublished">2022-03-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/03/12/diary220312/" class="title">220312</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-12T14:22:38.469Z" itemprop="datePublished">2022-03-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/03/11/diary220311/" class="title">220311</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-11T09:08:52.392Z" itemprop="datePublished">2022-03-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-backOI" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      backOI-0314
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2022/01/14/backOI/" class="article-date">
+	  <time datetime="2022-01-14T07:13:11.095Z" itemprop="datePublished">2022-01-14</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2022/01/14/backOI/" class="leancloud_visitors"  data-flag-title="backOI-0314">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2022/01/14/backOI/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>如果有什么东西磨灭了我的一时兴起，那就磨灭了罢。<br>如果没有，请让我多少写一些，你爱听，或者是你不爱听的东西。写给自己看。<br>我说，我不太记得小学都做过些什么。<br>爷爷说他记得，他记得村里的老师每天两次去劝他去读书，记得在课上画鲁迅，记得校长看到那幅画觉得又像又不像，记得语文老师问“为什么东北的树又高又硬”，然后翻窗出去的男孩子尽数罚站。<br>我想，我也应该记得些，并不遥远的，清晰而模糊的生活。<br><code>qq邮箱</code>的第一封邮件，<code>2012年8月31日</code>，我是四年级新生。<br>是的了，是从那时候开始了解的。硕大的机房一眼望不到头，从讲台边的投影仪到后排，像跨越了半个地球，<br>除了“深蓝”和“更深的蓝”，已然记不得太多。卡斯帕罗夫的失败并没有让我感到多么惊奇，吸引我的是那种神奇的颜色，让我铭记的是当时似乎昏昏沉沉的灯光。<br>“迫不及待地……”、“真希望……能快点到来”、“如果你学了某样东西，不要三天打鱼两天晒网”、“我们是祖国的花朵，我们应该对自己有信心”<br>稚嫩的语言和现在并无二致，依然是碎碎念与流水账的堆砌。第二人称的训诫与奇妙的鸡汤，如今是再也写不出来了的。见识填充了无知，也挤走了自信。</p>
+<p>零碎的文字当真能凑出我的过往吗？凑不出，过往已经是零碎的了。<br>我幻想过，未来有一天，科技能照出人的全部过往，照出我那些日里夜里干的“龌龊又肮脏”的事情——模仿父母的签名，亦或是在夜深人静时，趴在地板上打游戏。<br>但物理告诉我，熵是增加的，时间是不可逆的，也就不用为那些可笑的事情担心。</p>
+<p>学 OI 的过程，是一个逐渐忘记初心的过程，</p>
+<p>最有必要写的但是没写过的是20年的 NOI ，不是最后一场，但这一场就算是结束了。<br>住宿去串门，记得那时 cly_none 在打 HOI4，英文版。看着那些眼花缭乱的不认识的字母与单词飞来飞去，好生羡慕。<br>闭幕式坐在叶卓睿大佬的边上，大佬拿着手机软件背着奇妙古怪的英语单词——就像期末考完看到屠老师朋友圈晒的神仙单词，好生羡慕。<br>比起退役后英语考年段倒数前一百的我，大佬们如此孜孜矻矻，不由得感叹差距果然是天堑。</p>
+<p>结果而言，108名，这个成绩在浙江算是很差了，在正式省队成员里几乎垫底。<br>一年半之后的现在，我可能依然会抱怨Day1T2看错题导致开局失败，会抱怨Day2开错题导致翻盘失败。但我也明白那不是我应该去遗憾与后悔的。我现在过得，其实也还不错，</p>
+<p>出分那天晚上，本来想去向清华要个约的，结果被宿舍阿姨拦下。后来看到清华大规模毁约，也不知是福是祸。</p>
+<hr>
+<p>—-20220206夜更新—-</p>
+<p>真正接触竞赛应该是初一，当时参加初中组的比赛，自然是第一轮就被刷掉。但在此之前我并不是一无所知。</p>
+<p>很幸运，小学有一门信息技术课，上课内容虽然只是些浏览器，word，excel简单摆弄，但信息技术的老师多少有些赶时髦。<br>他给我们看一个叫虎胆龙威的电影，给我们安利疯狂小强写的超脑黑客的网络小说。</p>
+<p>电影和小说虚构的，但黑客实在是太帅了，我想成为帅气的黑客，一挥手几亿现金在几万个账户之间迅速流动。后来棱镜门的时候，我觉得自己长大以后要做一个像斯诺登一样的人，那时觉得，把他当成人生偶像，比班里追星的女生显得成熟，有一种优越感。</p>
+<p>小学有个校本课程吧，有点像社团活动，对二胡的兴趣逐渐消减，对电脑的兴趣逐渐增加，选了一个额外的电脑课。</p>
+<p>于是知道，只要在 <code>FREE PASCAL IDE</code> 中 输入 <code>begin write end</code> 就能有 <code>hello world</code> 的效用。</p>
+<p>孩子的好奇心绝不仅于此，几个好朋友，一个excel，以及其中的VBA，能搞出多少花样呢？</p>
+<p>没有人教我们怎么用VB，当时也不会用搜索引擎——学校机房的电脑似乎是断网的，但我们确实硬生生琢磨出了如何用excel里VBA写简单的小程序。</p>
+<p>那些小程序真的是很快乐的，不外乎不输入【XXX是帅哥】就一直跳出让你输入的窗口，不输入【XXX是帅哥】就【shutdown -s -t 0】让你的电脑关机。或者比如一直创建新窗体，或者一直打开我的电脑，让电脑卡死。</p>
+<p>VBA 用了很久，然后知道原来还有 VB。于是又有了新的玩法，比如把限时输入【XXX是帅哥】的应用程序设置成开机自动启动。</p>
+<p>在很长一段时间里，【XXX是帅哥】让我的生活充斥着欢乐。</p>
+<hr>
+<p>—-20220213夜更—-</p>
+<p>前些日子随朋友去绍兴的一个 IT 企业参观，本意确实是参观，老板可能以为我们是去找实习的（公开资料显示，该公司2014年成立，员工平均年龄23-25）。</p>
+<p>中午的时候，灯关了，林林总总的都趴下，我也顺着趴下，然后扭过头怀疑世界，我怎么就又这么大了。</p>
+<p>前后端似乎没有什么技术含量，从哪里拉来一个开源的框架，再稍微改改。一套动作虽然行云流水，但照朋友的说法，“听着像大模拟”。</p>
+<p>是啊，掂几两算法，称几钱数据结构，再匀上些许码量，煮上一两时辰，撩走一点bug，便是勉强可以用了。算法竞赛，若真纯纯真真的模拟，只会让人诟病。</p>
+<p>如果这就是码农的未来，还真是无趣呢。如此，OI 真是，养刁了我的胃口啊。</p>
+<hr>
+<p>—-20220305晚—-</p>
+<p>那天是晴天，而且是夏天，我在上初二。</p>
+<p>我很明白那天是晴天，因为学校在开运动会。</p>
+<p>运动会对学生来说是个绝对的好事了，肯定比放假要好。非但不用上课，还可以带零食，整天就吃，观战——或是参战，或者谈笑风生。当然还可以卷广播稿，但这么做的人毕竟是少数。推己及人的话，写随笔是舒服的，但写作文却蔚为痛苦，特别是那时候。</p>
+<p>那天确实是运动会，晴天，我在学校的机房——那次机房大门敞开着，不像其它大部分在机房的时间，都是撬窗爬窗进去的——也许我后面会回忆回忆那扇永远锁不住的窗户。</p>
+<p>我，C同学，Z同学，三个人。</p>
+<p>机房的黑板很好用，我们在上面写下一道数据好大好大的题目。一个迷宫，数字螺旋着往外排布，从各种意义上来说，它都像黄金分割曲线。神秘，优雅，绚丽，迷人。</p>
+<p>我们可能还不知道如何计算神奇的复杂度，但我们知道电脑的运算速度是有极限的。</p>
+<p>我们得做一个离散化，我们当时错误称之为哈希的东西——其实也不算错吧。</p>
+<p>灵感是从什么时候迸发出来的，肯定是说不清的，但至少 Z 同学下去参加了运动会项目再上来的时候，我们还不会。</p>
+<p>“是不是可以把他排个序？”<br>“欸，重复怎么办啊？”<br>“是不是可以看相邻两个元素？”</p>
+<p>我们最终是解决了这个问题，虽然实现的代码冗余繁杂，但能跑，而且还挺快。</p>
+<p>后来，<code>sort</code>,<code>unique</code> 简简单单的两行，配合 <code>lower_bound</code> 能非常精简地实现离散化，而且也习惯了那样的使用。但我长久地把那天我们想出来的”哈希“算法当成一个骄傲。</p>
+<p>且说那窗户，再挺高的位置，我伸手似乎堪堪碰到窗户的下沿，但再垫一个椅子就好处理多了。椅子是从楼下无人却开着门的物理实验室借来的，在借完之后我们当然会还回去，还会帮忙擦干净椅子。</p>
+<p>那是个滑窗，就像能见到的几乎所有的窗户。最初，我们会用一些的物块把两扇窗的前后距离拉开，让里面的锁错位，口袋里的钢陀螺，裤袋里的水笔，万物皆可用。但后来我们发现其实徒手就能撬开那个锁，便不再借用外物了，除了那个椅子。</p>
+<p>一个人拉开窗，爬进去，打开后门，拉开用一根棍子组成的锁，剩下几个人也便能进去了（算上另一个一起敲窗跑机房的 S 同学）。——出去其实就是反一反，得把窗户再关上。</p>
+<p>在没有课的时候，中午，或者傍晚放学以后，有时候是早操时间，我们会到这里来，那是我们的避风港，也是天堂。魔兽争霸3，我的世界，星之卡比，暗黑破坏神，什么都玩。我最喜欢的是War3的RPG了，从dota到imba，塔防，逃杀。开 <code>wtf</code> 模式，开 <code>hfbb</code>。我记起来了，神之墓地，对，我们曾经玩了一整个周六——我初中时候是没有翘过任何一节课的。</p>
+<p>管那个机房的老师似乎也是教务处的主任，但我们和他关系挺好的。据S同学说，他dota的天梯排名分有两千两百多，职业选手也就两千四多。所以即使禁止公布排名，我们还是能从他那里套到各个考试全校的情况。</p>
+<p>有监控嘛，当然有，我们从学校的内网找到过全校的监控。但是没人管我们，我们的胆子自然是越来越大的。</p>
+<p>之所以是这个机房，自然是当时竞赛训练的地方。其实说是竞赛训练，不过是在周五下午的兴趣课程。老师没什么水平，她也教不了我们竞赛相关的多少东西。不过她有往年的联赛题，这就够了。</p>
+<hr>
+<p>—-20220314夜—-</p>
+<p>今天在pyq看到北大附那篇 <code>最好的中学，最后的改革</code> 的推送，有些唏嘘。</p>
+<p>C同学，Z同学和我，之后去了三所不同的高中，走了三条大相径庭的路。</p>
+<p>C同学，大概是高中三年一直没联系过。听说他高一就放弃信竞了，从看履历去数竞拿了省一。我知道的是他初中时保持了三年年段第一，最后在高考的赛道上确实异常成功。</p>
+<p>Z同学，他高一就保送了，偶尔在网络上还会有些联系，最早会和他讨论点算法题，后来就变成一起缅怀过去了。我想起来了，NOI那次我们见了面，当时我与他豪言相约“明年北京见”。但等我们都到了北京，至今却还未曾见过一面啊。</p>
+<p>初中之后，再三个人聚在一起却是高考结束的那个暑假，从各个途径找到了联系方式，约着在游泳馆。</p>
+<p>太阳很猛，我们都变了。</p>
+<p>现在似乎也各有各的生活，像新识三天的网友，好像失去了那段共同的记忆。</p>
+<p>难免世俗，某种角度来看，他们确实混得都比我好，C同学在图班，Z同学在姚班。</p>
+<p>S同学倒是和我在一个高中，但他作息似乎是日夜颠倒的。照高三的模考，也不知能不能上一本。现在我不知道他在哪里，也不敢问。但偶尔想想，他的家境，可能这样已经够享用一辈子了。</p>
+<p>听说，我们初中，自我们那一届之后，机房的大门紧锁，再也没有学校老师带信竞了，哪怕是提供平台和资料。</p>
+<p>我们曾经其实还算辉煌，但我们是最后一届。</p>
+<p>前面我说 ，学 OI 的过程，是一个逐渐忘记初心的过程。 大概也适用于成长。</p>
+<p>以前是毫无功利可言的，确实，初中那时候，虽然有中考但我们其实并不在意。</p>
+<p>我的学习是为了愉悦，当时从未想过应试，有的大概只是解题的欢喜，丰收的欣悦。</p>
+<p>上学期在梦中笑醒，醒来还记得两个片段。</p>
+<p>其中一个，好像就是在教室外的走廊上，在课间的那三两分钟里，草稿纸铺在像矮墙的护栏上，和他一起用笔写着程序。</p>
+<p>于是我又想到</p>
+<p>好像就是在那座天桥上，我们迎面相迎。</p>
+<p>好像就是在放学后，他还理着书包，而他打开了教室前的投影仪，用那才最新改装的触屏的白板，同电脑下着围棋。</p>
+<p><strong>时光荏苒</strong></p>
+<p><strong>何其芬芳</strong></p>
+<p><strong>精神渴望血</strong></p>
+<p><strong>犹如白日渴望黑夜</strong></p>
+<hr>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2022/01/14/backOI/" title="backOI-0314" target="_blank" rel="external">http://emoairx.github.io/blog/2022/01/14/backOI/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2022/03/06/diary220306/" title="220306"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2022/01/01/diary220101/" title="220101"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
