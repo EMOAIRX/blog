@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>试图对音数的预习 | emoairx</title>
+  <meta name="description" content="音乐基础知识声音声音(sound)是音乐的载体 声波是纵波(longitudinal wave) 声音的高低是由振动频率(frequency)决定的，对应于音乐中的音高(pitch)声音的强弱是由振动幅度(amplitude)决定的，对应音乐中的力度(dynamics)，我们听到的响度(loudness)是由传入耳朵中的空气压力决定的声音持续的时间长度，对应音乐中的时值(duration)不同声音">
+<meta property="og:type" content="article">
+<meta property="og:title" content="试图对音数的预习">
+<meta property="og:url" content="http://emoairx.github.io/blog/2022/04/09/Music%20and%20Mathematics/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="音乐基础知识声音声音(sound)是音乐的载体 声波是纵波(longitudinal wave) 声音的高低是由振动频率(frequency)决定的，对应于音乐中的音高(pitch)声音的强弱是由振动幅度(amplitude)决定的，对应音乐中的力度(dynamics)，我们听到的响度(loudness)是由传入耳朵中的空气压力决定的声音持续的时间长度，对应音乐中的时值(duration)不同声音">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-09T11:48:05.876Z">
+<meta property="article:modified_time" content="2022-04-09T13:54:08.763Z">
+<meta property="article:author" content="emoairx">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2022/04/09/Music%20and%20Mathematics/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/test/" rel="tag">test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/typeA/" rel="tag">typeA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%AB%98%E4%BB%A3/" rel="tag">高代</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/test/" style="font-size: 13px;">test</a> <a href="/blog/tags/typeA/" style="font-size: 13px;">typeA</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.33px;">作业</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.33px;">程设</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.67px;">随笔</a> <a href="/blog/tags/%E9%AB%98%E4%BB%A3/" style="font-size: 13px;">高代</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/04/09/Music%20and%20Mathematics/" class="title">试图对音数的预习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-09T11:48:05.876Z" itemprop="datePublished">2022-04-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/04/08/dreamers01/" class="title">乱写的（1）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-08T06:16:45.129Z" itemprop="datePublished">2022-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/04/07/diary/diary220407/" class="title">220407</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-07T12:01:06.412Z" itemprop="datePublished">2022-04-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/04/05/diary/diary220405/" class="title">220405</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-05T12:03:00.933Z" itemprop="datePublished">2022-04-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2022/04/01/Linear%20algebra%20from%20scratch/" class="title">高代补天计划——Linear algebra from scratch</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T05:12:14.926Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Music and Mathematics" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      试图对音数的预习
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2022/04/09/Music%20and%20Mathematics/" class="article-date">
+	  <time datetime="2022-04-09T11:48:05.876Z" itemprop="datePublished">2022-04-09</time>
+	</a>
+</span>
+        
+        
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2022/04/09/Music%20and%20Mathematics/" class="leancloud_visitors"  data-flag-title="试图对音数的预习">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2022/04/09/Music%20and%20Mathematics/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="音乐基础知识"><a href="#音乐基础知识" class="headerlink" title="音乐基础知识"></a>音乐基础知识</h3><h4 id="声音"><a href="#声音" class="headerlink" title="声音"></a>声音</h4><p>声音(sound)是音乐的载体</p>
+<p>声波是<strong>纵波(longitudinal wave)</strong></p>
+<p>声音的高低是由<strong>振动频率(frequency)</strong>决定的，对应于音乐中的<strong>音高(pitch)</strong><br>声音的强弱是由<strong>振动幅度(amplitude)</strong>决定的，对应音乐中的<strong>力度(dynamics)</strong>，我们听到的响度(loudness)是由传入耳朵中的空气<strong>压力</strong>决定的<br>声音持续的<strong>时间长度</strong>，对应音乐中的<strong>时值(duration)</strong><br>不同声音的特色是由<strong>振动波形(waveform)</strong>决定的，对应于音乐中的<strong>音色(timbre)</strong></p>
+<p>人耳能听见的声音，振动频率范围为 <strong>20~20000 Hz</strong>。<br><strong>音乐会音高(concert pitch)</strong> 指的是中央C上方的A定义为 <strong>440Hz</strong>。</p>
+<p>振动体发出声音的强度（客观强度）由振幅决定，人耳听到声音的大小（主观强度）由空气压力绝对。</p>
+<p>人耳对空气压力的感觉非常灵敏，当频率为 1000Hz 时，人耳的听觉下限为 20 微帕.$20\mu Pa = 2\times10^{-5}Pa$</p>
+<p>人耳对频率的感知<strong>不是线性的</strong>，在声学中用 <strong>声压强度 (sound pressure level,SPL)</strong>来度量，定义 $L<em>p = 10\log </em>{10}(\frac{p}{p<em>0})^2=10\log </em>{20}(\frac{p}{p_0})$，其中 $p_0$ 是 1kHz 时听觉下线阈值 (20 微帕)，$L_p$ 单位为分贝</p>
+<p>人耳对于不同频率的声音有着不同的听觉下限阈值。</p>
+<p><strong>振幅包络(envelope)</strong> 是振动波型的包络面，可以看成 <strong>Attack起音，Decay 衰减，Sustain 持续，Release 释放 </strong></p>
+<p>描述声音的各个频率成分随时间变化的图形称为 <strong>频谱图(spectrogram)</strong>，在频谱图上，横坐标轴通(axis)常表示时间，，纵坐标轴表示频率。对于每个固定的频率，其随时间变化的振幅通常用颜色、亮度(brightness)或者灰度表示。</p>
+<p><strong>泛音列(overtone series,harmonic series)</strong>指的是把声音的各个频率成分从低到高排列起来形成的序列。</p>
+<p>得到声音的频率成分可用傅里叶分析的方法。可以在<strong>时域(time domain)</strong> 和 <strong>频域 (frequency domain)</strong> 上进行转换。</p>
+<p>声音可以分为 <strong>乐音(musical tone)</strong> 和 <strong>噪音 (noise)</strong> ，乐音是持续有规律的振动产生的声音，噪音是无规律，起伏不定的振动产生的音乐。二十世纪以来音乐家越来越重视噪音的使用—<strong>organized sounds</strong></p>
+<p>在<strong>打击音乐(percussion instruments)</strong> 中，一类是具有<strong>固定音高的(definitely pitched)</strong>，比如木琴(xylophone)，定音鼓(timpani)等，另一类是<strong>无固定音高的(indefinitely pitched)</strong>，例如小军鼓(snare drum)、鈸(cymbal)等</p>
+<h4 id="乐音"><a href="#乐音" class="headerlink" title="乐音"></a>乐音</h4><p>音乐中使用的、具有固定音高的全体音乐构成一个<strong>集合</strong>，称为<strong>乐音体系</strong>，其中的<strong>元素</strong>成为<strong>音级</strong>。</p>
+<p>可以把全体音级从低到高排列起来，得到<strong>音列</strong>。音列中相邻的两个音级之间相差了一个<strong>半音(semitone)</strong> 。两个半音称为 <strong>全音(whole tone)</strong></p>
+<blockquote>
+<p> 应当把钢琴键盘的一个八度背下来，还应当把中音低音高音的五线谱背下来</p>
+<p> pitch 有沥青的意思</p>
+</blockquote>
+<p>每个音级有一个名字，称为<strong>音名 (pitch name)</strong> ，基本音名为CDEFGAB，在一个<strong>八度(octave)</strong> ，相应位置的音循环使用这七个音名。为了区分不同八度同名的音，人们把这些音级分成若干<strong>音组</strong></p>
+<p>有<strong>基本音级</strong> ，C,D,E,F,G,A,B，以及<strong>变化音级</strong>，通过在音级字母前面添加 <strong>变音记号 (accidental)</strong></p>
+<p><strong>升号 sharp</strong> $\sharp$，<strong>降号 flat</strong> $\flat$ ，<strong>重升号 double sharp</strong> ,<strong>重降号 double flat</strong>，<strong>还原号 natural</strong> $\natural$</p>
+<p>还有唱名法也可以给乐音起名字，可以是do,re,mi,fa,sol,la,si，</p>
+<p>对于固定场名法，和钢琴键是一一对应的，C=do。还有首调唱名法(movable do)，do可以是别的</p>
+<h4 id="谱"><a href="#谱" class="headerlink" title="谱"></a>谱</h4><p>中国古代有 <strong>减字谱</strong> ，将古琴的指法名称和弦序、徽位结合为文字。</p>
+<p>五线谱</p>
+<p>附点音符让时值乘上二分之三</p>
+<p>五线谱中，音符的符尾一定是朝右的</p>
+<p><strong>拍号(time signature)</strong> ，m/n：以n分音符为一拍，每小节m拍</p>
+<p><strong>速度(tempo)</strong>，表示每分钟演奏（唱）多少个几分音符</p>
+<p>五线谱某条线表示什么，通过<strong>谱号(clef)</strong>来确定，常用的有<strong>高音符号 (treble clef)、低音符号(blass clef)、中音符号(alto clef)</strong></p>
+<p>高音符号巧计：FACE（脸呢），EGBDF（every good boy does fine），C4是下加一线</p>
+<p>低音符号：C4是上加一线。</p>
+<p>重音符号：中间是C4。</p>
+<p><strong>谱表(staff)</strong> 分为 <strong>单谱表</strong>和 <strong>联合谱表</strong>，通过<strong>连谱号</strong>，例如由花括号联结的高音谱表和低音谱表就构成<strong>大谱表(grant staff)</strong>，比如合唱谱的总谱</p>
+<p>在音谱每一行的开始，变音符号叫做<strong>调号(key signature)</strong>，对所有音名不管什么八度都适用。</p>
+<p>小节内的是临时变音记号，对小节内有用，注意有时需要还原。</p>
+<p>以及还有简谱。</p>
+<h4 id="音程"><a href="#音程" class="headerlink" title="音程"></a>音程</h4><p>两个音级间的距离称为 <strong>音程(interval)</strong>，高的称为 <strong>上方音</strong>，也叫 <strong>冠音</strong>，下的叫做<strong>下方音</strong> 或者 <strong>根音</strong>，两个音先后发声是 <strong>旋律音程</strong>，同时发声是 <strong>和声音程</strong></p>
+<p>音程的名称由两个参数 <strong>度数</strong> 和 <strong>半音数</strong> 共同决定</p>
+<blockquote>
+<p>这个数一数五线谱查了多少，再数一数钢琴键盘上差了多少就可以了</p>
+<p>就1，4，5，8是纯的，然后大二大三和小二小三很明显，前后差了1，算一算大概。</p>
+</blockquote>
+<p>有些音程是 <strong>协和音程(consonant interval)</strong> ，有些是<strong>不协和音程(dissonant interval)</strong>，大概就是听起来舒服的和谐的。两个频率越是简单整数比就越和谐。赫尔姆霍兹有个所谓的泛音列重合理论。还是挺有道理的。</p>
+<blockquote>
+<p>比如想象中的内容要多啊sigh</p>
+</blockquote>
+<h3 id="振动基础知识"><a href="#振动基础知识" class="headerlink" title="振动基础知识"></a>振动基础知识</h3><p>一个假设(assumption)，给定一条 <strong>均匀的细弦</strong></p>
+<p>三个参数(parameters)，<strong>长度L</strong>，受到<strong>张力T</strong>，<strong>线密度$\rho$</strong> </p>
+<blockquote>
+<p>不知道什么是张力，寄😇</p>
+</blockquote>
+<p>假设这条均匀的细弦被固定在水平轴 $(0,0)$ 和 $(L,0)$ 之间，设 $u(x,t)$ 是位置 $x$ 在时刻 $t$ 的位移，取弦上的一小段 $PQ$ ，其坐标分别为 $(x_0,u(x_0,t))$ 和 $(x_0+\Delta x,u(x_0+\Delta x,t))$</p>
+<p>弦受到张力为 $T$ ，其线密度为 $\rho$，设 $T_Q$ 为 $Q$点向上分力，$T_P$ 为 $P$ 点向下的力，则 $PQ$ 受到的力 $F = T_Q-T_P\approx T(\tan \beta-\tan\alpha)$ ，而 $m=\rho\Delta x$</p>
+<blockquote>
+<p>不是很明白这个约等于是怎么来的</p>
+</blockquote>
+<p>由牛顿第二定律，整理后可得</p>
+<script type="math/tex; mode=display">
+\frac{\partial^2u}{\partial x^2}|_{x=x_0}=\frac{\rho}{T}\frac{\partial^2u}{\partial t^2}|_{x=x_0}</script><p>由 $x_0$ 的任意性，</p>
+<script type="math/tex; mode=display">
+\forall x,\frac{\partial^2u}{\partial x^2}=c^2\frac{\partial^2u}{\partial t^2}
+,c=\sqrt\frac{\rho}{T}</script><p>由边值条件 $u(0,t)=u(L,t)=0,\forall t\ge0$</p>
+<blockquote>
+<p>……</p>
+<p>然后接下来一句话大概是</p>
+<p>根据一加一等于二，我们可以得到一个无穷级数</p>
+<p>中间大概是忽略了一堆东西，一堆我不懂的东西</p>
+<p>有机会一定要好好学一学</p>
+</blockquote>
+<p>运用变量分离法，得到了 $u(x,t)$ 的完整解</p>
+<script type="math/tex; mode=display">
+u(x,t)=\sum_{n=1}^{\infin}u_n(x,t)=\sum_{n=1}^{\infin}(a_n\cos\frac{n\pi c}{L}+b_n\sin\frac{n\pi c}{L})\sin(\frac{n\pi}{L}x)</script><p>记 $\omega_n=n\pi c/L,\sin\theta=a_n/\sqrt{a_n^2+b_n^2}$</p>
+<p>$u_n(x,t)=\sqrt{a_n^2+b_n^2}\sin(\omega_nt+\theta_n)\sin(\frac{n\pi}{L}x)$</p>
+<p>取 $n=1$，$\omega_1=\pi c/L$</p>
+<p>周期为 $2\pi/\omega_n$ </p>
+<p>$f_1=u_1(x,t)=\dfrac{1}{2L}\sqrt\frac{T}{\rho}$</p>
+<p>由此可得梅森(Mersenne)定律，弦的振动频率与其长度成反比，与其张力的平方根成正比，而与弦的线密度的平方根成反比。</p>
+<p>……待续</p>
+<p>张量是什么呀（</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2022/04/09/Music%20and%20Mathematics/" title="试图对音数的预习" target="_blank" rel="external">http://emoairx.github.io/blog/2022/04/09/Music and Mathematics/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2022/04/08/dreamers01/" title="乱写的（1）"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
