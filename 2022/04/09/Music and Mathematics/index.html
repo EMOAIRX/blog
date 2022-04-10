@@ -26,7 +26,7 @@
 <meta property="og:description" content="北京大学数学科学学院 王杰教授 开设的课程《音乐与数学》  非常神奇（超级好玩，虽然可能专业人士看来会有点民科？） 王杰老师的主页  在开始不妨先放上清华一个没选上音数的朋友对音乐小白我的一些推荐  B站视频：好和弦   调性和声与20世纪音乐概述   豆瓣：图解和声  并感谢民乐社的某个朋友对我进行最最最最基础乐理的科普。 音乐基础知识1 声音 声音(soun">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-09T11:48:05.876Z">
-<meta property="article:modified_time" content="2022-04-10T06:39:46.580Z">
+<meta property="article:modified_time" content="2022-04-10T13:22:49.526Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="音数">
 <meta name="twitter:card" content="summary">
@@ -274,7 +274,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2022/04/01/Linear%20algebra%20from%20scratch/" class="title">高代补天计划——Linear algebra from scratch</a>
+                <a href="/blog/2022/04/01/Linear%20algebra%20from%20scratch/" class="title">高代，寄！</a>
               </p>
               <p class="item-date">
                 <time datetime="2022-04-01T05:12:14.926Z" itemprop="datePublished">2022-04-01</time>
@@ -458,7 +458,7 @@ u(x,t)=\sum_{n=1}^{\infin}u_n(x,t)=\sum_{n=1}^{\infin}(a_n\cos\frac{n\pi c}{L}+b
 <p><span class="math inline">\(u_n(x,t)=\sqrt{a_n^2+b_n^2}\sin(\omega_nt+\theta_n)\sin(\frac{n\pi}{L}x)\)</span></p>
 <p>取 <span class="math inline">\(n=1\)</span>，<span class="math inline">\(\omega_1=\pi c/L\)</span></p>
 <p>周期为 <span class="math inline">\(2\pi/\omega_n\)</span></p>
-<p><span class="math inline">\(f_1=u_1(x,t)=\dfrac{1}{2L}\sqrt\frac{T}{\rho}\)</span></p>
+<p><span class="math inline">\(f_1=u_1(x,t)=\dfrac{1}{2L}\sqrt{\dfrac{T}{\rho}}\)</span></p>
 <p>由此可得梅森(Mersenne)定律，弦的振动频率与其长度成反比，与其张力的平方根成正比，而与弦的线密度的平方根成反比。</p>
 <blockquote>
 <p>张力是什么呀（</p>
@@ -558,6 +558,10 @@ u(x,t)=\sum_{k=0}^{\infin}(-1)^k\dfrac{8}{(2k+1)^2\pi^2}\sin(\frac{(sk+1)\pi}{L}
 <p>感觉不太听得出来（大概是我耳朵不好使，但是艾舍尔的画倒是很让人迷醉</p>
 </blockquote>
 <p>当然，平均律可以转调，但是也失去了一些东西。</p>
+<p>一些小结：</p>
+<p>三分损益和五度相生得到的大三度81/64大于理想的大三度5/4</p>
+<p>三分损益和五度相生得到的纯五度符合理想的简单整数比</p>
+<p>纯律确定的自然音程中由两种不同的大二度，五度音程D-A不协和，但是大三度的距离都是一致的（？）</p>
 <p><strong>音分(cents)</strong> 是度量不同音乐的频率之比的单位，两个音乐之间的音分等于 <span class="math display">\[
 1200\log_2{\left(\frac{f_2}{f_1}\right)}
 \]</span> 每个半音 <span class="math inline">\(100\)</span> 音分。</p>
@@ -578,6 +582,11 @@ log_2{3/2}=0.5849625...\\
 <p>其中 <span class="math inline">\(7/12\)</span> 是其中一个合理的最佳有理逼近，相比之下 <span class="math inline">\(41\)</span> 就有点大了，事实上英国科学家，音乐理论家 Robert Holford Macdowall Bosanquet 制造出一个 53 平均律的扩展键盘，在那里，第31个半音处为纯五度。</p>
 <blockquote>
 <p>反正就是扯吧（但扯得有理有据，很好玩！</p>
+<p>关于无理数和有理逼近的一点没用的补充</p>
+<p><strong>狄利克雷逼近定理</strong>：设 x 是无理数，则存在无穷多对整数 (p,q) ，使得 <span class="math inline">\(0&lt;|x-\frac{p}{q}|&lt;\frac{1}{p^2}\)</span>。可以用抽屉原理证。</p>
+<p><strong>刘维尔数：</strong> 若对于任何 <span class="math inline">\(n\ge 1\)</span>，存在整数 <span class="math inline">\(p&gt;1\)</span> ，以及整数 <span class="math inline">\(q\)</span> 使得 <span class="math inline">\(0&lt;|x-\frac{q}{p}| &lt; \frac{1}{p^n}\)</span></p>
+<p><strong>丢番图逼近的刘维尔定理：</strong> 设 <span class="math inline">\(n\ge 2\)</span>，无理数 <span class="math inline">\(x\)</span> 是某个 <span class="math inline">\(n\)</span> 次整系数多项式的零点，则存在常数 <span class="math inline">\(A&gt;0\)</span> ，使得对于任何整数 <span class="math inline">\(q\)</span> 和正整数 <span class="math inline">\(p\)</span>， <span class="math inline">\(|x-q/p|&gt;A/p^n\)</span></p>
+<p>以及由此定义的<strong>无理测度</strong>，代数数的无理测度为 <span class="math inline">\(2\)</span>。<span class="math inline">\(e\)</span>的无理测度为<span class="math inline">\(2\)</span>，<span class="math inline">\(\pi\)</span> 的无理测度目前的上界似乎是 7.6063。</p>
 </blockquote>
 <h3 id="musicchance-and-computer">Music,Chance and Computer</h3>
 <p>十八世纪后期，西方流行扔骰子游戏，预先准备好若干编了号得音乐片段，演奏时通过掷骰子来确定选用哪个音乐片段。至少可以追述到1757年克恩伯格出版《波格涅兹和小步舞曲作曲常备》</p>
