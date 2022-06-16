@@ -18,15 +18,15 @@
   
   
   <title>note on QCQI | emoairx</title>
-  <meta name="description" content="三天速成简量）  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net) 阿巴阿巴（好像可以用来预习高代应付回头考）（拓扑拾遗） linear algerbra \(A\)">
+  <meta name="description" content="三天速成简量） 有一种简量教材是从这里抄的感觉（唔，估计因为都是很基础的玩意儿）  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net) 阿巴阿巴（好像可以用来预习高代应付">
 <meta property="og:type" content="article">
 <meta property="og:title" content="note on QCQI">
 <meta property="og:url" content="http://emoairx.github.io/blog/2022/06/12/note%20on%20QCQI/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="三天速成简量）  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net) 阿巴阿巴（好像可以用来预习高代应付回头考）（拓扑拾遗） linear algerbra \(A\)">
+<meta property="og:description" content="三天速成简量） 有一种简量教材是从这里抄的感觉（唔，估计因为都是很基础的玩意儿）  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net) 阿巴阿巴（好像可以用来预习高代应付">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-12T07:46:22.787Z">
-<meta property="article:modified_time" content="2022-06-16T05:38:27.514Z">
+<meta property="article:modified_time" content="2022-06-16T07:50:53.989Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -358,18 +358,19 @@
         <hr />
 <hr />
 <p>三天速成简量）</p>
+<p>有一种简量教材是从这里抄的感觉（唔，估计因为都是很基础的玩意儿）</p>
 <hr />
 <p>不会真有东西吧，就我这四级都不会的废物）</p>
 <p>会不会翻开都是个问题</p>
 <p><a target="_blank" rel="noopener" href="https://serab.net/docs/qcqi/">Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net)</a></p>
 <p>阿巴阿巴（好像可以用来预习高代应付回头考）（拓扑拾遗）</p>
-<h3 id="linear-algerbra">linear algerbra</h3>
+<h3 id="linear-algebra">linear algebra</h3>
 <p><span class="math inline">\(A\)</span> 伴随变换 <span class="math inline">\(\dagger\)</span> 指的是 <span class="math inline">\((Au,v)=(u,A^\dagger v)\)</span> 的那个东西，<span class="math inline">\((u,v)\)</span> 在空间定义的一个半线性的函数，对于右边是完全线性的，左边的线性要共轭一下。</p>
 <blockquote>
 <p>这个空间的名字叫什么呢？这已经是酉空间了，希尔伯特空间好像还要求柯西列收敛到柯西列，对那个半线性函数还有别的要求。</p>
 </blockquote>
 <p><span class="math inline">\((au,v)=a^*(u,v)\ \ \ \  (u,av)=a(u,v)\)</span></p>
-<p>一个众所周知的结论是 Cauchy-Schwarz inequality <span class="math display">\[
+<p>一个众所周知的结论是 <strong>Cauchy-Schwarz inequality</strong> <span class="math display">\[
 |(u,v)^2|\le (u,u)(v,v)
 \]</span> 一种证明是构造二次函数，取 <span class="math inline">\(\lambda = (u,v)||v||^{-2}\)</span></p>
 <blockquote>
@@ -431,7 +432,83 @@ A=A^\dagger
 \]</span></p>
 <h5 id="the-spectral-decomposition">The spectral decomposition</h5>
 <p>​ <strong>谱分解定理(Spectral decomposition)</strong> Any normal operator <span class="math inline">\(M\)</span> on a vector space <span class="math inline">\(V\)</span> is diagonal with respect to some orthonormal basis for <span class="math inline">\(V\)</span> . Conversely, any diagonalizable operator is normal.</p>
+<blockquote>
+<p>​ 就是说正规矩阵一定可以对角化，可对角化的矩阵一定正规。怎么感觉lww之前提到过什么的样子。可交换就可以同时对角化？忘记了。诶，所以可以用那个方法搞吗——不知道</p>
+</blockquote>
+<p>​ 取特征值 <span class="math inline">\(\lambda\)</span> 和它的特征子空间上的投影变换 <span class="math inline">\(P\)</span>，正交补 <span class="math inline">\(Q\)</span>，这里有 <span class="math inline">\(P^\dagger=P,P^2=P\)</span></p>
+<p>​ <span class="math inline">\(M = (P+Q) M (P+Q)\)</span> ，可以证明 <span class="math inline">\(QMP=0,PMQ=(QM^\dagger P)^\dagger=0\)</span></p>
+<p>其中 <span class="math inline">\(MM^\dagger \ket v=M^\dagger M\ket v=\lambda M^\dagger \ket v\)</span> ，说明它的 <span class="math inline">\(M^\dagger P\)</span> 在 <span class="math inline">\(Q\)</span> 的零空间。</p>
+<p>​ 从而 <span class="math inline">\(M=\lambda P+QMQ\)</span>，而 <span class="math inline">\(QM=QM(P+Q)=QMQ\)</span> 类似推出来 <span class="math inline">\(QMQ\)</span> 是正规的</p>
+<p>​ 归纳法得证</p>
 <h4 id="tensor-products">tensor products</h4>
+<p>​ 张量积，外积，其中运算的定义都是很自然的</p>
+<p>​ 任何一个 <span class="math inline">\(V\otimes W\to V&#39;\otimes W&#39;\)</span> 的线性算子 <span class="math inline">\(C\)</span> 都可以写成 <span class="math inline">\(A:V\to V&#39;,B:W\to W&#39;\)</span> 的积的线性组合，<span class="math inline">\(C=\sum_ic_iA_i\otimes B_i\)</span></p>
+<blockquote>
+<p>感觉是不是类似于矩阵展开的感觉</p>
+</blockquote>
+<p>对于 <span class="math inline">\(A,B\)</span> 如上定义，有 <span class="math display">\[
+(A\otimes B)(\ket v \otimes \ket w) \equiv A\ket v \otimes B \ket w
+\]</span> ​ 用矩阵具体写的话，可以用 Kronecker product，就是分块然后展开。</p>
+<blockquote>
+<p>2.28 <span class="math inline">\((A\otimes B)^*=(A^*\otimes B^*),(A\otimes B)^T=(A^T\otimes B^T),(A\otimes B)^\dagger=(A^\dagger\otimes B^\dagger)\)</span></p>
+<p>用Kronecker product展开即可</p>
+</blockquote>
+<p>两个unitary算子，Hermitian算子，positive算子，projector算子的张量积依然保持性质。</p>
+<h4 id="operator-functions">Operator functions</h4>
+<p>​ 定义相应的函数，所有特征值进行变换，即 <span class="math inline">\(A=\sum_aa\ket a\bra a,f(A)=\sum_af(a)\ket a\bra a\)</span></p>
+<blockquote>
+<p>2.35 <strong>(Exponential of the Pauli matrices)</strong> Let <span class="math inline">\(\vec v\)</span> be any real, three-dimensional unit vector and <span class="math inline">\(\theta\)</span> a real number. Prove that <span class="math display">\[
+\exp(i\theta+\vec v · \vec \sigma) = \cos(\theta )I + i \sin(θ)\vec v · \vec \sigma
+\]</span></p>
+<p><span class="math display">\[
+\begin{eqnarray}
+      \vec{v}\cdot \vec{\sigma} &amp;=&amp; v_1
+      \begin{pmatrix}
+          0 &amp; 1 \\
+          1 &amp; 0
+      \end{pmatrix}
+      + v_2
+      \begin{pmatrix}
+          0 &amp; -i \\
+          i &amp; 0
+      \end{pmatrix}
+      + v_3
+      \begin{pmatrix}
+          1 &amp; 0 \\
+          0 &amp; -1
+      \end{pmatrix} \\
+      &amp;=&amp;
+      \begin{pmatrix}
+          v_3 &amp; v_1-iv_2 \\
+          v_1 + iv_2 &amp; -v_3
+      \end{pmatrix}.
+  \end{eqnarray}
+\]</span></p>
+<p><span class="math display">\[
+=\ket {\lambda _1} \bra {\lambda _1}-\ket {\lambda _{-1}} \bra {\lambda _{-1}}
+\]</span></p>
+</blockquote>
+<p>注意到 迹， <span class="math inline">\(tr(A\ket \psi \bra \psi)=\Braket{\psi|A|\psi}\)</span>，可以作为一个希尔伯特空间的自然内积。</p>
+<p><em>commutator</em> between two operators <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined to be <span class="math display">\[
+[A,B]\equiv AB-BA
+\]</span> if <span class="math inline">\([A,B]=0,AB=BA\)</span> then we say A <em>commutes</em> with B.</p>
+<p><em>anti-commutator</em> is defined by <span class="math display">\[
+\{A,B\}\equiv AB+BA
+\]</span> we say <span class="math inline">\(A\)</span> <em>anti-commutes</em> with <span class="math inline">\(B\)</span> if <span class="math inline">\(\{A,B\}=0\)</span></p>
+<blockquote>
+<p>话说be defined to be 和 be defined by 有什么区别啊</p>
+</blockquote>
+<h5 id="simultaneous-diagonalization-theorem">Simultaneous diagonalization theorem</h5>
+<p>​ 两个自伴算子可以协同对角化，当且仅当他们可以交换顺序。</p>
+<blockquote>
+<p>​ 先跳过，暂时不会（呜呜文威老师好像讲过我脑子笨啥都不记得了）</p>
+</blockquote>
+<h4 id="polar-decomposition-and-svd">polar decomposition and SVD</h4>
+<p>unitary <span class="math inline">\(U\)</span> and positive operators <span class="math inline">\(J\)</span> and <span class="math inline">\(K\)</span> such that <span class="math display">\[
+A=UJ=KU
+\]</span> <span class="math inline">\(J\equiv \sqrt{A^\dagger A},K\equiv \sqrt{A A^\dagger}\)</span> and if <span class="math inline">\(A\)</span> is invertible then <span class="math inline">\(U\)</span> is unique.</p>
+<h3 id="the-postulates-of-quantum-mechanics">The postulates of quantum mechanics</h3>
+<p>1、a Hilbert space</p>
 
       
     </div>
