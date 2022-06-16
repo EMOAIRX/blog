@@ -17,16 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Tag: 数分 | emoairx</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Emoairx">
-<meta property="og:url" content="http://emoairx.github.io/blog/tags/%E6%95%B0%E5%88%86/index.html">
+  <title>模拟？ | emoairx</title>
+  <meta name="description" content="Alice 和 Bob 在玩游戏，Alice 需要选择一个在 \([1,n]\) 中的数，而 Bob 需要同时选择 \(k+1\) 个数字，满足 \(1&#x3D;t_0&lt;t_1&lt;t_2\dots&lt;t_k&#x3D;n\) ，取 \(i\) 为满足 \(t_i \le x\) 的最大的，最终得到 \(x &#x2F; t_i\) ，Alice 要最大化这个值而 Bob 要最小化这个值。 另一个等价的表述是：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟？">
+<meta property="og:url" content="http://emoairx.github.io/blog/2022/06/14/SSUQ/index.html">
 <meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="Alice 和 Bob 在玩游戏，Alice 需要选择一个在 \([1,n]\) 中的数，而 Bob 需要同时选择 \(k+1\) 个数字，满足 \(1&#x3D;t_0&lt;t_1&lt;t_2\dots&lt;t_k&#x3D;n\) ，取 \(i\) 为满足 \(t_i \le x\) 的最大的，最终得到 \(x &#x2F; t_i\) ，Alice 要最大化这个值而 Bob 要最小化这个值。 另一个等价的表述是：">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-14T08:10:01.981Z">
+<meta property="article:modified_time" content="2022-06-14T09:47:51.381Z">
 <meta property="article:author" content="emoairx">
+<meta property="article:tag" content="chip">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://emoairx.github.io/blog/tags/%E6%95%B0%E5%88%86/index.html">
+  <link rel="canonical" href="http://emoairx.github.io/blog/2022/06/14/SSUQ/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
   
@@ -285,68 +290,148 @@
 </aside>
 
   
-  <main class="main" role="main">
-  <article class="content article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">Tag: 数分</h1>
-      <p class="text-muted hidden-xs">Total 1 articles</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/blog/tags">All</a></li>
-          
-          <li><a href="/blog/tags/随笔/">随笔</a></li>
-          
-          <li><a href="/blog/tags/音数/">音数</a></li>
-          
-          <li><a href="/blog/tags/作业/">作业</a></li>
-          
-          <li><a href="/blog/tags/程设/">程设</a></li>
-          
-          <li><a href="/blog/tags/日记/">日记</a></li>
-          
-          <li><a href="/blog/tags/数分/">数分</a></li>
-          
-          <li><a href="/blog/tags/地概/">地概</a></li>
-          
-          <li><a href="/blog/tags/笔记/">笔记</a></li>
-          
-          <li><a href="/blog/tags/chip/">chip</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="row">
-        
-<div class="col-md-6">
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-SSUQ" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2022-05-29T13:10:51.504Z" itemprop="datePublished">2022-05-29</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/blog/2022/05/29/Fourier%20series/">试图学习傅里叶级数</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/blog/tags/%E6%95%B0%E5%88%86/" class="label label-default mb">数分</a>
-     
-     
-   </div>
-   
-</article>
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      模拟？
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2022/06/14/SSUQ/" class="article-date">
+	  <time datetime="2022-06-14T08:10:01.981Z" itemprop="datePublished">2022-06-14</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/chip/" rel="tag">chip</a>
+  </span>
 
 
-</div>
+        
 
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2022/06/14/SSUQ/" class="leancloud_visitors"  data-flag-title="模拟？">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2022/06/14/SSUQ/#comments" class="article-comment-link">Comments</a></span>
+        
       </div>
     </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>Alice 和 Bob 在玩游戏，Alice 需要选择一个在 <span class="math inline">\([1,n]\)</span> 中的数，而 Bob 需要同时选择 <span class="math inline">\(k+1\)</span> 个数字，满足 <span class="math inline">\(1=t_0&lt;t_1&lt;t_2\dots&lt;t_k=n\)</span> ，取 <span class="math inline">\(i\)</span> 为满足 <span class="math inline">\(t_i \le x\)</span> 的最大的，最终得到 <span class="math inline">\(x / t_i\)</span> ，Alice 要最大化这个值而 Bob 要最小化这个值。</p>
+<p>另一个等价的表述是：</p>
+<p>Alice 手中有一个价值为 <span class="math inline">\(x\)</span> 的物品，Bob 要去购买这个物品，它使用 <span class="math inline">\(1=t_0&lt;t_1\dots t_k=n\)</span> 去试图向 Alice购买，Alice会在出价第一次大于等于 <span class="math inline">\(x\)</span> 时出手，Alice 想要最大化比例，而 Bob 想要最小化。</p>
+<hr />
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2022/06/14/SSUQ/" title="模拟？" target="_blank" rel="external">http://emoairx.github.io/blog/2022/06/14/SSUQ/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
   </article>
-   
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2022/06/13/diary/diary220613/" title="220613"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -399,6 +484,37 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
 
 
 
