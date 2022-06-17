@@ -449,7 +449,7 @@
 <p><code>applicative functor</code> 满足下面的性质</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pure</span> id &lt;*&gt; x = x</span><br><span class="line"><span class="title">pure</span> (g x) = pure g &lt;*&gt; pure x</span><br><span class="line"><span class="title">x</span> &lt;*&gt; pure y = pure (\g -&gt; g y) &lt;*&gt; x</span><br><span class="line"><span class="title">x</span> &lt;*&gt; (y &lt;*&gt; z) = (pure (.) &lt;*&gt; x &lt;*&gt; y) &lt;*&gt; z</span><br></pre></td></tr></table></figure>
 <p>然而我并不知道为什么上面是对的，也许等更多的了解代数才行</p>
-<hr />
+<hr>
 <p>来点看起来有趣的应用：</p>
 <p><strong>链式法则</strong>：<span class="math inline">\((g(x) -&gt; f(g(x))) -&gt; \frac{d(g(x))}{dx} -&gt; \frac{d(f(g(x)))}{dx}\)</span></p>
 <p>构造这样一个函数就行了。</p>

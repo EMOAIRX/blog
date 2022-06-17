@@ -357,15 +357,15 @@
       
         <p>最后update：</p>
 <h1 id="学不动了摆了不学了反正pf">学不动了，摆了，不学了，反正pf</h1>
-<hr />
+<hr>
 <p>大家都在说，这一章好难好难……</p>
 <p>我大概也是学不会的——</p>
 <p>不过数分线上PF了））））希望是这样</p>
-<hr />
+<hr>
 <p>高代里讲了正交性，基本三角函数系是正交的，这就导致，假如某个周期函数可以在这组基下展开，那么系数就是两个的内积。</p>
 <p>但是按照我的直观理解，我觉得内积应该是 <span class="math inline">\(\large \int_{-\pi}^{\pi} f(x)g(x)dx\)</span> 这玩意，所以为什么还除了一个 <span class="math inline">\(\pi\)</span> ，哦对，还要除以自己和自己的内积来表示长度 <span class="math inline">\(\large \int_{-\pi}^{\pi}\sin^2 nx\ dx=\pi\)</span> 。</p>
 <p>特别的我们知道 <span class="math inline">\(1\)</span> 是 <span class="math inline">\(n=0\)</span> 的时候的特例，这时候 <span class="math inline">\(\int_{-\pi}^{\pi}1 dx=2\pi\)</span> ，所以 <span class="math inline">\(a_0\)</span> 那个地方要除以二，这样所有都可以写成是除以 <span class="math inline">\(\pi\)</span> 的形式。</p>
-<hr />
+<hr>
 <h3 id="chapter1">Chapter1</h3>
 <p>一个函数定义在 <span class="math inline">\((-\infin,\infin)\)</span> 的函数 <span class="math inline">\(f(x)\)</span> <strong>有关</strong>的傅里叶级数 <span class="math display">\[
 f(x)\sim \frac{a_0}{2}+\sum_{n=1}^{+\infin} (a_n\cos nx+b_n\sin n_x)
@@ -375,11 +375,11 @@ f(x)\sim \frac{a_0}{2}+\sum_{n=1}^{+\infin} (a_n\cos nx+b_n\sin n_x)
 <p>对于定义在 <span class="math inline">\([-\pi,\pi]\)</span> 上的函数可以通过周期延拓到整个实轴上定义傅里叶级数</p>
 <p>对于定义在 <span class="math inline">\([0,\pi]\)</span> 上的函数，一般通过奇延拓或者偶延拓（对称的时候要不要加个负号），然后再考虑周期为 <span class="math inline">\(2\pi\)</span> ，得到相关的傅里叶级数。</p>
 <p>而由于奇函数一些独特的性质，它和 <span class="math inline">\(\cos nx\)</span> 都是正交的，包括 <span class="math inline">\(a_0\)</span> 在内的都是0，所以它可以写出正弦级数，而对偶函数可以写出余弦级数。</p>
-<hr />
+<hr>
 <blockquote>
 <p>一个函数如果傅里叶级数是 0，那么它和任何三角多项式的内积都是 0，但是如果它有一点不是0，那么找一个函数在这个点附近大于1，而在其它地方小于1，然后这个函数的无穷次幂和它点积会无穷大，…… 定理12.1.1</p>
 </blockquote>
-<hr />
+<hr>
 <h3 id="chapter2">Chapter2</h3>
 <p>敛散性</p>
 <p>这个众所周知啊，Fourier级数的部分和序列可以写开来 <span class="math display">\[
@@ -396,23 +396,23 @@ S_n(x)=\frac{1}{\pi}\int_0^\pi[f(x+t)+f(x-t)]\frac{\sin(n+\frac{1}{2})t}{2\sin \
 <p><span class="math display">\[
 S_n(x)=\frac{1}{\pi} \int_0^\pi[f(x+t)+f(x-t)] D_n(t) dt
 \]</span></p>
-<hr />
+<hr>
 <p>黎曼-勒贝格引理： 设函数 <span class="math inline">\(f(x)\)</span> ，在闭区间有 有限个瑕点 ，不含任何瑕点的闭区间上 <span class="math inline">\(f(x)\)</span> 黎曼可积，并且在 <span class="math inline">\(|f(x)|\)</span> 在 <span class="math inline">\([a,b]\)</span> 作为瑕积分是收敛的，称 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([a,b]\)</span> 至多有限个瑕点且绝对可积，此时有 <span class="math display">\[
 \lim_{\lambda\to+\infin}\int_{a}^bf(x)sin\lambda x=0
 \]</span></p>
-<hr />
+<hr>
 <p><span class="math display">\[
 here\ need\ a\ formula
 \]</span></p>
 <p>把那个展开，然后用黎曼勒贝格引理，如果 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([-\pi,\pi]\)</span> 上至多有限个瑕点且绝对可积，那么在 <span class="math inline">\(\forall \delta&gt;0 [\delta,\pi]\)</span> 上都是很小的。</p>
 <p>之和在 <span class="math inline">\(x_0\)</span> 的附近有关</p>
 <p>得到 Riemann局部化定理： 如果 <span class="math inline">\(f(x)\)</span> 在 <span class="math inline">\([-\pi,\pi]\)</span> 上至多有限个瑕点且绝对可积，傅里叶级数在 <span class="math inline">\(x_0\)</span> 初是否收敛，是个局部性质，只和 <span class="math inline">\(x_0\)</span> 附近有关。</p>
-<hr />
+<hr>
 <p><span class="math inline">\(\int_0^{\delta} \frac{sin(n+\frac{1}{2})t}{2sin(\frac{t}{2})}f(t)dt\)</span> 与<span class="math inline">\(\int_0^{\delta} \frac{sin(n+\frac{1}{2})t}{t}f(t)dt\)</span> 在 <span class="math inline">\(n\to +\infin\)</span> 时同敛散，收敛时极限相同。</p>
 <blockquote>
 <p>推论 <span class="math inline">\(\int_0^{+\infin}\frac{sin x}{x}dx=\frac{\pi}{2}\)</span></p>
 </blockquote>
-<hr />
+<hr>
 <p><strong>结论1（Dirichlet）</strong>：如果函数有有限个瑕点并且绝对可积在 <span class="math inline">\(x_0\)</span> 附近两侧都单调，那么它收敛到 <span class="math inline">\(\frac{f(x+0)+f(x-0)}{2}\)</span></p>
 <p>定义广义单侧导数，分段可微函数，有有限个第一类间断点</p>
 <p><strong>结论2</strong>：如果分段可微，处处收敛到 <span class="math inline">\(\frac{f(x+0)+f(x-0)}{2}\)</span></p>
@@ -420,13 +420,13 @@ here\ need\ a\ formula
 <p><strong>Dini定理</strong>有有限个瑕点且绝对可积，存在 <span class="math inline">\(\delta&gt;0,\eta\in\R\ \rm s.t.\)</span> <span class="math display">\[
 \int_0^\delta|\frac{f(x+t)+f(x-t)-2\eta}{t}|\rm{d}t&lt;+\infin
 \]</span> 满足局部 <span class="math inline">\(Holder\)</span> 的连续性就行。</p>
-<hr />
+<hr>
 <p>总结：</p>
 <p>1（狄利克雷定理）、<span class="math inline">\(f(x)\)</span> 分段单调（关键子积分第二中值定理）</p>
 <p>2、<span class="math inline">\(f(x)\)</span> 分段可微</p>
 <p>3（李普希兹定理）、<span class="math inline">\(f(x)\)</span> 正数阶 <span class="math inline">\(Holder\)</span> 连续</p>
 <p>那么点收敛到，每一点左右极限的平均值。</p>
-<hr />
+<hr>
 <p>上面是傅里叶级数的点收敛的性质，然后我们可以考虑一下其它的收敛，可以考虑均方收敛，一致收敛，诸如此类的。</p>
 
       
