@@ -26,7 +26,7 @@
 <meta property="og:description" content="三天速成简量）  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net) 阿巴阿巴（好像可以用来预习高代应付回头考）（拓扑拾遗） linear algebra \(A\) 伴随">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-12T07:46:22.787Z">
-<meta property="article:modified_time" content="2022-06-17T02:59:24.869Z">
+<meta property="article:modified_time" content="2022-06-17T05:04:57.558Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -536,9 +536,13 @@ p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}
 <p>观测是一个 Hermitian算符，<span class="math inline">\(M=\sum_m mP_m\)</span>，<span class="math inline">\(m\)</span>是特征值，<span class="math inline">\(P_m\)</span> 是投影。</p>
 <p>那么会以 <span class="math inline">\(p(m)=\Braket{\psi|P_m|\psi}\)</span> 的概率 给出状态 <span class="math inline">\(\frac{P_m\ket \psi}{ \sqrt{p(m)} }\)</span></p>
 <p>那么它的期望平均测量值为 <span class="math inline">\(\mathrm{E}(M) = \Braket{\psi|M|\psi}\)</span></p>
+<p><span class="math inline">\(\Braket M\equiv \Braket{\psi|M|\psi}\)</span></p>
 <p>它的标准差为 <span class="math inline">\([\Delta(M)]^2=\Braket{M^2}-\Braket{M}^2\)</span></p>
-<p>方差 <span class="math inline">\(\Delta(M)=\sqrt{\Braket{M^2}-\Braket{M}^2}\)</span>，只和测量值有关，从而导出一些结论，如<strong>海森堡不确定性原理</strong></p>
+<p>方差 <span class="math inline">\(\Delta(M)=\sqrt{\Braket{M^2}-\Braket{M}^2}\)</span>，</p>
 <p>如果系统处于本征态，那么测量的方差为0。</p>
+<p>从而导出一些结论，如<strong>海森堡不确定性原理</strong> <span class="math display">\[
+\Delta(C)\Delta(D)\ge \frac{|\Braket{\psi|[C,D]|\psi}|}{2}
+\]</span></p>
 
       
     </div>
