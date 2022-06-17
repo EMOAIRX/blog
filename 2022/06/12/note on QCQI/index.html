@@ -26,7 +26,7 @@
 <meta property="og:description" content="三天速成简量）  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net) 阿巴阿巴（好像可以用来预习高代应付回头考）（拓扑拾遗） linear algebra \(A\) 伴随">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-12T07:46:22.787Z">
-<meta property="article:modified_time" content="2022-06-17T05:04:57.558Z">
+<meta property="article:modified_time" content="2022-06-17T05:18:57.302Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -523,7 +523,7 @@ H=\sum_E E\ket E\bra E
 <p>这个是说，任何一个 Hermitian 矩阵 和 一个 unitary 矩阵 对应。</p>
 </blockquote>
 <p>值得注意的是，在一个开放的系统中，往往可以通过随着时间变化的哈密顿量 <span class="math inline">\(H\)</span> 的薛定谔方程来很好地近似。一般在量子系统的演变中，把演变都看作酉矩阵，但量子测量例外。</p>
-<h5 id="quantum-measurement">Quantum measurement</h5>
+<h4 id="quantum-measurement">Quantum measurement</h4>
 <p><strong>基本假设3、</strong> <span class="math display">\[
 p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}
 \]</span> state: <span class="math display">\[
@@ -536,12 +536,16 @@ p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}
 <p>观测是一个 Hermitian算符，<span class="math inline">\(M=\sum_m mP_m\)</span>，<span class="math inline">\(m\)</span>是特征值，<span class="math inline">\(P_m\)</span> 是投影。</p>
 <p>那么会以 <span class="math inline">\(p(m)=\Braket{\psi|P_m|\psi}\)</span> 的概率 给出状态 <span class="math inline">\(\frac{P_m\ket \psi}{ \sqrt{p(m)} }\)</span></p>
 <p>那么它的期望平均测量值为 <span class="math inline">\(\mathrm{E}(M) = \Braket{\psi|M|\psi}\)</span></p>
-<p><span class="math inline">\(\Braket M\equiv \Braket{\psi|M|\psi}\)</span></p>
+<p>定义 <span class="math inline">\(\Braket M\equiv \Braket{\psi|M|\psi}\)</span></p>
 <p>它的标准差为 <span class="math inline">\([\Delta(M)]^2=\Braket{M^2}-\Braket{M}^2\)</span></p>
 <p>方差 <span class="math inline">\(\Delta(M)=\sqrt{\Braket{M^2}-\Braket{M}^2}\)</span>，</p>
 <p>如果系统处于本征态，那么测量的方差为0。</p>
 <p>从而导出一些结论，如<strong>海森堡不确定性原理</strong> <span class="math display">\[
 \Delta(C)\Delta(D)\ge \frac{|\Braket{\psi|[C,D]|\psi}|}{2}
+\]</span> 这是本质的，尽管测量对系统有干扰，但那本不是测不准原理的解释。</p>
+<p>例如，因为 <span class="math inline">\([X,Y]=2iZ\)</span>，从而对于量子态 <span class="math inline">\(\ket 0\)</span> 而言，有 <span class="math inline">\(\Delta(X)\Delta(Y)\ge\Braket{0|Z|0}=1\)</span></p>
+<p>对于一个方向的观测 <span class="math display">\[
+\vec v\cdot\vec \sigma\equiv v_1\sigma_1+ v_2\sigma_2+ v_3\sigma_3
 \]</span></p>
 
       
