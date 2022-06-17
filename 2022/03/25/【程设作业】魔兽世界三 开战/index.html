@@ -21,7 +21,7 @@
   <meta name="description" content="是大模拟啦 solver 总体写得还是挺舒服的，不用动脑子真是太快乐了。 还是有不少可以改进的地方 有几个小地方偷懒设成共有变量了 protected好像不能给传进来的同一个类来用，友元又不会，有点糟糕 在 bool fight(Warrior* opponent) 这里，opponent的私有变量和保护变量并不知道怎么去调用 有一个可以mark的点，大概是并不会用类的成员变量的指针 尝试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【程设作业】 魔兽世界三 开战">
-<meta property="og:url" content="http://emoairx.github.io/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/index.html">
+<meta property="og:url" content="http://emoairx.github.io/blog/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/index.html">
 <meta property="og:site_name" content="Emoairx">
 <meta property="og:description" content="是大模拟啦 solver 总体写得还是挺舒服的，不用动脑子真是太快乐了。 还是有不少可以改进的地方 有几个小地方偷懒设成共有变量了 protected好像不能给传进来的同一个类来用，友元又不会，有点糟糕 在 bool fight(Warrior* opponent) 这里，opponent的私有变量和保护变量并不知道怎么去调用 有一个可以mark的点，大概是并不会用类的成员变量的指针 尝试">
 <meta property="og:locale" content="en_US">
@@ -32,7 +32,7 @@
 <meta property="article:tag" content="程设">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://emoairx.github.io/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/index.html">
+  <link rel="canonical" href="http://emoairx.github.io/blog/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
   
@@ -40,7 +40,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/blog/css/style.css">
 
   
   
@@ -57,7 +57,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="" target="_blank">
-          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
@@ -101,7 +101,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="/.">
+          <a href="/blog/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -111,7 +111,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives">
+          <a href="/blog/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -121,7 +121,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="/links">
+          <a href="/blog/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -131,7 +131,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="/about">
+          <a href="/blog/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -175,7 +175,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%88%86/" rel="tag">数分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%95%B0%E5%88%86/" rel="tag">数分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -185,7 +185,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.33px;">作业</a> <a href="/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/tags/%E6%95%B0%E5%88%86/" style="font-size: 13px;">数分</a> <a href="/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.33px;">程设</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.67px;">笔记</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13px;">随笔</a> <a href="/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+      <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.33px;">作业</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%95%B0%E5%88%86/" style="font-size: 13px;">数分</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.33px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.67px;">笔记</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
     </div>
   </div>
 
@@ -194,7 +194,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -213,7 +213,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2022/06/17/diary/diary220617/" class="title">220617</a>
+                <a href="/blog/2022/06/17/diary/diary220617/" class="title">220617</a>
               </p>
               <p class="item-date">
                 <time datetime="2022-06-17T04:43:15.726Z" itemprop="datePublished">2022-06-17</time>
@@ -228,7 +228,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2022/06/12/diary/diary220612/" class="title">220612</a>
+                <a href="/blog/2022/06/12/diary/diary220612/" class="title">220612</a>
               </p>
               <p class="item-date">
                 <time datetime="2022-06-12T08:19:23.253Z" itemprop="datePublished">2022-06-12</time>
@@ -243,7 +243,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2022/06/12/note%20on%20QCQI/" class="title">note on QCQI</a>
+                <a href="/blog/2022/06/12/note%20on%20QCQI/" class="title">note on QCQI</a>
               </p>
               <p class="item-date">
                 <time datetime="2022-06-12T07:46:22.787Z" itemprop="datePublished">2022-06-12</time>
@@ -258,7 +258,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2022/06/10/diary/diary220610/" class="title">220610</a>
+                <a href="/blog/2022/06/10/diary/diary220610/" class="title">220610</a>
               </p>
               <p class="item-date">
                 <time datetime="2022-06-10T03:01:24.250Z" itemprop="datePublished">2022-06-10</time>
@@ -273,7 +273,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2022/06/07/Introduction%20to%20Semimology/" class="title">地震概论两天速成（笔记）</a>
+                <a href="/blog/2022/06/07/Introduction%20to%20Semimology/" class="title">地震概论两天速成（笔记）</a>
               </p>
               <p class="item-date">
                 <time datetime="2022-06-07T13:06:48.619Z" itemprop="datePublished">2022-06-07</time>
@@ -329,7 +329,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/" class="article-date">
+	<a href="/blog/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/" class="article-date">
 	  <time datetime="2022-03-25T04:08:53.875Z" itemprop="datePublished">2022-03-25</time>
 	</a>
 </span>
@@ -337,7 +337,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a>, <a class="article-tag-link-link" href="/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a>
+	<a class="article-tag-link-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a>
   </span>
 
 
@@ -345,12 +345,12 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/" class="leancloud_visitors"  data-flag-title="【程设作业】 魔兽世界三 开战">
+    	<span id="/blog/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/" class="leancloud_visitors"  data-flag-title="【程设作业】 魔兽世界三 开战">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
@@ -376,7 +376,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://emoairx.github.io/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/" title="【程设作业】 魔兽世界三 开战" target="_blank" rel="external">http://emoairx.github.io/2022/03/25/【程设作业】魔兽世界三 开战/</a>
+      <a href="http://emoairx.github.io/blog/2022/03/25/%E3%80%90%E7%A8%8B%E8%AE%BE%E4%BD%9C%E4%B8%9A%E3%80%91%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C%E4%B8%89%20%E5%BC%80%E6%88%98/" title="【程设作业】 魔兽世界三 开战" target="_blank" rel="external">http://emoairx.github.io/blog/2022/03/25/【程设作业】魔兽世界三 开战/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -391,7 +391,7 @@
     <figure class="media">
       <div class="media-left">
         <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -423,12 +423,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2022/03/26/diary/diary220326/" title="220326"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/blog/2022/03/26/diary/diary220326/" title="220326"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2022/03/23/diary/diary220323/" title="220323"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/blog/2022/03/23/diary/diary220323/" title="220323"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -467,10 +467,10 @@
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="/js/plugin.min.js"></script>
+<script src="/blog/js/plugin.min.js"></script>
 
 
-<script src="/js/application.js"></script>
+<script src="/blog/js/application.js"></script>
 
 
     <script>
@@ -483,14 +483,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="/js/insight.js"></script>
+<script src="/blog/js/insight.js"></script>
 
 
 
