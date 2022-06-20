@@ -18,12 +18,12 @@
   
   
   <title>note on QCQI | emoairx</title>
-  <meta name="description" content="三天速成简量） 《Nielsen, Chuang - Quantum Computation and Quantum Information - 10th》  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo-">
+  <meta name="description" content="三天速成简量） 《Nielsen, Chuang - Quantum Computation and Quantum Information - 10th》  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Ps">
 <meta property="og:type" content="article">
 <meta property="og:title" content="note on QCQI">
 <meta property="og:url" content="http://emoairx.github.io/blog/2022/06/12/note%20on%20QCQI/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="三天速成简量） 《Nielsen, Chuang - Quantum Computation and Quantum Information - 10th》  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo-">
+<meta property="og:description" content="三天速成简量） 《Nielsen, Chuang - Quantum Computation and Quantum Information - 10th》  不会真有东西吧，就我这四级都不会的废物） 会不会翻开都是个问题 Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Ps">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-12T07:46:22.787Z">
 <meta property="article:modified_time" content="2022-06-20T07:53:10.978Z">
@@ -212,7 +212,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2022/06/20/tes/" class="title">233</a>
+                <a href="/blog/2022/06/20/test_image/" class="title">test_image</a>
               </p>
               <p class="item-date">
                 <time datetime="2022-06-20T07:59:59.615Z" itemprop="datePublished">2022-06-20</time>
@@ -363,203 +363,226 @@
 <p>会不会翻开都是个问题</p>
 <p><a target="_blank" rel="noopener" href="https://serab.net/docs/qcqi/">Solutions: Quantum Computation and Quantum Information by Nielsen and Chuang | Pseudo- (serab.net)</a></p>
 <p>阿巴阿巴（好像可以用来预习高代应付回头考）（拓扑拾遗）</p>
-<h3 id="linear-algebra"><a href="#linear-algebra" class="headerlink" title="linear algebra"></a>linear algebra</h3><p>$A$ 伴随变换 $\dagger$ 指的是 $(Au,v)=(u,A^\dagger v)$ 的那个东西，$(u,v)$ 在空间定义的一个半线性的函数，对于右边是完全线性的，左边的线性要共轭一下。</p>
+<h3 id="linear-algebra">linear algebra</h3>
+<p><span class="math inline">\(A\)</span> 伴随变换 <span class="math inline">\(\dagger\)</span> 指的是 <span class="math inline">\((Au,v)=(u,A^\dagger v)\)</span> 的那个东西，<span class="math inline">\((u,v)\)</span> 在空间定义的一个半线性的函数，对于右边是完全线性的，左边的线性要共轭一下。</p>
 <blockquote>
 <p>这个空间的名字叫什么呢？这已经是酉空间了，希尔伯特空间好像还要求柯西列收敛到柯西列，对那个半线性函数还有别的要求。</p>
 </blockquote>
-<p>$(au,v)=a^*(u,v)\ \ \ \  (u,av)=a(u,v)$</p>
-<p>一个众所周知的结论是 <strong>Cauchy-Schwarz inequality</strong></p>
-<script type="math/tex; mode=display">
-|(u,v)^2|\le (u,u)(v,v)</script><p>一种证明是构造二次函数，取 $\lambda = (u,v)||v||^{-2}$</p>
+<p><span class="math inline">\((au,v)=a^*(u,v)\ \ \ \  (u,av)=a(u,v)\)</span></p>
+<p>一个众所周知的结论是 <strong>Cauchy-Schwarz inequality</strong> <span class="math display">\[
+|(u,v)^2|\le (u,u)(v,v)
+\]</span> 一种证明是构造二次函数，取 <span class="math inline">\(\lambda = (u,v)||v||^{-2}\)</span></p>
 <blockquote>
-<p>2.13</p>
-<script type="math/tex; mode=display">
+<p>2.13 <span class="math display">\[
 \begin{eqnarray}
-        \left( \left| l \right\rangle,\, \left( \left| w \right\rangle \left\langle v \right| \right)^{\dagger} \left| m \right\rangle \right) &=& \left( \left( \left| w \right\rangle \left\langle v \right| \right) \left| l \right\rangle,\, \left| m \right\rangle \right) \\
-        &=& \left( \left\langle v | l \right\rangle \left| w \right\rangle,\, \left| m \right\rangle \right) \\
-        &=& \left( \left\langle v | l \right\rangle \right)^* \left\langle w | m \right\rangle \\
-        &=& \left\langle l | v \right\rangle \left\langle w | m \right\rangle \\
-        &=& \left\langle l \right| \left( \left| v \right\rangle \left\langle w \right| \right) \left| m \right\rangle \\
-        &=& \left( \left| l \right\rangle,\, \left( \left| v \right\rangle \left\langle w \right| \right) \left| m \right\rangle \right)
-    \end{eqnarray}</script></blockquote>
-<p>通过这个结论可以，投影变换 $P$ 的伴随是它自己</p>
-<p>Suppose W is a k-dimensional vector subspace of the d-dimensional vector space V. Using the Gram-Schmidt procedure it is possible to construct an orthonormal basis $\ket 1,\dots ,\ket d$ for V such that $\ket 1,\dots,\ket d$ is an orthonormal basis for W. By definition </p>
-<script type="math/tex; mode=display">
-P\equiv\sum_{k=1}^{k}\ket i \bra i</script><p>is the projector onto the subspace W.</p>
-<p>同样可以定义 $Q\equiv I-P$ ，称为 $P$ 的正交补 orthogonal complement。it’s easy(????) to see that $Q$ is a projector onto the vector space spanned by $\ket {k+1},\dots,\ket d$ , which we also refer to as the <em>orthogonal complement</em> of $P$ , and may denote by $Q$</p>
-<blockquote>
-<p>2.16 show that any projector $P$ satisfies the equation $P^2 = P$</p>
+      \left( \left| l \right\rangle,\, \left( \left| w \right\rangle \left\langle v \right| \right)^{\dagger} \left| m \right\rangle \right) &amp;=&amp; \left( \left( \left| w \right\rangle \left\langle v \right| \right) \left| l \right\rangle,\, \left| m \right\rangle \right) \\
+      &amp;=&amp; \left( \left\langle v | l \right\rangle \left| w \right\rangle,\, \left| m \right\rangle \right) \\
+      &amp;=&amp; \left( \left\langle v | l \right\rangle \right)^* \left\langle w | m \right\rangle \\
+      &amp;=&amp; \left\langle l | v \right\rangle \left\langle w | m \right\rangle \\
+      &amp;=&amp; \left\langle l \right| \left( \left| v \right\rangle \left\langle w \right| \right) \left| m \right\rangle \\
+      &amp;=&amp; \left( \left| l \right\rangle,\, \left( \left| v \right\rangle \left\langle w \right| \right) \left| m \right\rangle \right)
+  \end{eqnarray}
+\]</span></p>
 </blockquote>
-<h4 id="Hermitian-normal-unitary"><a href="#Hermitian-normal-unitary" class="headerlink" title="Hermitian,normal,unitary"></a>Hermitian,normal,unitary</h4><p>然后小伙子，你可以回忆一下有哪些神奇的变换</p>
-<p><strong>Hermitian</strong> or self-adjoint if $A^\dagger = A$ ​</p>
+<p>通过这个结论可以，投影变换 <span class="math inline">\(P\)</span> 的伴随是它自己</p>
+<p>Suppose W is a k-dimensional vector subspace of the d-dimensional vector space V. Using the Gram-Schmidt procedure it is possible to construct an orthonormal basis <span class="math inline">\(\ket 1,\dots ,\ket d\)</span> for V such that <span class="math inline">\(\ket 1,\dots,\ket d\)</span> is an orthonormal basis for W. By definition <span class="math display">\[
+P\equiv\sum_{k=1}^{k}\ket i \bra i
+\]</span> is the projector onto the subspace W.</p>
+<p>同样可以定义 <span class="math inline">\(Q\equiv I-P\)</span> ，称为 <span class="math inline">\(P\)</span> 的正交补 orthogonal complement。it's easy(????) to see that <span class="math inline">\(Q\)</span> is a projector onto the vector space spanned by <span class="math inline">\(\ket {k+1},\dots,\ket d\)</span> , which we also refer to as the <em>orthogonal complement</em> of <span class="math inline">\(P\)</span> , and may denote by <span class="math inline">\(Q\)</span></p>
+<blockquote>
+<p>2.16 show that any projector <span class="math inline">\(P\)</span> satisfies the equation <span class="math inline">\(P^2 = P\)</span></p>
+</blockquote>
+<h4 id="hermitiannormalunitary">Hermitian,normal,unitary</h4>
+<p>然后小伙子，你可以回忆一下有哪些神奇的变换</p>
+<p><strong>Hermitian</strong> or self-adjoint if <span class="math inline">\(A^\dagger = A\)</span> ​</p>
 <blockquote>
 <p>这个的特征值都是实数</p>
 </blockquote>
-<p><strong>normal</strong> if $AA^\dagger=A^\dagger A$​ 容易发现 Hermitian 也是 normal 的</p>
-<p><strong>unitary</strong> if $U^\dagger U=I$. 酉矩阵是特殊的正规矩阵</p>
+<p><strong>normal</strong> if <span class="math inline">\(AA^\dagger=A^\dagger A\)</span>​ 容易发现 Hermitian 也是 normal 的</p>
+<p><strong>unitary</strong> if <span class="math inline">\(U^\dagger U=I\)</span>. 酉矩阵是特殊的正规矩阵</p>
 <blockquote>
 <p>2.17 Show that a normal matrix is Hermitian if and only if it has real eigenvalues.</p>
-<p>A normal matrix A is diagonalized by an unitary matrix U such that </p>
-<script type="math/tex; mode=display">
-A=U^\dagger DU</script><p>where $D$ is a diagonal matrix</p>
-<p>Hermitian conjugate of A is </p>
-<script type="math/tex; mode=display">
-A^\dagger=U^\dagger D^\dagger U</script><p>and $A=A^\dagger \iff D=D^\dagger \iff$ all eigenvalues are real</p>
+<p>A normal matrix A is diagonalized by an unitary matrix U such that <span class="math display">\[
+A=U^\dagger DU
+\]</span> where <span class="math inline">\(D\)</span> is a diagonal matrix</p>
+<p>Hermitian conjugate of A is <span class="math display">\[
+A^\dagger=U^\dagger D^\dagger U
+\]</span> and <span class="math inline">\(A=A^\dagger \iff D=D^\dagger \iff\)</span> all eigenvalues are real</p>
 </blockquote>
 <p>一个矩阵可酉对角化的充分必要条件是它是正规矩阵，但可对角化的矩阵不一定可以酉对角化</p>
 <p>酉变换酉矩阵保持变换情况下内积的长度不变，也就把一组正交基变成一组正交基。</p>
-<p>如果 $\ket {u_i},\ket {w_i}$ 是一组单位正交基，那么容易发现 $U\equiv \sum_i\ket {w_i}\bra {v_i}$ 是酉变换。</p>
+<p>如果 <span class="math inline">\(\ket {u_i},\ket {w_i}\)</span> 是一组单位正交基，那么容易发现 <span class="math inline">\(U\equiv \sum_i\ket {w_i}\bra {v_i}\)</span> 是酉变换。</p>
 <blockquote>
-<p>2.18  Show that all eigenvalues of a unitary matrix have modulus 1, that is, can be written in the form $e^{i\theta}$ for some real $\theta$.</p>
-<script type="math/tex; mode=display">
+<p>2.18 Show that all eigenvalues of a unitary matrix have modulus 1, that is, can be written in the form <span class="math inline">\(e^{i\theta}\)</span> for some real <span class="math inline">\(\theta\)</span>. <span class="math display">\[
 U\ket v=\lambda \ket v\\
 \bra vU^\dagger=\lambda^*\bra v\\
-\Braket{v|U^\dagger U|v}=\braket v=\lambda\lambda^* \braket v</script><p>2.19 Show that Pauli matrices are Hermitian and unitary</p>
+\Braket{v|U^\dagger U|v}=\braket v=\lambda\lambda^* \braket v
+\]</span></p>
 </blockquote>
-<p><strong>positive</strong> operators if $(v,Av)$ is real and $(v,Av)\ge 0$ for any $v\not=0$.</p>
-<p><strong>positive definite</strong> operators if $(v,Av) &gt; 0$  for any $v \not=0$.</p>
-<p>正定矩阵一定是自伴的</p>
-<script type="math/tex; mode=display">
+<blockquote>
+<p>2.19 Show that Pauli matrices are Hermitian and unitary</p>
+</blockquote>
+<p><strong>positive</strong> operators if <span class="math inline">\((v,Av)\)</span> is real and <span class="math inline">\((v,Av)\ge 0\)</span> for any <span class="math inline">\(v\not=0\)</span>.</p>
+<p><strong>positive definite</strong> operators if <span class="math inline">\((v,Av) &gt; 0\)</span> for any <span class="math inline">\(v \not=0\)</span>.</p>
+<p>正定矩阵一定是自伴的 <span class="math display">\[
 A=\frac{A+A^\dagger}{2}+i\frac{A-A^\dagger}{2i} = B+iC\\
 \Braket {v|A|v}=\Braket{v|B+iC|v}=\Braket{v|B|v}+i\Braket{v|C|v}\\
-A=A^\dagger</script><h5 id="The-spectral-decomposition"><a href="#The-spectral-decomposition" class="headerlink" title="The spectral decomposition"></a>The spectral decomposition</h5><p>​    <strong>谱分解定理(Spectral decomposition)</strong>  Any normal operator $M$ on a vector space $V$ is diagonal with respect to some orthonormal basis for $V$ . Conversely, any diagonalizable operator is normal.</p>
+A=A^\dagger
+\]</span></p>
+<h5 id="the-spectral-decomposition">The spectral decomposition</h5>
+<p>​ <strong>谱分解定理(Spectral decomposition)</strong> Any normal operator <span class="math inline">\(M\)</span> on a vector space <span class="math inline">\(V\)</span> is diagonal with respect to some orthonormal basis for <span class="math inline">\(V\)</span> . Conversely, any diagonalizable operator is normal.</p>
 <blockquote>
-<p>​    就是说正规矩阵一定可以对角化，可对角化的矩阵一定正规。怎么感觉lww之前提到过什么的样子。可交换就可以同时对角化？忘记了。诶，所以可以用那个方法搞吗——不知道</p>
+<p>​ 就是说正规矩阵一定可以对角化，可对角化的矩阵一定正规。怎么感觉lww之前提到过什么的样子。可交换就可以同时对角化？忘记了。诶，所以可以用那个方法搞吗——不知道</p>
 </blockquote>
-<p>​    取特征值 $\lambda$ 和它的特征子空间上的投影变换 $P$，正交补 $Q$，这里有 $P^\dagger=P,P^2=P$</p>
-<p>​    $M = (P+Q) M (P+Q)$ ，可以证明 $QMP=0,PMQ=(QM^\dagger P)^\dagger=0$</p>
-<p>其中 $MM^\dagger \ket v=M^\dagger M\ket v=\lambda M^\dagger \ket v$ ，说明它的 $M^\dagger P$ 在 $Q$ 的零空间。</p>
-<p>​    从而 $M=\lambda P+QMQ$，而 $QM=QM(P+Q)=QMQ$ 类似推出来 $QMQ$ 是正规的</p>
-<p>​    归纳法得证</p>
+<p>​ 取特征值 <span class="math inline">\(\lambda\)</span> 和它的特征子空间上的投影变换 <span class="math inline">\(P\)</span>，正交补 <span class="math inline">\(Q\)</span>，这里有 <span class="math inline">\(P^\dagger=P,P^2=P\)</span></p>
+<p>​ <span class="math inline">\(M = (P+Q) M (P+Q)\)</span> ，可以证明 <span class="math inline">\(QMP=0,PMQ=(QM^\dagger P)^\dagger=0\)</span></p>
+<p>其中 <span class="math inline">\(MM^\dagger \ket v=M^\dagger M\ket v=\lambda M^\dagger \ket v\)</span> ，说明它的 <span class="math inline">\(M^\dagger P\)</span> 在 <span class="math inline">\(Q\)</span> 的零空间。</p>
+<p>​ 从而 <span class="math inline">\(M=\lambda P+QMQ\)</span>，而 <span class="math inline">\(QM=QM(P+Q)=QMQ\)</span> 类似推出来 <span class="math inline">\(QMQ\)</span> 是正规的</p>
+<p>​ 归纳法得证</p>
 <blockquote>
 <p>投影变换在一个子空间里面的话，那个矩阵还是对角的，这就很棒。</p>
 </blockquote>
-<h4 id="tensor-products"><a href="#tensor-products" class="headerlink" title="tensor products"></a>tensor products</h4><p>​    张量积，外积，其中运算的定义都是很自然的</p>
-<p>​    任何一个 $V\otimes W\to V’\otimes W’$ 的线性算子 $C$ 都可以写成 $A:V\to V’,B:W\to W’$ 的积的线性组合，$C=\sum_ic_iA_i\otimes B_i$ </p>
+<h4 id="tensor-products">tensor products</h4>
+<p>​ 张量积，外积，其中运算的定义都是很自然的</p>
+<p>​ 任何一个 <span class="math inline">\(V\otimes W\to V&#39;\otimes W&#39;\)</span> 的线性算子 <span class="math inline">\(C\)</span> 都可以写成 <span class="math inline">\(A:V\to V&#39;,B:W\to W&#39;\)</span> 的积的线性组合，<span class="math inline">\(C=\sum_ic_iA_i\otimes B_i\)</span></p>
 <blockquote>
 <p>感觉是不是类似于矩阵展开的感觉</p>
 </blockquote>
-<p>对于 $A,B$ 如上定义，有</p>
-<script type="math/tex; mode=display">
-(A\otimes B)(\ket v \otimes \ket w) \equiv A\ket v \otimes B \ket w</script><p>​    用矩阵具体写的话，可以用 Kronecker product，就是分块然后展开。</p>
+<p>对于 <span class="math inline">\(A,B\)</span> 如上定义，有 <span class="math display">\[
+(A\otimes B)(\ket v \otimes \ket w) \equiv A\ket v \otimes B \ket w
+\]</span> ​ 用矩阵具体写的话，可以用 Kronecker product，就是分块然后展开。</p>
 <blockquote>
-<p>2.28 $(A\otimes B)^<em>=(A^</em>\otimes B^*),(A\otimes B)^T=(A^T\otimes B^T),(A\otimes B)^\dagger=(A^\dagger\otimes B^\dagger)$</p>
+<p>2.28 <span class="math inline">\((A\otimes B)^*=(A^*\otimes B^*),(A\otimes B)^T=(A^T\otimes B^T),(A\otimes B)^\dagger=(A^\dagger\otimes B^\dagger)\)</span></p>
 <p>用Kronecker product展开即可</p>
 </blockquote>
 <p>两个unitary算子，Hermitian算子，positive算子，projector算子的张量积依然保持性质。</p>
-<h4 id="Operator-functions"><a href="#Operator-functions" class="headerlink" title="Operator functions"></a>Operator functions</h4><p>​    定义相应的函数，所有特征值进行变换，即 $A=\sum_aa\ket a\bra a,f(A)=\sum_af(a)\ket a\bra a$</p>
+<h4 id="operator-functions">Operator functions</h4>
+<p>​ 定义相应的函数，所有特征值进行变换，即 <span class="math inline">\(A=\sum_aa\ket a\bra a,f(A)=\sum_af(a)\ket a\bra a\)</span></p>
 <blockquote>
-<p>2.35 <strong>(Exponential of the Pauli matrices)</strong> Let $\vec v$ be any real, three-dimensional unit vector and $\theta$ a real number. Prove that </p>
-<script type="math/tex; mode=display">
-\exp(i\theta+\vec v · \vec \sigma) = \cos(\theta )I + i \sin(θ)\vec v · \vec \sigma</script><script type="math/tex; mode=display">
+<p>2.35 <strong>(Exponential of the Pauli matrices)</strong> Let <span class="math inline">\(\vec v\)</span> be any real, three-dimensional unit vector and <span class="math inline">\(\theta\)</span> a real number. Prove that <span class="math display">\[
+\exp(i\theta+\vec v · \vec \sigma) = \cos(\theta )I + i \sin(θ)\vec v · \vec \sigma
+\]</span></p>
+<p><span class="math display">\[
 \begin{eqnarray}
-       \vec{v}\cdot \vec{\sigma} &=& v_1
-       \begin{pmatrix}
-           0 & 1 \\
-           1 & 0
-       \end{pmatrix}
-       + v_2
-       \begin{pmatrix}
-           0 & -i \\
-           i & 0
-       \end{pmatrix}
-       + v_3
-       \begin{pmatrix}
-           1 & 0 \\
-           0 & -1
-       \end{pmatrix} \\
-       &=&
-       \begin{pmatrix}
-           v_3 & v_1-iv_2 \\
-           v_1 + iv_2 & -v_3
-       \end{pmatrix}.
-   \end{eqnarray}</script><script type="math/tex; mode=display">
-=\ket {\lambda _1} \bra {\lambda _1}-\ket {\lambda _{-1}} \bra {\lambda _{-1}}</script></blockquote>
-<p>注意到 迹， $tr(A\ket \psi \bra \psi)=\Braket{\psi|A|\psi}$，可以作为一个希尔伯特空间的自然内积。</p>
-<p><em>commutator</em> between two operators $A$ and $B$ is defined to be </p>
-<script type="math/tex; mode=display">
-[A,B]\equiv AB-BA</script><p>if $[A,B]=0,AB=BA$ then we say A <em>commutes</em> with B.</p>
-<p><em>anti-commutator</em> is defined by</p>
-<script type="math/tex; mode=display">
-\{A,B\}\equiv AB+BA</script><p>we say $A$ <em>anti-commutes</em> with $B$ if ${A,B}=0$ </p>
+      \vec{v}\cdot \vec{\sigma} &amp;=&amp; v_1
+      \begin{pmatrix}
+          0 &amp; 1 \\
+          1 &amp; 0
+      \end{pmatrix}
+      + v_2
+      \begin{pmatrix}
+          0 &amp; -i \\
+          i &amp; 0
+      \end{pmatrix}
+      + v_3
+      \begin{pmatrix}
+          1 &amp; 0 \\
+          0 &amp; -1
+      \end{pmatrix} \\
+      &amp;=&amp;
+      \begin{pmatrix}
+          v_3 &amp; v_1-iv_2 \\
+          v_1 + iv_2 &amp; -v_3
+      \end{pmatrix}.
+  \end{eqnarray}
+\]</span></p>
+<p><span class="math display">\[
+=\ket {\lambda _1} \bra {\lambda _1}-\ket {\lambda _{-1}} \bra {\lambda _{-1}}
+\]</span></p>
+</blockquote>
+<p>注意到 迹， <span class="math inline">\(tr(A\ket \psi \bra \psi)=\Braket{\psi|A|\psi}\)</span>，可以作为一个希尔伯特空间的自然内积。</p>
+<p><em>commutator</em> between two operators <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined to be <span class="math display">\[
+[A,B]\equiv AB-BA
+\]</span> if <span class="math inline">\([A,B]=0,AB=BA\)</span> then we say A <em>commutes</em> with B.</p>
+<p><em>anti-commutator</em> is defined by <span class="math display">\[
+\{A,B\}\equiv AB+BA
+\]</span> we say <span class="math inline">\(A\)</span> <em>anti-commutes</em> with <span class="math inline">\(B\)</span> if <span class="math inline">\(\{A,B\}=0\)</span></p>
 <blockquote>
 <p>话说be defined to be 和 be defined by 有什么区别啊</p>
 </blockquote>
-<h5 id="Simultaneous-diagonalization-theorem"><a href="#Simultaneous-diagonalization-theorem" class="headerlink" title="Simultaneous diagonalization theorem"></a>Simultaneous diagonalization theorem</h5><p>​    两个自伴算子可以协同对角化，当且仅当他们可以交换顺序。</p>
+<h5 id="simultaneous-diagonalization-theorem">Simultaneous diagonalization theorem</h5>
+<p>​ 两个自伴算子可以协同对角化，当且仅当他们可以交换顺序。</p>
 <blockquote>
-<p>​    先跳过，暂时不会（呜呜文威老师好像讲过我脑子笨啥都不记得了）</p>
+<p>​ 先跳过，暂时不会（呜呜文威老师好像讲过我脑子笨啥都不记得了）</p>
 </blockquote>
-<h4 id="polar-decomposition-and-SVD"><a href="#polar-decomposition-and-SVD" class="headerlink" title="polar decomposition and SVD"></a>polar decomposition and SVD</h4><p>unitary $U$ and positive operators $J$ and $K$  such that</p>
-<script type="math/tex; mode=display">
-A=UJ=KU</script><p>$J\equiv \sqrt{A^\dagger A},K\equiv \sqrt{A A^\dagger}$ and if $A$ is invertible then $U$ is unique.</p>
-<h3 id="The-postulates-of-quantum-mechanics"><a href="#The-postulates-of-quantum-mechanics" class="headerlink" title="The postulates of quantum mechanics"></a>The postulates of quantum mechanics</h3><p><strong>基本假设1、state space: Hilbert space</strong><br><strong>基本假设2、evolution: unitary transformation</strong>（封闭系统，连续时间）</p>
-<script type="math/tex; mode=display">
-i\hbar\frac{d\ket \psi}{dt}=H\ket \psi</script><p>$H$ is a fixed Hermitian operator known as the <em>Hamiltonian</em> of the closed system，从而可以谱分解，变成</p>
-<script type="math/tex; mode=display">
-H=\sum_E E\ket E\bra E</script><p>传统称 $\ket E$ 为能量本征态 <em>energy eigenstates</em> 或者 <em>stationary states</em>，$E$ 是 $\ket E$ 的能量 <em>energy</em>。</p>
+<h4 id="polar-decomposition-and-svd">polar decomposition and SVD</h4>
+<p>unitary <span class="math inline">\(U\)</span> and positive operators <span class="math inline">\(J\)</span> and <span class="math inline">\(K\)</span> such that <span class="math display">\[
+A=UJ=KU
+\]</span> <span class="math inline">\(J\equiv \sqrt{A^\dagger A},K\equiv \sqrt{A A^\dagger}\)</span> and if <span class="math inline">\(A\)</span> is invertible then <span class="math inline">\(U\)</span> is unique.</p>
+<h3 id="the-postulates-of-quantum-mechanics">The postulates of quantum mechanics</h3>
+<p><strong>基本假设1、state space: Hilbert space</strong> <strong>基本假设2、evolution: unitary transformation</strong>（封闭系统，连续时间） <span class="math display">\[
+i\hbar\frac{d\ket \psi}{dt}=H\ket \psi
+\]</span> <span class="math inline">\(H\)</span> is a fixed Hermitian operator known as the <em>Hamiltonian</em> of the closed system，从而可以谱分解，变成 <span class="math display">\[
+H=\sum_E E\ket E\bra E
+\]</span> 传统称 <span class="math inline">\(\ket E\)</span> 为能量本征态 <em>energy eigenstates</em> 或者 <em>stationary states</em>，<span class="math inline">\(E\)</span> 是 <span class="math inline">\(\ket E\)</span> 的能量 <em>energy</em>。</p>
 <p>最低的能量称为基态能量 <em>ground state energy</em> ，相应的能量本征态或者特征子空间称为基态。</p>
-<p>之所以是稳定态，因为转变只可能是</p>
-<script type="math/tex; mode=display">
-\ket E \to exp(-iEt/\hbar)\ket E</script><blockquote>
-<p>2.56 Use the spectral decomposition to show that $K ≡ −i \log(U)$ is Hermitian for any unitary $U$, and thus $U = exp(iK)$ for some Hermitian $K$.    </p>
+<p>之所以是稳定态，因为转变只可能是 <span class="math display">\[
+\ket E \to exp(-iEt/\hbar)\ket E
+\]</span></p>
+<blockquote>
+<p>2.56 Use the spectral decomposition to show that <span class="math inline">\(K ≡ −i \log(U)\)</span> is Hermitian for any unitary <span class="math inline">\(U\)</span>, and thus <span class="math inline">\(U = exp(iK)\)</span> for some Hermitian <span class="math inline">\(K\)</span>.</p>
 <p>这个是说，任何一个 Hermitian 矩阵 和 一个 unitary 矩阵 对应。</p>
 </blockquote>
-<p>值得注意的是，在一个开放的系统中，往往可以通过随着时间变化的哈密顿量 $H$ 的薛定谔方程来很好地近似。一般在量子系统的演变中，把演变都看作酉矩阵，但量子测量例外。</p>
-<h4 id="Quantum-measurement"><a href="#Quantum-measurement" class="headerlink" title="Quantum measurement"></a>Quantum measurement</h4><p><strong>基本假设3、</strong></p>
-<script type="math/tex; mode=display">
-p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}</script><p>state:</p>
-<script type="math/tex; mode=display">
-\frac{M_n\ket \psi}{\sqrt {\Braket{\psi|M_n^\dagger M_n|\psi}}}</script><p>while </p>
-<script type="math/tex; mode=display">
-\sum_m M_n^\dagger M_n=I</script><p>两个级联的测量是单个测量</p>
+<p>值得注意的是，在一个开放的系统中，往往可以通过随着时间变化的哈密顿量 <span class="math inline">\(H\)</span> 的薛定谔方程来很好地近似。一般在量子系统的演变中，把演变都看作酉矩阵，但量子测量例外。</p>
+<h4 id="quantum-measurement">Quantum measurement</h4>
+<p><strong>基本假设3、</strong> <span class="math display">\[
+p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}
+\]</span> state: <span class="math display">\[
+\frac{M_n\ket \psi}{\sqrt {\Braket{\psi|M_n^\dagger M_n|\psi}}}
+\]</span> while <span class="math display">\[
+\sum_m M_n^\dagger M_n=I
+\]</span> 两个级联的测量是单个测量</p>
 <p>两个非正交的状态不能被可靠地区分，与量子测量基本假设不符。</p>
 <p><strong>投影测量</strong></p>
-<p>观测是一个 Hermitian算符，$M=\sum_m mP_m$，$m$是特征值，$P_m$ 是投影。</p>
-<p>那么会以 $p(m)=\Braket{\psi|P_m|\psi}$ 的概率 给出状态 $\frac{P_m\ket \psi}{    \sqrt{p(m)} }$</p>
-<p>那么它的期望平均测量值为 $\mathrm{E}(M) = \Braket{\psi|M|\psi}$</p>
-<p>定义 $\Braket M\equiv \Braket{\psi|M|\psi}$</p>
-<p>它的标准差为 $[\Delta(M)]^2=\Braket{M^2}-\Braket{M}^2$</p>
-<p>方差 $\Delta(M)=\sqrt{\Braket{M^2}-\Braket{M}^2}$，</p>
+<p>观测是一个 Hermitian算符，<span class="math inline">\(M=\sum_m mP_m\)</span>，<span class="math inline">\(m\)</span>是特征值，<span class="math inline">\(P_m\)</span> 是投影。</p>
+<p>那么会以 <span class="math inline">\(p(m)=\Braket{\psi|P_m|\psi}\)</span> 的概率 给出状态 <span class="math inline">\(\frac{P_m\ket \psi}{ \sqrt{p(m)} }\)</span></p>
+<p>那么它的期望平均测量值为 <span class="math inline">\(\mathrm{E}(M) = \Braket{\psi|M|\psi}\)</span></p>
+<p>定义 <span class="math inline">\(\Braket M\equiv \Braket{\psi|M|\psi}\)</span></p>
+<p>它的标准差为 <span class="math inline">\([\Delta(M)]^2=\Braket{M^2}-\Braket{M}^2\)</span></p>
+<p>方差 <span class="math inline">\(\Delta(M)=\sqrt{\Braket{M^2}-\Braket{M}^2}\)</span>，</p>
 <p>如果系统处于本征态，那么测量的方差为0。</p>
-<p>从而导出一些结论，如<strong>海森堡不确定性原理</strong></p>
-<script type="math/tex; mode=display">
-\Delta(C)\Delta(D)\ge \frac{|\Braket{\psi|[C,D]|\psi}|}{2}</script><p>这是本质的，尽管测量对系统有干扰，但那本不是测不准原理的解释。</p>
-<p>例如，因为 $[X,Y]=2iZ$，从而对于量子态 $\ket 0$ 而言，有 $\Delta(X)\Delta(Y)\ge\Braket{0|Z|0}=1$</p>
-<p>对于一个方向的观测</p>
-<script type="math/tex; mode=display">
-\vec v\cdot\vec \sigma\equiv v_1\sigma_1+ v_2\sigma_2+ v_3\sigma_3</script><p>本征值也是 $-1/1$，相应的投影变换可以写作 $P<em>+=\frac{1}{2}(I+\vec v\cdot \vec \sigma)$，$P</em>-=\frac{1}{2}(I-\vec v\cdot \vec \sigma)$</p>
+<p>从而导出一些结论，如<strong>海森堡不确定性原理</strong> <span class="math display">\[
+\Delta(C)\Delta(D)\ge \frac{|\Braket{\psi|[C,D]|\psi}|}{2}
+\]</span> 这是本质的，尽管测量对系统有干扰，但那本不是测不准原理的解释。</p>
+<p>例如，因为 <span class="math inline">\([X,Y]=2iZ\)</span>，从而对于量子态 <span class="math inline">\(\ket 0\)</span> 而言，有 <span class="math inline">\(\Delta(X)\Delta(Y)\ge\Braket{0|Z|0}=1\)</span></p>
+<p>对于一个方向的观测 <span class="math display">\[
+\vec v\cdot\vec \sigma\equiv v_1\sigma_1+ v_2\sigma_2+ v_3\sigma_3
+\]</span> 本征值也是 <span class="math inline">\(-1/1\)</span>，相应的投影变换可以写作 <span class="math inline">\(P_+=\frac{1}{2}(I+\vec v\cdot \vec \sigma)\)</span>，<span class="math inline">\(P_-=\frac{1}{2}(I-\vec v\cdot \vec \sigma)\)</span></p>
 <blockquote>
-<p>我们可以定义 $E_m\equiv M_n^\dagger M_n$</p>
+<p>我们可以定义 <span class="math inline">\(E_m\equiv M_n^\dagger M_n\)</span></p>
 <p>量子测量：General measurements, projective measurements，POVMs</p>
 <p>物理学家一般把量子测量看成是投影测量，也就是只会获得本征值的，其中一个原因是物理学的测量非常的粗暴，在量子计算中我们会用更精细的测量</p>
-<p>通用测量在某些情况下在数学上更简化，举例来说，通用测量不需要满足 $P<em>iP_j=\delta</em>{ij}P_i$ 的条件</p>
+<p>通用测量在某些情况下在数学上更简化，举例来说，通用测量不需要满足 <span class="math inline">\(P_iP_j=\delta_{ij}P_i\)</span> 的条件</p>
 <p>再比如，一些问题，如用光学方法分辨一些量子态，需要涉及通用测量而不是只有本征态的量子测量</p>
 <p>只要酉变换（需要配合增大系统）配合上投影测量，就能实现通用观测。所以理论上来说投影测量也是足够了的。</p>
 </blockquote>
-<p>一个 $\rm POVM$ 算子 $E_m$ 一定是 positive 的，特征值都是正的，positive 的也一定是自伴的。</p>
+<p>一个 <span class="math inline">\(\rm POVM\)</span> 算子 <span class="math inline">\(E_m\)</span> 一定是 positive 的，特征值都是正的，positive 的也一定是自伴的。</p>
 <p><strong>基本假设4、用张量积来表示多个系统的复合</strong></p>
 <p>一些应用：</p>
 <p>可以用一个量子比特传递两个经典比特的信息</p>
-<h3 id="The-density-operator"><a href="#The-density-operator" class="headerlink" title="The density operator"></a>The density operator</h3><p>密度算子用来描述并不知道的某些量子系统的状态。</p>
-<p>以 $p_i$ 的概率位量子态 $\ket {\psi _i}$，那么 ${p_i,\ket {\psi_i}}$ 称作 <em>ensemble of pure states</em>，同时定义密度算子</p>
-<script type="math/tex; mode=display">
-\rho \equiv \sum_ip_i\ket{\psi_i}\bra{\psi_i}</script><p>当然根据线性算子和矩阵的对应关系我们可以可以说密度矩阵 <em>density matrix</em>。</p>
-<p>演化也是类似的，通过一个酉算子</p>
-<script type="math/tex; mode=display">
-\rho\to U\rho U^{\dagger}</script><p>对于一组测量 ${M_i}$ 测量得到状态 $m$ 的概率是</p>
-<script type="math/tex; mode=display">
-p(m)&=&\sum_ip(m|i)p_i\\
-&=&\sum_{i}p_i\tr(M_m^\dagger M_m\ket{\psi_i}\bra{\psi_i})\\
-&=&\tr(M_m^\dagger M_m \rho)</script><p>其中</p>
-<script type="math/tex; mode=display">
-p(m|i)=\Braket{\psi_i|M_m^\dagger M_m|\psi_i}=tr(M_m^\dagger M_m \ket {\psi _i})</script><p>而测量之后的状态推导为</p>
-<script type="math/tex; mode=display">
-\rho_m=\frac{M_m\rho M_m^\dagger}{\tr(M_m^\dagger M_m \rho)}</script><p>有定理，$\rho$ 可以写作一系列的密度算子，当且仅当</p>
-<p><strong>Trace condition</strong> $\rho$ 迹为 $1$<br><strong>Positivity condition</strong> $\rho$ 是 positive</p>
+<h3 id="the-density-operator">The density operator</h3>
+<p>密度算子用来描述并不知道的某些量子系统的状态。</p>
+<p>以 <span class="math inline">\(p_i\)</span> 的概率位量子态 <span class="math inline">\(\ket {\psi _i}\)</span>，那么 <span class="math inline">\(\{p_i,\ket {\psi_i}\}\)</span> 称作 <em>ensemble of pure states</em>，同时定义密度算子 <span class="math display">\[
+\rho \equiv \sum_ip_i\ket{\psi_i}\bra{\psi_i}
+\]</span> 当然根据线性算子和矩阵的对应关系我们可以可以说密度矩阵 <em>density matrix</em>。</p>
+<p>演化也是类似的，通过一个酉算子 <span class="math display">\[
+\rho\to U\rho U^{\dagger}
+\]</span> 对于一组测量 <span class="math inline">\(\{M_i\}\)</span> 测量得到状态 <span class="math inline">\(m\)</span> 的概率是 <span class="math display">\[
+p(m)&amp;=&amp;\sum_ip(m|i)p_i\\
+&amp;=&amp;\sum_{i}p_i\tr(M_m^\dagger M_m\ket{\psi_i}\bra{\psi_i})\\
+&amp;=&amp;\tr(M_m^\dagger M_m \rho)
+\]</span> 其中 <span class="math display">\[
+p(m|i)=\Braket{\psi_i|M_m^\dagger M_m|\psi_i}=tr(M_m^\dagger M_m \ket {\psi _i})
+\]</span> 而测量之后的状态推导为 <span class="math display">\[
+\rho_m=\frac{M_m\rho M_m^\dagger}{\tr(M_m^\dagger M_m \rho)}
+\]</span> 有定理，<span class="math inline">\(\rho\)</span> 可以写作一系列的密度算子，当且仅当</p>
+<p><strong>Trace condition</strong> <span class="math inline">\(\rho\)</span> 迹为 <span class="math inline">\(1\)</span> <strong>Positivity condition</strong> <span class="math inline">\(\rho\)</span> 是 positive</p>
 <blockquote>
 <p>这里跳过一部分内容（指的是我把包括密度算符和贝尔不等式和各种东西都跳过了。学不会啊呜呜呜）</p>
 </blockquote>
-<h3 id="电脑基础知识"><a href="#电脑基础知识" class="headerlink" title="电脑基础知识"></a>电脑基础知识</h3><h4 id="Turling-machine"><a href="#Turling-machine" class="headerlink" title="Turling machine"></a>Turling machine</h4><p>程序：有限的有序的形如 $\Braket{q,x,q’,x’,s}$ 的集合，</p>
+<h3 id="电脑基础知识">电脑基础知识</h3>
+<h4 id="turling-machine">Turling machine</h4>
+<p>程序：有限的有序的形如 <span class="math inline">\(\Braket{q,x,q&#39;,x&#39;,s}\)</span> 的集合，</p>
 
       
     </div>
