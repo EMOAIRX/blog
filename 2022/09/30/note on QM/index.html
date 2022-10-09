@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/09/30/note%20on%20QM/1664872053050.jpg">
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/09/30/note%20on%20QM/1664683606559.jpg">
 <meta property="article:published_time" content="2022-09-30T15:54:12.785Z">
-<meta property="article:modified_time" content="2022-10-06T07:43:21.585Z">
+<meta property="article:modified_time" content="2022-10-09T06:24:02.728Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -786,7 +786,189 @@
 <li><p>笛卡尔坐标</p></li>
 <li><p>惯性？——质量就是惯性，质量越大，惯性就越大。</p></li>
 <li><p>动量定理：牛顿第二定律——</p></li>
-<li><p><span class="math inline">\(\vec p = m\vec v,\frac{d\vec p}{d\vec t}=\vec F\)</span></p></li>
+<li><p><span class="math inline">\(\vec p = m\vec v,\frac{d\vec p}{d\vec t}=\vec F\)</span> ，$=xF $</p></li>
+<li><p>力和动量的改变成正比，力矩和角动量的改变成正比。</p></li>
+<li><p>有时候把动量叫做【线动量】，角动量叫做【角动量】</p></li>
+<li><p>角动量的惯性，转动惯量：<span class="math inline">\(mr^2\)</span>，线动量，惯性：<span class="math inline">\(m\)</span></p></li>
+<li><p><strong>质点</strong></p>
+<ul>
+<li>质点系的概念：可以研究两体问题</li>
+<li>质心系：H质子的质量是电子质量的1836倍，可以看成质心系，就像绕着太阳转一样。</li>
+</ul></li>
+<li><p><strong>刚体</strong></p>
+<ul>
+<li>只能在非相对论情况下成立——相对论情况下三维的矢量都不是矢量，保持不变的是四矢量。</li>
+<li>非相对论情况下，任意两点如果距离保持不变，可以看成一起的。</li>
+<li>研究一个质点的问题只需要三个自由度。</li>
+<li>刚体只需要用三个角度就能描述——叫做欧拉角。——还有一种表示是轴+角</li>
+<li>三个运动：进动，章动，自转
+<ul>
+<li>进动：
+<ul>
+<li>矢量绕着轴去转</li>
+</ul></li>
+<li>章动：
+<ul>
+<li>绕着轴转的时候还会不断点头抬头</li>
+</ul></li>
+<li>自转：
+<ul>
+<li>自己还在转。</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>牛顿力学给我们提供了一大堆的模型和概念</p></li>
+</ul>
+<h2 id="分析力学analysical-mechanics">分析力学(Analysical mechanics)</h2>
+<blockquote>
+<p>我可以不用画图，我可以用数学上的推导，计算，用分析的方法把这些东西都算出来。</p>
+<p>欧拉，拉格朗日，等等人努力，为了研究有约束的问题（constraint problems）</p>
+<p>比如一个球的开摆：一个球可以受力分析（两个球开始摆——今天我们知道这个是Chaos，搞不好）</p>
+<p>什么是约束力？为了保证它能进行一个运动的（比如小幅度的圆周运动），那么就有一些约束条件，只和为止坐标有关的约束条件叫做完整约束（holonomic constraint）。</p>
+</blockquote>
+<h3 id="拉格朗日力学">拉格朗日力学：</h3>
+<ul>
+<li><p>从最小的变分原理出发，推导出完整的力学。<span class="math inline">\(\delta S=0\)</span>。</p></li>
+<li><p>拉格朗日方程（欧拉-拉格朗日方程）</p></li>
+<li><p>可以进一步推导出量子场论的方程，是四维协变形势拉格朗日密度满足的拉格朗日方程。</p></li>
+</ul>
+<p><span class="math display">\[
+\frac{\mathrm{d}}{\mathrm{d}t}(\frac{\part L}{\part \dot q_a})=\frac{\part L}{\part {q_a}}\\a=1,2,3,...
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(L\)</span> 是<strong>拉格朗日量</strong>，量纲是能量。是关于 <span class="math inline">\((q(t),\dot q(t),t)\)</span> 的函数，函数的函数称为泛函(functional)，即 <span class="math inline">\(L=L(q(t),\dot q(t),t)\)</span></p></li>
+<li><p><span class="math inline">\(S\)</span> 是<strong>作用量</strong>(Action)，是对拉格朗日量的时间的积分，是广义坐标的一个泛函，<span class="math inline">\(S\)</span> 是 <span class="math inline">\(q\)</span> 的函数。 <span class="math inline">\(\dot q\)</span> 没有了，只剩下 <span class="math inline">\(\dot q\)</span> 了。<span class="math inline">\(S=S[q]\)</span>。作用量的量纲是能量乘时间，也就是位置乘以动量，也就是角动量的量纲。</p></li>
+<li><p>普朗克常数的量纲是：能量乘时间。<span class="math inline">\(\hbar = \frac{h}{2\pi}\)</span>：reduced plancles constant</p></li>
+<li><p><strong>广义坐标</strong>，<span class="math inline">\(n\)</span> 个点就有 <span class="math inline">\(3n\)</span> 的坐标，但是有约束，其实是不独立的，所以我们只对不受约束的其中一些量（可能不是原来的）感兴趣，而留下来的坐标是线性无关独立的（互相之间偏导数为0），这些坐标是广义坐标。</p></li>
+<li><p>广义坐标所在的空间，我们称为<strong>构形空间(Configuration space)</strong>。</p></li>
+<li><p>那么这时候的欧拉朗格朗日方程的方程数只有 <span class="math inline">\(d\)</span> 个，比 <span class="math inline">\(3n\)</span> 个比较小。</p></li>
+<li><p><strong>这个看起来不错</strong> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44597928">第1章 拉格朗日量 - 知乎 (zhihu.com)</a></p></li>
+</ul>
+<h3 id="哈密顿力学">哈密顿力学</h3>
+<ul>
+<li><p>和拉格朗日力学等价</p></li>
+<li><p>其空间叫做<strong>相空间(phase space)</strong>，除了有 <span class="math inline">\(q(t)\)</span> 广义坐标，还有 <span class="math inline">\(\phi(t)\)</span> ，（<span class="math inline">\(q(t),\phi(t)\)</span>）。</p></li>
+<li><p><span class="math inline">\(q(t)\)</span> 在哈密顿力学里叫做正则位置(canonical position)</p></li>
+<li><p><span class="math inline">\(\phi(t)\)</span> 叫做正则动量(canonical momentum)——（也叫广义位置的正则共轭）</p></li>
+<li><p>加起来，叫做正则坐标……</p></li>
+<li><p>有好多正则……</p></li>
+<li><p>从拉格朗日量做勒让德变换 <span class="math display">\[
+L(q,\dot q,t)\overset{\Large p=\frac{\part L}{\part \dot q}}{\Longrightarrow} H(q,p,t)
+\]</span></p></li>
+<li><p>这时候就没有速度了，只有一个关于正则动量的东西</p></li>
+<li><p>拉格朗日量<span class="math inline">\(\frac{\part L}{\part p}\equiv0\)</span>。完全与动量无光。哈密顿量与速度完全无关，<span class="math inline">\(\frac{\part H}{\part \dot q} \equiv 0\)</span></p></li>
+<li><p>从 <span class="math inline">\(D\)</span> 维空间变成了 <span class="math inline">\(2D\)</span> 维空间。</p></li>
+<li><p>运动方程从 <span class="math inline">\(D\)</span> 个欧拉-拉格朗日方程（E-L方程）变成了哈密顿量得到的一组方程： <span class="math display">\[
+\begin{cases}
+\dot q_a = \frac{\part H}{\part p_a}=[q_a,H]\\
+\dot p_a=-\frac{\part H}{\part q_a}=[p_a,H]
+\end{cases}
+\]</span> 有 <span class="math inline">\(2D\)</span> 个一阶微分方程——哈密顿正则运动方程，正则方程。</p></li>
+<li><p>一般化，对于正则坐标的函数 <span class="math inline">\(\forall f(p,q,t)\)</span></p></li>
+<li><p>有：</p></li>
+<li><p><span class="math display">\[
+\frac{df}{dt}=\frac{\part f}{\part t} + [f,H]_{PB}\\
+where.[f,H]_{PB}=\sum_a(\frac{\part f}{\part q_a}\frac{\part H}{\part p_a}-\frac{\part f}{\part p_a}\frac{\part H}{\part q_a})
+\]</span></p></li>
+<li><p>叫做PB泊松括号</p></li>
+<li><p><strong>这个看起来不错</strong> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24627496">力学（六）—哈密顿力学之哈密顿方程与泊松括号 - 知乎 (zhihu.com)</a></p></li>
+<li><p>有两个方程都和这个很像，一个是海森堡方程</p></li>
+<li><p><span class="math display">\[
+\frac{d\hat f}{dt}=\frac{\part \hat f}{\part t}+\frac{1}{i\hbar }[\hat f,\hat H]
+\]</span></p></li>
+<li><p>另一个是ehrenfest therom</p></li>
+<li><p><span class="math display">\[
+\frac{d}{dt}\left&lt;\hat f\right &gt;=\left&lt;\frac{\part \hat f}{\part t}\right &gt;+\frac{1}{i\hbar} \left&lt;[\hat f,\hat H]\right&gt;
+\]</span></p></li>
+<li><p>直接定义了量子力学里面什么是守恒量——当 <span class="math inline">\([\hat f,\hat H]=0\)</span>，即与 <span class="math inline">\(\hat H\)</span> 对易的量</p></li>
+<li><p>只不过量子力学里面</p></li>
+<li><p><span class="math display">\[
+[\hat A,\hat B]=\hat A\hat B-\hat B\hat A
+\]</span></p>
+<p>[A,B]不一定等于[B,A]在加了括号之后。</p></li>
+<li><p>叫做量子的正则对易关系（QCC,Quantum canonical commutator），从经典到量子</p></li>
+<li><p>并不是所有的物理量都能写成矩阵，但是所有物理量都是算符。只有有限的分立的东西才能写成矩阵，无限的连续的不行。</p></li>
+</ul>
+<h4 id="相空间">相空间</h4>
+<ul>
+<li><p>导出了一个方程，刘维定理，是量子统计力学所需要的。</p></li>
+<li><p>证明相空间里面有个变换，叫做正则变换，可以把位置，动量，哈密顿量都变换，但是<strong>对易关系不变</strong>（泊松括号的值不变，也就意味着运动方程不变，也就意味着位置和动量随时间的导数不变）</p></li>
+<li><p>相点就是在像空间中的点，一个相点叫做一个态，<strong>相点密度</strong>是一个正则坐标的函数，相点密度一定是满足归一化。<span class="math inline">\(\int\rho(q,p,t)\mathrm{d}^Dq\mathrm{d}^DP\)</span>=1。</p></li>
+<li><blockquote>
+<p>包含了所有的运动</p>
+</blockquote></li>
+<li><p><span class="math display">\[
+\frac{d\rho}{dt}\equiv0\Longrightarrow\frac{\part \rho}{\part t}=[H,\rho]_{PB}
+\]</span></p>
+<p>上面这个方程叫做<strong>刘维尔定理</strong>，推广到量子里面</p></li>
+<li><p><span class="math display">\[
+\frac{\part \hat \rho}{\part t}=\frac{1}{i\hbar }[\hat H,\hat \rho]
+\]</span></p></li>
+<li><p>也可以叫量子刘维方程，冯诺依曼方程，朗道方程……我们叫<strong>密度算符方程</strong></p></li>
+<li><blockquote>
+<p>woc，密度算符？？？？？</p>
+</blockquote></li>
+</ul>
+<h4 id="正则">正则</h4>
+<ul>
+<li>正则坐标</li>
+<li>正则对易</li>
+<li>正则运动方程</li>
+<li>正则变换
+<ul>
+<li><span class="math inline">\(H(q,p,t)\)</span> 变换到 <span class="math inline">\(K(Q,P,T)\)</span>，有些东西没有变：</li>
+<li><span class="math inline">\(\dot q=\part H/\part p,\dot p=\part H/\part q,\dot Q=\part K/\part P,\dot P=\part K/\part Q\)</span></li>
+<li><span class="math inline">\([q_i,p_j]=\delta_{i,j}\)</span></li>
+<li><span class="math inline">\([p_i,p_j]=[q_i,q_j]\equiv0\)</span> 。
+<ul>
+<li>推广到量子力学里：<span class="math inline">\([\hat q_i,\hat p_j]=i \hbar \delta_{i,j}\)</span></li>
+</ul></li>
+<li>同时有 <span class="math inline">\([Q_i,P_j]=\delta _{i,j}\)</span></li>
+<li><span class="math inline">\(([Q,P]_{PB})_{QP}= ([Q,P]_{PB})_{qp}=\delta_{i,j}\)</span>。</li>
+<li>既然这个是相等的，在正则变化下所有的对易关系都是不变的。</li>
+</ul></li>
+</ul>
+<h2 id="经典电动力学-1">经典电动力学</h2>
+<ul>
+<li><p>矢量代数</p></li>
+<li><p>矢量微积分</p></li>
+<li><p>如何从实验定律推出麦克斯韦方程</p></li>
+<li><p>麦克斯韦方程的性质</p>
+<ul>
+<li>带电粒子的拉格朗日量和哈密顿量</li>
+</ul></li>
+</ul>
+<h3 id="矢量分析">矢量分析</h3>
+<ul>
+<li>爱因斯坦求和约定</li>
+<li><span class="math inline">\(\sum_{i=1}^3x_i\vec e_i = x_i\vec e_i\)</span> 我们称为哑指标</li>
+<li>对于三维欧几里得空间</li>
+<li>内积（点乘）：<span class="math inline">\(\vec e_i \cdot \vec e_j = \delta _{ij}\ (i,j=1,2,3)\)</span>
+<ul>
+<li>其中 <span class="math inline">\(\delta_{ij}\)</span> 叫做 Kronecker Delta Tensor</li>
+</ul></li>
+<li>外积（叉乘）：<span class="math inline">\(\vec e_i \times \vec e_j=\epsilon_{ijk}\vec e_k\ (i,j,k=1,2,3)\)</span> 右手定则的方向。
+<ul>
+<li><span class="math inline">\(\epsilon_{ijk}\)</span> 叫做 Lavi-Civita Tensor(Lavi-Civita symbol)。——ijk不能相同。</li>
+</ul></li>
+<li>两个张量截然相反又有联系。
+<ul>
+<li><span class="math inline">\(\delta_{ij}=\delta_{ji}\)</span> 是一个对称张量。</li>
+<li><span class="math inline">\(\epsilon_{ijk}=(-1)(\epsilon_{jik})\)</span> 任意两个交换会乘上负一</li>
+<li><span class="math inline">\(\delta_{ij}=[i=j]\)</span> 用于描述正交性和归一性。</li>
+<li><span class="math inline">\(\epsilon_{ijk}=\begin{cases}1\mid偶排列\\-1\mid 奇排列\\0\mid非排列\end{cases}\)</span></li>
+</ul></li>
+<li>如果 <span class="math inline">\(f_{ij}\)</span> 是对称张量 ，则 <span class="math inline">\(\epsilon_{ijk} f_{ij}\equiv 0\)</span>，对称反对称缩并为0。</li>
+<li>任何矢量 <span class="math inline">\(f\)</span>，<span class="math inline">\(f_i\delta_{ij}=f_j\)</span></li>
+<li>设 <span class="math inline">\(\vec A=A_i\vec e_i,\vec B=B_j\vec e_j\)</span></li>
+<li>则 <span class="math inline">\(\vec A\cdot \vec B = (A_i\vec e_i)\cdot(B_j\vec e_j)=A_iB_j\delta_{ij}=A_iB_i\)</span></li>
+<li><span class="math inline">\(\vec A \times \vec B = (A_iB_j)\epsilon_{ijk}\vec e_k=(\vec A\times \vec B)_k\vec e_k\)</span>
+<ul>
+<li>第 <span class="math inline">\(k\)</span> 个分量 <span class="math inline">\((A_i\times B_j)_k\)</span> 为 <span class="math inline">\(\epsilon_{kij}A_iB_j\)</span></li>
+</ul></li>
+<li></li>
+<li></li>
+<li></li>
 </ul>
 <p><del>https://www.bilibili.com/video/BV1HL4y177J5</del></p>
 
@@ -956,20 +1138,5 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
