@@ -18,15 +18,15 @@
   
   
   <title>【ICS】archlab小记 | emoairx</title>
-  <meta name="description" content="记一下 partC 能改的几个小地方  把 ret 改成 jmp $0x31，也就是跳回到主程序的地方（因为不能halt），但是这样可以消除掉三个 ret 产生的气泡 修改 hcl 文件的最基础的方法是把 mrmovq 和 rmmovq 之间的气泡通过传送消除掉，具体而言是传送到 e_val 里面，同时修改 pipeline 的 F_stale , D_stale , E_bubble ，取消掉这">
+  <meta name="description" content="记一下 partC 能改的几个小地方  把 ret 改成 jmp $0x31，也就是跳回到主程序的地方（因为不能halt），但是这样可以消除掉三个 ret 产生的气泡 修改 hcl 文件的最基础的方法是把 mrmovq 和 rmmovq 之间的气泡通过传送消除掉，具体而言是传送到 e_val 里面，同时修改 pipeline 的 F_stale , D_stale , E_bubble ，取">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【ICS】archlab小记">
 <meta property="og:url" content="http://emoairx.github.io/blog/2022/10/23/%E3%80%90ICS%E3%80%91archlab%E5%B0%8F%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="记一下 partC 能改的几个小地方  把 ret 改成 jmp $0x31，也就是跳回到主程序的地方（因为不能halt），但是这样可以消除掉三个 ret 产生的气泡 修改 hcl 文件的最基础的方法是把 mrmovq 和 rmmovq 之间的气泡通过传送消除掉，具体而言是传送到 e_val 里面，同时修改 pipeline 的 F_stale , D_stale , E_bubble ，取消掉这">
+<meta property="og:description" content="记一下 partC 能改的几个小地方  把 ret 改成 jmp $0x31，也就是跳回到主程序的地方（因为不能halt），但是这样可以消除掉三个 ret 产生的气泡 修改 hcl 文件的最基础的方法是把 mrmovq 和 rmmovq 之间的气泡通过传送消除掉，具体而言是传送到 e_val 里面，同时修改 pipeline 的 F_stale , D_stale , E_bubble ，取">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-23T02:51:06.234Z">
-<meta property="article:modified_time" content="2022-10-23T03:01:18.268Z">
+<meta property="article:modified_time" content="2022-10-23T15:40:53.879Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="ICS">
 <meta name="twitter:card" content="summary">
@@ -174,7 +174,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -193,7 +193,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -257,10 +257,10 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2022/10/21/note%20on%20TAT/" class="title">note on TAT</a>
+                <a href="/blog/2022/10/18/diary/diary221018/" class="title">221018</a>
               </p>
               <p class="item-date">
-                <time datetime="2022-10-21T13:09:25.638Z" itemprop="datePublished">2022-10-21</time>
+                <time datetime="2022-10-18T07:05:28.278Z" itemprop="datePublished">2022-10-18</time>
               </p>
             </div>
           </li>
@@ -272,10 +272,10 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2022/10/18/diary/diary221018/" class="title">221018</a>
+                <a href="/blog/2022/10/09/diary/diary221009/" class="title">221009</a>
               </p>
               <p class="item-date">
-                <time datetime="2022-10-18T07:05:28.278Z" itemprop="datePublished">2022-10-18</time>
+                <time datetime="2022-10-09T14:16:47.987Z" itemprop="datePublished">2022-10-09</time>
               </p>
             </div>
           </li>
@@ -359,15 +359,27 @@
 <ul>
 <li>把 <code>ret</code> 改成 <code>jmp $0x31</code>，也就是跳回到主程序的地方（因为不能halt），但是这样可以消除掉三个 <code>ret</code> 产生的气泡</li>
 <li>修改 <code>hcl</code> 文件的最基础的方法是把 <code>mrmovq</code> 和 <code>rmmovq</code> 之间的气泡通过传送消除掉，具体而言是传送到 <code>e_val</code> 里面，同时修改 <code>pipeline</code> 的 <code>F_stale</code> , <code>D_stale</code> , <code>E_bubble</code> ，取消掉这时候的气泡</li>
-<li>一种修改 <code>iaddq</code> 的方法是，当 <code>iaddq</code> 的值 <code>val</code> 为类似于 <code>0x8394</code> 这种看上去用不到的很随机的时候，我们定义它的效果是 <code>if M[rB]&gt;0 : rax = rax + 1</code> ，注意到后面这部分是可以在 <code>hcl</code> 中实现的。<ul>
+<li>一种修改 <code>iaddq</code> 的方法是，当 <code>iaddq</code> 的值 <code>val</code> 为类似于 <code>0x8394</code> 这种看上去用不到的很随机的时候，我们定义它的效果是 <code>if M[rB]&gt;0 : rax = rax + 1</code> ，注意到后面这部分是可以在 <code>hcl</code> 中实现的。
+<ul>
 <li>能否继续进一步卡进去？</li>
 <li>如果合理一点的话，可以全程不用 <code>iaddq</code> 的寄存器加立即数的方法，这样看上去不是取巧而是很合理。</li>
-</ul>
-</li>
+</ul></li>
 <li>常规的方法例如循环展开和三叉跳转。</li>
-<li>一种实现跳转表的取巧方法是利用 <code>pushq</code> 和 <code>ret</code> ，将要跳转的地址存放在栈中，再通过ret的时候跳转回去。但这样有三个气泡，未曾实践，不知效果。</li>
+<li>一种实现跳转表的取巧方法是利用 <code>pushq</code> 和 <code>ret</code> ，将要跳转的地址存放在栈中，再通过ret的时候跳转回去。但这样有三个气泡，未曾实践，不知效果。但是是否能通过iaddq来实现这部分？</li>
 <li>如果使用朴素的三叉搜索，使用比较判断的时候根据分支预测的方法，顺序是比较重要的。</li>
 </ul>
+<p>上面几个优化效果最大的应该是改iaddq的条件加法，舍友直接实现就能到5.0+。</p>
+<p>如果只实现循环展开(9路)和三叉搜索，大概是7.50~7.60。</p>
+<p>如果实现了iaddq的立即数加法，大概还是7.50+。</p>
+<p>如果实现消除mrmovq和rmmovq的气泡，那么就能到7.4-。</p>
+<p>另一个书上推荐改的hcl部分是分支预测，但据说难度略大。</p>
+<p>然后听晗晗的话改了个jmp $0x31，直接到7.1+了。</p>
+<p>至于3.0+的大佬那只能顶礼膜拜的。</p>
+<hr>
+<p>另转树洞大牛关于 archlab GUI 的实现</p>
+<blockquote>
+<p>https://pkuhelper.pku.edu.cn/hole/##4216428</p>
+</blockquote>
 
       
     </div>
@@ -531,20 +543,5 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
