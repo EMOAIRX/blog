@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/09/30/note%20on%20QM/1664872053050.jpg">
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/09/30/note%20on%20QM/1664683606559.jpg">
 <meta property="article:published_time" content="2022-09-30T15:54:12.785Z">
-<meta property="article:modified_time" content="2022-11-06T01:01:15.795Z">
+<meta property="article:modified_time" content="2022-11-06T01:59:51.106Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -382,6 +382,7 @@
 <p><code>\def \bra#1&#123;\left&lt;#1 \right |&#125;</code>$ $</p>
 <p><code>\def \braket#1#2&#123;\left&lt;#1|#2 \right &gt;&#125;</code>$ $</p>
 <p><code>\def \qcc#1#2&#123;[\hat&#123; #1 &#125;,\hat&#123; #2 &#125;]&#125;</code><span class="math inline">\(\def \qcc#1#2{[\hat{ #1 },\hat{ #2 }]}\)</span></p>
+<p><code>\def \dd&#123;\mathrm&#123;d&#125;&#125;</code> <span class="math inline">\(\def \dd{\mathrm{d}}\)</span></p>
 <p><code>end</code></p>
 <h1 id="history">History</h1>
 <ul>
@@ -1845,7 +1846,7 @@ i\hbar \frac{\partial}{\partial t}\psi(\vec x,t) = \frac{\hbar^2}{2m}\vec \nabla
 \end{aligned}
 \]</span></p></li>
 <li><p>也可以从2推出1。</p></li>
-<li><p>通过 <span class="math inline">\(\qcc{L_i}{L_j}=i\hbar \epsilon_{ijk}\hat L_k\)</span> ，可以推出 <span class="math inline">\(\qcc {\vec L^2}{\vec L}\equiv 0\)</span>。利用一个反对称一个对称，缩并结果为0。</p></li>
+<li><p>通过 <span class="math inline">\(\qcc{L_i}{L_j}=i\hbar \epsilon_{ijk}\hat L_k\)</span> ，可以推出 <span class="math inline">\(\qcc {L^2}{L}\equiv 0\)</span>。利用一个反对称一个对称，缩并结果为0。</p></li>
 <li></li>
 <li><p>可以推出一些对易关系</p></li>
 <li><p><span class="math inline">\(\qcc {L_i}{x_j}=i\hbar \epsilon_{ijk} \hat x_k\)</span></p></li>
@@ -1953,7 +1954,10 @@ i\hbar \frac{\part}{\part \vec x} \psi_{\vec p}(\vec x)=\vec p \psi_{\vec p}(\ve
 <p>这个意思是什么呢</p>
 <ul>
 <li><span class="math inline">\(\vec x \delta(\vec x-\vec x&#39;)=\vec x&#39;\delta(\vec x-\vec x&#39;)\)</span></li>
-<li><span class="math inline">\(\vec x\)</span> 的本征值和本质态，只在 <span class="math inline">\(\vec x&#39;\)</span> 这一个点，在这个点是无穷大。但delta函数积分归一化。</li>
+<li><span class="math inline">\(\vec x\)</span> 的本征值和本质态，只在 <span class="math inline">\(\vec x&#39;\)</span> 这一个点，在这个点是无穷大。但delta函数积分归一化。
+<ul>
+<li>这里的 <span class="math inline">\(x\)</span> 是不是应该理解成张量积的形式？</li>
+</ul></li>
 </ul>
 <h2 id="角动量-1">角动量</h2>
 <h3 id="轨道角动量">轨道角动量</h3>
