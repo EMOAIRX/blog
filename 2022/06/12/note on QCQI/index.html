@@ -18,12 +18,12 @@
   
   
   <title>note on QCQI &amp;&amp; other | emoairx</title>
-  <meta name="description" content="网页版应该少了一个 Braket的宏包，不太想加感觉麻烦。 可以试着看看 note on QCQI.pdf 这个pdf 早就已经停止更新了，其实从七月暑校开始就摆了，感觉大概了解了一下量子算法就跑路了。 总体而言觉得还是挺好玩的，但没有特别喜欢，量子信息觉得略微有些——不是很喜欢。  三天速成简量） 这份笔记没有任何参考价值 《Nielsen, Chuang - Quantum Co">
+  <meta name="description" content="start \def \hvec#1&amp;#123;\hat&amp;#123;\vec&amp;#123; #1&amp;#125;&amp;#125;&amp;#125; \(\def \hvec#1{\hat{\vec{ #1}}}\) \def \part&amp;#123;\partial&amp;#125; \(\def \part{\partial}\) \def \ket#1&amp;#123;\left|#1 \right &gt;&amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="note on QCQI &amp;&amp; other">
 <meta property="og:url" content="http://emoairx.github.io/blog/2022/06/12/note%20on%20QCQI/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="网页版应该少了一个 Braket的宏包，不太想加感觉麻烦。 可以试着看看 note on QCQI.pdf 这个pdf 早就已经停止更新了，其实从七月暑校开始就摆了，感觉大概了解了一下量子算法就跑路了。 总体而言觉得还是挺好玩的，但没有特别喜欢，量子信息觉得略微有些——不是很喜欢。  三天速成简量） 这份笔记没有任何参考价值 《Nielsen, Chuang - Quantum Co">
+<meta property="og:description" content="start \def \hvec#1&amp;#123;\hat&amp;#123;\vec&amp;#123; #1&amp;#125;&amp;#125;&amp;#125; \(\def \hvec#1{\hat{\vec{ #1}}}\) \def \part&amp;#123;\partial&amp;#125; \(\def \part{\partial}\) \def \ket#1&amp;#123;\left|#1 \right &gt;&amp;#12">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/06/12/note%20on%20QCQI/1655953360647.jpg">
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/06/12/note%20on%20QCQI/1655983876622.jpg">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/06/12/note%20on%20QCQI/1656575459302.jpg">
 <meta property="og:image" content="http://emoairx.github.io/blog/2022/06/12/note%20on%20QCQI/image-20220630162926793.png">
 <meta property="article:published_time" content="2022-06-12T07:46:22.787Z">
-<meta property="article:modified_time" content="2022-08-21T14:56:07.726Z">
+<meta property="article:modified_time" content="2022-11-06T02:19:06.724Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -365,7 +365,24 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>网页版应该少了一个 Braket的宏包，不太想加感觉麻烦。</p>
+        <p><code>start</code></p>
+<p><code>\def \hvec#1&#123;\hat&#123;\vec&#123; #1&#125;&#125;&#125;</code> <span class="math inline">\(\def \hvec#1{\hat{\vec{ #1}}}\)</span></p>
+<p><code>\def \part&#123;\partial&#125;</code> <span class="math inline">\(\def \part{\partial}\)</span></p>
+<p><code>\def \ket#1&#123;\left|#1 \right &gt;&#125;</code><span class="math inline">\(\def \bra#1{\left&lt;#1 \right |}\)</span></p>
+<p><code>\def \bra#1&#123;\left&lt;#1 \right |&#125;</code>$ $</p>
+<p><code>\def \Braket#1&#123;\left&lt; #1 \right&gt;&#125;</code> <span class="math inline">\(\def \Braket#1{\left&lt; #1 \right&gt;}\)</span></p>
+<p><code>\def \Tr&#123;\mathrm&#123;Tr&#125;&#125;</code> <span class="math inline">\(\def \Tr{\mathrm{Tr}}\)</span></p>
+<p><code>\def \braket#1&#123;\left&lt; #1 | #1 \right&gt;&#125;</code> <span class="math inline">\(\def \braket#1{\left&lt; #1 | #1 \right&gt;}\)</span></p>
+<p><code>\def \qcc#1#2&#123;[\hat&#123; #1 &#125;,\hat&#123; #2 &#125;]&#125;</code><span class="math inline">\(\def \qcc#1#2{[\hat{ #1 },\hat{ #2 }]}\)</span></p>
+<p><code>\def \dd&#123;\mathrm&#123;d&#125;&#125;</code> <span class="math inline">\(\def \dd{\mathrm{d}}\)</span></p>
+<p><code>\def \Ket&#123;\ket&#125;</code><span class="math inline">\(\def \Ket{\ket}\)</span></p>
+<p><code>\def \ppv#1&#123;\frac&#123;\part&#125;&#123;\part \vec #1&#125;&#125;</code>$ $</p>
+<p><code>\def \set#1&#123;\left\&#123; #1 \right\&#125; &#125;</code> <span class="math inline">\(\def \set#1{\left\{ #1 \right\} }\)</span></p>
+<p><code>\def \norm#1&#123;\left| #1 \right|&#125;</code> <span class="math inline">\(\def \norm#1{\left| #1 \right|}\)</span></p>
+<p><code>\def \tr&#123;\Tr&#125;</code> <span class="math inline">\(\def \tr{\Tr}\)</span></p>
+<p><code>oiint</code> 暂时不知道怎么解决</p>
+<p><code>end</code><br>
+</p>
 <p>可以试着看看 <a href="note%20on%20QCQI.pdf">note on QCQI.pdf</a> 这个pdf</p>
 <p>早就已经停止更新了，其实从七月暑校开始就摆了，感觉大概了解了一下量子算法就跑路了。</p>
 <p>总体而言觉得还是挺好玩的，但没有特别喜欢，量子信息觉得略微有些——不是很喜欢。</p>
@@ -408,10 +425,10 @@
 \]</span></p>
 </blockquote>
 <p>通过这个结论可以，投影变换 <span class="math inline">\(P\)</span> 的伴随是它自己</p>
-<p>Suppose W is a k-dimensional vector subspace of the d-dimensional vector space V. Using the Gram-Schmidt procedure it is possible to construct an orthonormal basis <span class="math inline">\(\ket 1,\dots ,\ket d\)</span> for V such that <span class="math inline">\(\ket 1,\dots,\ket d\)</span> is an orthonormal basis for W. By definition <span class="math display">\[
-P\equiv\sum_{k=1}^{k}\ket i \bra i
+<p>Suppose W is a k-dimensional vector subspace of the d-dimensional vector space V. Using the Gram-Schmidt procedure it is possible to construct an orthonormal basis <span class="math inline">\(\left|1 \right &gt;,\dots ,\left|d \right &gt;\)</span> for V such that <span class="math inline">\(\left|1 \right &gt;,\dots,\left|d \right &gt;\)</span> is an orthonormal basis for W. By definition <span class="math display">\[
+P\equiv\sum_{k=1}^{k}\left|i \right &gt; \bra i
 \]</span> is the projector onto the subspace W.</p>
-<p>同样可以定义 <span class="math inline">\(Q\equiv I-P\)</span> ，称为 <span class="math inline">\(P\)</span> 的正交补 orthogonal complement。it's easy(????) to see that <span class="math inline">\(Q\)</span> is a projector onto the vector space spanned by <span class="math inline">\(\ket {k+1},\dots,\ket d\)</span> , which we also refer to as the <em>orthogonal complement</em> of <span class="math inline">\(P\)</span> , and may denote by <span class="math inline">\(Q\)</span></p>
+<p>同样可以定义 <span class="math inline">\(Q\equiv I-P\)</span> ，称为 <span class="math inline">\(P\)</span> 的正交补 orthogonal complement。it's easy(????) to see that <span class="math inline">\(Q\)</span> is a projector onto the vector space spanned by <span class="math inline">\(\left|k+1 \right &gt;,\dots,\left|d \right &gt;\)</span> , which we also refer to as the <em>orthogonal complement</em> of <span class="math inline">\(P\)</span> , and may denote by <span class="math inline">\(Q\)</span></p>
 <blockquote>
 <p>2.16 show that any projector <span class="math inline">\(P\)</span> satisfies the equation <span class="math inline">\(P^2 = P\)</span></p>
 </blockquote>
@@ -434,10 +451,10 @@ A^\dagger=U^\dagger D^\dagger U
 </blockquote>
 <p>一个矩阵可酉对角化的充分必要条件是它是正规矩阵，但可对角化的矩阵不一定可以酉对角化</p>
 <p>酉变换酉矩阵保持变换情况下内积的长度不变，也就把一组正交基变成一组正交基。</p>
-<p>如果 <span class="math inline">\(\ket {u_i},\ket {w_i}\)</span> 是一组单位正交基，那么容易发现 <span class="math inline">\(U\equiv \sum_i\ket {w_i}\bra {v_i}\)</span> 是酉变换。</p>
+<p>如果 <span class="math inline">\(\left|u_i \right &gt;,\left|w_i \right &gt;\)</span> 是一组单位正交基，那么容易发现 <span class="math inline">\(U\equiv \sum_i\left|w_i \right &gt;\bra {v_i}\)</span> 是酉变换。</p>
 <blockquote>
 <p>2.18 Show that all eigenvalues of a unitary matrix have modulus 1, that is, can be written in the form <span class="math inline">\(e^{i\theta}\)</span> for some real <span class="math inline">\(\theta\)</span>. <span class="math display">\[
-U\ket v=\lambda \ket v\\
+U\left|v \right &gt;=\lambda \left|v \right &gt;\\
 \bra vU^\dagger=\lambda^*\bra v\\
 \Braket{v|U^\dagger U|v}=\braket v=\lambda\lambda^* \braket v
 \]</span></p>
@@ -459,7 +476,7 @@ A=A^\dagger
 </blockquote>
 <p>​ 取特征值 <span class="math inline">\(\lambda\)</span> 和它的特征子空间上的投影变换 <span class="math inline">\(P\)</span>，正交补 <span class="math inline">\(Q\)</span>，这里有 <span class="math inline">\(P^\dagger=P,P^2=P\)</span></p>
 <p>​ <span class="math inline">\(M = (P+Q) M (P+Q)\)</span> ，可以证明 <span class="math inline">\(QMP=0,PMQ=(QM^\dagger P)^\dagger=0\)</span></p>
-<p>其中 <span class="math inline">\(MM^\dagger \ket v=M^\dagger M\ket v=\lambda M^\dagger \ket v\)</span> ，说明它的 <span class="math inline">\(M^\dagger P\)</span> 在 <span class="math inline">\(Q\)</span> 的零空间。</p>
+<p>其中 <span class="math inline">\(MM^\dagger \left|v \right &gt;=M^\dagger M\left|v \right &gt;=\lambda M^\dagger \left|v \right &gt;\)</span> ，说明它的 <span class="math inline">\(M^\dagger P\)</span> 在 <span class="math inline">\(Q\)</span> 的零空间。</p>
 <p>​ 从而 <span class="math inline">\(M=\lambda P+QMQ\)</span>，而 <span class="math inline">\(QM=QM(P+Q)=QMQ\)</span> 类似推出来 <span class="math inline">\(QMQ\)</span> 是正规的</p>
 <p>​ 归纳法得证</p>
 <blockquote>
@@ -472,7 +489,7 @@ A=A^\dagger
 <p>感觉是不是类似于矩阵展开的感觉</p>
 </blockquote>
 <p>对于 <span class="math inline">\(A,B\)</span> 如上定义，有 <span class="math display">\[
-(A\otimes B)(\ket v \otimes \ket w) \equiv A\ket v \otimes B \ket w
+(A\otimes B)(\left|v \right &gt; \otimes \left|w \right &gt;) \equiv A\left|v \right &gt; \otimes B \left|w \right &gt;
 \]</span> ​ 用矩阵具体写的话，可以用 Kronecker product，就是分块然后展开。</p>
 <blockquote>
 <p>2.28 <span class="math inline">\((A\otimes B)^*=(A^*\otimes B^*),(A\otimes B)^T=(A^T\otimes B^T),(A\otimes B)^\dagger=(A^\dagger\otimes B^\dagger)\)</span></p>
@@ -480,7 +497,7 @@ A=A^\dagger
 </blockquote>
 <p>两个unitary算子，Hermitian算子，positive算子，projector算子的张量积依然保持性质。</p>
 <h4 id="operator-functions">Operator functions</h4>
-<p>​ 定义相应的函数，所有特征值进行变换，即 <span class="math inline">\(A=\sum_aa\ket a\bra a,f(A)=\sum_af(a)\ket a\bra a\)</span></p>
+<p>​ 定义相应的函数，所有特征值进行变换，即 <span class="math inline">\(A=\sum_aa\left|a \right &gt;\bra a,f(A)=\sum_af(a)\left|a \right &gt;\bra a\)</span></p>
 <blockquote>
 <p>2.35 <strong>(Exponential of the Pauli matrices)</strong> Let <span class="math inline">\(\vec v\)</span> be any real, three-dimensional unit vector and <span class="math inline">\(\theta\)</span> a real number. Prove that <span class="math display">\[
 \exp(i\theta\vec v · \vec \sigma) = \cos(\theta )I + i \sin(θ)\vec v · \vec \sigma
@@ -510,10 +527,10 @@ A=A^\dagger
   \end{eqnarray}
 \]</span></p>
 <p><span class="math display">\[
-=\ket {\lambda _1} \bra {\lambda _1}-\ket {\lambda _{-1}} \bra {\lambda _{-1}}
+=\left|\lambda _1 \right &gt; \bra {\lambda _1}-\left|\lambda _{-1} \right &gt; \bra {\lambda _{-1}}
 \]</span></p>
 </blockquote>
-<p>注意到 迹， <span class="math inline">\(tr(A\ket \psi \bra \psi)=\Braket{\psi|A|\psi}\)</span>，可以作为一个希尔伯特空间的自然内积。</p>
+<p>注意到 迹， <span class="math inline">\(tr(A\left|\psi  \right &gt;\bra \psi)=\Braket{\psi|A|\psi}\)</span>，可以作为一个希尔伯特空间的自然内积。</p>
 <p><em>commutator</em> between two operators <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined to be <span class="math display">\[
 [A,B]\equiv AB-BA
 \]</span> if <span class="math inline">\([A,B]=0,AB=BA\)</span> then we say A <em>commutes</em> with B.</p>
@@ -535,13 +552,13 @@ A=UJ=KU
 <p>​ 能SVD之后可以 <strong>施密特分解</strong></p>
 <h3 id="the-postulates-of-quantum-mechanics">The postulates of quantum mechanics</h3>
 <p><strong>基本假设1、state space: Hilbert space</strong> <strong>基本假设2、evolution: unitary transformation</strong>（封闭系统，连续时间） <span class="math display">\[
-i\hbar\frac{d\ket \psi}{dt}=H\ket \psi
+i\hbar\frac{d\left|\psi \right &gt;}{dt}=H\left|\psi \right &gt;
 \]</span> <span class="math inline">\(H\)</span> is a fixed Hermitian operator known as the <em>Hamiltonian</em> of the closed system，从而可以谱分解，变成 <span class="math display">\[
-H=\sum_E E\ket E\bra E
-\]</span> 传统称 <span class="math inline">\(\ket E\)</span> 为能量本征态 <em>energy eigenstates</em> 或者 <em>stationary states</em>，<span class="math inline">\(E\)</span> 是 <span class="math inline">\(\ket E\)</span> 的能量 <em>energy</em>。</p>
+H=\sum_E E\left|E \right &gt;\bra E
+\]</span> 传统称 <span class="math inline">\(\left|E \right &gt;\)</span> 为能量本征态 <em>energy eigenstates</em> 或者 <em>stationary states</em>，<span class="math inline">\(E\)</span> 是 <span class="math inline">\(\left|E \right &gt;\)</span> 的能量 <em>energy</em>。</p>
 <p>最低的能量称为基态能量 <em>ground state energy</em> ，相应的能量本征态或者特征子空间称为基态。</p>
 <p>之所以是稳定态，因为转变只可能是 <span class="math display">\[
-\ket E \to exp(-iEt/\hbar)\ket E
+\left|E \right &gt; \to exp(-iEt/\hbar)\left|E \right &gt;
 \]</span></p>
 <blockquote>
 <p>2.56 Use the spectral decomposition to show that <span class="math inline">\(K ≡ −i \log(U)\)</span> is Hermitian for any unitary <span class="math inline">\(U\)</span>, and thus <span class="math inline">\(U = exp(iK)\)</span> for some Hermitian <span class="math inline">\(K\)</span>.</p>
@@ -552,14 +569,14 @@ H=\sum_E E\ket E\bra E
 <p><strong>基本假设3、</strong> <span class="math display">\[
 p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}
 \]</span> state: <span class="math display">\[
-\frac{M_n\ket \psi}{\sqrt {\Braket{\psi|M_n^\dagger M_n|\psi}}}
+\frac{M_n\left|\psi \right &gt;}{\sqrt {\Braket{\psi|M_n^\dagger M_n|\psi}}}
 \]</span> while <span class="math display">\[
 \sum_m M_n^\dagger M_n=I
 \]</span> 两个级联的测量是单个测量</p>
 <p>两个非正交的状态不能被可靠地区分，与量子测量基本假设不符。</p>
 <p><strong>投影测量</strong></p>
 <p>观测是一个 Hermitian算符，<span class="math inline">\(M=\sum_m mP_m\)</span>，<span class="math inline">\(m\)</span>是特征值，<span class="math inline">\(P_m\)</span> 是投影。</p>
-<p>那么会以 <span class="math inline">\(p(m)=\Braket{\psi|P_m|\psi}\)</span> 的概率 给出状态 <span class="math inline">\(\frac{P_m\ket \psi}{ \sqrt{p(m)} }\)</span></p>
+<p>那么会以 <span class="math inline">\(p(m)=\Braket{\psi|P_m|\psi}\)</span> 的概率 给出状态 <span class="math inline">\(\frac{P_m\left|\psi \right &gt;}{ \sqrt{p(m)} }\)</span></p>
 <p>那么它的期望平均测量值为 <span class="math inline">\(\mathrm{E}(M) = \Braket{\psi|M|\psi}\)</span></p>
 <p>定义 <span class="math inline">\(\Braket M\equiv \Braket{\psi|M|\psi}\)</span></p>
 <p>它的标准差为 <span class="math inline">\([\Delta(M)]^2=\Braket{M^2}-\Braket{M}^2\)</span></p>
@@ -568,7 +585,7 @@ p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}
 <p>从而导出一些结论，如<strong>海森堡不确定性原理</strong> <span class="math display">\[
 \Delta(C)\Delta(D)\ge \frac{|\Braket{\psi|[C,D]|\psi}|}{2}
 \]</span> 这是本质的，尽管测量对系统有干扰，但那本不是测不准原理的解释。</p>
-<p>例如，因为 <span class="math inline">\([X,Y]=2iZ\)</span>，从而对于量子态 <span class="math inline">\(\ket 0\)</span> 而言，有 <span class="math inline">\(\Delta(X)\Delta(Y)\ge\Braket{0|Z|0}=1\)</span></p>
+<p>例如，因为 <span class="math inline">\([X,Y]=2iZ\)</span>，从而对于量子态 <span class="math inline">\(\left|0 \right &gt;\)</span> 而言，有 <span class="math inline">\(\Delta(X)\Delta(Y)\ge\Braket{0|Z|0}=1\)</span></p>
 <p>对于一个方向的观测 <span class="math display">\[
 \vec v\cdot\vec \sigma\equiv v_1\sigma_1+ v_2\sigma_2+ v_3\sigma_3
 \]</span> 本征值也是 <span class="math inline">\(-1/1\)</span>，相应的投影变换可以写作 <span class="math inline">\(P_+=\frac{1}{2}(I+\vec v\cdot \vec \sigma)\)</span>，<span class="math inline">\(P_-=\frac{1}{2}(I-\vec v\cdot \vec \sigma)\)</span></p>
@@ -586,23 +603,23 @@ p(m)=\Braket{\psi|M_n^\dagger M_n|\psi}
 <p>可以用一个量子比特传递两个经典比特的信息</p>
 <h3 id="the-density-operator">The density operator</h3>
 <p>密度算子用来描述并不知道的某些量子系统的状态。</p>
-<p>以 <span class="math inline">\(p_i\)</span> 的概率位量子态 <span class="math inline">\(\ket {\psi _i}\)</span>，那么 <span class="math inline">\(\{p_i,\ket {\psi_i}\}\)</span> 称作 <em>ensemble of pure states</em>，同时定义密度算子 <span class="math display">\[
-\rho \equiv \sum_ip_i\ket{\psi_i}\bra{\psi_i}
+<p>以 <span class="math inline">\(p_i\)</span> 的概率位量子态 <span class="math inline">\(\left|\psi _i \right &gt;\)</span>，那么 <span class="math inline">\(\{p_i,\left|\psi_i \right &gt;\}\)</span> 称作 <em>ensemble of pure states</em>，同时定义密度算子 <span class="math display">\[
+\rho \equiv \sum_ip_i\left|\psi_i \right &gt;\bra{\psi_i}
 \]</span> 当然根据线性算子和矩阵的对应关系我们可以可以说密度矩阵 <em>density matrix</em>。</p>
 <p>演化也是类似的，通过一个酉算子 <span class="math display">\[
 \rho\to U\rho U^{\dagger}
 \]</span> 对于一组测量 <span class="math inline">\(\{M_i\}\)</span> 测量得到状态 <span class="math inline">\(m\)</span> 的概率是 <span class="math display">\[
 p(m)&amp;=&amp;\sum_ip(m|i)p_i\\
-&amp;=&amp;\sum_{i}p_i\tr(M_m^\dagger M_m\ket{\psi_i}\bra{\psi_i})\\
+&amp;=&amp;\sum_{i}p_i\tr(M_m^\dagger M_m\left|\psi_i \right &gt;\bra{\psi_i})\\
 &amp;=&amp;\tr(M_m^\dagger M_m \rho)
 \]</span> 其中 <span class="math display">\[
-p(m|i)=\Braket{\psi_i|M_m^\dagger M_m|\psi_i}=tr(M_m^\dagger M_m \ket {\psi _i})
+p(m|i)=\Braket{\psi_i|M_m^\dagger M_m|\psi_i}=tr(M_m^\dagger M_m \left|\psi _i \right &gt;)
 \]</span> 而测量之后的状态推导为 <span class="math display">\[
 \rho_m=\frac{M_m\rho M_m^\dagger}{\tr(M_m^\dagger M_m \rho)}
 \]</span> 有定理，<span class="math inline">\(\rho\)</span> 可以写作一系列的密度算子，当且仅当</p>
 <p><strong>Trace condition</strong> <span class="math inline">\(\rho\)</span> 迹为 <span class="math inline">\(1\)</span> <strong>Positivity condition</strong> <span class="math inline">\(\rho\)</span> 是 positive</p>
 <p>上面的东西可以知道，用向量的方式和密度矩阵的方式来描述是等价的，一样的观测和演化，沿用量子力学基本假设。</p>
-<p>如果<span class="math inline">\(\rho = \ket \psi \bra \psi\)</span> ，那么 <span class="math inline">\(\rho\)</span> 是 纯态 pure state，容易发现一个密度算子是纯态当且仅当它的平方的迹恰好为 1。</p>
+<p>如果<span class="math inline">\(\rho = \left|\psi  \right &gt;\bra \psi\)</span> ，那么 <span class="math inline">\(\rho\)</span> 是 纯态 pure state，容易发现一个密度算子是纯态当且仅当它的平方的迹恰好为 1。</p>
 <p>&lt;--<strong>待整理</strong>--&gt;</p>
 <p>还有一种叫做混态的东西</p>
 <p>两体纯态可以施密特分解，三体以上就不行了。</p>
@@ -614,8 +631,8 @@ p(m|i)=\Braket{\psi_i|M_m^\dagger M_m|\psi_i}=tr(M_m^\dagger M_m \ket {\psi _i})
 <blockquote>
 <p>另一个的作品的描述</p>
 </blockquote>
-<p>外积 <span class="math inline">\(\ket x\bra x\)</span> 是一个算子，如果 <span class="math inline">\(x\)</span> 是空间中的向量</p>
-<p><span class="math inline">\(M = \sum \ket {x_i} \bra {x_j}\)</span> ，如果它的平方的 trace 为1，那么称为纯态</p>
+<p>外积 <span class="math inline">\(\left|x \right &gt;\bra x\)</span> 是一个算子，如果 <span class="math inline">\(x\)</span> 是空间中的向量</p>
+<p><span class="math inline">\(M = \sum \left|x_i \right &gt; \bra {x_j}\)</span> ，如果它的平方的 trace 为1，那么称为纯态</p>
 <p>假设量子系统 <span class="math inline">\(A\)</span> ，不妨设他有一个纯态，系综</p>
 <h4 id="迹距离">迹距离</h4>
 <p>也就是迹的距离 <span class="math display">\[
@@ -641,7 +658,7 @@ F(\rho ,\sigma)=\min_{M_j}\sum_j\sqrt{p_jq_j}
 <p>量子Fisher信息</p>
 <p>是一种均方差的推广，在纯态下就是一个均方差</p>
 <p>就是纯态下的均方差的平均值 <span class="math display">\[
-F_\rho(A)=4\min_{p_i,\ket \psi_i} p_j(\delta_{psi_j}A)^2
+F_\rho(A)=4\min_{p_i,\left|\psi \right &gt;_i} p_j(\delta_{psi_j}A)^2
 \]</span> 有不同的方法可以给出不确定度</p>
 <p>比如熵，</p>
 <hr>
@@ -761,7 +778,7 @@ p(\sum_{i=1}^nX_i\le n/2)\le e^{-2\epsilon^2n}
 <p>4、任何一个单比特量子门都可以被 H门，S门，T门搞定。</p>
 <h4 id="single-qubit-operations">Single qubit operations</h4>
 <p>常用的单比特量子门：</p>
-<p><strong>Pauli-X门</strong>，<span class="math inline">\(X\equiv \begin{pmatrix}0&amp;1\\1&amp;0\end{pmatrix}\)</span>，效果：<span class="math inline">\(\ket 0 \to \ket 1,\ket 1 \to \ket 0\)</span></p>
+<p><strong>Pauli-X门</strong>，<span class="math inline">\(X\equiv \begin{pmatrix}0&amp;1\\1&amp;0\end{pmatrix}\)</span>，效果：<span class="math inline">\(\left|0 \right &gt; \to \left|1 \right &gt;,\left|1 \right &gt; \to \left|0 \right &gt;\)</span></p>
 <p><strong>Pauli-Y门</strong>，<span class="math inline">\(Y\equiv \begin{pmatrix}0&amp;-i\\i&amp;0\end{pmatrix}\)</span> 效果为绕布洛赫球 <span class="math inline">\(Y\)</span> 轴旋转角度 <span class="math inline">\(\pi\)</span></p>
 <p><strong>Pauli-Z门</strong>，<span class="math inline">\(Y\equiv \begin{pmatrix}1&amp;0\\0&amp;-1\end{pmatrix}\)</span> 效果为绕布洛赫球 <span class="math inline">\(Z\)</span> 轴旋转角度 <span class="math inline">\(\pi\)</span></p>
 <p><strong>Hadamard(H)门</strong> <span class="math inline">\(H\equiv \frac{1}{\sqrt{2}}\left( \begin{array}{} 1 &amp; 1 \\1 &amp; -1 \end{array} \right)\)</span></p>
@@ -824,11 +841,11 @@ U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)
 <p>具体的分解方法为：高斯消去法。</p>
 <p><strong>Approximateing unitary operators</strong></p>
 <p>定义两个酉算子的距离，所有量子态的最大</p>
-<p><span class="math inline">\(\norm{U-V}:=\max _\ket \psi \norm {U-V}\ket \psi\)</span></p>
+<p><span class="math inline">\(\norm{U-V}:=\max _\left|\psi  \right &gt;\norm {U-V}\left|\psi \right &gt;\)</span></p>
 <p>现实中很难做到，现实中上人们可能更考虑对于所有量子态的期望值最小</p>
-<p>给定 <span class="math inline">\(\ket \psi\)</span> 和一系列的 <span class="math inline">\(\rm POVM\)</span> <span class="math inline">\(M_i\)</span>，作用在 <span class="math inline">\(U\ket \psi\)</span> 和 <span class="math inline">\(V \ket \psi\)</span> 上</p>
+<p>给定 <span class="math inline">\(\left|\psi \right &gt;\)</span> 和一系列的 <span class="math inline">\(\rm POVM\)</span> <span class="math inline">\(M_i\)</span>，作用在 <span class="math inline">\(U\left|\psi \right &gt;\)</span> 和 <span class="math inline">\(V \left|\psi \right &gt;\)</span> 上</p>
 <p>对于两个测量后的结果 <span class="math inline">\(p_i,q_i\)</span>，有 <span class="math inline">\(|p_i-q_i|\le 2 \norm {U-V}\)</span></p>
-<p><span class="math inline">\(\ket \Delta:=(U-V)\ket \psi\)</span></p>
+<p><span class="math inline">\(\left|\Delta \right &gt;:=(U-V)\left|\psi \right &gt;\)</span></p>
 <p>有 <span class="math inline">\(\norm {U_tU_{t-1}...U_1-V_tV_{t-1}...V_1}\le\sum_i\norm{U_i-V_i}\)</span></p>
 <p><strong>Gray code</strong>：每次变换一个比特一步一步把 <span class="math inline">\(s\)</span> 变换成 <span class="math inline">\(t\)</span>。</p>
 <p>任何unitary都可以分解成 Single Qubit unitary 和 CNOT</p>
@@ -884,17 +901,17 @@ U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)
 </figure>
 <h5 id="dtutsch-jozsa算法-概要">Dtutsch-Jozsa算法 概要</h5>
 <p>给定一个布尔函数，判断函数是平衡函数（一半为零，一半为一）还是常量函数（全部相同）</p>
-<p>原来是 <span class="math inline">\(\ket {f(x_i)}\)</span>，但是这个算法能把它变到相位里面 <span class="math inline">\((-1)^{f(x_i)}\ket x_i\)</span>，在相位上就可以进行干涉。</p>
-<p>然后再做 <span class="math inline">\(H^{\otimes n}\)</span> 得到一个 <span class="math inline">\(\ket \phi\)</span> 。</p>
+<p>原来是 <span class="math inline">\(\left|f(x_i) \right &gt;\)</span>，但是这个算法能把它变到相位里面 <span class="math inline">\((-1)^{f(x_i)}\left|x \right &gt;_i\)</span>，在相位上就可以进行干涉。</p>
+<p>然后再做 <span class="math inline">\(H^{\otimes n}\)</span> 得到一个 <span class="math inline">\(\left|\phi \right &gt;\)</span> 。</p>
 <h5 id="grover算法-概要">Grover算法 概要</h5>
 <p>用于解决无序数据库搜索问题，该问题可以一般化为振幅（概率）放大。</p>
 <figure>
 <img src="/blog/2022/06/12/note%20on%20QCQI/1656573664155.jpg" alt="1656573664155"><figcaption aria-hidden="true">1656573664155</figcaption>
 </figure>
-<p><span class="math inline">\(G=H^{\otimes n} (2\ket 0 \bra 0 - I) H^{\otimes n} O_f\)</span> ，<span class="math inline">\(O_f \ket x = (-1)^{f(x)} \ket x\)</span></p>
+<p><span class="math inline">\(G=H^{\otimes n} (2\left|0 \right &gt; \bra 0 - I) H^{\otimes n} O_f\)</span> ，<span class="math inline">\(O_f \left|x \right &gt; = (-1)^{f(x)} \left|x \right &gt;\)</span></p>
 <p>不严格的，几何直观：</p>
 <p>设要求的集合的叠加态为 <span class="math inline">\(A\)</span>，不要的集合的叠加态为 <span class="math inline">\(B\)</span>，显然 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 正交且张成整个空间。</p>
-<p><span class="math inline">\(\phi = \sqrt{\frac{M}{N}}\ket A + \sqrt\frac{N-M}{N}\ket B\)</span> ，在线性空间中，<span class="math inline">\(\ket \phi\)</span> 和 <span class="math inline">\(\ket B\)</span> 有夹角 <span class="math inline">\(\theta =\arcsin \sqrt\frac{M}{N}\approx \sqrt\frac{M}{N}\)</span>。</p>
+<p><span class="math inline">\(\phi = \sqrt{\frac{M}{N}}\left|A \right &gt; + \sqrt\frac{N-M}{N}\left|B \right &gt;\)</span> ，在线性空间中，<span class="math inline">\(\left|\phi \right &gt;\)</span> 和 <span class="math inline">\(\left|B \right &gt;\)</span> 有夹角 <span class="math inline">\(\theta =\arcsin \sqrt\frac{M}{N}\approx \sqrt\frac{M}{N}\)</span>。</p>
 <p>不严格的分析，若 M 远小于 N。</p>
 <figure>
 <img src="/blog/2022/06/12/note%20on%20QCQI/1656575459302.jpg" alt="李绿周老师的图1656575459302"><figcaption aria-hidden="true">李绿周老师的图1656575459302</figcaption>
@@ -914,10 +931,10 @@ U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)
 <p>是一种特殊图（完全图）上的游走搜索算法</p>
 </blockquote>
 <h6 id="从-grover-算法到量子振幅放大">从 Grover 算法到量子振幅放大</h6>
-<p>设算法 <span class="math inline">\(A\ket 0 = \sqrt p \ket G + \sqrt{1-p} \ket B\)</span></p>
+<p>设算法 <span class="math inline">\(A\left|0 \right &gt; = \sqrt p \left|G \right &gt; + \sqrt{1-p} \left|B \right &gt;\)</span></p>
 <p>可以构造量子计算过程 <span class="math inline">\(Q\)</span> 使得</p>
-<p><span class="math inline">\(Q^m A \ket 0 = \alpha \ket G + \beta \ket B\)</span>，<span class="math inline">\(m\)</span> 在 <span class="math inline">\(\sqrt {1/p}\)</span> 级别</p>
-<p>其中 <span class="math inline">\(|\alpha|^2 \to 1,Q=A(2\ket 0\bra 0 - I)A^{-1}S_x\)</span></p>
+<p><span class="math inline">\(Q^m A \left|0 \right &gt; = \alpha \left|G \right &gt; + \beta \left|B \right &gt;\)</span>，<span class="math inline">\(m\)</span> 在 <span class="math inline">\(\sqrt {1/p}\)</span> 级别</p>
+<p>其中 <span class="math inline">\(|\alpha|^2 \to 1,Q=A(2\left|0 \right &gt;\bra 0 - I)A^{-1}S_x\)</span></p>
 <h5 id="shor算法-概要">Shor算法 概要</h5>
 <blockquote>
 <p>精髓啊，灵魂啊</p>
@@ -929,7 +946,7 @@ U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)
 <p>解决一个求阶问题：给定 <span class="math inline">\(x&lt;n\)</span> ，求大于 <span class="math inline">\(0\)</span> 的最小整数 <span class="math inline">\(r\)</span> 使得 <span class="math inline">\(x^r\equiv 1\mod n\)</span></p>
 <p>或许应该看看Shor的</p>
 <p>1、从因式分解到求阶问题的归约，成功概率 <span class="math inline">\(\ge \frac{1}{2}\)</span></p>
-<p>2、求阶算法测 Reg1 得到 <span class="math inline">\(\ket c\)</span> 满足 <span class="math inline">\(|\frac{c}{q}-\frac{d}{r}| \le \frac{1}{2q}\)</span> 的概率 <span class="math inline">\(\ge \frac{4}{\pi^2}\)</span></p>
+<p>2、求阶算法测 Reg1 得到 <span class="math inline">\(\left|c \right &gt;\)</span> 满足 <span class="math inline">\(|\frac{c}{q}-\frac{d}{r}| \le \frac{1}{2q}\)</span> 的概率 <span class="math inline">\(\ge \frac{4}{\pi^2}\)</span></p>
 <p>3、两次求阶、连分法后，计算 <span class="math inline">\(lcm(r_1,r_2)=r\)</span> 的概率 <span class="math inline">\(\ge \frac{1}{4}\)</span></p>
 <p>因此总的成功概率 <span class="math inline">\(\ge \frac{1}{2} (\frac{4}{\pi^2})^2\frac{1}{4}\)</span> 为常数。</p>
 <p><span class="math inline">\(U_f\)</span> 复杂度为 <span class="math inline">\(O(\log^3n)\)</span> ，QFT的复杂度为 <span class="math inline">\(O(\log^2n)\)</span> ，连分法的复杂度为 <span class="math inline">\(O(\log ^3 n)\)</span>。</p>
@@ -942,7 +959,7 @@ U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)
 <h6 id="qft的电路实现">QFT的电路实现</h6>
 <p>咕</p>
 <h6 id="量子相位估计">量子相位估计</h6>
-<p>给定一个酉矩阵 U 及它的一个特征向量 <span class="math inline">\(\ket u\)</span> ，假设其对应的特征值为 <span class="math inline">\(e^{2\pi i\theta}\)</span>，即 <span class="math inline">\(U\ket u=e^{2\pi i\theta}\ket u\)</span>，其中 <span class="math inline">\(\theta\in[0,1)\)</span> 相位估计问题就是要估计出 <span class="math inline">\(\theta\)</span> 的值。</p>
+<p>给定一个酉矩阵 U 及它的一个特征向量 <span class="math inline">\(\left|u \right &gt;\)</span> ，假设其对应的特征值为 <span class="math inline">\(e^{2\pi i\theta}\)</span>，即 <span class="math inline">\(U\left|u \right &gt;=e^{2\pi i\theta}\left|u \right &gt;\)</span>，其中 <span class="math inline">\(\theta\in[0,1)\)</span> 相位估计问题就是要估计出 <span class="math inline">\(\theta\)</span> 的值。</p>
 <p>实现方法与 Shor 算法类似，需要一个逆傅里叶变换。</p>
 <p>需要受控 <span class="math inline">\(U_j\)</span> 门。</p>
 <h6 id="解隐含子群问题">解隐含子群问题</h6>
@@ -969,21 +986,21 @@ U=e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)
 <p>解线性方程组的 <span class="math inline">\(Ax=b\)</span></p>
 <p>哈密顿量模拟的视角</p>
 <p>思想就是快速生成一个向量逼近</p>
-<p><span class="math inline">\(A=\sum_i\lambda_i\ket {u_i}\bra {u_i}\)</span></p>
-<p><span class="math inline">\(x=A^{-1}b =\sum_{i}\frac{b_i}{\lambda_i} \ket {u_i}\)</span></p>
+<p><span class="math inline">\(A=\sum_i\lambda_i\left|u_i \right &gt;\bra {u_i}\)</span></p>
+<p><span class="math inline">\(x=A^{-1}b =\sum_{i}\frac{b_i}{\lambda_i} \left|u_i \right &gt;\)</span></p>
 <h6 id="cks算法">CKS算法</h6>
 <p>首先有近似分解 <span class="math inline">\(A^{-1}=\sum_ja_je^{-iAt_j}\)</span></p>
 <p>存在量子过程有效模拟 <span class="math inline">\(e^{-iAt_j}\)</span></p>
 <p>进而模拟线性组合 <span class="math inline">\(\sum_j a_j e^{-iAt_j}\)</span> 从而实现 <span class="math inline">\(A^{-1}\)</span></p>
 <h4 id="量子傅里叶变换">量子傅里叶变换</h4>
 <p><span class="math display">\[
-\ket j \to \frac{1}{\sqrt N}\sum_{k=0}^{N-1}\exp(2\pi i\frac{jk}{N})\ket k
+\left|j \right &gt; \to \frac{1}{\sqrt N}\sum_{k=0}^{N-1}\exp(2\pi i\frac{jk}{N})\left|k \right &gt;
 \]</span></p>
 <p>考虑把 <span class="math inline">\(k\)</span> 用二进制展开 <span class="math display">\[
-\ket j \to 
-\frac{1}{\sqrt{2^n}} \sum_{k_1=0}^1...\sum_{k_n=0}^1\exp(2\pi ij\sum_{l=1}^n k_l2^{-l})\ket k_l\\
-=\frac{1}{\sqrt{2^n}} \otimes_{l=1}^n [\sum_{k_l=0}^1 \exp(2\pi ijk_l2^{-l})\ket {k_l}]\\
-=\frac{1}{\sqrt{2^n}}\otimes_{l=1}^n[\ket 0+\exp(2\pi ij2^{-l})\ket 1]
+\left|j \right &gt; \to 
+\frac{1}{\sqrt{2^n}} \sum_{k_1=0}^1...\sum_{k_n=0}^1\exp(2\pi ij\sum_{l=1}^n k_l2^{-l})\left|k \right &gt;_l\\
+=\frac{1}{\sqrt{2^n}} \otimes_{l=1}^n [\sum_{k_l=0}^1 \exp(2\pi ijk_l2^{-l})\left|k_l \right &gt;]\\
+=\frac{1}{\sqrt{2^n}}\otimes_{l=1}^n[\left|0 \right &gt;+\exp(2\pi ij2^{-l})\left|1 \right &gt;]
 \]</span></p>
 
       
