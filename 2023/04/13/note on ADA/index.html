@@ -17,19 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>关于[随机算法],再一天就考期中了[该退课了] | emoairx</title>
-  <meta property="og:type" content="article">
-<meta property="og:title" content="关于[随机算法],再一天就考期中了[该退课了]">
-<meta property="og:url" content="http://emoairx.github.io/blog/2023/04/04/note%20on%20RAmid/index.html">
+  <title>算法设计与分析 小记 | emoairx</title>
+  <meta name="description" content="算法 有限条指令的序列 输出个数大于0 对所有的有效输入停机的Turing机，RAM机等  算法A解问题P：把问题P的任何实例作为算法A的输入，A能够在有限步 停机，并输出该实例的正确的解   平均复杂度：►在指定输入的概率分布下，算法求解输入规模为 $n$ 的实例所需要的平均时间 $A(n)$ 规范分析 关注渐进复杂度 实证分析 benchmark 并行算法 与通信开销有关，Amdahl法则 $">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法设计与分析 小记">
+<meta property="og:url" content="http://emoairx.github.io/blog/2023/04/13/note%20on%20ADA/index.html">
 <meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="算法 有限条指令的序列 输出个数大于0 对所有的有效输入停机的Turing机，RAM机等  算法A解问题P：把问题P的任何实例作为算法A的输入，A能够在有限步 停机，并输出该实例的正确的解   平均复杂度：►在指定输入的概率分布下，算法求解输入规模为 $n$ 的实例所需要的平均时间 $A(n)$ 规范分析 关注渐进复杂度 实证分析 benchmark 并行算法 与通信开销有关，Amdahl法则 $">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-04T10:47:18.782Z">
-<meta property="article:modified_time" content="2023-04-04T10:59:00.075Z">
+<meta property="article:published_time" content="2023-04-13T07:49:53.939Z">
+<meta property="article:modified_time" content="2023-04-15T08:37:09.217Z">
 <meta property="article:author" content="emoairx">
-<meta property="article:tag" content="日记">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="算分">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://emoairx.github.io/blog/2023/04/04/note%20on%20RAmid/index.html">
+  <link rel="canonical" href="http://emoairx.github.io/blog/2023/04/13/note%20on%20ADA/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
   
@@ -172,7 +175,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">68</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">67</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -182,7 +185,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/blog/tags/ICS/" style="font-size: 13.33px;">ICS</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.33px;">作业</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.33px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.33px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.67px;">笔记</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+      <a href="/blog/tags/ICS/" style="font-size: 13.33px;">ICS</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.33px;">作业</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.33px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.33px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.67px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
     </div>
   </div>
 
@@ -210,10 +213,10 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2023/04/04/note%20on%20RAmid/" class="title">关于[随机算法],再一天就考期中了[该退课了]</a>
+                <a href="/blog/2023/04/13/note%20on%20ADA/" class="title">算法设计与分析 小记</a>
               </p>
               <p class="item-date">
-                <time datetime="2023-04-04T10:47:18.782Z" itemprop="datePublished">2023-04-04</time>
+                <time datetime="2023-04-13T07:49:53.939Z" itemprop="datePublished">2023-04-13</time>
               </p>
             </div>
           </li>
@@ -311,14 +314,14 @@
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-note on RAmid" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-note on ADA" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      关于[随机算法],再一天就考期中了[该退课了]
+      算法设计与分析 小记
     </h1>
   
 
@@ -326,15 +329,15 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/blog/2023/04/04/note%20on%20RAmid/" class="article-date">
-	  <time datetime="2023-04-04T10:47:18.782Z" itemprop="datePublished">2023-04-04</time>
+	<a href="/blog/2023/04/13/note%20on%20ADA/" class="article-date">
+	  <time datetime="2023-04-13T07:49:53.939Z" itemprop="datePublished">2023-04-13</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a>
+	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a>
   </span>
 
 
@@ -342,18 +345,219 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/blog/2023/04/04/note%20on%20RAmid/" class="leancloud_visitors"  data-flag-title="关于[随机算法],再一天就考期中了[该退课了]">
+    	<span id="/blog/2023/04/13/note%20on%20ADA/" class="leancloud_visitors"  data-flag-title="算法设计与分析 小记">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2023/04/04/note%20on%20RAmid/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2023/04/13/note%20on%20ADA/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
+        <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li>有限条指令的序列</li>
+<li>输出个数大于0</li>
+<li><p>对所有的有效输入停机的Turing机，RAM机等</p>
+</li>
+<li><p><strong>算法A解问题P</strong>：把问题P的任何实例作为算法A的输入，A能够在有限步 停机，并输出该实例的正确的解</p>
+</li>
+</ul>
+<p><strong>平均复杂度：</strong>►在指定输入的概率分布下，算法求解输入规模为 $n$ 的实例所需要的平均时间 $A(n)$</p>
+<p><strong>规范分析</strong> 关注渐进复杂度</p>
+<p><strong>实证分析</strong> benchmark</p>
+<p><strong>并行算法</strong> 与通信开销有关，<strong>Amdahl法则</strong> $S=\frac{1}{f+\frac{1-f}{p}}$ ，大多数算法并行加速比与处理器不能达到线性关系。</p>
+<blockquote>
+<p>如果0.5的话，10台处理器都不能加速两倍。</p>
+</blockquote>
+<p><del>并行计算模型：PRAM，原子GRAM，格网，超立方体；块GRAM，BSP，CGM，LogP</del></p>
+<p><strong>近似算法</strong> <strong>近似比</strong>反映近似解与最优解之间的差距，是描述近似算法质量的重要指标</p>
+<blockquote>
+<p>常是贪心和随机策略</p>
+</blockquote>
+<h3 id="Basis"><a href="#Basis" class="headerlink" title="Basis"></a>Basis</h3><ul>
+<li><p><strong>O()</strong> 为渐进上界，$o$ 取不到</p>
+</li>
+<li><p>$\Omega()$ 为渐进下界，$\omega$ 取不到</p>
+</li>
+<li><p>$\Theta$ 为渐进紧确定界</p>
+</li>
+<li><p>$n! = \sqrt{2\pi n}(n/e)^n (1+\Theta(1/n))=o(n^n)=\Omega(2^n)$</p>
+</li>
+</ul>
+<ul>
+<li>$\log n! = \Theta(n \log n)$</li>
+</ul>
+<p><strong>递归方程求解</strong></p>
+<ul>
+<li>奇怪的尝试法（猜测+归纳）</li>
+<li>积分作为近似</li>
+<li>归纳过程不能用 O，可以尝试加低阶项</li>
+<li>可以尝试换元<ul>
+<li>$T(n)=2T(\sqrt n)+\log n$</li>
+</ul>
+</li>
+<li>主定理：$a\ge 1,b&gt;1$ 为常数，$f(n)$ 为函数，$T(n)$ 为非负整数。</li>
+</ul>
+<script type="math/tex; mode=display">
+T(n)=a\cdot T(n/b)+f(n)</script><ul>
+<li><p>若 $f(n) = O(n^{\log _ba - \epsilon}),\epsilon&gt;0$ ，则 $T(n)=\Theta(n^{\log_b a})$</p>
+</li>
+<li><p>若 $f(n)=\Theta(n ^{\log _b a})$ ，则 $T(n)=\Theta(n^{\log_b a} \log n)$</p>
+</li>
+<li><p>若 $f(n) = \Omega(n^{\log _ba+\epsilon}),\epsilon&gt;0$ ，且对于常数 $c$ 和充分大的 $n$ 有 $a f(n/b)&lt;c\ f(n)$ ，则 $T(n)=\Theta(f(n))$</p>
+</li>
+<li><p>但是比如 $n \log n$ 不能用主定理。</p>
+</li>
+</ul>
+<h5 id="生成函数解递推式"><a href="#生成函数解递推式" class="headerlink" title="生成函数解递推式"></a>生成函数解递推式</h5><ul>
+<li>部分分式分解之类的算法</li>
+</ul>
+<h4 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h4><ul>
+<li>数逆序对</li>
+<li>芯片测试</li>
+<li>SELECT算法 <strong>BFPRT</strong>算法<ul>
+<li>每次选 5 个一组，每组找中位数</li>
+</ul>
+</li>
+<li>最近点对算法【只有最近11个是有价值的】</li>
+<li>整数乘法</li>
+<li>多项式乘法（卷积计算）</li>
+</ul>
+<h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h4><ul>
+<li>受控制的暴力，强大而简洁的算法设计技术和运筹学方法</li>
+<li><strong>最优子结构 问题的最优解蕴含着 子问题的最优解</strong></li>
+<li>背包问题的判定是 NP 完全的，但存在近似解法，最优值相差不超过 $0.01\%$</li>
+</ul>
+<h5 id="树分解"><a href="#树分解" class="headerlink" title="树分解"></a>树分解</h5><ul>
+<li>把图分解成树</li>
+<li>►对于每个顶点 v∈V，存在节点 i∈N 使得 v∈χ(i)。</li>
+<li>►对于每一条边 (v, w) ∈ E，存在一个 i∈N 且 v∈χ(i) 且 w∈χ(i)。</li>
+<li>►对于每个 i, j, k∈N：如果 j 位于 i 和 k 之间的路径上，则 χ(i) ∩ χ(k) ⊆ χ(j)。<ul>
+<li>等价地，任意 v∈V 在 T 中对应的节点形成一棵子</li>
+</ul>
+</li>
+<li>树宽是最大节点的节点个数。</li>
+<li><p>可以用状态压缩进行DP，从而求最大独立集（如果是弦图，可以记录整个块云云）</p>
+</li>
+<li><p>Reinforcement Learning which in fact is sometimes called approximate dynamic programming.</p>
+</li>
+</ul>
+<h4 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h4><ul>
+<li>活动选择问题<ul>
+<li>证明：归纳</li>
+<li>归纳基础：证明存在包含活动 1 的最优解</li>
+<li>归纳步骤：假设按照算法前 k 步选择都存在对应的最优解， 证明第k+1步选择也存在对应的最优解</li>
+</ul>
+</li>
+<li>最优装载</li>
+<li>最小延迟调度（最大延时最小）<ul>
+<li><strong>直接</strong>交换论证</li>
+<li>解没有逆序，那么最大延迟就是相同时间最后一个被调度的。</li>
+<li>如果最优调度存在逆序，那么交换逆序之后还是最优。</li>
+</ul>
+</li>
+<li>最优缓存调度<ul>
+<li>FF算法：最远访问替换。</li>
+<li>证明考虑，<strong>最优调度策略</strong>，和 FF 算法的出来的调度策略。</li>
+<li>假设这两个算法的前 $j$ 步相同，第 $j+1$ 步为 $d$，最优策略收回 $f$，FF算法收回 $e$</li>
+<li><strong>考虑最优策略，构造策略S’，这一步收回e，证明S’不比S劣</strong></li>
+<li>由于 $S’$ 和 $S$ 第一个不一样的地方</li>
+<li>如果是访问 $f$，考虑现在收回的元素，通过构造，把两个调度算法的内存变得一样</li>
+<li>如果是访问 $g$ ，并且不是 $e,f$，注意到 $S’$ 此前收回了 $e$，保留了 $f$，而 $S$ 此前保留了 $e$<ul>
+<li>那么 $S$ 收回了 $e$，留下了 $g$ 。</li>
+<li>只需要让 $S’$ 是收回 $f$，并且保留 $g$，就能让两个一样了。</li>
+</ul>
+</li>
+<li>也就是最优缓存调度。</li>
+<li>【LRU算法的竞争比是 $k$】 </li>
+</ul>
+</li>
+<li>找零钱问题<ul>
+<li>虽然贪心法是不对的，但是什么时候贪心法的正确性能够得到保证？</li>
+<li>如果 $w<em>{k+1} + G_k(\delta) \le pw_k , \delta = pv_k-v</em>{k+1}$ 即最小余量。</li>
+</ul>
+</li>
+<li>Huffman，Prim，Kruskal，Dijkstra</li>
+<li>Huffman证明：<ol>
+<li>一定是最小的两个先合并。</li>
+<li>然后可以归纳成子问题。</li>
+</ol>
+</li>
+<li>Kruskal证明<ul>
+<li>如果有最优解，考虑最小权值的边，如果不是全局最小的，可以通过替换达到更优解</li>
+</ul>
+</li>
+</ul>
+<h5 id="拟阵理论"><a href="#拟阵理论" class="headerlink" title="拟阵理论"></a>拟阵理论</h5><ul>
+<li>矩阵的所有行组成集合 $S$</li>
+<li>集合 $ℓ$ 的每个元素都是 $S$ 的一个非空子集合，包含若干线性无关（独立）的行</li>
+<li>$M = (S, ℓ )$ 是拟阵，由于它满足<ul>
+<li>$S$ 是一个有穷集合</li>
+<li><strong>遗传性</strong>：如果 $B\in ℓ,A\subseteq B$ 则 $A\in ℓ$。</li>
+<li><strong>交换性</strong>：如果 $A\in ℓ , B \in ℓ , |A| &lt; |B|$ ，则存在 $x\in B-A$，$A\cup \set x \in ℓ$</li>
+</ul>
+</li>
+<li>扩张：保持独立性</li>
+<li>极大独立子集</li>
+<li>theorem：拟阵中所有极大的独立子集的大小都相同</li>
+<li>加权拟阵：如果有加权函数 $w$，$w(x) \to R^+,x \in S$</li>
+<li>单位时间任务调度问题：关键是考虑如何证明<strong>交换性</strong>。</li>
+</ul>
+<h4 id="分支限界"><a href="#分支限界" class="headerlink" title="分支限界"></a>分支限界</h4><ul>
+<li><strong>搜索空间</strong>：一棵树，每个节点对应了部分<strong>解向量</strong>，可达的树叶对应了可行解。</li>
+<li><strong>必要条件</strong>：多米诺性质【只要不合法了，接下来就一定不合法】</li>
+<li><strong>平均效率估算：Mente Carlo方法</strong><ul>
+<li>随机找一条路径，假设其它分支与随机选出的路径一样。</li>
+<li>计数搜索树的点数。</li>
+</ul>
+</li>
+<li><p>物品无限的背包问题</p>
+</li>
+<li><h5 id="求解非凸优化"><a href="#求解非凸优化" class="headerlink" title="求解非凸优化"></a>求解非凸优化</h5><ul>
+<li><p>凸优化几乎总有<strong>全局最优</strong>解的高效算法，分支限界是非凸优化的一种全局优化方式。</p>
+</li>
+<li><p>非启发式方法：维护目标函数全局的可证明的上界和下届，当能确认 $\epsilon$ 次优性时终止运行。</p>
+<ul>
+<li>EE364b：运气好的时候效果还不错。</li>
+</ul>
+</li>
+<li><p>求上界方法：任取一个点求目标函数值，局部优化方法</p>
+</li>
+<li><p>求下界方法：凸松弛 (convex relaxation)，对偶性，Lipschitz界或其他下界</p>
+</li>
+<li><p>基本思路</p>
+<ul>
+<li>可行集划分成凸的子集，分别求上下界，形成全局上下界</li>
+<li>两者足够接近时终止算法；或者细化划分</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最大团问题</p>
+</li>
+<li>圆排列问题</li>
+<li>连续邮资问题</li>
+<li>SAT &amp;&amp; CDCL (Conflict Driven Clause Learning)</li>
+</ul>
+<h4 id="Amortized-analysis"><a href="#Amortized-analysis" class="headerlink" title="Amortized analysis"></a>Amortized analysis</h4><ul>
+<li>aggregate method</li>
+<li>accounting method</li>
+<li>potential method</li>
+<li>平摊代价i = 实际代价i + $\phi(D<em>i) - \phi(D</em>{i-1})$</li>
+<li>要求任意的i , $\phi(D_i) \ge \phi(D_0)$，可以思考成记账法。</li>
+<li><code>move-first-front</code> 算法<ul>
+<li>不会比最优策略的四倍还要差。</li>
+<li>定义势函数为：相对于最优策略的两倍逆序对数。</li>
+<li>考虑 A 交换元素前，势的变化，以及交换元素后势的变化。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Linear-Programming"><a href="#Linear-Programming" class="headerlink" title="Linear Programming"></a>Linear Programming</h4><ul>
+<li>明天再学w</li>
+</ul>
+
       
     </div>
     <div class="article-footer">
@@ -362,7 +566,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://emoairx.github.io/blog/2023/04/04/note%20on%20RAmid/" title="关于[随机算法],再一天就考期中了[该退课了]" target="_blank" rel="external">http://emoairx.github.io/blog/2023/04/04/note on RAmid/</a>
+      <a href="http://emoairx.github.io/blog/2023/04/13/note%20on%20ADA/" title="算法设计与分析 小记" target="_blank" rel="external">http://emoairx.github.io/blog/2023/04/13/note on ADA/</a>
     </li>
     
     <li class="post-copyright-license">
