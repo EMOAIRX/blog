@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>World Embedding-关于符号落地的一些碎碎念 | emoairx</title>
+  <meta name="description" content="World Embedding: Embedding the World Into Vector这是一个外行人的碎碎念，仅代表没有认真了解过NLP&#x2F;推荐系统的非专业人士对未来的随机猜想  ：本文更多的是臆想   我上大学第一节人工智能课的时候，我们的朱松纯院长就说啊， 符号落地 和 常识获取 是笼罩在人工智能之上的两朵乌云。 但似乎一切都变了，从 chatgpt 的出圈。 我们似乎找到了一种符号落">
+<meta property="og:type" content="article">
+<meta property="og:title" content="World Embedding-关于符号落地的一些碎碎念">
+<meta property="og:url" content="http://emoairx.github.io/blog/2023/10/16/onPKUINFO/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="World Embedding: Embedding the World Into Vector这是一个外行人的碎碎念，仅代表没有认真了解过NLP&#x2F;推荐系统的非专业人士对未来的随机猜想  ：本文更多的是臆想   我上大学第一节人工智能课的时候，我们的朱松纯院长就说啊， 符号落地 和 常识获取 是笼罩在人工智能之上的两朵乌云。 但似乎一切都变了，从 chatgpt 的出圈。 我们似乎找到了一种符号落">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://emoairx.github.io/blog/2023/10/16/onPKUINFO/image-20231016164054253.png">
+<meta property="og:image" content="http://emoairx.github.io/blog/2023/10/16/onPKUINFO/image-20231016163339543.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_jpg/W12V5vzXo1SqjdQRfMUOUO41vwicIKOyCYtayHqyZehic8vPt07kEqDiaKT9wATZzIf7icYCeOFLhWyUC8HrBnG3ZA/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="http://emoairx.github.io/blog/2023/10/16/onPKUINFO/image-20231016165021103.png">
+<meta property="og:image" content="https://imagepphcloud.thepaper.cn/pph/image/219/305/761.jpg">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/rB4jswrswuye04wHtHicTYNpVAGov28V1CW2VPNl0v4ZfNicQpzjnibhGbXIILG5MnETJcHYDcW07zG3P6jSSg9cw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://cdn.openai.com/instruction-following/draft-20220126f/methods.svg">
+<meta property="article:published_time" content="2023-10-16T07:38:15.348Z">
+<meta property="article:modified_time" content="2023-10-16T14:21:01.313Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="随笔">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://emoairx.github.io/blog/2023/10/16/onPKUINFO/image-20231016164054253.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2023/10/16/onPKUINFO/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">73</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.25px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/10/16/onPKUINFO/" class="title">World Embedding-关于符号落地的一些碎碎念</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-10-16T07:38:15.348Z" itemprop="datePublished">2023-10-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/10/14/Local%20Sensitive%20Hashing/" class="title">Locality Sensitive Hashing</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-10-14T12:47:21.811Z" itemprop="datePublished">2023-10-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/10/12/HCI_xh/" class="title">面向共融机器人的自然交互</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-10-12T10:59:25.716Z" itemprop="datePublished">2023-10-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/08/01/diary/diary230801/" class="title">230801 - 忏 悔</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-08-01T05:59:37.391Z" itemprop="datePublished">2023-08-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/07/01/streaming_estimation/" class="title">streaming estimation</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-06-30T16:26:12.656Z" itemprop="datePublished">2023-07-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-onPKUINFO" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      World Embedding-关于符号落地的一些碎碎念
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2023/10/16/onPKUINFO/" class="article-date">
+	  <time datetime="2023-10-16T07:38:15.348Z" itemprop="datePublished">2023-10-16</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2023/10/16/onPKUINFO/" class="leancloud_visitors"  data-flag-title="World Embedding-关于符号落地的一些碎碎念">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2023/10/16/onPKUINFO/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="World-Embedding-Embedding-the-World-Into-Vector"><a href="#World-Embedding-Embedding-the-World-Into-Vector" class="headerlink" title="World Embedding: Embedding the World Into Vector"></a>World Embedding: Embedding the World Into Vector</h3><p><strong>这是一个外行人的碎碎念，仅代表没有认真了解过NLP/推荐系统的非专业人士对未来的随机猜想</strong></p>
+<ul>
+<li><p><strong>：本文更多的是臆想</strong></p>
+</li>
+<li><blockquote>
+<p>我上大学第一节人工智能课的时候，我们的朱松纯院长就说啊， <code>符号落地</code> 和 <code>常识获取</code> 是笼罩在人工智能之上的两朵乌云。</p>
+<p>但似乎一切都变了，从 chatgpt 的出圈。</p>
+<p>我们似乎找到了一种<strong>符号落地</strong>的方法。</p>
+</blockquote>
+</li>
+<li><p><strong>所有的符号，有一种表示，叫做向量表示。</strong>这个世界或许也有一个表达。</p>
+</li>
+</ul>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li><blockquote>
+<p>几个月前我和朋友在校园里闲逛，看到北京数学国际研究中心门口贴着一张海报，大概是什么时间有哪个领域的讲座能听。</p>
+<p>我问一旁无所事事的数院同学，说你知道这个讲座吗，他说不知道。他说他偶尔会去知道一些讲座，在公众号上，但不是这个。 我不知道的不止是这样一个讲座，有更多的活动，例如哪个地方有相声表演，哪个地方有毕业歌会，哪个地方有北大剧社的演出。 </p>
+<p>我常常忽视于丰富多彩的校园生活，原因包括但不限于我不了解这个公众号于是不知道这样的推送，或者我错过了一个公众号。</p>
+<p>这不好，但是倘若我们能把所有的公众号文章的所有的活动安排都提取出来，我可以检索，我可以问有哪些理工科相关的讲座可以听。或者更进一步，如果我们能收集公众号信息，我们可以推荐三公里内讲座信息，譬如前些日子在知道某个活动的时候已经错过了。</p>
+<p>基于 LLM 分析公众号文章，提取关键信息包括但不限于是否是讲座，什么时间，什么地点，内容摘要，一些tag。 我们可以呈现出一张日历表格，用户可以自定义筛选。 我们也可以给用户提供自然语言交互式推荐，例如【这两天北大校内有没有什么有意思的历史相关讲座】，通过提取关键词与最基础的搜索功能。</p>
+</blockquote>
+</li>
+<li><p>我和当时一个朋友说了这件事，从这之后发生了许许多多故事，但我这里略去。总之又是许许多多的机缘巧合，又是莫名其妙的push，然后有了一个奇怪的网页。虽然代码是无比屎山的。</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><img src="/blog/2023/10/16/onPKUINFO/image-20231016164054253.png" alt="image-20231016164054253" style="zoom:25%;"></th>
+<th><img src="/blog/2023/10/16/onPKUINFO/image-20231016163339543.png" alt="image-20231016163339543" style="zoom: 25%;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>然后我想，诶这不就是搞了一个搜索引擎嘛，私人化部署的搜索引擎？</li>
+<li><p>但再想想，好像不止。</p>
+</li>
+<li><p>当我们拥有了上下文的语境之后，又是一个世界了。</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/W12V5vzXo1SqjdQRfMUOUO41vwicIKOyCYtayHqyZehic8vPt07kEqDiaKT9wATZzIf7icYCeOFLhWyUC8HrBnG3ZA/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="Image" style="zoom: 50%;">朋友的演出</th>
+<th style="text-align:center"><img src="/blog/2023/10/16/onPKUINFO/image-20231016165021103.png" alt="image-20231016165021103">一些被提取出来的信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>是的，互联网的网页固然有上下文，但拥有更多上下文的可能还是我们自己。</p>
+</li>
+<li><blockquote>
+<p>明天上午十点开会</p>
+</blockquote>
+</li>
+<li><p>倘若你看到了这一句话，怎么把它扔到数据库里呢？你还需要更多信息。</p>
+</li>
+<li><blockquote>
+<p>“老板在群里说”，”公司长期使用腾讯会议某固定链接作为会议链接”，“今天是2023年10月16日”，”明天上午十点开会”……</p>
+</blockquote>
+</li>
+<li><p>我们在生活中自然的拥有了许多的上下文，如何结合这些上下文来实现数据规格化的整理提取使用？</p>
+</li>
+<li><p><strong>什么是常识，什么是语境，什么又是知识？</strong></p>
+</li>
+<li><p>给了我们一个答案，一个对我们来说最轻松的答案。</p>
+</li>
+<li><p>所以，是什么样的答案？</p>
+</li>
+</ul>
+<h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><ul>
+<li>暑假的时候听一门哲学的讲座，说认知科学，神经科学，心理学，哲学，语言学，脑科学等多学科，研究着 <strong>语言</strong>，<strong>心智</strong>，<strong>大脑</strong> 的一部分。很抱歉我忘记了具体的陈述，所以会有一些偏差。但或许认知科学和神经科学更关注 <strong>心智</strong> 和 <strong>大脑</strong>，哲学和语言学会讨论 <strong>语言</strong> 和 <strong>心智</strong> 。</li>
+<li>说到这里大家就明白了，基于语言模型的人工智能关心什么？关心 <strong>语言</strong> 和<strong>心智</strong>。但最近的一些前沿告诉我们，我们可以用神经科学的方法研究大语言模型，譬如可以<strong>抑制其中说谎的神经元</strong>，找到相应的<strong>空间记忆</strong>的神经元。</li>
+<li><strong>语言、心智、大脑</strong>是三位一体的。</li>
+<li>我是从什么时候相信这一点的？十二月份使用 <code>chatgpt</code> 的时候对此并没有太多印象，固然顾及不到后来有那么多靠着倒卖赚了大钱的人。但让我坚信我们对 LLM 知之甚少是 GPT4 解决了矩阵乘法优化的问题。</li>
+<li>故事是说，<code>Deepmind</code> 在 <code>nature</code> 上发表的 <code>AlphaTensor</code> 利用强化学习的方法，优化了矩阵乘法算法，提出了一个几十年来没有改进的算法。但而后一个教授把优化问题扔给了 GPT4，GPT4也给出了优化方法，同样是优于人类过去的解法。</li>
+<li><img src="https://imagepphcloud.thepaper.cn/pph/image/219/305/761.jpg" alt="img" style="zoom:33%;"></li>
+<li>一个登上 <code>Nature</code> 封面的工作，竟然被 AI 如此轻易地化解了？<strong>我们实在是对大语言模型知之甚少</strong>。</li>
+<li><strong>语言</strong>或许并不是直接与大脑相连的，语言蕴含着<strong>知识</strong>。就像隐马尔可夫模型中能够用动态规划推理出隐藏变量，<strong>大语言模型</strong>从语言中学到了知识。知识构成了心智。而模型学到的知识，就是<strong>向量</strong>。</li>
+<li>我们或许可以说，<strong>向量</strong>表示<strong>知识</strong>，<strong>知识</strong>蕴含<strong>心智</strong>，<strong>心智</strong>理解<strong>世界</strong>。世界就是无数的向量。这似乎也符合人们对物理的理解，每一个波函数似乎也就是一个向量。但也许相比于 <code>word-embedding</code>，我们也可以提一嘴 <code>world-embedding</code>。</li>
+</ul>
+<h3 id="知识的载体"><a href="#知识的载体" class="headerlink" title="知识的载体"></a>知识的载体</h3><ul>
+<li>我大学第一节计算机课是胡俊峰老师上的，老师会掏出那些传统 NLP 的论文让我们去看看，说多么神奇，多么优美，线性的对抗式<strong>语法(语义)树</strong>构建，语义提取和困惑度。</li>
+<li>在那里，知识怎么被存储起来？是以树的形式。</li>
+<li>过去的故事，主角名字叫做“<strong>知识图谱</strong>”。<code>Who Do What</code>，形形色色的关系错综复杂，这就是知识图谱，准确，高效。知识是必要的，图谱也就必要了。</li>
+<li>我上大学第一节人工智能课的时候，我们的朱松纯院长就说啊， <code>符号落地</code> 和 <code>常识获取</code> 是笼罩在人工智能之上的两朵乌云。</li>
+<li>但似乎一切都变了，从 chatgpt 的出圈开始。至少对我说，当我重新审视 <code>嵌入</code> 这一说法，我总觉得好像自己发现了什么。</li>
+<li>知识本来就有，现在更有，一种载体，我们称之为<strong>向量</strong>。</li>
+</ul>
+<h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><ul>
+<li><p>前几天翻了徐老师关于意图识别的概述，分布式表述确实是一个好的方法。稀疏向量的低维稠密表征。从NNLM，RNNLM的神经网络方法开始，到重量级的CBOW和Skip-gram两种模型，embedding。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/rB4jswrswuye04wHtHicTYNpVAGov28V1CW2VPNl0v4ZfNicQpzjnibhGbXIILG5MnETJcHYDcW07zG3P6jSSg9cw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="Image" style="zoom:80%;"></p>
+</li>
+<li><p>利用上下文预测中间的词，顺便求一个向量表征。</p>
+</li>
+<li><blockquote>
+<p>Embedding最早被用在推荐系统里，推荐系统多么懂人类啊，懂你想要什么，懂你会沉迷什么，懂你会一直刷抖音刷下去。</p>
+</blockquote>
+</li>
+<li><p>好，词嵌入了，成了向量，那你怎么说，不就是一个本来一个地方为一的其它地方为零的你给压缩了一下嘛？那也就word可以embedding嘛。你说一篇文章怎么embedding？</p>
+</li>
+<li><p>把每个向量加起来？或许是一种方法，类似Bag of Words，但失去了更多的语义，比如上下文关系云云。在Transformer架构里的Position Embedding，或许就是人们尝试手动重新加上语义。</p>
+</li>
+<li><p>嘛，别那么麻烦，直接在段落中预测整句话，就像在句子中预测一个单词一样吧。（或许是，但作为一个尚未认真接触自然语言处理的人来说，还是不敢妄加断言 ）</p>
+</li>
+<li><blockquote>
+<p><a target="_blank" rel="noopener" href="https://cs.stanford.edu/~quocle/paragraph_vector.pdf">paragraph_vector.pdf (stanford.edu)</a></p>
+</blockquote>
+</li>
+<li><p>总之你看，你句子也可以embedding，断落也可以embedding。嘛然后后来 graph也可以embedding。</p>
+</li>
+<li><p>后来大家说 KGE 知识图谱也能嵌入，将实体和关系嵌入到低维向量空间中，同时保留KG的结构和语义信息。</p>
+</li>
+<li><p>万物皆可embedding，embedding之后呢？</p>
+</li>
+<li><p>我们说 <code>北京 - 中国</code> 和 <code>纽约 - 美国</code> 差不多，着确实是很有意思。</p>
+</li>
+<li>嵌入了，好，那你 embedding 得到的是什么，分布式表示？向量相似代表着语义相似，除此之外呢？你说语义的差分代表着实体的关系。好，除此之外呢？</li>
+<li><p>物体的点云被嵌入成向量，关系实体都被嵌入成向量，而向量又被人类所有的语言所囊括。嵌入的向量蕴含着的，有关系，有随机鹦鹉模样的前后文模糊匹配概率分布，有图片和文字的交互，有这个世界的爱恨情仇。</p>
+</li>
+<li><p>这可不止是简简单单的SVD分解降维度，这可是这么大的一个万亿参数的神经网络。</p>
+</li>
+<li><img src="https://cdn.openai.com/instruction-following/draft-20220126f/methods.svg" alt="img" style="zoom:50%;"></li>
+</ul>
+<h3 id="向量之后的故事"><a href="#向量之后的故事" class="headerlink" title="向量之后的故事"></a>向量之后的故事</h3><ul>
+<li>于是我们又要说，纵然向量里有爱恨情仇，那又有什么用。</li>
+<li>正如人类的思考从不会凭空想象，我们在我们的认知符号表里不断行走，进行高低层次的切换，就像行走在艾舍尔的画中。我现在想的，我之后想的，总是与我未来想的多少有点关系。</li>
+<li>让我们回到有限状态自动机的故事吧，或许再增加一点混合策略的随机， 或许再多一些表带，多几个表头，有限状态自动机就可以一刻不停地运作直到停机了。</li>
+<li>让我们回到随机游走的故事吧，从图的顶点出发，选一条边，再选一条边。或者再来点故事，正如向量检索的 <code>HNSW</code>，在可导航小世界图上因为贪心四处碰壁，但兜兜转转好像也能找到一条路。</li>
+<li>发现了吗？图是离散的，有限状态自动机是离散的。<strong>向量是连续的</strong></li>
+<li>连续代表着什么？哦可多了，连续代表着智能的希望。哦，为什么就不就此打住，相信世界就是一个又一个向量的叠加呢？不妨就此相信向量就是世界呢。</li>
+</ul>
+<h3 id="符号落地"><a href="#符号落地" class="headerlink" title="符号落地"></a>符号落地</h3><ul>
+<li><p>你看，符号成为了向量，知识成为了向量，世界成为了向量。</p>
+</li>
+<li><p>而向量数据库帮助我们找到了<strong>思维发散</strong>的方式。</p>
+</li>
+<li><p><strong>从一个向量，联想到另一个向量</strong>，而它们之间确实可以被联想。</p>
+</li>
+<li><p><strong>定义:c-ANN/c-k-ANN</strong></p>
+<p>假设 $\mathcal D$ 为数据集，有 $n$ 个点，$d$ 个维度，有一个询问的点 $q$，c-ANN search 的目的是返回一个点 $o \in \mathcal D$，使得 $dist(o,q) \le c\times dist(o^<em>,q)$。同样的c-k-ANN是返回 <code>top-k</code> 满足 $dist(o_i,q) \le dist(o_i^</em>,q) , 1\le i\le k$。</p>
+</li>
+<li><p>最无脑的方法，大概莫过于通过<strong>调包</strong>的方式，给PKU活动资讯的每一条一个高维空间的坐标，通过检索的方式，进行知识增强了。</p>
+</li>
+<li><p>但符号落地不限于此，向量化带给了符号新的希望。</p>
+</li>
+<li><blockquote>
+<p>但符号落地除了向量必然也是有路的。</p>
+<p>朱老师想必很早就对符号和符号落地有了极其深刻的见解，只是如今的确没有认真了解过朱老师的工作。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><ul>
+<li>所以矩阵是什么。</li>
+<li></li>
+</ul>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ul>
+<li><strong>当硬件被操作系统封装，当网络被协议封装，当自然语言处理被一个API封装。</strong>一切变得清晰简单，落地也就不远了。当一个手无寸铁的本科生可以自己写一个（假装可以）自然交互搜索引擎的时候，也就会发现 AI 落地不远了。企业助手，个人助理，这些似乎都毫无技术难度，如今没有见到推广，却也不远了。前沿的AI技术很多，但没有人推广。妙鸭相机的技术一年前就成熟，但却没有人试图做成产品。世界还是太缺人了，到处缺人，各种人。</li>
+<li>但总之，我说服我自己向量是一个很有意思的东西了。最近想很学基于LSH的向量检索，希望能多少看一点。</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2023/10/16/onPKUINFO/" title="World Embedding-关于符号落地的一些碎碎念" target="_blank" rel="external">http://emoairx.github.io/blog/2023/10/16/onPKUINFO/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2023/10/14/Local%20Sensitive%20Hashing/" title="Locality Sensitive Hashing"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
