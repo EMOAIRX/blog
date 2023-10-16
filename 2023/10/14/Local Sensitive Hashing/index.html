@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Locality Sensitive Hashing | emoairx</title>
+  <meta name="description" content="本文主要参考文献为 cs.DB] 17 Feb 2021  LSH系列3：p-stable LSH&amp;E2LSH——原理介绍_什么是lsh sampling-CSDN博客   warm up我上高中是2018年，那年的APIO有一道题。总之最后归结为需要使用 KD-tree 来寻找二维空间的最近邻。那年我们高中有一个很厉害的学长，我管他叫头哥哥，头哥哥用了随机向量排序的方法通过了这道题。 如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Locality Sensitive Hashing">
+<meta property="og:url" content="http://emoairx.github.io/blog/2023/10/14/Local%20Sensitive%20Hashing/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="本文主要参考文献为 cs.DB] 17 Feb 2021  LSH系列3：p-stable LSH&amp;E2LSH——原理介绍_什么是lsh sampling-CSDN博客   warm up我上高中是2018年，那年的APIO有一道题。总之最后归结为需要使用 KD-tree 来寻找二维空间的最近邻。那年我们高中有一个很厉害的学长，我管他叫头哥哥，头哥哥用了随机向量排序的方法通过了这道题。 如">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-14T12:47:21.811Z">
+<meta property="article:modified_time" content="2023-10-15T11:08:26.067Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2023/10/14/Local%20Sensitive%20Hashing/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">73</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/10/14/Local%20Sensitive%20Hashing/" class="title">Locality Sensitive Hashing</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-10-14T12:47:21.811Z" itemprop="datePublished">2023-10-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/10/12/HCI_xh/" class="title">面向共融机器人的自然交互</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-10-12T10:59:25.716Z" itemprop="datePublished">2023-10-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/08/01/diary/diary230801/" class="title">230801 - 忏 悔</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-08-01T05:59:37.391Z" itemprop="datePublished">2023-08-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/07/01/streaming_estimation/" class="title">streaming estimation</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-06-30T16:26:12.656Z" itemprop="datePublished">2023-07-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2023/05/21/diary/diary230521/" class="title">230521</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-05-21T05:53:48.745Z" itemprop="datePublished">2023-05-21</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Local Sensitive Hashing" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Locality Sensitive Hashing
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2023/10/14/Local%20Sensitive%20Hashing/" class="article-date">
+	  <time datetime="2023-10-14T12:47:21.811Z" itemprop="datePublished">2023-10-14</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2023/10/14/Local%20Sensitive%20Hashing/" class="leancloud_visitors"  data-flag-title="Locality Sensitive Hashing">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2023/10/14/Local%20Sensitive%20Hashing/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>本文主要参考文献为 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2102.08942.pdf">cs.DB] 17 Feb 2021</a>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39583450/article/details/109048457">LSH系列3：p-stable LSH&amp;E2LSH——原理介绍_什么是lsh sampling-CSDN博客</a> </p>
+<hr>
+<h3 id="warm-up"><a href="#warm-up" class="headerlink" title="warm up"></a>warm up</h3><p>我上高中是2018年，那年的APIO有一道题。总之最后归结为需要使用 <code>KD-tree</code> 来寻找二维空间的最近邻。那年我们高中有一个很厉害的学长，我管他叫头哥哥，头哥哥用了随机向量排序的方法通过了这道题。</p>
+<p>如何寻找二维平面最近点对？是<code>x</code>最小的吗？不一定是。是<code>y</code>最小的吗？不一定是。但是或许随机100个方向，有一个方向上相邻的两个点就是最近点对。</p>
+<p>这就是平面最近点对的做法。高维映射到低维。</p>
+<h3 id="approximate-nearest-neighbor-ANN-problem"><a href="#approximate-nearest-neighbor-ANN-problem" class="headerlink" title="approximate nearest neighbor(ANN) problem"></a>approximate nearest neighbor(ANN) problem</h3><p>在高维空间中寻找近邻是一个显然很有用的东西，更别说是<code>text-embedding</code> 在基于GPT等技术无比陈述的现在。这个问题被成为 <code>k-nearest  neighbor problem</code>。在维度较低的时候，我们常常会使用树形的检索结构，如 <code>KD-tree</code>，<code>SR-tree</code>，但是维度足够高的时候效果较差，甚至接近线性。众所周知传统 <code>KD-tree</code> 的是 $O(n^{1-1/k})$，$k$ 是维度。</p>
+<p>与之相对的，一种称为 <code>local sensitive hashing</code> 的近似搜索方法，虽然不能提供 $100\%$ 的准确度（但往往可以通过多个哈希表实现），但能在非常快的速度找 <code>close enough</code> 的结果。</p>
+<p>近似版本的 <code>k-nearest neighbor problem</code> ，也叫 <code>c-approximate Nearest Neighbor search</code>，结果是返回那些不超过 $c\times R$ 距离的查询。其中 $R$ 是查询节点到其最近节点的最近邻居。</p>
+<h5 id="def-c-ANN-c-k-ANN"><a href="#def-c-ANN-c-k-ANN" class="headerlink" title="def:c-ANN/c-k-ANN"></a>def:c-ANN/c-k-ANN</h5><p>假设 $\mathcal D$ 为数据集，有 $n$ 个点，$d$ 个维度，有一个询问的点 $q$，c-ANN search 的目的是返回一个点 $o \in \mathcal D$，使得 $dist(o,q) \le c\times dist(o^<em>,q)$。同样的c-k-ANN是返回 <code>top-k</code> 满足 $dist(o_i,q) \le dist(o_i^</em>,q) , 1\le i\le k$。</p>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h3><p><strong>KD-tree</strong></p>
+<ul>
+<li>任何一个算法竞赛选手都应该了解划分树。</li>
+</ul>
+<p><strong>HNSW, Hierarchical Navigable Small World</strong> </p>
+<ul>
+<li>任何一个算法竞赛选手都应该了解三角剖分，至少是$n \log n$的分治<strong>Delaunay三角剖分</strong>。</li>
+<li>让我们回顾一下它在做什么，<ul>
+<li>任意三角形的外接圆范围内不会又其它点的存在</li>
+<li>在点集可能形成的三角剖分中，所形成的三角形的最小角最大。</li>
+</ul>
+</li>
+<li>Delonay图最接近的三点形成三角形且各线段不相交，因此可以利用Delonay图解决最近邻查找问题。（直观上很对）</li>
+<li><strong>可导航小世界NSW Navigable Small World</strong> 利用贪心算法，每次从图中查找与查询点 $q$ 距离最近的 $k$ 各顶点，贪心算法是说每次找相邻的连接的点的最小值。</li>
+<li></li>
+</ul>
+<h3 id="Locality-Sensitive-Hashing"><a href="#Locality-Sensitive-Hashing" class="headerlink" title="Locality Sensitive Hashing"></a>Locality Sensitive Hashing</h3><p>IDEA：将高维数据通过随机哈希的方式映射到哈希桶中，相似的元素会高概率映射到相同的哈希桶。</p>
+<p>最早1999年提出第一篇文章^[1]^ 此后又有许多变种。<code>LSH</code> 有两个主要优点，<strong>亚线性的查询效率</strong>，<strong>理论保障的查询准确度</strong>。state-of-art 的方法通过一些方法如 <code>Collision Counting</code> 和 <code>Virtual Rehashing</code> 的方法，使得 <strong>较小的索引大小</strong>，<strong>快速的索引维护</strong>。</p>
+<h5 id="def-sensitive"><a href="#def-sensitive" class="headerlink" title="def: sensitive"></a>def: sensitive</h5><ul>
+<li><p>一个哈希函数 $H$ 被定义为 $(R,cR,p_1,p_2)$-sensitive 的，如果满足</p>
+</li>
+<li><script type="math/tex; mode=display">
+\Pr[H(x)=H(y)] \ge p_1 \quad |x-y|\le R\\
+\Pr[H(x)=H(y)]\le p_2 \quad |x-y|>cR</script></li>
+<li></li>
+</ul>
+<p>接下来，我们会给出一些一些哈希函数的例子</p>
+<p><strong>Hamming metric</strong>: $H(x)=x_i$ 。两个点 $x,y$ 如果 Hamming distrance是 $r$，那么相同的概率就是 $\Pr[H(x)=H(y)]=1-r/d$。</p>
+<p>从某种意义上来说，这是直接进行了一个维度的<strong>投影</strong>。</p>
+<p><strong>Minkowski metric:</strong> $H_{\vec a,b}(x)=\lfloor\frac{\vec a\cdot x+b}{w}\rfloor$ ，$a$ 是一个随机向量，从 <code>p-stable-distribution</code>，$b$ 是一个 $[0,w)$ 的随机实数 ，$w$ 是桶的大小。</p>
+<blockquote>
+<p>这里牵扯到一个问题，什么是 <code>p stable distribution</code>。</p>
+<p>若干个柯西分布 $c(x)=\frac{1}{\pi (1+x^2)}$ 的加权平均还是柯西分布。是 $p=1$ 的稳定分布</p>
+<p>若干个高斯分布 $g(x)=\frac{1}{(2\pi)^{1/2}}e^{-x^2/2}$ 的平方的加权和的开方还是高斯分布（二维平面高斯分布）。是 $p=2$ 的高斯分布。</p>
+<p>也就是 $\sum v_iX_i$ 和 $(\sum |v_i|^p)^{1/p} X$ 分布相同。则为稳定分布，对于任何 $p \in (0,2]$ 存在稳定分布。</p>
+</blockquote>
+<p>注意，对 p-norm 而言，这就是一个<strong>随机投影</strong>。</p>
+<p>我们这里对 <code>2d</code> 做一个简要的理解： $X\sim N(0,1)$</p>
+<p>两个向量 $v<em>1,v_2$，投影后为 $v_1’,v_2’$ ，记 $r = ||v_1,v_2|| , r’ = ||v_1’,v_2’||$，记 $\rho_i$ 为投影空间两个点第 $i$ 维的差，$r’=(\sum</em>{i=1}^k \rho_i^2)^{1/2}$，而 $\rho = a_i \cdot(v_1-v_2)$ 与 $r\cdot X$ 同分布，有 $\rho / r \sim N(0,1)$  。</p>
+<p>我们有 $r’^2 / r^2 =(\sum \rho_i^2)/r^2$ 。可以得到 $r’^2 / r^2 \sim \mathcal X^2(k)$。而对于卡方分布而言，给定一个概率 $\alpha$ 去寻找 $\mathcal X^2(k)$ 大于某个数的概率为 $\alpha$，也就是后面一段的积分为 $\alpha$。根据卡方分布的上下侧分位数定义，我们有</p>
+<script type="math/tex; mode=display">
+\Pr[r'<r \sqrt{\mathcal X_{1-\alpha}^2(k)} ] = a \\
+\Pr[r'>r \sqrt{\mathcal X_{\alpha}^2(k)} ] = a</script><p>也就是说原始空间和投影空间的置信区间有一种强相关性。</p>
+<p>最终结论为</p>
+<script type="math/tex; mode=display">
+\Pr[H(x)=H(y)] = \int_{0}^w f_p(t/r)(1-t/w)\dd t</script><p><strong>Angular metric:</strong>  定义了 $H(x) = sgn(\vec a \cdot x)$，$\vec a$ 是一个随机正态分布向量。这里如果两个点的夹角 $\theta$，那么 $\Pr[H(x)=H(y)] = 1-\frac{\theta}{\pi} $</p>
+<p><strong>Jaccard metric:</strong>  $H(x)=\min (\pi (x_i))$，$\pi $ 是一个随机的排列置换，$x_i \in x$。这里 $\Pr[H(x)=H(y)]=J$，$J$ 是两个点的 Jaccard similarity。</p>
+<script type="math/tex; mode=display">
+J(D_i,D_j) = \frac{|D_i \cap D_j|}{|D_i \cup D_j|}</script><p><strong>Shingling:</strong> 利用sliding window得到的一些文本，例如 <code>abcdabd</code> 得到了 <code>ab,bc,cd,da,bd</code>。对集合中的每个元素进行哈希，转化为一个整数存储起来，得到的就是文档集合是一个整数的集合。随便找一个哈希函数映射到整数集合，对于两组集合，从两个哈希后的集合中各挑一个最小的整数出来，这两个整数相等的概率就是 <code>Jaccard Similarity</code>。</p>
+<hr>
+<h3 id="Techs"><a href="#Techs" class="headerlink" title="Techs"></a>Techs</h3><h5 id="Hamming-based-LSH-Techniques"><a href="#Hamming-based-LSH-Techniques" class="headerlink" title="Hamming-based LSH Techniques"></a>Hamming-based LSH Techniques</h5><ul>
+<li><p>最早的文章用的是Hamming距离，作者使用了多个哈希函数和哈希表，也从<strong>理论上</strong>找到了以获得恒定哈希概率，哈希函数和哈希表的最优值。</p>
+</li>
+<li><p><code>Boosted LSH</code> BLSH方法^[2]^是通过自适应增强学习的方式训练线性分类器，减少LSH投影中的冗余。</p>
+</li>
+</ul>
+<p><strong>Minkowski-based LSH Techniques</strong></p>
+<ul>
+<li>2004年，E2LSH^[3]^，解决的是欧几里得距离，依然是使用多个哈希函数和哈希表在做的事情。</li>
+</ul>
+<p>新的技术：</p>
+<ul>
+<li>2006年，hash-perturbation LSH ^[4]^  <a target="_blank" rel="noopener" href="https://www.cs.princeton.edu/techreports/2006/759.pdf">759.pdf (princeton.edu)</a>，通过扰动的方式减少哈希表大小。</li>
+<li><p>2007年，Multi-probe LSH，提出近邻的点容易被哈希到比较相近的桶里，于是尝试检索周围的一些桶。此外，该方法为每个哈希桶分配了一个距离分数，并且随后按照这些分数的递增顺序访问这些桶。通过使用这种策略，Multi-probe在保持相同准确性的同时需要更少数量的哈希表。</p>
+<ul>
+<li><strong>卧槽，竟然是做ImageNet的Kai Li老师</strong> </li>
+</ul>
+</li>
+<li><p>一种方法在查询处理阶段，使用期望的而准确度测量来选择最适合给定查询的最佳哈希函数。（？）</p>
+</li>
+<li>一种方法利用动态规划，基于数据集特征（如密度）分配哈希桶的大小。</li>
+<li>一种方法利用主成分分析生成均匀数据集。</li>
+<li>一个文章利用Hadamard变换来更好地估计欧式和角度空间距离，减少LSH的运行时间。</li>
+</ul>
+<h5 id="C2LSH"><a href="#C2LSH" class="headerlink" title="C2LSH"></a>C2LSH</h5><ul>
+<li>C2LSH中只有一个哈希表，有m个随机哈希函数，提出了一种称为<strong>碰撞计数</strong>的方法，该方法计算哈希点被映射到与查询点相同桶的次数，一旦发生 I 次碰撞，则视为候选点。</li>
+<li>C2LSH有两种停止条件：1）找到 k + βn 个候选点，2）找到 k 个真正的正例。真正的正例通过计算候选点与查询的欧几里德距离，并检查距离是否小于 cR 来找到。如果未满足停止条件，该算法将在每次指数增加的投影搜索半径（例如，在两个桶而不是一个桶中查找碰撞）时增加投影搜索半径。</li>
+</ul>
+<h5 id="Bi-level-LSH"><a href="#Bi-level-LSH" class="headerlink" title="Bi-level LSH"></a>Bi-level LSH</h5><ul>
+<li>Bi-level LSH [84]旨在提高搜索的准确性和运行时效率。首先，它使用RP-tree将数据集分割成随机子组，然后为每个子组创建一个哈希表和基于空间填充曲线（Z-order曲线）的分层结构。</li>
+</ul>
+<h5 id="Boundary-expanding-locality-sensitive-hashing-108"><a href="#Boundary-expanding-locality-sensitive-hashing-108" class="headerlink" title="Boundary-expanding locality sensitive hashing [108]"></a>Boundary-expanding locality sensitive hashing [108]</h5><ul>
+<li>Boundary-expanding locality sensitive hashing [108]解决了最近点被散列到不同桶的边界的问题，它通过扩展每个桶的边界来克服这个问题，从而增加了相邻点的碰撞概率。</li>
+</ul>
+<p>[1] Aristides Gionis, Piotr Indyk, Rajeev Motwani, et al. 1999. Similarity search in high dimensions via hashing. In Vldb, Vol. 99. 518–529.</p>
+<p>[2] Sunwoo Kim, Haici Yang, and Minje Kim. 2020. Boosted Locality Sensitive Hashing: Discriminative Binary Codes for Source Separation. In ICASSP 2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 106–110.</p>
+<p>[3] Mayur Datar, Nicole Immorlica, Piotr Indyk, and Vahab S Mirrokni. 2004. Locality-sensitive hashing scheme based on p-stable distributions. In Proceedings of the twentieth annual symposium on Computational geometry. 253–262.</p>
+<p>[4] Qin Lv, William Josephson, Zhe Wang, Moses Charikar, and Kai Li. [n.d.]. A Time-Space Efficient Locality Sensitive Hashing Method for Similarity Search in High Dimensions. Technical Report.</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2023/10/14/Local%20Sensitive%20Hashing/" title="Locality Sensitive Hashing" target="_blank" rel="external">http://emoairx.github.io/blog/2023/10/14/Local Sensitive Hashing/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2023/10/12/HCI_xh/" title="面向共融机器人的自然交互"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
