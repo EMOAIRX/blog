@@ -17,21 +17,25 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>220919 | emoairx</title>
-  <meta name="description" content="前几天其实挺烦的 上上个礼拜的周末——也就是中秋那会儿，我应该是在认真学习 WebAssembly 这种看上去就很有前途的东西。这个礼拜呢？ 翘了六级，翘了 ICPC，没去社团的迎新活动，更没去心心念念的灵均杯德扑比赛。 三天睡了差不多八个小时——被忽悠着去打数学建模。 一坨狗屎 我是个小丑。队友一个出去讲课赚大钱了，一个在参加别的比赛，参加社团活动。我还记得礼拜六下午一整个下午我在那里写计算几何">
+  <title>彻底躺平的一学期与最后一周的博弈论 | emoairx</title>
+  <meta name="description" content="key：知识运算，重复博弈 主要知识点均衡的求法 划线法求纯策略均衡 重复剔除严格劣策略 利用“充要条件”求混合策略均衡 行为策略均衡的求法 逆向归纳法求子博弈精炼均衡 贝叶斯均衡的求法 利用“四个要求”求精炼贝叶斯均衡 序贯均衡的求法 精炼贝叶斯均衡的再精炼  策略的概念 纯策略  混合策略 行为策略 混合策略和行为策略的互相转化 相关策略  理性的概念 认知理性 工具理性  特殊的专题 序贯均">
 <meta property="og:type" content="article">
-<meta property="og:title" content="220919">
-<meta property="og:url" content="http://emoairx.github.io/blog/2022/09/19/diary/diary220919/index.html">
+<meta property="og:title" content="彻底躺平的一学期与最后一周的博弈论">
+<meta property="og:url" content="http://emoairx.github.io/blog/2023/12/20/last%20game/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="前几天其实挺烦的 上上个礼拜的周末——也就是中秋那会儿，我应该是在认真学习 WebAssembly 这种看上去就很有前途的东西。这个礼拜呢？ 翘了六级，翘了 ICPC，没去社团的迎新活动，更没去心心念念的灵均杯德扑比赛。 三天睡了差不多八个小时——被忽悠着去打数学建模。 一坨狗屎 我是个小丑。队友一个出去讲课赚大钱了，一个在参加别的比赛，参加社团活动。我还记得礼拜六下午一整个下午我在那里写计算几何">
+<meta property="og:description" content="key：知识运算，重复博弈 主要知识点均衡的求法 划线法求纯策略均衡 重复剔除严格劣策略 利用“充要条件”求混合策略均衡 行为策略均衡的求法 逆向归纳法求子博弈精炼均衡 贝叶斯均衡的求法 利用“四个要求”求精炼贝叶斯均衡 序贯均衡的求法 精炼贝叶斯均衡的再精炼  策略的概念 纯策略  混合策略 行为策略 混合策略和行为策略的互相转化 相关策略  理性的概念 认知理性 工具理性  特殊的专题 序贯均">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-19T11:56:59.984Z">
-<meta property="article:modified_time" content="2022-11-17T08:14:46.562Z">
+<meta property="og:image" content="http://emoairx.github.io/blog/2023/12/20/last%20game/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20231221152305603.png">
+<meta property="og:image" content="https://bbs-pic.datacourse.cn/forum/201212/02/1233576osgi5sgsvn2z2ss.png">
+<meta property="article:published_time" content="2023-12-20T12:41:42.041Z">
+<meta property="article:modified_time" content="2023-12-21T11:08:19.737Z">
 <meta property="article:author" content="emoairx">
-<meta property="article:tag" content="日记">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="博弈论">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://emoairx.github.io/blog/2023/12/20/last%20game/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20231221152305603.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://emoairx.github.io/blog/2022/09/19/diary/diary220919/index.html">
+  <link rel="canonical" href="http://emoairx.github.io/blog/2023/12/20/last%20game/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
   
@@ -313,14 +317,14 @@
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-diary/diary220919" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-last game" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      220919
+      彻底躺平的一学期与最后一周的博弈论
     </h1>
   
 
@@ -328,15 +332,15 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/blog/2022/09/19/diary/diary220919/" class="article-date">
-	  <time datetime="2022-09-19T11:56:59.984Z" itemprop="datePublished">2022-09-19</time>
+	<a href="/blog/2023/12/20/last%20game/" class="article-date">
+	  <time datetime="2023-12-20T12:41:42.041Z" itemprop="datePublished">2023-12-20</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a>
+	<a class="article-tag-link-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
   </span>
 
 
@@ -344,55 +348,203 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/blog/2022/09/19/diary/diary220919/" class="leancloud_visitors"  data-flag-title="220919">
+    	<span id="/blog/2023/12/20/last%20game/" class="leancloud_visitors"  data-flag-title="彻底躺平的一学期与最后一周的博弈论">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2022/09/19/diary/diary220919/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2023/12/20/last%20game/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>前几天其实挺烦的</p>
-<p>上上个礼拜的周末——也就是中秋那会儿，我应该是在认真学习 WebAssembly 这种看上去就很有前途的东西。这个礼拜呢？</p>
-<p>翘了六级，翘了 ICPC，没去社团的迎新活动，更没去心心念念的灵均杯德扑比赛。</p>
-<p>三天睡了差不多八个小时——被忽悠着去打数学建模。</p>
-<p><strong>一坨狗屎</strong></p>
-<p>我是个小丑。队友一个出去讲课赚大钱了，一个在参加别的比赛，参加社团活动。我还记得礼拜六下午一整个下午我在那里写计算几何，叫天天不灵叫地地不应。——但至少当时我写出来的时候还是喘了一口气。</p>
-<p>但是他妈的，生产队的驴都没我这么任劳任怨，几乎一个人做了所有建模，代码和论文。——比如本来想让一个队友负责论文的，结果我代码de完只剩一天的时候她论文他妈还没开始写——而且就她对latex那种熟悉程度，那写论文的速度，再来三天都不知道会怎么样，他妈的太摆了。</p>
-<p>最后紧赶慢赶搞了个东西。我他妈当时就烦得不行。</p>
-<p>ddl之后第二天一看，python的运行环境没加，requirements,readme都没加，队友写的一部分python代码在问题一(2)有好几个bug，放了两张实验表格，一张是用错误的代码跑出来的错误的不收敛的情况，一张明明说明我们能七位精度结果表格只保留了两位精度。一个公式的定义域完全相反，一张图放的就是一个什么都不是的东西，完全就是放错了图。更别说整篇论文完全割裂，妈的写个屁的几何分析啊，一个求圆交用上复数法就很高级了吗？他妈的随便找个初中生学过三角函数就知道怎么解，就他妈按照通用模型做下去他妈的有个屁的问题。</p>
-<p>他妈的最后搞出来一坨狗屎不如的垃圾玩意，哪去喂狗狗都不要吃，一把火烧了都浪费空气中的氧气。</p>
-<p>今天用言语上发泄了一番情绪，还是异常暴躁。就觉得，他妈的我图啥，我他妈的这么多时间干了些什么？</p>
-<hr>
-<p>中午还了龙书，被预约了一直被催，烦琐；下午 ics 听段子；然后把手机扔了，什么都不想干，去图书馆溜达了一圈。</p>
-<p>二楼东侧还是没有《计算系统的形式语义上》烦琐，暴躁，想看。</p>
-<p>文学阅览室没看到什么想看的书</p>
-<p>新书浏览室去溜达一圈，看到了实力至上主义的教室，明明以前很喜欢，但现在这个动画片第二季都没追了，有些晦气。</p>
-<p>然后翻到一本哲学家谈爱的一个东西，看了几页就觉得离谱，妈的爱就是爱搞个屁的理性分析，说的就是你苏格拉底，爱情凭什么他妈的不能智慧一样牛逼，妈的还是奥古斯丁合我胃口。</p>
-<p>然后无意间——看到——某个书架上</p>
-<p>《德米安》 《荒原狼》 《悉达多》 三本书</p>
-<p>依次排开，这他妈都是我最喜欢的书，分别是高三，大一，大二看的，他妈的太他妈喜欢了，虽然当时大一没太看懂那本荒原狼。</p>
-<p>小心翼翼翻看着荒原狼，渐渐整个人都舒服了。</p>
-<p>$\Huge 还是黑塞能治我的精神内耗$</p>
-<p>但是</p>
-<p>他妈的这里每本小说都是有一个女孩子啊阿巴阿巴，为什么我就不能收获爱情，阿巴阿巴，虽然还是烦躁，但烦躁的重心已经从阿巴数模变成对性吸引力的自我怀疑了。</p>
-<hr>
-<p>写完这段文字，好像两个都又开始烦了。</p>
-<p>操他奶奶的。</p>
-<p>要不是不会传pdf，真想在最后献上<a href="____.pdf">那坨狗屎</a>，不能只恶心我一个人</p>
-<hr>
-<p>update 221020</p>
-<blockquote>
-<p>成功参赛奖</p>
-</blockquote>
-<p>杀人还要诛心？</p>
-<hr>
-<p>update 221117</p>
-<p>可能，获得【是一个很可靠的人】的评价</p>
-<p>感觉也不错，很值得。</p>
+        <p>key：知识运算，重复博弈</p>
+<h3 id="主要知识点"><a href="#主要知识点" class="headerlink" title="主要知识点"></a>主要知识点</h3><h5 id="均衡的求法"><a href="#均衡的求法" class="headerlink" title="均衡的求法"></a>均衡的求法</h5><ul>
+<li>划线法求纯策略均衡</li>
+<li>重复剔除严格劣策略</li>
+<li>利用“充要条件”求混合策略均衡</li>
+<li>行为策略均衡的求法</li>
+<li>逆向归纳法求子博弈精炼均衡</li>
+<li>贝叶斯均衡的求法</li>
+<li>利用“四个要求”求精炼贝叶斯均衡</li>
+<li>序贯均衡的求法</li>
+<li>精炼贝叶斯均衡的再精炼</li>
+</ul>
+<h5 id="策略的概念"><a href="#策略的概念" class="headerlink" title="策略的概念"></a>策略的概念</h5><ul>
+<li><strong>纯策略</strong> </li>
+<li><strong>混合策略</strong></li>
+<li>行为策略</li>
+<li>混合策略和行为策略的互相转化</li>
+<li>相关策略</li>
+</ul>
+<h5 id="理性的概念"><a href="#理性的概念" class="headerlink" title="理性的概念"></a>理性的概念</h5><ul>
+<li>认知理性</li>
+<li>工具理性</li>
+</ul>
+<h5 id="特殊的专题"><a href="#特殊的专题" class="headerlink" title="特殊的专题"></a>特殊的专题</h5><ul>
+<li><del>序贯均衡，纳什谈判</del></li>
+<li>重复博弈（无限次重复，有限次重复）</li>
+<li><del>拍卖（静态，动态，收益等价定理）</del></li>
+<li>知识的运算</li>
+</ul>
+<h4 id="完全信息静态博弈"><a href="#完全信息静态博弈" class="headerlink" title="完全信息静态博弈"></a>完全信息静态博弈</h4><ul>
+<li><p>纯策略与混合策略</p>
+</li>
+<li><p>双人零和博弈</p>
+<ul>
+<li>零和博弈属于严格竞争博弈</li>
+<li>对于双人有限策略零和博弈，我们可以从双变量矩阵中省略列参与 者的收益，故这种博弈又称<strong>矩阵博弈</strong>。</li>
+<li>行参与者是<strong>最大最小策略</strong>，列参与者是最小最大策略。</li>
+</ul>
+</li>
+<li><p><strong>纳什均衡</strong></p>
+<ul>
+<li>严格纳什均衡和<strong>弱纳什均衡</strong>的差别是，能不能用 $\ge $ 替换 $&gt;$。</li>
+<li><p>混合策略纳什均衡的充分必要条件是：对于任何一个参与者，凡是以正德概率被选择德从混策略应带来相等的期望收益，且不低于以零概率被选择的纯策略带来的期望收益。</p>
+<ul>
+<li>方法：构造一个一般化的混合策略组合，然后检查是否满足。对所有子集组合重复分析。</li>
+</ul>
+</li>
+<li><p>*有限博弈，纳什均衡存在。几乎所有的有限博弈都具有有限的奇数个均衡。（？）</p>
+</li>
+</ul>
+</li>
+<li><p>占优策略</p>
+<ul>
+<li>特定策略<strong>优于或至少不劣于</strong>其它任何策略。</li>
+<li><strong>占优策略均衡</strong>是指每个参与者都存在占优策略，这些占优策略构成的组合。</li>
+</ul>
+</li>
+<li><p><strong>可理性化</strong></p>
+<ul>
+<li><p>如果无论参与者对于世界状态持有的<strong>信念</strong>如何，参与者的某一选择都不是最优反应，则为<strong>永非最优策略</strong>。如果存在一个（混合）策略，使得无论世界状态如何，某一特定始终低于该（混合）策略带来的收益，则该特定策略称为<strong>严格劣策略</strong>。</p>
+</li>
+<li><p><strong>占优定理：</strong>如果选择集和世界状态集都是非空有限集，那么严格劣策略等于永非最优策略。</p>
+</li>
+<li><p>如果参与者的某一策略关于对手策略选择的任何信念都不是最优反应，那么称该策略是<strong>永非最优反应</strong>。理性人不应当采取永非最优反应。</p>
+</li>
+<li><p>一个策略是<strong>可理性化</strong>。是说所有参与者都是理性的是<strong>共同知识</strong>。</p>
+</li>
+<li><p><img src="/blog/2023/12/20/last%20game/Users\emoairx\AppData\Roaming\Typora\typora-user-images\image-20231221152305603.png" alt="image-20231221152305603" style="zoom:50%;"></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>重复剔除严格劣策略</p>
+<ul>
+<li>双人博弈中，参与者的策略是永非最优反应当且仅当它是严格劣的。</li>
+<li>从理性共识出发可以重复剔除严格劣策略，最后剩下的如果只剩下一个，这个策略组合是<strong>重复剔除的占优均衡</strong></li>
+<li>在双人博弈中，可理性化的策略 等价于 不能被重复剔除 严格劣策略过程所剔除的策略。</li>
+<li>对于超过两人的博弈，可理性化的策略一定是不能被重复 剔除严格劣策略过程所剔除的策略，但反之则未必。</li>
+<li>理性共识，零阶理性公式：每个人都是理性的，不知道对方是不是理性。……</li>
+</ul>
+</li>
+<li><p>纳什均衡与重复剔除的占优均衡的关系</p>
+<ul>
+<li>纳什均衡不会被重复剔除严格劣策略过程所剔除。</li>
+<li>如果重复剔除严格劣策略过程最终只剩下唯一的策略组合，那么这一策略组合为该博弈唯一的纳什均衡。</li>
+<li>重复剔除弱劣策略过程有可能剔除弱纳什均衡，但不会剔除严格纳什均衡。</li>
+</ul>
+</li>
+<li><p>多重纳什均衡的比较</p>
+<ul>
+<li><p>参与者集合的任何子集称为<strong>联盟</strong>，如果存在联盟使得成员协调行动一起偏离均衡能够提高每个成员的收益叫做这个联盟能<strong>瓦解</strong>纳什均衡。如果不存在则为强均衡。</p>
+</li>
+<li><p><strong>完美均衡</strong>：允许颤抖，如果存在严格混合策略序列，使得即使这一步错了，剩下的策略还是最优策略。</p>
+<ul>
+<li>每个有限博弈至少有一个（颤抖手）完美均衡。进一步，在（颤抖手）完美均衡中，没有人使用 （严格以及弱）劣策略。</li>
+<li>在二人有限策略博弈中，不含弱劣策略的纳什均衡都是（颤抖手）完美均衡。</li>
+</ul>
+</li>
+<li><p><img src="https://bbs-pic.datacourse.cn/forum/201212/02/1233576osgi5sgsvn2z2ss.png" alt="Trembling Hand.png" style="zoom:50%;"></p>
+</li>
+<li>风险占优<ul>
+<li>假设对手采用各个纳什均衡对应策略的概率相同，计算并比较 自己采用纳什均衡对应策略能获得的期望收益，我们说，能带来更 高期望收益的策略所对应的纳什均衡“风险占优”于另一个纳什均衡</li>
+<li>偏离损失乘积比较法，即分别计算各个参与者独自偏离当前均衡而遭受的损失，计算偏离损失的乘积（简称“纳什积”），<strong>该乘积更大的均衡“风险占优”</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>相关策略、相关均衡和相关理性化</p>
+<ul>
+<li><p><strong>相关策略：</strong></p>
+<ul>
+<li>$G={N,(S_i),(u_i)}$，参与者集合，纯策略组合，相关策略 $\alpha$ 就是定义在纯策略集的笛卡尔积上的一个概率分布。</li>
+</ul>
+</li>
+<li><p><strong>相关均衡</strong></p>
+<ul>
+<li>玩家可以选择遵循相关策略 $\alpha$ ，也可以不选择。</li>
+<li>当违背约定的期望收益不如遵守约定时，所有玩家就都会遵守约定了，这就是相关均衡。</li>
+</ul>
+</li>
+<li><p><strong>相关均衡的计算</strong></p>
+<ul>
+<li>线性规划，增加一些限制，即背离了均衡效用小于零。</li>
+</ul>
+</li>
+<li><p><strong>相关理性化</strong></p>
+<ul>
+<li>在允许各个对手采取相关策略的情况下，可理性化称为<strong>相关理性化</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="完全信息动态博弈"><a href="#完全信息动态博弈" class="headerlink" title="完全信息动态博弈"></a>完全信息动态博弈</h4><ul>
+<li><p>行为策略均衡</p>
+<ul>
+<li><p>混合策略均衡的多重性</p>
+<ul>
+<li>策略性表述：针对不同信息集给结论</li>
+<li>多代理人表述：假装有多个人在选</li>
+</ul>
+</li>
+<li><p><strong>行为策略</strong> <code>(0.5[a1]+0.5[b1], [y1])</code></p>
+</li>
+<li><strong>混合策略</strong> <code>0.5[a1y1]+0.5[b1z1]</code>, <code>0.5[a1y1]+0.5[b1y1]</code></li>
+<li><strong>行为上等价：</strong>当且仅当两个混合策略具有相同的行为表示时，称这两 个混合策略是行为上等价的。</li>
+<li><strong>收益等价：</strong> 如果无论其他参与者采取怎样的混合策略，博弈的每个参与者的期望收益都不依赖于参与者 i 采取混合策略 A 或混合策略 B，就称参与者 i 的混合策略 A 与 B 是收益等价的。</li>
+<li>在一个具有完美回忆的博弈中，两个行为上等价的混合策略 也一定是收益等价的。</li>
+<li><strong>行为策略均衡：</strong>为了避免多重均衡和无意义均衡这两个问题，对于扩展型博弈，我们一般考虑行为策略均衡，它被定义为其多代理人表示的任一均衡 $σ$ ，并要求 $σ$ 的混合表示同时也是其策略型正规表示的一个均衡。<ul>
+<li>求法：<strong>首先将它转化为策略型表述，然后求出一个混合策略纳什均衡，再以行为策略表示之。第一步求出的行为策略组合就是一个行为 策略均衡</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>威胁的可信性与<strong>子博弈精炼均衡</strong></p>
+<ul>
+<li><p>一种威胁所规定的行动在事前看来是最优的，但事后看并不 是参与者的最优选择，这种威胁就是不可信的，含有这种威 胁的策略就不是一个合理的策略。</p>
+</li>
+<li><p>子博弈要求</p>
+<ol>
+<li>始于博弈树中一个单节信息集，但不包括博弈的根节点</li>
+<li>包含该决策节点之后所有的决策节点和终节点；</li>
+<li>没有分割任何信息集。</li>
+</ol>
+</li>
+<li><p><strong>子博弈精炼均衡</strong>：每一个子博弈都是纳什均衡，<strong>排除了不可置信的威胁。</strong></p>
+</li>
+<li>一个解指一条均衡路径。</li>
+</ul>
+</li>
+<li><p>一次偏离性质与逆向归纳法</p>
+<ul>
+<li>无限连续多阶段可观察行动博弈</li>
+</ul>
+</li>
+<li><p>谈判专题</p>
+</li>
+<li>正向归纳法</li>
+<li>重复博弈</li>
+<li>博弈学习理论与均衡的稳定性</li>
+</ul>
+<h4 id="不完全信息静态博弈"><a href="#不完全信息静态博弈" class="headerlink" title="不完全信息静态博弈"></a>不完全信息静态博弈</h4><ul>
+<li></li>
+</ul>
+<h4 id="不完全信息动态博弈"><a href="#不完全信息动态博弈" class="headerlink" title="不完全信息动态博弈"></a>不完全信息动态博弈</h4><p>**会考</p>
 
       
     </div>
@@ -402,7 +554,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://emoairx.github.io/blog/2022/09/19/diary/diary220919/" title="220919" target="_blank" rel="external">http://emoairx.github.io/blog/2022/09/19/diary/diary220919/</a>
+      <a href="http://emoairx.github.io/blog/2023/12/20/last%20game/" title="彻底躺平的一学期与最后一周的博弈论" target="_blank" rel="external">http://emoairx.github.io/blog/2023/12/20/last game/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -448,13 +600,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/blog/2022/09/24/diary/diary220924/" title="220924"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/blog/2022/09/12/diary/diary220912/" title="220912"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/blog/2023/12/20/diary/diary231220/" title="231220"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
