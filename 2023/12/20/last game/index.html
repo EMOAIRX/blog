@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://emoairx.github.io/blog/2023/12/20/last%20game/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20231221152305603.png">
 <meta property="og:image" content="https://bbs-pic.datacourse.cn/forum/201212/02/1233576osgi5sgsvn2z2ss.png">
 <meta property="article:published_time" content="2023-12-20T12:41:42.041Z">
-<meta property="article:modified_time" content="2023-12-23T07:55:12.701Z">
+<meta property="article:modified_time" content="2023-12-24T15:53:43.210Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="博弈论">
@@ -139,6 +139,16 @@
             <i class="icon icon-cup-fill"></i>
             
             <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
           </a>
         </li>
         
@@ -586,15 +596,66 @@
 <li><p>博弈的分析</p>
 <ul>
 <li><strong>事前占优与事中占有</strong></li>
-<li></li>
+</ul>
+</li>
+<li><p>贝叶斯均衡</p>
+<ul>
+<li><strong>对于可能接收到的每一个信号，他都要选择一个行动</strong><ul>
+<li>可以将原来不完全信息静态博弈的纳什均衡定义为多代理人表述的完全信息静态博弈的纳什均衡</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p><del>拍卖</del></p>
 </li>
 <li><p>机制设计与显示原理</p>
+<ul>
+<li><p><strong>直接机制</strong>：是指每个参与者的行动空间就是其类型空间的静态贝叶斯博弈，即让参与者报告其类型。</p>
+</li>
+<li><p><strong>间接机制</strong>：需要从参与者所选择的行动去推断其类型。</p>
+</li>
+<li><p><strong>显示原理</strong>：任何贝叶斯博弈的任何纳什均衡，都可以重新表示为一个激励相容的直接机制。</p>
+<ul>
+<li><p>所谓<strong>重新表示</strong>，是指对参与者的任何可能的类型组合， 新的均衡下参与者的行动和收益与旧的均衡下完全相同。</p>
+</li>
+<li><p>所谓激励相容，是指每个参与者讲真话构成一个贝叶斯纳什均衡。</p>
+</li>
+<li><blockquote>
+<p>tips:机制设计在小铁的算法博弈论里说得挺好的，VCG拍卖等等。可惜我没有两门课都没有好好学，小铁的课直接退了。</p>
+</blockquote>
 </li>
 </ul>
-<h4 id="不完全信息动态博弈"><a href="#不完全信息动态博弈" class="headerlink" title="不完全信息动态博弈"></a>不完全信息动态博弈</h4><p>**会考</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="不完全信息动态博弈"><a href="#不完全信息动态博弈" class="headerlink" title="不完全信息动态博弈"></a>不完全信息动态博弈</h4><ul>
+<li>子博弈概念的扩展<ul>
+<li>使用“后续博弈(continuation game)”来代替“子博弈”的概念。</li>
+<li>两类信息集：<ul>
+<li>正的概率到达</li>
+<li>根据均衡策略肯定不会到达（均衡路径之外的信息集）</li>
+<li><code>均衡</code>：纳什均衡、子博弈精炼均衡以及精炼贝叶斯均衡</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>精炼</strong>贝叶斯均衡<ol>
+<li>在<strong>每一个信息集之中</strong>，应该行动的参与者必须对博弈进行到该信息集之中的<strong>哪一个节点</strong>有一个推断。<strong>belief</strong></li>
+<li>必须满足<strong>序贯理性</strong>，现在的行为以及随后的策略在根据给定<strong>该参与者在此信息集中的 推断，以及其他参与者随后的策略</strong>(随后可能的策略)，必须是<strong>最优反应</strong>。</li>
+<li>在处于均衡路径之上的信息集之中，推断由贝叶斯法则及参与者的均衡策略给出。</li>
+<li>对处于均衡路径之外的信息集，推断由贝叶斯法则以及可能情况下的参与者的均衡策略给定。</li>
+</ol>
+</li>
+<li><del>序贯均衡</del><ul>
+<li>借鉴完美均衡中的颤抖思想，使得每个参与者在每个信息集的每个行动都以正概率被选择，进而依据贝叶斯法则生成推断（取极限）组合，并要求各参与者的行为策略在该推断组合下满足序贯理性的要求。该行为策略组合和推断组合称为一个序贯均衡。</li>
+</ul>
+</li>
+<li>精炼贝叶斯均衡的再精炼<br>- </li>
+<li>信号博弈与信息传递</li>
+<li>非理性与声誉</li>
+</ul>
+<p>**会考</p>
 
       
     </div>
@@ -762,5 +823,20 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
