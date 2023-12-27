@@ -18,17 +18,17 @@
   
   
   <title>彻底躺平的一学期与最后一周的博弈论 | emoairx</title>
-  <meta name="description" content="key：知识运算，重复博弈 \def\sube&amp;#123;\subseteq&amp;#125; $\def\sube{\subseteq}$ 主要知识点均衡的求法 划线法求纯策略均衡 重复剔除严格劣策略 利用“充要条件”求混合策略均衡 行为策略均衡的求法 逆向归纳法求子博弈精炼均衡 贝叶斯均衡的求法 利用“四个要求”求精炼贝叶斯均衡 序贯均衡的求法 精炼贝叶斯均衡的再精炼  策略的概念 纯策略  混合策">
+  <meta name="description" content="key：知识运算，重复博弈 \def\sube&amp;#123;\subseteq&amp;#125; $\def\sube{\subseteq}$ $\color{red}{一门政管开的通选课}$ 主要知识点均衡的求法 划线法求纯策略均衡 重复剔除严格劣策略 利用“充要条件”求混合策略均衡 行为策略均衡的求法 逆向归纳法求子博弈精炼均衡 贝叶斯均衡的求法 利用“四个要求”求精炼贝叶斯均衡 序贯均衡的求法 精炼">
 <meta property="og:type" content="article">
 <meta property="og:title" content="彻底躺平的一学期与最后一周的博弈论">
 <meta property="og:url" content="http://emoairx.github.io/blog/2023/12/20/last%20game/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="key：知识运算，重复博弈 \def\sube&amp;#123;\subseteq&amp;#125; $\def\sube{\subseteq}$ 主要知识点均衡的求法 划线法求纯策略均衡 重复剔除严格劣策略 利用“充要条件”求混合策略均衡 行为策略均衡的求法 逆向归纳法求子博弈精炼均衡 贝叶斯均衡的求法 利用“四个要求”求精炼贝叶斯均衡 序贯均衡的求法 精炼贝叶斯均衡的再精炼  策略的概念 纯策略  混合策">
+<meta property="og:description" content="key：知识运算，重复博弈 \def\sube&amp;#123;\subseteq&amp;#125; $\def\sube{\subseteq}$ $\color{red}{一门政管开的通选课}$ 主要知识点均衡的求法 划线法求纯策略均衡 重复剔除严格劣策略 利用“充要条件”求混合策略均衡 行为策略均衡的求法 逆向归纳法求子博弈精炼均衡 贝叶斯均衡的求法 利用“四个要求”求精炼贝叶斯均衡 序贯均衡的求法 精炼">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://emoairx.github.io/blog/2023/12/20/last%20game/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20231221152305603.png">
 <meta property="og:image" content="https://bbs-pic.datacourse.cn/forum/201212/02/1233576osgi5sgsvn2z2ss.png">
 <meta property="article:published_time" content="2023-12-20T12:41:42.041Z">
-<meta property="article:modified_time" content="2023-12-26T12:48:26.840Z">
+<meta property="article:modified_time" content="2023-12-27T09:09:13.596Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="博弈论">
@@ -371,6 +371,7 @@
       
         <p>key：知识运算，重复博弈</p>
 <p><code>\def\sube&#123;\subseteq&#125;</code> $\def\sube{\subseteq}$</p>
+<p>$\color{red}{一门政管开的通选课}$</p>
 <h3 id="主要知识点"><a href="#主要知识点" class="headerlink" title="主要知识点"></a>主要知识点</h3><h5 id="均衡的求法"><a href="#均衡的求法" class="headerlink" title="均衡的求法"></a>均衡的求法</h5><ul>
 <li>划线法求纯策略均衡</li>
 <li>重复剔除严格劣策略</li>
@@ -666,11 +667,45 @@
 <li><p>非理性与声誉</p>
 <ul>
 <li>KMRW（1982）的模型表明，如果参与者对其他参与者的收益函数和策略空间的信息不完全，即使博弈重复的次数是有限的，人们也有积极性建立一个合作的声誉 (reputation)，合作会出现。</li>
-<li>单方面不完全信息可能会导致</li>
+<li>单方面不完全信息可能会导致合作的出现。</li>
 </ul>
 </li>
 </ul>
-<p>**会考</p>
+<hr>
+<ul>
+<li>一些没用的碎碎念</li>
+<li></li>
+<li>博弈论的基本假定。参与者是理性的，博弈的结构是参与者的共同知识，每个参与者都可以看到博弈树。所有参与者具有完美回忆。</li>
+<li>如果这是一个Nash Equilibrium，每个人都没有偏离均衡的动机。partial是零或者考虑边界情况。</li>
+<li>对于可能纯策略和混合策略，分开讨论，谁纯策略，谁混合策略，首先剔除严格劣策略。</li>
+<li>对于两人的动态博弈，行为策略表示类似$(([R] , 1/3[R]+2/3[F]) , 2/3[M]+1/3[P])$ ，这个表示在其中一种信息集的情况下选R，一种情况混合策略，对于参与者二则信息集不会分割。三人也类似。首先可以考虑混合策略表示，然后把混合策略用行为策略表示。</li>
+<li>同样可以先求出策略性表述，然后转化成行为策略。行为策略也可以看成是不同信息集下逐步的选择。</li>
+<li><strong>如果用逆向归纳法求（纯策略）子博弈精炼纳什均衡</strong>的话，行为表述不能省略，子博弈要求把所有的博弈内容都输出来，也就是把子树的结果也应该输出。</li>
+<li>多阶段博弈如果一个阶段有唯一的纳什均衡那就是它了（？）</li>
+<li>寡头垄断企业效用最大化的话，分阶段考虑，可以用逆向归纳法。（其实最后一次作业最后一题也是逆向归纳法应该）首先考虑最后一个阶段单点信息集的最大效用。</li>
+<li><strong>重复博弈</strong>有一个贴现因子 $\delta$，可以考虑一直不合作的效用，在第 $k$ 个阶段开始合作的效用。【冷酷策略】是说如果对方某次选择了不合作，则永远不合作。对于无限次重复博弈其实是能得到一个不等式</li>
+<li>考虑子博弈精炼纳什均衡，一定先考虑逆向归纳法？（对于完全信息）。注意求导是根据原式求的。</li>
+<li>对于不完全信息博弈可以搞知识的运算，你处于某个信息集中需要满足这个信息集的所有单点都是你可能处于的位置。这是知识算子 $K$ 的定义。</li>
+<li>对于进入市场和不进入市场的问题， 一旦不进入市场后期也不会进入市场了。</li>
+<li>如果某个人的效用函数可以不是随机变量构成的话，其实是可以求导进行效用最大化的。如果是随机变量的话，就是让期望效用最大化。逐步消除变量，让变量越少越好。</li>
+<li>关于不完全信息动态，策略型表示纯策略划线可以搞。</li>
+<li><strong>精炼贝叶斯均衡</strong>是关于信念的。</li>
+<li><strong>策略… 与 信念 … 可以作为精炼贝叶斯均衡</strong>。</li>
+<li>具体计算方法是<ul>
+<li>考虑信念的范围，根据信念分类讨论。</li>
+<li>根据策略分类讨论，比如分离均衡与混同均衡。</li>
+</ul>
+</li>
+<li>精炼贝叶斯均的再均衡与精炼贝叶斯均衡有一点差别，差别是：<ul>
+<li>精炼贝叶斯均衡排除了参与者 $i$ 选择的策略包含始于信息集的严格列策略的可能性，要令参与者 $j$ 相信参与者 $i$ 选择这样的策略就是不合理的。</li>
+</ul>
+</li>
+<li>纳什均衡：没有一个参与者选择严格劣策略</li>
+<li>子博弈精炼纳什均衡：任何一个子博弈参与者也不会采取严格劣策略。</li>
+<li>推广到后续博弈的情况：任何一个后续博弈中一个参与者不会采取严格劣策略。</li>
+<li>均衡劣信号就是你最好也选不上这个。<strong>直观标准</strong>就是均衡劣信号不会被选。</li>
+<li>精炼贝叶斯均衡要求你的信念一定要是合理的。</li>
+</ul>
 
       
     </div>
@@ -838,5 +873,20 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
