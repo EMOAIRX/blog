@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://picx.zhimg.com/v2-800078f4594d1b2ec39af29f4179ac16_720w.jpg?source=d16d100b">
 <meta property="article:published_time" content="2023-12-26T07:12:27.592Z">
-<meta property="article:modified_time" content="2024-01-04T06:27:37.086Z">
+<meta property="article:modified_time" content="2024-01-09T05:11:03.241Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="TCS基础">
@@ -385,10 +385,50 @@
 <li><p>二教316考试</p>
 </li>
 </ul>
-<h4 id="归约"><a href="#归约" class="headerlink" title="归约"></a>归约</h4><ul>
-<li><h4 id="时间复杂性"><a href="#时间复杂性" class="headerlink" title="时间复杂性"></a>时间复杂性</h4></li>
-<li><p>$TIME(t(n)) = {L \mid 某个O(t(n))时间的\underline{单带}DTM判定语言L }$</p>
+<h3 id="复杂性类"><a href="#复杂性类" class="headerlink" title="复杂性类"></a>复杂性类</h3><ul>
+<li><script type="math/tex; mode=display">
+\rm L \sube NL \sube NC \sube P \sube NP \cap coNP \sube NP \cup coNP\sube PH\\
+\rm PH\sube PSPACE \sube EXP \sube EXPSPACE\\
+\\
+\rm P \sube P/poly\\
+\rm NC^1\sube L \sube NL \sube NC^2 \sube NC\sube P \\
+\\
+\rm NSPACE(f(n))\sube SPACE(f^2(n))\\
+\rm PSPACE = NPSPACE\\
+\rm NSPACE(f(n)) = coNSPACE(f(n)),f(n)\ge \log n\\
+\rm NL=coNL(\overline{PATH}\in NL)\\
+\\
+\rm SAT:NP-C\\
+\rm PATH:NL-C\\
+\rm TAUT:coNP-C\\
+\rm CIRCUIT\_VALUE:P-C\\
+\rm TQBF:PSPACE-C\\
+\rm EQ_{REX \uparrow}:EXPSPACE-C</script></li>
+<li><p><strong>递归定理：你可以递归</strong></p>
 </li>
+<li></li>
+</ul>
+<h4 id="归约"><a href="#归约" class="headerlink" title="归约"></a>归约</h4><ul>
+<li><p><strong>泵引理，正则语言版</strong>：</p>
+<ul>
+<li>存在常数 p，如果 $s \in A , |s| \ge p $ 则 $s = xyz$ 满足以下条件</li>
+<li>$\forall i \ge 0,xy^iz \in A$</li>
+<li>$|y| &gt; 0$</li>
+<li>$|xy| \le p$</li>
+</ul>
+</li>
+<li><p><strong>下推自动机PDA</strong> 与 CFG 等价，这个语言是CFL。</p>
+</li>
+<li><strong>泵引理，上下文无关语言版</strong><ul>
+<li>存在常数 p，如果 $s \in A , |s| \ge p$ 则 $s=uvxyz$，满足</li>
+<li>$\forall i \ge 0,uv^ixy^iz \in A$</li>
+<li>$|vy| &gt; 0$</li>
+<li>$|vxy| \le p$</li>
+</ul>
+</li>
+</ul>
+<h4 id="时间复杂性"><a href="#时间复杂性" class="headerlink" title="时间复杂性"></a>时间复杂性</h4><ul>
+<li>$TIME(t(n)) = {L \mid 某个O(t(n))时间的\underline{单带}DTM判定语言L }$</li>
 <li>时间复杂性与模型有关，单带与多带是平方关系，非确定性和确定性是指数关系。</li>
 <li><strong>定理7.8</strong> 设函数 $t(n) \ge n$ ，则每个 $t(n)$ 时间多带 $TM$ 都与某个 $O(t^2(n))$ 时间单带 $TM$ 等价。<ul>
 <li>每个带子活跃部分长度是 $t(n)$，模拟一次移动也就是 $O(t(n))$ 步的。（不够了扩展）</li>
@@ -759,10 +799,80 @@
 <ul>
 <li>$\rm EQ_{REX} \in PSPACE$</li>
 <li>$\rm EQ_{REX\uparrow} \not \in P$</li>
-<li><strong>定理9.15</strong> $\rm EQ_{REX \uparrow}$ 是 EXPSPACE完全的。</li>
-<li></li>
+<li><strong>定理9.15</strong> $\rm EQ_{REX \uparrow}$ 是 EXPSPACE完全的。<ul>
+<li>证明方法和前面类似，就是说所有的EXPSPACE能搞的语言，也就是有一个计算历史。就是说 $w \in A$ 等价于图灵机 M 在输入 $w$ 上无拒绝计算历史。</li>
 </ul>
-<h4 id="复杂性理论高级专题"><a href="#复杂性理论高级专题" class="headerlink" title="复杂性理论高级专题"></a>复杂性理论高级专题</h4><h5 id="交错式-1"><a href="#交错式-1" class="headerlink" title="交错式"></a>交错式</h5><h5 id="概率算法"><a href="#概率算法" class="headerlink" title="概率算法"></a>概率算法</h5><h5 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h5><h5 id="交互式证明"><a href="#交互式证明" class="headerlink" title="交互式证明"></a>交互式证明</h5><h5 id="主要是完全问题，NP完全，NL完全，PSPACE完全"><a href="#主要是完全问题，NP完全，NL完全，PSPACE完全" class="headerlink" title="主要是完全问题，NP完全，NL完全，PSPACE完全"></a>主要是完全问题，NP完全，NL完全，PSPACE完全</h5><p><strong>子归约性，复杂度性的包含关系，谁包含谁，出判断题的话就是：对,错,不知道</strong></p>
+</li>
+</ul>
+<h5 id="相对化"><a href="#相对化" class="headerlink" title="相对化"></a>相对化</h5><ul>
+<li>Oracle Turing Machine</li>
+<li>$\rm P^{SAT} , P^{NP} …$，若 $\rm A$ 是 $\rm D$ 完全的，$\rm C^D = C^A$</li>
+<li>$\rm NP \subseteq P^{SAT} , coNP \subseteq P^{SAT}$ </li>
+<li><strong>非极小化布尔公式</strong> 属于 $\rm NP^{SAT}$ ，因为可以非确定性地选择是不是有更短的公式。</li>
+<li><strong>定理9.19</strong> $\rm \exist A,P^A \sub NP^A;\exist B,P^B = NP^B$<ul>
+<li>对于 B，设 B=TQBF，则全都是PSAPCE。</li>
+<li>对于 A，增量地构造一种语言 A，让 NP^A 包含了 P^A 不包含的内容。</li>
+<li><strong>完蛋，这个好难</strong></li>
+</ul>
+</li>
+</ul>
+<p>$\color{red} \text{这里开始基本都是瞎写的内容，也即不适合直接观看，妈的怎么这么摆，感觉挂科也不是不可能啊}$</p>
+<h5 id="电路，门"><a href="#电路，门" class="headerlink" title="电路，门"></a>电路，门</h5><ul>
+<li>Boolean Circuit: not,and,or</li>
+<li>Arithmetic Circuit: +-*/,mod,threshold</li>
+<li>电路族C是无穷个电路，$\rm C=(C_0,C_1…)$ ，其中 $C_n$ 有 n 个输入变量，如果对于每个字符串 $w$ 有 $w \in A \iff C_n(w)=1 , |w| = n$ 则称 $C$ 在 (0,1) 上判定 A。</li>
+<li>电路的规模是 C 中的门数，短路族的规模复杂度是函数 f(n)=Cn，$\rm SIZE(f(n))$ 是那些有规模为 $f(n)$ 的判定电路构成的集族。</li>
+<li>$\rm P/poly = PSIZE=\cup_kSIZE(n^k)$</li>
+<li>电路的深度 <strong>depth</strong> 是输入到输出的最长路径长度。电路族 $\rm (C_0,C_1… C_n…)$ 的深度复杂性是函数 d:N-&gt;N, d(n)=Cn。 $\rm DEPTH(f(n))$ 是那些有深度复杂性为 $f(n)$ 的判定电路构成的语言。</li>
+<li>同样定义了 规模-深度 联合复杂度 $\rm SIZE_DEPTH(s(n),d(n))$</li>
+<li>例如 $\rm parity_n \in SIZE(O(n))$</li>
+<li>nonuniformity 非一致性<ul>
+<li>一族电路判定一个语言，$C_n$ 只判定长度为 $n$ 的有穷的输入。电路是非一致性的计算模型。</li>
+<li>一个图灵机则判定一个语言，图灵机是一致性的计算模型。</li>
+</ul>
+</li>
+<li>所以给图灵机额外信息，称为advice。 <a target="_blank" rel="noopener" href="https://people.csail.mit.edu/madhu/ST05/scribe/lect03.pdf">lect03.pdf (mit.edu)</a></li>
+<li>用电路模拟图灵机：$\rm TIME(t(n)) \sube SIZE(O(t^2(n)))$<ul>
+<li>每个单元有 $k$ 盏灯代表一个符号，一个单元只能有一盏灯是开着的。</li>
+<li>边界上的单元只受上一行两个单元的影响。</li>
+</ul>
+</li>
+<li>电路可满足性问题：给定一个布尔电路，确定是否存在某个输入使得这个电路输出1.</li>
+<li>CIRCUIT-SAT是 NP完全 的</li>
+<li>3-SAT 是 NP完全的的一个证明方法是，用3cnf模拟电路。即把与或非门用3sat来归约。</li>
+</ul>
+<h5 id="Karp-Lipton定理"><a href="#Karp-Lipton定理" class="headerlink" title="Karp-Lipton定理"></a>Karp-Lipton定理</h5><ul>
+<li>$\rm NP\sube P/poly \implies PH=\Sigma_2^p$</li>
+<li>假设PH不塌方，则NP完全问题不能用多项式规模的电路计算。</li>
+</ul>
+<h5 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h5><ul>
+<li>ATM,NC,PRAM</li>
+<li>PRAM是指共享存储。</li>
+<li>$\rm NC^k$ 是 poly规模，$\rm O(\log ^k n)$ 深度，对数空间一致性条件。</li>
+<li>Nick’s Class，窄电路。 $\rm NC^1 \sube L \sube NL \sube NC^2 \sube NC \sube P$ </li>
+<li>$\rm CIRCUIT_VALUE=CVP$，布尔电路C在输入x下输出1。 给定一个布尔电路和一个输入，确定这个电路在这个输入下的输出。</li>
+<li>这是P完全的。</li>
+</ul>
+<h4 id="复杂性理论高级专题"><a href="#复杂性理论高级专题" class="headerlink" title="复杂性理论高级专题"></a>复杂性理论高级专题</h4><h5 id="交错式-1"><a href="#交错式-1" class="headerlink" title="交错式"></a>交错式</h5><h5 id="概率算法"><a href="#概率算法" class="headerlink" title="概率算法"></a>概率算法</h5><ul>
+<li>【其实参见kyq随机算法】</li>
+<li>多项式恒等问题，多项式零问题，</li>
+<li>$\rm EQ_{ROBP}$ 问两个只读一次的分支程序是不是等价的。</li>
+<li>概率图灵机（概率TM），</li>
+<li><strong>PP</strong> 多项式运行时间，错误概率为0.5</li>
+<li><strong>BPP</strong> 多项式运行时间，错误概率小于0.5，双边错误</li>
+<li><strong>RP</strong> 多项式运行时间，错误概率小于0.5，单边错误，可能弃真</li>
+<li><strong>coRP</strong> 多项式运行时间，错误概率小于0.5，单边错误，可能取伪</li>
+<li><strong>ZPP</strong> 期望多项式运行时间，错误概率伪0，或者允许 0,1,? 三种输出。</li>
+<li>MonteCarlo: BPP,RP,coRP，错误有界最坏多项式</li>
+<li>LasVegas: ZPP，零错误期望运行时间</li>
+<li>$\rm BPP \sube P/poly = PSIZE$ ，方法是 $2^n2^{-poly(n)}&lt;1$，所以可以存在一个随机串对所有长度为n的输入给出正确答案，固化到电路中即可。</li>
+<li>KL定理说如果PH不塌则随机算法不能解决NP完全问题。</li>
+<li>如何判断两张图非同构，随机选一张图，让对方输出同构的图，如果非同构概率为1，同构概率为1/2</li>
+</ul>
+<h5 id="交互式证明"><a href="#交互式证明" class="headerlink" title="交互式证明"></a>交互式证明</h5><ul>
+<li>AM,MA,IP</li>
+</ul>
+<h5 id="主要是完全问题，NP完全，NL完全，PSPACE完全"><a href="#主要是完全问题，NP完全，NL完全，PSPACE完全" class="headerlink" title="主要是完全问题，NP完全，NL完全，PSPACE完全"></a>主要是完全问题，NP完全，NL完全，PSPACE完全</h5><p><strong>子归约性，复杂度性的包含关系，谁包含谁，出判断题的话就是：对,错,不知道</strong></p>
 
       
     </div>
@@ -930,20 +1040,5 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
