@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>从零开始学的lds信概统 | emoairx</title>
+  <meta name="description" content="明天期中考试，一节课没上，妈的，我以为下周考试的。 还好是lds教授的，但还是有点寄。 概率论：从数量规律，统计规律角度对客观世界随机现象展开研究。概率是随机事件出现可能性的度量。概率论是数理统计学的基础。 随机事件与概率加法原理，乘法原理，排列，组合 概率：统计定义（频率在某个附近摆动）；主观定义（发生的可能性的个人主观信念）；古典定义（古典概型中，A中基本事件个数除以样本空间基本事件个数）；几">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始学的lds信概统">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/04/11/ptlds-zero/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="明天期中考试，一节课没上，妈的，我以为下周考试的。 还好是lds教授的，但还是有点寄。 概率论：从数量规律，统计规律角度对客观世界随机现象展开研究。概率是随机事件出现可能性的度量。概率论是数理统计学的基础。 随机事件与概率加法原理，乘法原理，排列，组合 概率：统计定义（频率在某个附近摆动）；主观定义（发生的可能性的个人主观信念）；古典定义（古典概型中，A中基本事件个数除以样本空间基本事件个数）；几">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-11T08:01:50.771Z">
+<meta property="article:modified_time" content="2024-04-11T16:25:00.618Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/04/11/ptlds-zero/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">79</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/11/ptlds-zero/" class="title">从零开始学的lds信概统</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-11T08:01:50.771Z" itemprop="datePublished">2024-04-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/11/RLnote/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-11T06:11:09.298Z" itemprop="datePublished">2024-04-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/02/28/diary/diary240325/" class="title">240325</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-02-28T05:45:06.117Z" itemprop="datePublished">2024-02-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/02/10/diary/diary240210/" class="title">240210 - Spring Festival</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-02-09T16:46:07.374Z" itemprop="datePublished">2024-02-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/01/20/to%20Hangzhou,2023/" class="title">去回乡的火车上，一些2023的胡说八道</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-20T13:55:57.735Z" itemprop="datePublished">2024-01-20</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-ptlds-zero" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从零开始学的lds信概统
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/04/11/ptlds-zero/" class="article-date">
+	  <time datetime="2024-04-11T08:01:50.771Z" itemprop="datePublished">2024-04-11</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/04/11/ptlds-zero/" class="leancloud_visitors"  data-flag-title="从零开始学的lds信概统">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/04/11/ptlds-zero/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>明天期中考试，一节课没上，妈的，我以为下周考试的。</p>
+<p>还好是lds教授的，但还是有点寄。</p>
+<p>概率论：从数量规律，统计规律角度对客观世界随机现象展开研究。<br>概率是随机事件出现可能性的度量。概率论是数理统计学的基础。</p>
+<h3 id="随机事件与概率"><a href="#随机事件与概率" class="headerlink" title="随机事件与概率"></a>随机事件与概率</h3><p><del>加法原理，乘法原理，排列，组合</del></p>
+<p>概率：统计定义（频率在某个附近摆动）；主观定义（发生的可能性的个人主观信念）；古典定义（古典概型中，A中基本事件个数除以样本空间基本事件个数）；几何定义（样本空间为有限区域 $\Omega$ ，测度的比值）【概率为零不是不可能事件，概率为1不是必然事件】</p>
+<p><strong>Kolmogorov的定义</strong></p>
+<p>$\Omega$ 为非空集合，称为样本空间，$2^{\Omega}$ 是它的幂集，有 $\mathcal F \sube 2^{\Omega}$，如果 $\Omega \in \mathcal F$，任何 $A \in \mathcal F$ 满足补和无穷并都封闭，那么这个 $\mathcal F$ 称为 $\Omega$ 上的 $\sigma$ 代数。</p>
+<blockquote>
+<p>其实值得好好想一想，目前大概理解成集合的集合就行了。</p>
+</blockquote>
+<p>在 $\sigma$ 代数上定义测度（一个实值函数），满足非负性 $0\le P(A)\le 1$，归一性 $P(\Omega)=1$，完全可加性（互不相交的 $A_i$ 的函数值加起来就等于这些并起来的函数值）。</p>
+<p>$P$ 为 $(\Omega,\mathcal F)$ 上的<strong>概率测度</strong>，简称概率； $A$ 为<strong>随机事件</strong>，简称事件；$(\Omega,\mathcal F,P)$ 为<strong>概率空间</strong>。</p>
+<p>对于有限/无穷可列的，通常取 $\mathcal F= 2^{\Omega}$，有限概率空间和可列概率空间叫做离散概率空间。</p>
+<p><strong>条件概率</strong> ： $P(A\mid B)=P(AB)/P(B)$，要求 $P(B)&gt;0$</p>
+<p><strong>乘法公式</strong>：$P(AB)=P(A)P(B\mid A)$</p>
+<p><strong>全概率公式</strong>：$P(A)=\sum P(B_i) P(A \mid B_i)$ 对于一个划分</p>
+<p><strong>Bayes公式</strong>：$P(A\mid B)=\frac{P(A_k)P(B\mid A_k)}{P(B)}=\frac{P(A)P(B\mid A_k)}{\sum P(B \mid A_i) P(A_i)}$，条件是 $P(B)&gt;0$</p>
+<p><strong>先验概率</strong>：$P(B)$</p>
+<p><strong>后验概率</strong>：$P(B \mid A_i)$</p>
+<p><strong>事件独立性</strong>： $P(AB)=P(A)P(B)$</p>
+<p><strong>相互独立</strong>： $P(ABC)=P(A)P(B)P(C)$ <strong>且</strong> $P(AB)=P(A)P(B),P(AC)=P(A)P(C),P(BC)=P(B)P(C)$，一定是且的关系。</p>
+<p>二项概率公式 $P_n(k)=C_n^k p^kq^{n-k}$，</p>
+<p>在独立试验序列概型中，如果每次试验只有两种可能，则称为 <strong>Bernoulli</strong>  伯努利 试验，</p>
+<p>在Bernoulli中，事件A首次 $Q(k)=q^{k-1}p, k=1,2,…$ 的概率称为<strong>几何分布</strong></p>
+<p>事件 $A$ 在第 $k$ 次试验时第 $r$ 次发生的概率 $S(k,r)=C_{k-1}^{r-1}p^rq^{k-r}$ 称为 <strong>Pascal*分布 </strong></p>
+<hr>
+<h3 id="随机变量及其概率分布"><a href="#随机变量及其概率分布" class="headerlink" title="随机变量及其概率分布"></a>随机变量及其概率分布</h3><p><strong>随机变量</strong>：概率空间 $(\Omega,\mathcal F,P)$ 中，定义单值函数 $X:\Omega \to R$，若 $\forall x \in R$，均有 $\set{\omega,\mid X(\omega) \le x} \in \mathcal F$，则称 $X$ 是随机变量。</p>
+<p>其中随机事件 $\set{\omega \mid X(\omega) \le x}$ 是随机事件，常记作 $\set{X \le x}$</p>
+<blockquote>
+<p>直观理解为一个单值函数，同样可以分为离散型随机变量和连续型随机变量</p>
+</blockquote>
+<p>对随机变量 $X$ 概率特性的刻画包括：</p>
+<p><strong>分布函数</strong> $F(x)=P(X \le x) , -\infty &lt; x &lt; +\infty$ </p>
+<ul>
+<li><p>满足：单调不减，<strong>右连续</strong>，负无穷处极限为零，正无穷处极限为一</p>
+</li>
+<li><p>$P(X=a)=F(a)-F(a-0)$</p>
+</li>
+</ul>
+<h4 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h4><p><strong>概率分布</strong>/<strong>分布律</strong>（离散型随机变量）</p>
+<ul>
+<li>$p_k=P(X=x_k),k=1,2…$</li>
+<li>其分布函数是分段阶梯函数。非负性，归一性，第一类跳跃间断点。</li>
+</ul>
+<p><strong>两点分布</strong>，伯努利分布，01分布</p>
+<p><strong>二项分布</strong>：多重Bernoulli试验中，$P_n(k)=C_n^kp^k(1-p)^{n-k}$ 称 $X$ 服从参数为 n,p 的二项分布 $X \sim B(n,p)$</p>
+<ul>
+<li><blockquote>
+<p>试验多次重复，结果与其他独立，只有两个可能</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>几何分布</strong>：$q^{k-1}p$ </p>
+<p><strong>Pascal分布</strong>：事件 $A$ 第 $r$ 次发生时的试验次数 $X$， $P(X=k)=C_{k-1}^{r-1}p^rq^{k-r}$, $q=1-p$ </p>
+<p><strong>超几何分布：</strong> 二项分布的不放回抽样，N很大时近似服从 $B(n,p)$，后者为前者极限分布。</p>
+<p><strong>泊松分布：</strong> $P(X=k)=e^{-\lambda} \frac{\lambda^k}{k!}$</p>
+<p>​    $X \sim \pi (\lambda),X \sim P(\lambda)$ </p>
+<blockquote>
+<p>这个好像考得有点多</p>
+</blockquote>
+<p>设 $X\sim B(n,p_n)$ $np_n=\lambda&gt;0$，则可以得到</p>
+<p>$\lim _{n \to \infty} C(n,k)p_n^k(1-p_n)^{n-k}=e^{-\lambda}\frac{\lambda^k}{k!}$，在 n 很大的时候 $\lambda$ 比较小。</p>
+<p>所以叫做 <strong>稀有事件在大量重复试验中出现的次数</strong>。</p>
+<blockquote>
+<p>关于最大值取值是否讨论整数，ppt里有描述了，如果不是整数直接就是下取整！因为我算的是 $P(X=k)/P(X=k-1)$，是整数的有两个可能</p>
+</blockquote>
+<hr>
+<h4 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h4><p>对于随机变量 $X$，如果存在一个非负可积函数  </p>
+<script type="math/tex; mode=display">
+F(x)=\int_{-\infty}^x f(t)\dd t,-\infty<x<\infty</script><p>则称 $X$ 是连续型随机变量，$f(x)$ 是它的<strong>概率密度函数</strong>，简称<strong>密度函数</strong>，<strong>概率密度</strong></p>
+<p>讨论连续型随机变量落入区间的概率，不讨论区间的开闭性。</p>
+<blockquote>
+<p>当然也存在不是连续的也不是离散的随机变量，连续型随机变量的概率密度也不唯一，但是无所谓就是有限个点可以任意改变，不加区别。</p>
+</blockquote>
+<p><strong>均匀分布</strong></p>
+<script type="math/tex; mode=display">
+f(x)=\cases{\frac{1}{b-a}&a<x<b\\0&others}</script><p>参数为 $a,b$ 的均匀分布，区间 $(a,b)$ 上的均匀分布，$X\sim U(a,b)$</p>
+<p><strong>指数分布</strong></p>
+<script type="math/tex; mode=display">
+f(x)=\cases{\lambda e^{-\lambda x}&$x\ge 0$\\0,&others}</script><p>称 $X$ 服从参数为 $\lambda$ 的指数分布，$X\sim E(\lambda)$，$\lambda&gt;0$ 为常数</p>
+<p>分布函数为 $F(x)=\cases{1-e^{-\lambda x}&amp;$x \ge 0$\0&amp;x&lt;0}$</p>
+<blockquote>
+<p>这个一定要是负的，大概是因为不能到无穷远的地方，总之要收敛。</p>
+<p>常作为各种寿命的 寿命 分布近似，元减寿命 $T$ 的分布 $P(T\le t+\Delta t \mid T&gt;t)=\lambda \Delta t+o(\Delta t)$</p>
+</blockquote>
+<p>满足<strong>无记忆性</strong>，$P(X&gt;s+t \mid X&gt;s)=P(X&gt;t)$</p>
+<ul>
+<li>指数分布的无记忆性是其所独有的。</li>
+</ul>
+<p><strong>正态分布</strong></p>
+<blockquote>
+<p>服从两点分布的相互独立随机变量序列求和，一种近似</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\Large f(x)=\frac{1}{\sqrt{2\pi}\sigma}e ^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><p>因为中心极限定理，生活中大量现象服从或服从正态分布。</p>
+<blockquote>
+<p>天文观测误差，二项分布近似计算，鸟蛋直径</p>
+</blockquote>
+<ul>
+<li>在 $x=\mu\pm \sigma$ 的地方，函数凹凸性改变。</li>
+</ul>
+<p><strong>标准正态分布</strong> $N(0,1)$，即 $\mu=0,\sigma^2=1$ 的正态分布，偶函数，其分布函数为</p>
+<script type="math/tex; mode=display">
+\Phi(x)=\frac{1}{\sqrt{2\pi}} \int_{-\infty}^xe^{-t^2/2}\dd t</script><ul>
+<li>$\Phi(-x)=1-\Phi(x)$</li>
+<li>一般的正态分布函数 $F(x)=\Phi(\frac{x-\mu}{\sigma})$</li>
+<li>$2\Phi(1)-1=0.6826,2\Phi(2)-1=0.9545,2\Phi(3)-1=0.9973$</li>
+</ul>
+<p><strong>$\Gamma$ 分布</strong></p>
+<script type="math/tex; mode=display">
+f(x)=\cases{
+\frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}&$x >0$\\
+0&$x\le 0$
+}</script><script type="math/tex; mode=display">
+X\sim\Gamma(\alpha,\beta)</script><script type="math/tex; mode=display">
+\Gamma(a+1)=a\Gamma(a),\Gamma(n+1)=n!,\Gamma(0.5)=\pi^{1/2},\Gamma(1)=1\\
+\Gamma(a)=\int_0^\infty x^{\alpha-1}e^{-x}\dd x</script><p>当 $\alpha=1$ 时候，是指数分布 $\Gamma(1,\beta)=E(\beta)$</p>
+<p>当 $\alpha=n/2,\beta=1/2$ 时，记作自由度为 $n$ 的 $\mathcal X^2$ 分布，$\Gamma(n/2,1/2)=\mathcal X^2(n)$</p>
+<hr>
+<h5 id="随机变量的函数及其分布"><a href="#随机变量的函数及其分布" class="headerlink" title="随机变量的函数及其分布"></a>随机变量的函数及其分布</h5><ul>
+<li>如 $Y=\frac{1}{2} m X^2$ 也是一个随机变量</li>
+</ul>
+<p>离散型随机变量的分布律法</p>
+<p>​    $P(X=x_k)=p_k$</p>
+<p>​    $P(Y=y<em>i)=\sum</em>{k,g(x_k)=y_i}p_k$</p>
+<p>连续型随机变量函数的分布</p>
+<ul>
+<li>分布函数法<ul>
+<li>例如 $P(Y\le y)=P(aX+b\le y)$</li>
+</ul>
+</li>
+<li>公式法<ul>
+<li>正态随机变量之线性变换仍服从正态分布</li>
+</ul>
+</li>
+</ul>
+<p>连续型随机变量函数的分布函数不一定是连续函数。</p>
+<h3 id="多维随机变量及其概率分布"><a href="#多维随机变量及其概率分布" class="headerlink" title="多维随机变量及其概率分布"></a>多维随机变量及其概率分布</h3><p>概率空间 $(\Omega,\mathcal F,P)$ 上的 $n$ 个随机变量 $X_1,X_2…X_n$，看作一个整体，$X=(X_1,X_2,…X_n)$，为 n 维随机变量。</p>
+<h5 id="联合分布函数"><a href="#联合分布函数" class="headerlink" title="联合分布函数"></a>联合分布函数</h5><ul>
+<li>$F(x_1,x_2,..x_n)=P(X_1\le x_1,X_2\le x_2,…X_n \le x_n)$</li>
+<li>对每个变量单调不减</li>
+</ul>
+<h5 id="边缘分布函数"><a href="#边缘分布函数" class="headerlink" title="边缘分布函数"></a>边缘分布函数</h5><ul>
+<li>任意 $k$ 个分量</li>
+</ul>
+<p>$F_X(x)=P(X\le x)=P(X\le x,Y&lt;+\infty)=F(x,\infty)$</p>
+<h5 id="二维连续型随机变量及其概率特性"><a href="#二维连续型随机变量及其概率特性" class="headerlink" title="二维连续型随机变量及其概率特性"></a>二维连续型随机变量及其概率特性</h5><p>对于二维来说，分量 $X,Y$ 的概率分布 $(X,Y)$ 关于 $X$ 和 $Y$ 的 边缘概率分布/边缘分布律</p>
+<p><strong>二维均匀分布</strong></p>
+<p><strong>二维正态分布</strong> $(X,Y)\sim N(\mu_1,\sigma_1^2;\mu_2,\sigma_2^2;\rho)$</p>
+<p><strong>n维正态分布</strong> </p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{(2\pi)^{n/2}|\Sigma|^{1/2}}\exp[-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)]</script><p>若相互独立，则边缘分布完全确定联合分布。</p>
+<p><strong>独立判断方法</strong>：</p>
+<ol>
+<li><p>连续性二维联合密度，$f(x,y)=r(x)g(y)$，非负可积函数。</p>
+</li>
+<li><p>$F(x,y)=R(x)G(y)$, $F_X(x)=R(x)/R(+\infty)$</p>
+</li>
+</ol>
+<hr>
+<p><strong>条件概率分布</strong></p>
+<p>对于离散的</p>
+<script type="math/tex; mode=display">
+P(Y=y_j\mid X=x_i) = \frac{P(X=x_i,Y=y_j)}{P(X=x_i)}</script><p>类似于乘法公式，全概率公式。</p>
+<p>对于连续的</p>
+<script type="math/tex; mode=display">
+P(X\le x\mid Y=y) = \lim_{\epsilon \to 0+} P(X\le x \mid y-\epsilon<Y<y+\epsilon)</script><p>对于 $f<em>Y(y)&gt;0$, $f</em>{X|Y}(x\mid y)=\frac{f(x,y)}{f(y)}$</p>
+<blockquote>
+<p>注意：条件变量变化范围 的写法 及出现位置 !</p>
+<p>注意：联合 ( 密度 ) 各变量的 变化范围及其融合</p>
+</blockquote>
+<script type="math/tex; mode=display">
+X\sim B(n_1,p),Y\sim B(n_2,p),Z=X+Y\sim B(n_1+n_2,p)</script><script type="math/tex; mode=display">
+X\sim P(\lambda_1),Y\sim P(\lambda_2),Z=X+Y\sim P(\lambda_1+\lambda_2)</script><p>正态随机变量，若 $(X,Y) \sim N(\mu_1,\sigma_1^2;\mu_2,\sigma_2^2;\rho)$, $X+Y \sim N(\mu_1+\mu_2,\sigma_1^2+2\rho\sigma_1\sigma_2+\sigma_2^2)$</p>
+<hr>
+<p><strong>一种作业出现的可能有用的估计要记住的得学的计算的方法，方法是构造新的二维随机变量Z,U，各分量随机变量均为X和Y的函数，先求联合密度函数，再求边缘密度</strong> 要求连续偏导数</p>
+<script type="math/tex; mode=display">
+f_{ZU}(z,u)=f_{XY}(h(z,u),s(z,u))|J|</script><p>$J$ 是雅可比行列式。注意要先把 $x=h(z,u)$ 写出来。因为这个是上面的。反函数不唯一时仍需要分布函数法。</p>
+<p><strong>对于商的分布Z=X/Y，值得一学</strong></p>
+<p>相互独立随机变量的最大值/最小值，最大值就是全部概率乘起来。</p>
+<h3 id="随机变量的数字特征"><a href="#随机变量的数字特征" class="headerlink" title="随机变量的数字特征"></a>随机变量的数字特征</h3><p>对于离散随机变量，如果无穷级数 $\sum_{k=1}^{+\infty} x_kp_k$ 绝对收敛，那么 $X$ 为其数学期望，简称期望。</p>
+<p>指数分布 $X\sim P(\lambda)$，期望为 $\lambda$ ，可以算超几何分布 $nM/N$，几何分布 $1/p$。</p>
+<p>一般的期望通过划分后对离散的取极限得到。</p>
+<p>连续型随机变量的数学期望：如果广义积分绝对收敛。</p>
+<ul>
+<li>随机变量函数 $Y=g(X)$ 的数学期望 $\int_{-\infty}^{+\infty}g(x)f(x)\dd x$</li>
+</ul>
+<script type="math/tex; mode=display">
+E(X+Y)=E(X)+E(Y)</script><ul>
+<li><blockquote>
+<p> $E(XY)=E(X)E(Y)$ 如果独立</p>
+</blockquote>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+[E(XY)]^2 \le E(X^2)E(Y^2)</script><blockquote>
+<p>用判别式法证明，但是这个东西是不是也应该理解成柯西不等式？</p>
+</blockquote>
+<h5 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h5><ul>
+<li>离散：$D(X)=\sum_{k=1}^{\infty}(x_k-E(X))^2p_k$，连续就是积分</li>
+</ul>
+<script type="math/tex; mode=display">
+D(X)=E(X^2)-E^2(X)</script><script type="math/tex; mode=display">
+D(aX+b)=a^2D(X)</script><script type="math/tex; mode=display">
+D(X+Y)=D(X)+D(Y)+2E(X-E(X))E(Y-E(Y)))</script><p>对任意常数 $C$, $D(X) \le E(X-C)^2$ </p>
+<p>切比雪夫不等式</p>
+<script type="math/tex; mode=display">
+P(|X-E(X)| \ge \epsilon) \le \frac{1}{\epsilon^2}D(X)</script><blockquote>
+<p>说实话，矩生成函数很漂亮。</p>
+</blockquote>
+<hr>
+<p>偏度系数 $\alpha=E(X-E(X))/(\sqrt {D(X)})^3$ 刻画关于其对于数学期望的对称程度。</p>
+<p>峰度系数，变异系数，中位数，分位数……</p>
+<p><strong>协方差，相关系数</strong></p>
+<script type="math/tex; mode=display">
+cov(X,Y)=E([X-EX][Y-EY])=E(XY)-E(X)E(Y)</script><p>协方差为零不代表相互独立。</p>
+<script type="math/tex; mode=display">
+cov(X,X)=D(X)\\
+cov(aX,bY)=ab\cdot cov(X,Y)\\
+cov(X+Y,Z)=cov(X,Z)+cov(Y,Z)\\
+D(X+ Y)=D(X)+D(Y)+2cov(X,Y)</script><script type="math/tex; mode=display">
+|cov(X,Y)|^2 \le D(X)D(Y)</script><p>随机变量标准化后</p>
+<script type="math/tex; mode=display">
+\rho_{XY}=\frac{cov(X,Y)}{\sqrt {D(X)D(Y)}}=cov(X^*,Y^*)</script><p>叫做相关系数。</p>
+<ul>
+<li>相关系数等于1说明线性关系的概率为1。</li>
+<li>等于零表示不相关（但不是独立）</li>
+</ul>
+<p>但是如果满足二维正态分布，相互独立就是不相关。</p>
+<h5 id="随机变量的矩"><a href="#随机变量的矩" class="headerlink" title="随机变量的矩"></a>随机变量的矩</h5><ul>
+<li>k阶中心矩 $E((X-EX)^k)$</li>
+<li>二阶混合中心矩：协方差</li>
+</ul>
+<p><strong>协方差矩阵</strong>：非负定，对称，$\sigma_{ij}^2\le \sigma_i^2\sigma_j^2$</p>
+<ul>
+<li></li>
+<li><script type="math/tex; mode=display">
+\pmatrix{D(X)&cov(X,Y)\\cov(Y,X)&D(Y)}</script></li>
+<li></li>
+</ul>
+<p><strong>线性变换下的协方差矩阵</strong> $Y=AX$, $\Sigma(Y)=A \Sigma(X) A^T$</p>
+<hr>
+<h3 id="概率极限理论"><a href="#概率极限理论" class="headerlink" title="概率极限理论"></a>概率极限理论</h3><ul>
+<li>真学不完了？？？</li>
+</ul>
+<ol>
+<li>几乎处处收敛 $P(\lim_{n \to \infty} X_n=X)=1$ 【收敛的概率为1，这个最强】</li>
+<li><p>依概率收敛  $\lim_{n \to \infty}P( |X_n-X|&lt;\epsilon)=1$</p>
+</li>
+<li><p>依分布收敛，弱收敛：对于所有连续点 $x$， $\lim_{n \to \infty} F_n(x)=F(x)$</p>
+</li>
+</ol>
+<p>从上往下能推出。</p>
+<p><strong>重要不等式</strong></p>
+<ul>
+<li>$P(|X| \ge \epsilon) \le E(|X|^k)/\epsilon^k$</li>
+<li>$P(|X-EX| \ge \epsilon ) \le D(X)/\epsilon^2$</li>
+</ul>
+<p><strong>伯努利大数定律</strong></p>
+<ul>
+<li>$\lim _{n \to \infty}P(|n_A/n-p|\ge \epsilon)=0$</li>
+<li>算出E，算出D，用切比雪夫不等式证明</li>
+<li>这种稳定叫做：依概率稳定。</li>
+</ul>
+<p><strong>契比雪夫大数定律</strong></p>
+<ul>
+<li>$\lim<em>{n \to \infty}P(|\frac{1}{n}\sum</em>{i=1}^nX_k-\mu|\ge \epsilon)=0$ </li>
+<li><p>具有<strong>相同数学期望和方差</strong>的<strong>独立</strong>随机变量序列服从大数定律，即该序列之算术平均依概率收敛于其数学期望</p>
+</li>
+<li><p>方差有上限也行。不独立只要和的方差不太大也行。</p>
+</li>
+</ul>
+<p><strong>辛钦大数定律</strong></p>
+<ul>
+<li>独立同分布的话，没有方差也行</li>
+</ul>
+<p><strong>柯尔莫哥洛夫强大数定律</strong></p>
+<ul>
+<li>独立，期望和方差存在，$\sum \frac{D(X_n)}{n^2}$ 收敛的话， $\set{X_n}$ 服从强大数定律。</li>
+<li>独立同分布，期望存在，$\set{X_n}$ 服从强大数定律</li>
+</ul>
+<h4 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h4><ul>
+<li>随机变量序列 $X<em>k,E(X_k),D(X_k)$ 都存在，则 $\sum</em>{k=1}^n X_k$ 的标准化变量依分布收敛极限服从正态分布。</li>
+<li>序列 $X_k$ 服从中心极限定理。</li>
+</ul>
+<p>那么问题来了，怎么证明呢。</p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/中心极限定理">中心极限定理 - 维基百科，自由的百科全书 (wikipedia.org)</a></p>
+<p>能拿来用就不错了。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/04/11/ptlds-zero/" title="从零开始学的lds信概统" target="_blank" rel="external">http://emoairx.github.io/blog/2024/04/11/ptlds-zero/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2024/04/11/RLnote/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
