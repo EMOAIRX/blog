@@ -26,7 +26,7 @@
 <meta property="og:description" content="直到我作业完全做不出来，我才意识到那天翘的不到两小时的一门课有多难。 先把作业的题目放下，于是我可以试着从零开始重新学一下这东西。老师还说这些东西很简单的，因为都是向量的形式，那些东西到矩阵了之后才会有意思，但是觉得我们太菜了所以不讲矩阵。可是向量我也不会啊。 不过前几天强化学习课上讲TRPO&#x2F;PPO的时候感觉好像就用到了这东西，得学的，得好好学的。 Majorization Minimizati">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-26T16:08:44.712Z">
-<meta property="article:modified_time" content="2024-04-27T05:37:24.569Z">
+<meta property="article:modified_time" content="2024-04-27T05:40:22.877Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="凸优化">
@@ -400,7 +400,7 @@ g_k(x)=f(x_k)+\left<\nabla f(x_k),x-x_k\right>+\frac{1}{2}(x-x_k)^T\mathrm H_k(x
 <script type="math/tex; mode=display">
 x_{k+1}=x_k-\mathrm{H}_k^{-1}\nabla f</script><p>显然当 $H_k$ 取hessen矩阵的时候这就是牛顿法。</p>
 <p>如果不能直接有上面的假设，也就是假设弱一点，但是如果有 $\mathrm {\tilde{H}}_k\succ 0$，那么就应该存在一个 $\alpha _k &gt;0$ 满足 $\alpha_k^{-1} \mathrm{\tilde H}_k \succ \nabla ^2 f(x_k)$，就能满足上面的式子。</p>
-<p>这时候迭代的公式就变成了（$\mathcal C=\R^2$）</p>
+<p>这时候迭代的公式就变成了（$\mathcal C=\mathbb R^2$）</p>
 <script type="math/tex; mode=display">
 x_{k+1}=x_k-\alpha_k\mathrm{\tilde H}_k^{-1}\nabla f</script><p>你可以看到这就是 Quasi-Newton method. 代表方法有 DFP，BFGS.</p>
 <blockquote>
@@ -412,7 +412,7 @@ x_{k+1}=x_k-\alpha_k\mathrm{\tilde H}_k^{-1}\nabla f</script><p>你可以看到�
 f(x)\triangleq \tilde f(\theta^Tx)</script><p>这里的 $\tilde f$ 是 convex 的。</p>
 <p>那么这时候我的函数选择是</p>
 <script type="math/tex; mode=display">
-g_k(x)=\sum_{i=1}^n w_i \tilde f(\frac{\theta_i}{w_i}(x_i-x_{k,i})+\theta^T x_k)</script><p>where $w \in \R_{+}^n, ||w||_1=1,w_i\not =0 \text{ whenever }\theta_i\not=0$</p>
+g_k(x)=\sum_{i=1}^n w_i \tilde f(\frac{\theta_i}{w_i}(x_i-x_{k,i})+\theta^T x_k)</script><p>where $w \in \mathbb R_{+}^n, ||w||_1=1,w_i\not =0 \text{ whenever }\theta_i\not=0$</p>
 <p>证明不难，就是利用凸的性质，把 $w_i$ 分配进去</p>
 <script type="math/tex; mode=display">
 g_k(x)\ge \tilde f(\sum_{i=1}^n \theta_i(x_i-x_{k,i})+\theta^T x_k)=  \tilde f(\theta^Tx)</script><p>有一个著名的算法 EM Algorithm, Expectation Maximization Algorithm</p>
@@ -423,8 +423,8 @@ g_k(x)\ge \tilde f(\sum_{i=1}^n \theta_i(x_i-x_{k,i})+\theta^T x_k)=  \tilde f(\
 <li><p>我可以定义</p>
 </li>
 <li><script type="math/tex; mode=display">
-g_k(x)=f(x)+\left<\part h(x_k),x-x_k\right>+h(x_k)</script></li>
-<li><p>其中 $\part h$ 是 super-gradient of h，可以理解成把 h 看成一个切面。</p>
+g_k(x)=f(x)+\left<\partial h(x_k),x-x_k\right>+h(x_k)</script></li>
+<li><p>其中 $\partial h$ 是 super-gradient of h，可以理解成把 h 看成一个切面。</p>
 </li>
 </ul>
 <p>有了上面简单的介绍，下面的方法会好理解很多，我们看一下简单的性质，然后再介绍几种常见的surrogate。</p>
@@ -501,7 +501,7 @@ J(\theta')=E_{\tau \sim p_\theta'(\tau)}\left[\sum_t r(s_t,a_t)\right]</script><
 <script type="math/tex; mode=display">
 L_{\theta}(\theta')= J(\theta)+\sum_t \mathbb{E}_{s_t \sim p_\theta(s_t)}\left[\mathbb{E}_{a_t\sim \pi_\theta(a_t\mid s_t)}\left[\frac{\pi_{\theta'}(a_t\mid s_t)}{\pi_\theta(a_t\mid s_t)}\gamma^t A^{\pi_\theta}(s_t,a_t)\right]\right]</script><p>有</p>
 <script type="math/tex; mode=display">
-J(\theta') \ge L_\theta(\theta') - C\cdot D_{KL}^{max}(\theta,\theta')</script><p>注意到我们是要最大化reward，所以 $g<em>\theta=L</em>\theta(\cdot ) - C\cdot D_{KL}^{max}(\theta,\cdot )$ 是一个surrogate。</p>
+J(\theta') \ge L_\theta(\theta') - C\cdot D_{KL}^{max}(\theta,\theta')</script><p>注意到我们是要最大化reward，所以 $g<em>\theta=L</em>\theta(.) - C\cdot D_{KL}^{max}(\theta,. )$ 是一个surrogate。</p>
 <blockquote>
 <p>我怀疑策略空间和函数空间的映射是非常优美的。</p>
 </blockquote>
@@ -512,8 +512,8 @@ J(\theta') \ge L_\theta(\theta') - C\cdot D_{KL}^{max}(\theta,\theta')</script><
 <p>我每次迭代可以不用找最优的，也就是理论上可以用广义梯度法，可以用quasi-Newton method</p>
 </blockquote>
 <script type="math/tex; mode=display">
-\min _x &f_0(x)-h_0(x)\\
-\text{subject to } &f_i(x)-h_i(x) \le 0,i=1,...,m.</script><p>大概是</p>
+\min _x &f_0(x)-h_0(x)\\</script><p>subject to $f_i(x)-h_i(x) \le 0,i=1,…,m.$</p>
+<p>大概是</p>
 <script type="math/tex; mode=display">
 g_i(x \mid x_t)=f_i(x) - (h_i(x_t)+\nabla h_i(x_t)^T(x-x_t))</script><p>然后 最小化 $g_0$，subject to $g_i\le 0$，容易发现 $g$ 是一个上界。</p>
 <p><strong>Proximal Minimization</strong></p>
@@ -703,20 +703,5 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
