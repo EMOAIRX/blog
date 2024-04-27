@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Majorization Minimization | emoairx</title>
+  <meta name="description" content="直到我作业完全做不出来，我才意识到那天翘的不到两小时的一门课有多难。 先把作业的题目放下，于是我可以试着从零开始重新学一下这东西。老师还说这些东西很简单的，因为都是向量的形式，那些东西到矩阵了之后才会有意思，但是觉得我们太菜了所以不讲矩阵。可是向量我也不会啊。 不过前几天强化学习课上讲TRPO&#x2F;PPO的时候感觉好像就用到了这东西，得学的，得好好学的。 Majorization Minimizati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Majorization Minimization">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/04/27/Majorization%20Minimization/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="直到我作业完全做不出来，我才意识到那天翘的不到两小时的一门课有多难。 先把作业的题目放下，于是我可以试着从零开始重新学一下这东西。老师还说这些东西很简单的，因为都是向量的形式，那些东西到矩阵了之后才会有意思，但是觉得我们太菜了所以不讲矩阵。可是向量我也不会啊。 不过前几天强化学习课上讲TRPO&#x2F;PPO的时候感觉好像就用到了这东西，得学的，得好好学的。 Majorization Minimizati">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-26T16:08:44.712Z">
+<meta property="article:modified_time" content="2024-04-27T05:37:24.569Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="凸优化">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/04/27/Majorization%20Minimization/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%93%E7%B3%BB/" rel="tag">体系</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">78</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%93%E7%B3%BB/" style="font-size: 13px;">体系</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/27/Majorization%20Minimization/" class="title">Majorization Minimization</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-26T16:08:44.712Z" itemprop="datePublished">2024-04-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/26/typedown/" class="title">some meaningless words</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-26T10:54:10.482Z" itemprop="datePublished">2024-04-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/22/note%20on%20rzjx/" class="title">《认知觉醒：开启自我改变的原动力》</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T14:10:50.991Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/15/caljl/" class="title">陆俊林-ComputerArchitecture</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-15T11:40:21.898Z" itemprop="datePublished">2024-04-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/12/Lemke-Howson/" class="title">Lemke-Howson算法求解nash均衡</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-12T05:40:15.512Z" itemprop="datePublished">2024-04-12</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Majorization Minimization" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Majorization Minimization
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/04/27/Majorization%20Minimization/" class="article-date">
+	  <time datetime="2024-04-26T16:08:44.712Z" itemprop="datePublished">2024-04-27</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/04/27/Majorization%20Minimization/" class="leancloud_visitors"  data-flag-title="Majorization Minimization">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/04/27/Majorization%20Minimization/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>直到我作业完全做不出来，我才意识到那天翘的不到两小时的一门课有多难。</p>
+<p>先把作业的题目放下，于是我可以试着从零开始重新学一下这东西。老师还说这些东西很简单的，因为都是向量的形式，那些东西到矩阵了之后才会有意思，但是觉得我们太菜了所以不讲矩阵。可是向量我也不会啊。</p>
+<p>不过前几天强化学习课上讲TRPO/PPO的时候感觉好像就用到了这东西，得学的，得好好学的。</p>
+<h4 id="Majorization-Minimization"><a href="#Majorization-Minimization" class="headerlink" title="Majorization Minimization"></a><strong>Majorization Minimization</strong></h4><p>一种算法</p>
+<p>简单来说，如果我要最小化函数 $f(x)$，现在迭代在 $x_k$ 的位置，那么我可以找一个函数 $g_k(x)$</p>
+<p>$g_k(x)$ 满足，$f(x)\le g_k(x).\forall x \in C$ , $f(x_k)=g_k(x_k)$。</p>
+<p>那么使得 $x<em>{k+1}=\arg \min </em>{x \in C} g<em>k(x)$，得到的 $f(x</em>{k+1}) \le f(x_k)$，当然为了收敛还需要更多的性质。</p>
+<hr>
+<p>从某种意义上，TRPO的算法就是满足这个性质的，通过增加了一个 $C\mathrm{KL}(\pi,\pi_{ref})$ ，熟悉TRPO的同学应该能感受到，不熟悉的等我先挖个坑。</p>
+<h4 id="majorant-function"><a href="#majorant-function" class="headerlink" title="majorant function"></a><strong>majorant function</strong></h4><p>为了求出这样的 $g_k$，有这么几种替代函数可能会被提到。</p>
+<p><strong>Lipschitz Gradient Surrogate</strong></p>
+<ul>
+<li>globally majorant</li>
+</ul>
+<p>建立在 descent lemma 上的一个 surrogate</p>
+<p><code>descent lemma</code>:  如果实值函数 $f(x)$ 是 $L$-smooth function, 也即 $||\nabla f(x)-\nabla f(y)|| \le L||x-y||$，那么我们有：</p>
+<script type="math/tex; mode=display">
+f(x) \le f(x_k)+\left<\nabla f(x_k),x-x_k\right>+\frac{L}{2}||x-x_k||^2 \triangleq
+g_k(x)</script><p>如果直接考虑 $g_k$ 的最小值，求导得到 $\nabla f(x_k)+L(x-x_k) =0 \implies x=x_k-\frac{1}{L}\nabla f(x_k)$。与梯度下降类似。如果限制定义域的话，其实是projected gradient descent，也就是</p>
+<script type="math/tex; mode=display">
+x=\mathcal{P_{C}}\left(x_k-\frac{1}{L}\nabla f(x_k)\right)</script><ul>
+<li>locally majorant</li>
+</ul>
+<p>有时候也没这么强的限制，还是定义一个函数，但是看局部</p>
+<script type="math/tex; mode=display">
+\tilde g_k(x)= f(x_k)+\left<\nabla f(x_k),x-x_k\right>+\frac{1}{2\alpha}||x-x_k||^2</script><p>这里考虑 $\alpha$ 的取值，我要让 $f(x<em>{k+1})=f(x_k-\alpha \nabla f(x_k))&lt;\tilde g_k(x</em>{k+1})$，使用backtracking的方法，不满足就让 $\alpha \leftarrow  \mu \alpha .(\mu \in (0,1))$. 容易发现如果 $\alpha$ 足够小还是容易满足的。</p>
+<p><strong>Quadratic Surrogate</strong></p>
+<p>注意到我不一定一定要满足上面的样子，就是后面那个不一定是 $||x-x_k||^2$，我可以是一些别的比如一个正定的矩阵</p>
+<p>如果 $\mathrm H_k\succ \nabla^2 f$, 我应该有</p>
+<script type="math/tex; mode=display">
+g_k(x)=f(x_k)+\left<\nabla f(x_k),x-x_k\right>+\frac{1}{2}(x-x_k)^T\mathrm H_k(x-x_k)</script><p>那么还是求导求最优解，迭代的公式就变成了（如果定义域 $R^n$）。</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k-\mathrm{H}_k^{-1}\nabla f</script><p>显然当 $H_k$ 取hessen矩阵的时候这就是牛顿法。</p>
+<p>如果不能直接有上面的假设，也就是假设弱一点，但是如果有 $\mathrm {\tilde{H}}_k\succ 0$，那么就应该存在一个 $\alpha _k &gt;0$ 满足 $\alpha_k^{-1} \mathrm{\tilde H}_k \succ \nabla ^2 f(x_k)$，就能满足上面的式子。</p>
+<p>这时候迭代的公式就变成了（$\mathcal C=\R^2$）</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k-\alpha_k\mathrm{\tilde H}_k^{-1}\nabla f</script><p>你可以看到这就是 Quasi-Newton method. 代表方法有 DFP，BFGS.</p>
+<blockquote>
+<p>当然我个人是觉得这里可以换成一个Bregman divergence，有机会推一推看看是不是就是mirror descent。</p>
+</blockquote>
+<p><strong>Jensen Surrogate</strong></p>
+<p>对于广义线性函数，我还是要最小化 $f(x)$，具体表现为</p>
+<script type="math/tex; mode=display">
+f(x)\triangleq \tilde f(\theta^Tx)</script><p>这里的 $\tilde f$ 是 convex 的。</p>
+<p>那么这时候我的函数选择是</p>
+<script type="math/tex; mode=display">
+g_k(x)=\sum_{i=1}^n w_i \tilde f(\frac{\theta_i}{w_i}(x_i-x_{k,i})+\theta^T x_k)</script><p>where $w \in \R_{+}^n, ||w||_1=1,w_i\not =0 \text{ whenever }\theta_i\not=0$</p>
+<p>证明不难，就是利用凸的性质，把 $w_i$ 分配进去</p>
+<script type="math/tex; mode=display">
+g_k(x)\ge \tilde f(\sum_{i=1}^n \theta_i(x_i-x_{k,i})+\theta^T x_k)=  \tilde f(\theta^Tx)</script><p>有一个著名的算法 EM Algorithm, Expectation Maximization Algorithm</p>
+<p><strong>convex-concave</strong></p>
+<ul>
+<li><p>一类问题是 $\min_{x\in\mathcal C} f(x)+h(x)$，其中 $f(x)$ convex 而 $h(x)$ concave.</p>
+</li>
+<li><p>我可以定义</p>
+</li>
+<li><script type="math/tex; mode=display">
+g_k(x)=f(x)+\left<\part h(x_k),x-x_k\right>+h(x_k)</script></li>
+<li><p>其中 $\part h$ 是 super-gradient of h，可以理解成把 h 看成一个切面。</p>
+</li>
+</ul>
+<p>有了上面简单的介绍，下面的方法会好理解很多，我们看一下简单的性质，然后再介绍几种常见的surrogate。</p>
+<h5 id="Optimization-with-first-order-surrogate-functions-1"><a href="#Optimization-with-first-order-surrogate-functions-1" class="headerlink" title="Optimization with first-order surrogate functions^[1]^"></a>Optimization with first-order surrogate functions^[1]^</h5><p>一种scheme叫<strong>MISO</strong>: minimizing strongly convex objective functions</p>
+<p>一个 first-order surrogate 有两个性质</p>
+<ul>
+<li>一个是<strong>Majorization</strong>，对应前文提到的，要么是全局都有 $g \ge f$，要么对于$\arg \min_\theta g(\theta)$ 里的元素存在 $g(\theta) \ge f(\theta)$。</li>
+<li>另一个叫 <strong>Smoothness</strong>，要求 $h \triangleq g-f$ 是可微的且梯度是 L-Lipschitz 连续。</li>
+</ul>
+<p>满足性质的surrogate构成一个集合，其中一部分是强凸的surrogate。之所以要强凸是为了后续有机会收敛性保证。注意到假设某个点位于 $\kappa$ ，那么 $h(\kappa)=0,\nabla h(\kappa)=0$。</p>
+<p>性质就是说</p>
+<script type="math/tex; mode=display">
+|h(\theta)| \le \frac{L}{2}||\theta-\kappa||_2^2</script><p>同样的如果我们取 $\theta’$ 表示 $\arg \min_{\theta \in \Theta} g(\theta)$，我们有</p>
+<script type="math/tex; mode=display">
+f(\theta') \le g(\theta') \le g(\theta)=f(\theta)+\frac{L}{2}||\theta-\kappa||_2^2</script><p>如果 $g$ 是 $\rho$ 强凸的，那么有</p>
+<script type="math/tex; mode=display">
+f(\theta')+\frac{\rho}{2}||\theta'-\theta||_2^2\le f(\theta)+\frac{L}{2}||\theta-\kappa||_2^2</script><p>我每次取找一个新的 $\theta$ 取迭代，得到的一系列点 $(\theta<em>n)</em>{n \ge 0}$，可以发现 $f(\theta_n)$ 单调递减，以及 $\theta_n$ satisfies asymptotic stationary point condition.</p>
+<h5 id="直接迭代的复杂度结论"><a href="#直接迭代的复杂度结论" class="headerlink" title="直接迭代的复杂度结论"></a>直接迭代的复杂度结论</h5><p>抱歉没看懂证明，所以只放结论。</p>
+<p>如果 $f$ 是一个<strong>凸函数</strong>，对于 $||\theta-\theta^*||_2 \le R$ 有 $f(\theta) \le f(\theta_0)$ ，我们有，任何一个 $L$-smooth的函数，根据迭代产生的点列，满足</p>
+<script type="math/tex; mode=display">
+f(\theta_n) - f^* \le \frac{2LR^2}{n+2}</script><p>如果 $f$ 是 $\mu$-强凸，不需要上述条件直接有</p>
+<script type="math/tex; mode=display">
+f(\theta_n)-f^* \le \beta^n(f(\theta_0)-f^*)</script><script type="math/tex; mode=display">
+\beta\triangleq \cases{\frac{L}{\mu}&$\mu>2L$\\1-\frac{\mu}{4L}}</script><p>如果选择的surrogate是强凸的话</p>
+<script type="math/tex; mode=display">
+f(\theta_n) - f^* \le \frac{L||\theta_0-\theta^*||_2^2}{2n}</script><p>如果这时候 $f$ 是 $\mu$-强凸的话，则同时有 $f$ 收敛和 $\theta_n$ 收敛</p>
+<script type="math/tex; mode=display">
+||\theta_n-\theta^*||_2^2 \le (\frac{L}{\rho+\mu})^n||\theta_0-\theta^*||_2^2\\
+||f(\theta_n)-f^*||_2^2 \le (\frac{L}{\rho+\mu})^{n-1}\frac{L||\theta_0-\theta^*||_2^2}{2}</script><p>更进一步，如果海森矩阵 $\nabla^2 h<em>n=\nabla^2(g_n-f)$ 是 M-Lipschitz，并且 $\nabla h_n(\theta</em>{n-1})=0$ 的话</p>
+<script type="math/tex; mode=display">
+f(\theta_n)-f^* \le \frac{9MR^3}{2(n+3)^2}</script><p>如果此时 f 还是 $\mu$-strongly convex，收敛速度是superlinear的3/2.</p>
+<h5 id="Proximal-Gradient-Surrogates"><a href="#Proximal-Gradient-Surrogates" class="headerlink" title="Proximal Gradient Surrogates"></a>Proximal Gradient Surrogates</h5><p>这其实也就是一种surrogate，但是怀疑会有点难。</p>
+<p>假设 $f=f_1+f_2$，那么 $g(\theta)=f_1(\kappa)+\nabla f_1(\kappa)^T(\theta-\kappa)+\frac{L}{2}||\theta-\kappa||_2^2+f_2(\theta)$</p>
+<p>收敛性分析同 $h=g-f$。</p>
+<h5 id="Variational-surrogate"><a href="#Variational-surrogate" class="headerlink" title="Variational surrogate"></a>Variational surrogate</h5><p>如果这时候最小化的函数 $f(x)$ ，可以这样有 $f(x)=\min_{y \in \mathcal Y} h(x,y)$</p>
+<p>那么定义 </p>
+<script type="math/tex; mode=display">
+g_k(x)=h(x,y_{k}^*), \text{where } y_k^*=\arg \min_{y \in \mathcal Y} h(x_k,y)</script><h5 id="Saddle-Point-surrogate"><a href="#Saddle-Point-surrogate" class="headerlink" title="Saddle Point surrogate"></a>Saddle Point surrogate</h5><p>如果 $\theta<em>2 \rightarrow f(\theta_1,\theta_2)$ 是concave的，$\theta_1 \rightarrow f(\theta_1,\theta_2)$ 是convex的，并且 $\tilde f(\theta_1)=\max</em>{\theta_2} f(\theta_1,\theta_2)$，如果 $f(*,\theta_2)$ 是 $L’$-Lipschitz.</p>
+<p>那么定义 $g(\theta_1)=f(\theta_1,\kappa_2^*)+\frac{L’’}{2}||\theta_1-\kappa_1||_2^2$, $L’’=\max(2L^2/\mu,L’)$</p>
+<h4 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h4><p>这部分介绍一些算法以及surrogate的应用</p>
+<p><strong>直接迭代</strong></p>
+<ul>
+<li>上述已介绍</li>
+</ul>
+<p><strong>Block Coordinate Descent Scheme</strong>:</p>
+<p>对于高维向量的优化，一种方法是对于每个维度都建立一个单独的surrogate，然后把他们加起来</p>
+<script type="math/tex; mode=display">
+g_n(\theta)=\sum_{i=1}^k g_n^i(\theta^i)</script><p>然后每次随机对一个维度求argmin，从而更新。</p>
+<p><strong>Incremental Scheme</strong>:</p>
+<p>对于有增量形式</p>
+<script type="math/tex; mode=display">
+f(\theta)=\frac{1}{T}\sum_{t=1}^T f^t(\theta)</script><p>常见的光滑的常用 stochastic gradient descent，非光滑 stochastic mirror descent，但是也可以用surrogate的方法，具体而言是每次都pick一个index，然后设置第 n 个 surrogate，第 n 个surrogate $g<em>n$ 和 $g</em>{n-1}$ 只在index的位置不一样。求argmin的时候还是需要把gn的平均策略记录下来。</p>
+<p><strong>EM Algorithm</strong></p>
+<p>和K-means一样知名，号称机器学习十大算法</p>
+<p>考虑最大似然的原理</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\max_{\theta} \log \int_z p(x,z\mid \theta) \mathrm dz&=\max_{\theta} \log \int_z q(z)\frac{p(x,z\mid \theta)}{q(z)} \mathrm dz\\
+&=\max_{\theta} \log \mathrm E _{z \sim q} \frac{p(x,z\mid \theta)}{q(z)} \mathrm dz\\
+&\ge \max_{\theta}  \mathrm E _{z \sim q} \log \frac{p(x,z\mid \theta)}{q(z)} \mathrm dz\\
+&=\max [\int q(z)\log p(x,z\mid \theta) \mathrm dz - \int q(z) \log q(z) \mathrm dz]
+\end{align*}</script><p>所以分成两步，一个是E，一个是M</p>
+<p>E步骤是选择最大的 $q(z)$，直观上理解负的最小化reverse KL（就是一个Jensen Surrogate的形式），相等是最小的 $q$，在这里选择</p>
+<script type="math/tex; mode=display">
+q(z)=\frac{p(x,z\mid \theta)}{\int p(x,z\mid \theta)\mathrm dz}=p(z\mid x,\theta) \propto p(x,z\mid \theta)</script><p>M步骤是求出最大的 $\theta$</p>
+<p>EM算法就是迭代上面两个步骤直到收敛。</p>
+<p><strong>Trust Region Policy Optimization</strong>(Proximal minimization的特例)</p>
+<p>在TRPO中，真正要优化的是 $J(\theta’)$</p>
+<script type="math/tex; mode=display">
+J(\theta')=E_{\tau \sim p_\theta'(\tau)}\left[\sum_t r(s_t,a_t)\right]</script><p>上一步所在位置为 $\theta$，下一步的位置是 $\theta’$</p>
+<ul>
+<li>当在策略空间中两个策略差距不超过 $\epsilon$ 时，定义 $c=\frac{4\epsilon \gamma}{(1-\gamma)^2}$</li>
+</ul>
+<script type="math/tex; mode=display">
+L_{\theta}(\theta')= J(\theta)+\sum_t \mathbb{E}_{s_t \sim p_\theta(s_t)}\left[\mathbb{E}_{a_t\sim \pi_\theta(a_t\mid s_t)}\left[\frac{\pi_{\theta'}(a_t\mid s_t)}{\pi_\theta(a_t\mid s_t)}\gamma^t A^{\pi_\theta}(s_t,a_t)\right]\right]</script><p>有</p>
+<script type="math/tex; mode=display">
+J(\theta') \ge L_\theta(\theta') - C\cdot D_{KL}^{max}(\theta,\theta')</script><p>注意到我们是要最大化reward，所以 $g<em>\theta=L</em>\theta(\cdot ) - C\cdot D_{KL}^{max}(\theta,\cdot )$ 是一个surrogate。</p>
+<blockquote>
+<p>我怀疑策略空间和函数空间的映射是非常优美的。</p>
+</blockquote>
+<p>关于这个surrogate为什么满足这个不等式，可以参考各大教科书（？</p>
+<p><strong>DCProgramming and Concave-Convex Procedure</strong></p>
+<blockquote>
+<p><strong>Majorization-Minimization Algorithms in  Signal Processing, Communications, and Machine Learning</strong>^[3]^</p>
+<p>我每次迭代可以不用找最优的，也就是理论上可以用广义梯度法，可以用quasi-Newton method</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\min _x &f_0(x)-h_0(x)\\
+\text{subject to } &f_i(x)-h_i(x) \le 0,i=1,...,m.</script><p>大概是</p>
+<script type="math/tex; mode=display">
+g_i(x \mid x_t)=f_i(x) - (h_i(x_t)+\nabla h_i(x_t)^T(x-x_t))</script><p>然后 最小化 $g_0$，subject to $g_i\le 0$，容易发现 $g$ 是一个上界。</p>
+<p><strong>Proximal Minimization</strong></p>
+<script type="math/tex; mode=display">
+\min_{x,y} g(x,y)=f(x)+\frac{1}{2c}||y-x||_2^2</script><script type="math/tex; mode=display">
+\begin{align*}
+x_{t+1}&=\mathrm{prox}_{A(x_t),f} (x_t)\\
+&:=\arg \min_{x\in X} f(x)+\frac{1}{2}||x-x_t||^2_{A(x_t)}\\
+&||x||_{A(x_t)}^2:=x^TA(x_t)x
+\end{align*}</script><p><strong>Variable Metric Splitting Method for Non-Smooth Optimization</strong></p>
+<script type="math/tex; mode=display">
+\min f(x)+h(x)</script><p>$f$ 是可微的，$h$ 是convex的，如果有一个系列的 $A_t$ 为正定矩阵</p>
+<script type="math/tex; mode=display">
+g^f(x \mid x_t)=f(x_t)+\nabla f(x_t)^T(x-x_t)+\frac{1}{2}||x-x_t||_{A_t}^2 \ge f(x)</script><p>由此再去优化 $g(x \mid x_t)=g^f(x\mid x_t)+h(x)$</p>
+<p>注意到这里的 $A_t$ 的选择，如果 $f$ 是 L-smooth的，可以设置 $\mathrm{A}_t=L\mathrm{I}$</p>
+<p><strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/MM_algorithm">MM algorithm - Wikipedia</a></strong></p>
+<p>[1] Julien Mairal, Optimization with first-order surrogate functions. ICML, 2013. </p>
+<p>[2] Lu et al., Nonconvex Nonsmooth Low Rank Minimization via Iteratively Reweighted Nuclear  Norm, IEEE Trans. Image Processing, 2016.</p>
+<ul>
+<li></li>
+<li><script type="math/tex; mode=display">
+\min_\mathbf{X} \sum_{i=1}^{\min(m,n)}h(\sigma_i(\mathbf X))+f(\mathbf X)</script><script type="math/tex; mode=display">
+h(\sigma_i) \le h(\sigma_i^k) +w_i^k(\sigma_i-\sigma_i^k)</script></li>
+</ul>
+<p>[3] Ying Sun, Prabhu Babu, and Daniel P. Palomar, Majorization-Minimization Algorithms in  Signal Processing, Communications, and Machine Learning, IEEE T. Signal Processing, Vol.  65, No. 3, 2017</p>
+<p>[4] Chen Xu, Zhouchen Lin , and Hongbin Zha, Relaxed Majorization-Minimization for Non-smooth  and Non-convex Optimization, AAAI 2016</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/04/27/Majorization%20Minimization/" title="Majorization Minimization" target="_blank" rel="external">http://emoairx.github.io/blog/2024/04/27/Majorization Minimization/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2024/04/26/typedown/" title="some meaningless words"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
