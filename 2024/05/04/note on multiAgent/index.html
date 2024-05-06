@@ -26,9 +26,11 @@
 <meta property="og:description" content="博弈论Restart：有一说一的感觉就是政管的那门通识课讲到的内容可能还是少了点，这门课我还是没咋听懂就是说，以前还退过一门算法博弈论，那门课根本不敢学笑死。 ok，假设大家已经被科普过了解了什么是博弈论， 彻底躺平的一学期与最后一周的博弈论 | emoairx 合作博弈、非合作博弈；完全信息、不完全信息；静态博弈、动态博弈 每个参与者对自己的行为，其它参与者的行为都是有预期的，根据预期做出合乎">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-05-04T06:06:39.074Z">
-<meta property="article:modified_time" content="2024-05-05T13:37:40.434Z">
+<meta property="article:modified_time" content="2024-05-06T11:22:04.216Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="博弈论">
+<meta property="article:tag" content="强化学习">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
   <link rel="canonical" href="http://emoairx.github.io/blog/2024/05/04/note%20on%20multiAgent/index.html">
@@ -184,7 +186,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -194,7 +196,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
     </div>
   </div>
 
@@ -203,7 +205,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -346,7 +348,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+	<a class="article-tag-link-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a>, <a class="article-tag-link-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
   </span>
 
 
@@ -534,13 +536,135 @@ s.t. &\sum  a_{ij}p_i \ge 1\\
 </ul>
 </li>
 <li>通过海萨尼转换后，得到了一个信息完全但非完美的动态博弈问题，则由于对自然的概率有一致的判断，则根据这个概率能得到均衡。</li>
-<li><strong>pass something</strong></li>
-<li>累了，真的累了，好繁杂，学点后来的吧会好玩一点</li>
 </ul>
+<h5 id="贝叶斯博弈-1"><a href="#贝叶斯博弈-1" class="headerlink" title="贝叶斯博弈"></a>贝叶斯博弈</h5><p><strong>这里我没看懂</strong></p>
 <hr>
-<h5 id="贝叶斯博弈-1"><a href="#贝叶斯博弈-1" class="headerlink" title="贝叶斯博弈"></a>贝叶斯博弈</h5><h5 id="重复博弈"><a href="#重复博弈" class="headerlink" title="重复博弈"></a>重复博弈</h5><h5 id="合作博弈"><a href="#合作博弈" class="headerlink" title="合作博弈"></a>合作博弈</h5><h5 id="随机博弈"><a href="#随机博弈" class="headerlink" title="随机博弈"></a>随机博弈</h5><hr>
-<h4 id="合作博弈-1"><a href="#合作博弈-1" class="headerlink" title="合作博弈"></a>合作博弈</h4><p>- </p>
-
+<h4 id="合作博弈"><a href="#合作博弈" class="headerlink" title="合作博弈"></a>合作博弈</h4><ul>
+<li>合作博弈就是说可以有一些人一起合作然后分钱，主要考虑参与人之间能达成的<strong>可实施(enforceable)</strong>的<strong>协议</strong>。强调集体理性。在这种情况下，合作是博弈规则的一部分，而非博弈的结果。</li>
+<li>因为可实施，合作后收益增加的部分叫做<strong>合作剩余(cooperative surplus)</strong></li>
+<li><strong>特征函数</strong>：$V:2^N \to R$，通过合作取得的联盟总体收益水平。<ul>
+<li>超加性：对于任意独立的 $S,T$ , $V(S\cup T) \ge V(S)+V(T)$（否则联盟会解散）</li>
+<li>单调性：联盟越大，合作所获越大；$V(S)\le V(T)$ 如果 $S \subseteq T$</li>
+</ul>
+</li>
+<li>合作博弈是<strong>本质(essential)</strong>的如果存在有净增收益的联盟。</li>
+<li>构建联盟通过<strong>核</strong>，分配利益可以用<strong>夏普利值</strong>。</li>
+</ul>
+<h5 id="优超"><a href="#优超" class="headerlink" title="优超"></a>优超</h5><ul>
+<li>有两个联盟 $N,S$，两个条件，第一个是 $S$ 这个联盟内的成员觉得他们一起搞，$x$ 这个分配效果会比 $y$ 这个分配好，第二条条件是 $S$ 这个联盟的<strong>总</strong>收益比他们原来在 $N$ 这个联盟的<strong>分配</strong>收益更高（那么他们就有可信的威胁来不达成联盟）</li>
+<li>换言之，对于可转移效用情形的合作博弈，一种分配被优超就是联盟的子联盟的收益总和大于分配给他们的总收益。定义 <strong>核</strong> 为所有不被优超的分配构成的集合。</li>
+<li><p>核是一个闭凸集，满足以下两个条件</p>
+<ul>
+<li>$\sum x_i=V(N)$</li>
+<li>$\sum _{i \in S} x_i \ge V(S);\forall S$</li>
+</ul>
+</li>
+<li><p>常和合作博弈的核是空的。</p>
+</li>
+</ul>
+<ul>
+<li>在简单博弈中(01)，核非空的充分必要条件是存在否决权的人.</li>
+</ul>
+<p><strong>核</strong>关注的是分配的稳定性（而且要求太高，很多博弈没有核解），公平性用<strong>夏普利值</strong></p>
+<script type="math/tex; mode=display">
+\phi_i(V) = \sum_{T:i \in T \subseteq N} \frac{(t-1)!(n-t)!}{n!}\Delta_i(T)</script><script type="math/tex; mode=display">
+\Delta_i(T)=V(T)-V(T-\{i\})</script><p>参与人恰好排在第 $t$ 个位置的期望收益。</p>
+<hr>
+<h4 id="随机博弈"><a href="#随机博弈" class="headerlink" title="随机博弈"></a>随机博弈</h4><p>带有随机性的博弈，就好比RL里出现了一点环境的随机性。</p>
+<p>这部分有点复杂，这里写得很简略</p>
+<h5 id="Fictitious-Play"><a href="#Fictitious-Play" class="headerlink" title="Fictitious Play"></a>Fictitious Play</h5><ul>
+<li>根据对方的历史策略出的比例当成对方的概率。</li>
+<li>玩家的策略最终收敛到一个稳定状态，这个稳定状态不一定是一个混合策略均衡。在实际游戏中，玩家可能不会完美地执行混合策略，或者他们可能会由于某些原因（如误解对手的意图或对自己的策略过于自信）而偏离理想的混合策略。</li>
+</ul>
+<h5 id="Stochastic-Games"><a href="#Stochastic-Games" class="headerlink" title="Stochastic Games"></a>Stochastic Games</h5><ul>
+<li>定义在马尔可夫序列上的一个游戏，每个状态 $S$ 下有一个动作空间 $A$</li>
+<li>n个人的话，$\mathcal A = A^1\times A^2 \times A^3 … \times A^n$</li>
+<li><strong>关于矩阵游戏与强化学习</strong>：矩阵游戏和<strong>纳什均衡学习者</strong>更侧重于找到或收敛到一个策略，使得没有玩家有动力单方面改变策略。而强化学习和<strong>最佳响应学习者</strong>则更关注于通过不断的学习和调整策略来最大化个体收益，不一定追求均衡状态。</li>
+</ul>
+<p>为此关于Equilibrium Learners我们介绍三种算法</p>
+<p><strong>Nash-Q</strong></p>
+<p><strong>minimax-Q</strong></p>
+<p><strong>Friend-or-Foe-Q</strong></p>
+<hr>
+<h4 id="强化学习基础"><a href="#强化学习基础" class="headerlink" title="强化学习基础"></a>强化学习基础</h4><p>关于MDP等基础此处不提，值得关注的是为什么MDP是对的，也就是为什么可以可以给出马尔可夫的假设。</p>
+<p>这里面需要用到两个概念，第一个叫做占用度量。</p>
+<script type="math/tex; mode=display">
+\rho^{\pi}(s,a)=\mathbb E_{a \sim \pi(\cdot\mid s),s'\sim p(\cdot\mid s,a)}[\sum_{t=0}^T \gamma^tp(s_t=s,a_t=a)]</script><p>具体而言，我们得到的是</p>
+<script type="math/tex; mode=display">
+V=\rho^\pi \cdot R\triangleq \mathbb E_\pi[R(s,a)]</script><p>我们假设策略是平稳策略，不依赖于时间，不依赖于历史的，但是我们好像没有仔细思考过为什么可以这么假设。</p>
+<p><strong>此处未严格考量</strong></p>
+<p><strong>分割线</strong></p>
+<hr>
+<p>强化学习算法大致分成两类，值迭代和策略迭代，现代强化学习会把两者都结合起来，最早发展的是值迭代，一般认为基于bellman迭代式，方差较小，而reinforce算法是一种最基础的策略迭代……这应该没人不会了</p>
+<p><strong>时序差分</strong></p>
+<p>最简单的是 TD 学习方法</p>
+<script type="math/tex; mode=display">
+V(S_t)\leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1})-V(S_t))</script><p>累计奖励（一般用于蒙特卡洛）$G<em>t=R</em>{t+1}+\gamma R_{t+2}+…+\gamma^{T-1}R_T$  是 $V^\pi(S_t)$ 的无偏估计</p>
+<p>时序差分的<strong>真实目标</strong> $R<em>{t+1}+V^\pi(S</em>{t+1})$ 是无偏估计。</p>
+<p>时序差分的<strong>目标</strong> $R<em>{t+1}+V(S</em>{t+1})$ 则是有偏估计。（但是它方差小啊）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>MC</th>
+<th>TD</th>
+<th>DP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无偏估计，高方差</td>
+<td>低方差，有偏差</td>
+<td>你不知道未来</td>
+</tr>
+<tr>
+<td>良好的收敛性质 • 使用函数近似时依然如此</td>
+<td>时序差分最终收敛到但使用函数近似并不总是如此</td>
+<td>你不知道未来</td>
+</tr>
+<tr>
+<td>对初始值不敏感</td>
+<td>比蒙特卡洛对初始值更加敏感</td>
+<td>你不知道未来</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>value-&gt;policy</strong>：在上面这个迭代方法中，我们能得到value，只需要再加上小小的一点点就能得到policy，即argmax.</p>
+<script type="math/tex; mode=display">
+\pi(s)=\arg \max_{a\in A} Q(s,a)</script><p>所以学Q也是可以的，Q就是多了一步</p>
+<p>一个叫<strong>SARSA</strong>的算法的Q公式是这样的：</p>
+<script type="math/tex; mode=display">
+Q(s,a)\leftarrow Q(s,a)+\alpha (r+\gamma Q(s',a')-Q(s,a))</script><p>SARSA是<strong>在线</strong>的，因为在这之后它就需要根据Q继续采样，它的采样策略称为 $\epsilon$-greedy，一定概率随机探索，一定概率取best action</p>
+<p>如果考虑<strong>离线</strong>的学习方法，可以把SARSA改一改，就是在update的时候取的 $a’$ 因为不能探索所以只是通过argmax得到，这就是我们熟知的Q-learning。</p>
+<p><strong>TD(λ)</strong>：很显然我们只通过一步迭代可能会有点方差还是大了一点，在实践中往往用多步时序差分，定义</p>
+<script type="math/tex; mode=display">
+G_t^{(n)}=R_{t+1}+\gamma R_{t+2}+...+\gamma^{n-1}R_{t+n}+\gamma^n V(S_{t+n})</script><script type="math/tex; mode=display">
+G_t^{\lambda }=(1-\lambda) \sum_{n=1}^\infin \lambda^{n-1} G_t^{(n)}</script><p>就是用平均 $n$ 步累计奖励来做，TD(λ)可以用类似dp的方法倒推求，后面写GAE的时候再补充这里，<strong>为什么要求均值</strong>，因为方差会减小。</p>
+<p>所以TD lambda这里就是利用 $G_{t}^\lambda$ 来更新其值函数。下面有一些新的概念</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/402198744">【Typical RL 13】GAE - 知乎 (zhihu.com)</a></p>
+<p>定义 $\lambda $ Return就是 $G_t^{\lambda}-V(S_t)$，经过一些推导可以发现</p>
+<script type="math/tex; mode=display">
+G_t^{\lambda}-V(S_t)=\sum_{k \ge 1} (\lambda \gamma)^{k-1}\delta_{t+k}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\delta_{t+k}=R_{t+k}+\lambda V(S_{t+k})-V(S_{t+k-1})</script><p>回到这里，我们思考一下会发现 $\lambda$ 越大，就越像TD，越小就越像MC。</p>
+<p>回到上文，这里引出一个概念就是 $A(s,t)=Q(s,t)-V(s)$，对于策略梯度来说 $A$ 是无偏估计，因为 $V$ 与 $\pi$ 无关，求导后是零。</p>
+<script type="math/tex; mode=display">
+A(s_t,a_t)=Q(s_t,a_t)-V(s_t)=E_{s_{t+1}}[r_t + \gamma V(S_{t+1} )\mid S_t=s] - V(s)=E_{S_{t+1}}[\delta_t]</script><p><strong>可以用TD-error作为Advantage函数的估计量</strong>。</p>
+<p>人们后来又发现 GAE 也可以就是 $\lambda$ Return的方法加权求和，所以用 GAE 来估计 advantage function是很恰当的事情。</p>
+<p><a target="_blank" rel="noopener" href="https://anyscale-ray-doc-assets.s3-us-west-2.amazonaws.com/_modules/ray/rllib/evaluation/postprocessing.html">ray.rllib.evaluation.postprocessing — Ray v0.9.0.dev0 (anyscale-ray-doc-assets.s3-us-west-2.amazonaws.com)</a></p>
+<p>关于怎么求GAE，Eligibility Traces可以用，直接看代码很好理解。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_advantages</span>(<span class="params">rewards, next_done, dones, values, last_value, args</span>):</span></span><br><span class="line">    advantages = torch.zeros_like(rewards).to(args.device)</span><br><span class="line">    lastgaelam = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(args.num_steps)):</span><br><span class="line">        <span class="keyword">if</span> t == args.num_steps - <span class="number">1</span>:</span><br><span class="line">            nextnonterminal = <span class="number">1.0</span> - next_done</span><br><span class="line">            nextvalues = last_value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            nextnonterminal = <span class="number">1.0</span> - dones[t + <span class="number">1</span>]</span><br><span class="line">            nextvalues = values[t + <span class="number">1</span>]</span><br><span class="line">        delta = rewards[t] + args.gamma * nextvalues * nextnonterminal - values[t]</span><br><span class="line">        advantages[t] = lastgaelam = delta + args.gamma * args.gae_lambda * nextnonterminal * lastgaelam</span><br><span class="line">    <span class="keyword">return</span> advantages</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>第一行就是初始化一个gae，然后根据step倒着来，中间大概是说如果是路径结束可以是得到的准确值，否则就是V这个估计值。</p>
+<p>注意看先求出了delta，然后计算了advantage的衰减，至于我这里其实计算了好多组advantage，是不同起点出发的路径。</p>
+<p>同样的，我们可以用 <strong>神经网络</strong> 来充当这个Q，以及policy的近似器。</p>
+<p>回到 <strong>DQN</strong>，很明显需要两个网络，一个是目标的Q，一个是目前在学的预测的Q。</p>
+<p>所谓的 DoubleQ，就是我在选取action用一个Q网络，选完action后估计它的值用另一个Q网络（target）。【更新q_target】</p>
+<blockquote>
+<p>doubleDQN中有重要性采样，但是这一步我没看懂为什么要用重要性采样，似乎是为了把在线变离线？</p>
+</blockquote>
+<hr>
+<h4 id="策略梯度法"><a href="#策略梯度法" class="headerlink" title="策略梯度法"></a>策略梯度法</h4>
       
     </div>
     <div class="article-footer">
@@ -707,5 +831,20 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
