@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>博弈论与强化学习の期中复习 | emoairx</title>
+  <meta name="description" content="博弈论Restart：有一说一的感觉就是政管的那门通识课讲到的内容可能还是少了点，这门课我还是没咋听懂就是说，以前还退过一门算法博弈论，那门课根本不敢学笑死。 ok，假设大家已经被科普过了解了什么是博弈论， 彻底躺平的一学期与最后一周的博弈论 | emoairx 合作博弈、非合作博弈；完全信息、不完全信息；静态博弈、动态博弈 每个参与者对自己的行为，其它参与者的行为都是有预期的，根据预期做出合乎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博弈论与强化学习の期中复习">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/05/04/note%20on%20multiAgent/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="博弈论Restart：有一说一的感觉就是政管的那门通识课讲到的内容可能还是少了点，这门课我还是没咋听懂就是说，以前还退过一门算法博弈论，那门课根本不敢学笑死。 ok，假设大家已经被科普过了解了什么是博弈论， 彻底躺平的一学期与最后一周的博弈论 | emoairx 合作博弈、非合作博弈；完全信息、不完全信息；静态博弈、动态博弈 每个参与者对自己的行为，其它参与者的行为都是有预期的，根据预期做出合乎">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-04T06:06:39.074Z">
+<meta property="article:modified_time" content="2024-05-05T13:37:40.434Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/05/04/note%20on%20multiAgent/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/04/diary/diary240504/" class="title">240504</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-04T06:21:48.056Z" itemprop="datePublished">2024-05-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/04/note%20on%20multiAgent/" class="title">博弈论与强化学习の期中复习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-04T06:06:39.074Z" itemprop="datePublished">2024-05-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/01/diary/diary240501/" class="title">240501</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-01T15:49:28.167Z" itemprop="datePublished">2024-05-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/27/Majorization%20Minimization/" class="title">Majorization Minimization</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-26T16:08:44.712Z" itemprop="datePublished">2024-04-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/04/26/typedown/" class="title">some meaningless words</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-26T10:54:10.482Z" itemprop="datePublished">2024-04-26</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-note on multiAgent" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      博弈论与强化学习の期中复习
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/05/04/note%20on%20multiAgent/" class="article-date">
+	  <time datetime="2024-05-04T06:06:39.074Z" itemprop="datePublished">2024-05-04</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/05/04/note%20on%20multiAgent/" class="leancloud_visitors"  data-flag-title="博弈论与强化学习の期中复习">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/05/04/note%20on%20multiAgent/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <hr>
+<h4 id="博弈论Restart："><a href="#博弈论Restart：" class="headerlink" title="博弈论Restart："></a>博弈论Restart：</h4><p>有一说一的感觉就是政管的那门通识课讲到的内容可能还是少了点，这门课我还是没咋听懂就是说，以前还退过一门算法博弈论，那门课根本不敢学笑死。</p>
+<p>ok，假设大家已经被科普过了解了什么是博弈论，</p>
+<p><a href="https://emoairx.github.io/blog/2023/12/20/last game/">彻底躺平的一学期与最后一周的博弈论 | emoairx</a></p>
+<p>合作博弈、非合作博弈；完全信息、不完全信息；静态博弈、动态博弈</p>
+<p>每个参与者对<strong>自己的行为</strong>，其它<strong>参与者的行为</strong>都是有预期的，根据预期做出合乎<strong>理性</strong>的行动。</p>
+<p>我们还是从最简单的地方开始回顾。完全信息静态博弈，什么是完全呢。</p>
+<p><strong>完全信息：</strong>每一参与者的策略集和收益函数均为共同知识。</p>
+<p>后面会说到<strong>完美信息</strong>并不是完全信息，完美信息大概是说历史上的事件都被记录了下来。</p>
+<p><strong>Nash equilibrium</strong></p>
+<p>根据定义，就是有一个策略组合，对于任何一个人要大于等于它改变的情况下收益函数。形式化为</p>
+<script type="math/tex; mode=display">
+v_i(\sigma_i^*,\sigma_{-i}^*) \ge v_i(\sigma_i,\sigma_{-i}^*)</script><p>这里可能要记一下下标 $-i$ 应该可以用来表示对手策略。</p>
+<p><strong>Support</strong>：因变量是一个策略，返回那些概率大于零的部分。</p>
+<p>最佳应对引理的结论是，for any nash equilibrum，对于一个人来说，支撑集的每一个纯策略都是一个best response.</p>
+<p>于是就引出一些求解方法</p>
+<h4 id="求解nash均衡"><a href="#求解nash均衡" class="headerlink" title="求解nash均衡"></a>求解nash均衡</h4><ol>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436477063">两人有限博弈的均衡计算 - 知乎 (zhihu.com)</a></p>
+</li>
+<li><p>支撑法求解，构造除所有混合策略的支撑之后根据best response来解方程。</p>
+<p>枚举支撑法的问题包括（解不存在，不满足非负性条件，存在支撑策略小于<strong>非支撑</strong>策略期望收益的情况）</p>
+</li>
+<li><p>规划求解法（比如双人博弈），有四个，一是在均衡下参与人1采用任何纯策略都不高于均衡收益；二是和为一；三是大于等于零；四是最大化收益减均衡收益。</p>
+</li>
+</ol>
+<h5 id="Lemke-Howson"><a href="#Lemke-Howson" class="headerlink" title="Lemke-Howson"></a>Lemke-Howson</h5><ul>
+<li>把所有小于等于变成等于，利用松弛变量。<ul>
+<li>如果一个action存在，即 $x^j&gt;0$，那么一定有它是关于对手策略的 best response，也即 $r^j=0$。</li>
+</ul>
+</li>
+<li>把原约束 $x^TB\le u\cdot 1,1^Tx=1$ 变成约束 $x^T\bar B \le 1$，通过某种矩阵的映射。</li>
+<li>于是说在这个约束可行解的多面体里，每个纯策略要么概率是零，要么就是对手策略的best response.<ul>
+<li>那么对于每一个综合了双方的action，考虑它满足的条件的数量，就要尽可能满足所有这些条件都要满足。定义这些条件为<strong>标签</strong>，一个点 $x$ 满足的标签的集合为 $L(x)$</li>
+</ul>
+</li>
+<li>于是转而得出，如果 $(x,y)$ 是一个Nash equilibrium，就有 $L(x)\cup L(y)=M+N$，定义这个性质叫做<strong>完备的</strong>。<ul>
+<li>注意 $L(x)={i\mid x_i=0} \cup {j\mid (x^TB)_j=1}$</li>
+<li>所以两个图其实是相互的，有了 $y$ 才可能判断前 $n$ 个点是否满足要么是best response要么是等于零。</li>
+</ul>
+</li>
+<li>定义一张图，图上两个点右边如果这两个点在符合条件的多面体上是相邻的。有一些点是完备的，零点和Nash均衡点。</li>
+<li>关于一个性质（标签）$k$，定义这张图的一个子图 $U_k$，那些要么只缺少标签 $k$，要么什么标签都不缺少。<strong>完备的点在这张图上的度为1，其余（可达）的点度为2。</strong><ul>
+<li><a target="_blank" rel="noopener" href="https://web.stanford.edu/~saberi/lecture4.pdf">lecture4.pdf (stanford.edu)</a> 的 <strong>theorem4</strong></li>
+<li>对于零这个点来说，只可能把标签换成选一个元素；对于nash均衡来说，也只可能舍弃掉 $k$ 这个位置。</li>
+<li>对于其它的一般的点，因为我们选的一定是顶点，所以总的可重集的大小是 $N+M$ 的，也就是说一定有一个重复的部分为 $l$。在两张图的地方分别舍弃 $l$ 就能到达两个地方。</li>
+</ul>
+</li>
+<li>算法的过程是：不断地舍弃掉那些度为2的点，每次drop一个，pick一个。<ul>
+<li>Traversing the whole graph G to add missing labels and drop duplicate labels (i.e. pivoting) until we find one set of nodes that are fully labelled.</li>
+<li><strong>Guarantee to find one Nash</strong>, but not all of them! Determining whether all Nash are found is not even NP. </li>
+<li>Exponential time complexity because G has the number of vertices that is exponential in $n,m$ (combinatorial many) </li>
+<li>Because LCP has no objective, we cannot tell the progress before finding a solution. </li>
+<li>Corollary: almost all games have an odd number of Nash equilibrium.</li>
+</ul>
+</li>
+<li>Algorithm：<ul>
+<li>Choose $k \in M \cup N$</li>
+<li>Start with $(x,y) = (0,0) \in G$, Drop label $k$ from $(x,y)$.</li>
+<li>Let $(x,y)$ be the current vertex. Let $l$ be the label that is picked up by dropping label $k$, just drop $l$ <strong>in other polytope</strong> and repeat until find the nash equilibirum.</li>
+</ul>
+</li>
+</ul>
+<h5 id="零和博弈"><a href="#零和博弈" class="headerlink" title="零和博弈"></a>零和博弈</h5><ul>
+<li><p>定义<strong>博弈的值</strong>是一个常数 $v$，在参与人1在均衡中得到的期望收益。</p>
+</li>
+<li><p>如果博弈的值大于零，那么纳什均衡就是一个对偶线性规划的解：</p>
+</li>
+<li><script type="math/tex; mode=display">
+\begin{align*}
+&\min \sum p_i\\
+s.t. &\sum  a_{ij}p_i \ge 1\\
+&p_i \ge 0
+\end{align*}</script></li>
+<li><p>其中 $v=\frac{1}{\sum_{}p_i}$，这个问题的对偶问题就是一个对手（玩家2）要最大化收益。其中最终的概率是归一化后的这个。</p>
+</li>
+</ul>
+<p>对于nash均衡的求解，当<strong>参与人数大于2时</strong>，没有得到很好的解决，很多都是非线性的。</p>
+<h4 id="nash均衡存在性"><a href="#nash均衡存在性" class="headerlink" title="nash均衡存在性"></a>nash均衡存在性</h4><ul>
+<li><p>其实可以参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/454822666">纳什均衡的存在性证明 - 知乎 (zhihu.com)</a></p>
+</li>
+<li><p><strong>Sperner’s Lemma</strong> ：按照某种情况染色，只可能有奇数个顶点颜色不同的三角形。</p>
+<ul>
+<li>其实比较好理解，就是每个点都染色之后，只能走红黄的边。那么除了最最下角的起点以外，它能恰好走到一个三个点不同色的三角形，其它都是一系列的三角形走到三角形。</li>
+</ul>
+</li>
+<li><p>然后是关于推广的，<strong>Brouwer’s lemma</strong>：对于 $X \to X$ 的连续函数存在不动点。<strong>107</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ap4y1D71s">https://www.bilibili.com/video/BV1Ap4y1D71s</a></li>
+<li>具体方法是，首先构造一个平面，然后对于 $R^3$ 中的点，设 $f(x)=y$</li>
+<li>那么根据 $\min_i y_i&lt;x_i$ 的那个 $i$ 来给点染色，从而出现三种颜色。（其实依然不是很理解）。也就是其实在这个定义域（一个单纯性）内，我是能找到一个不动点的。然后后来我们又把结论扩展了。</li>
+</ul>
+</li>
+<li><p>然后用这个lemma来证明nash均衡的存在性，其实就是考虑怎么构造出这样一个函数，这个函数是一个映射。直观地理解是这个函数应该是一个best response相关的，因为nash均衡具有best response不变性。</p>
+</li>
+<li><p>所以我们考虑所有策略 $k$，定义参与人改变策略的倾向为</p>
+<script type="math/tex; mode=display">
+\phi_{ik}(\sigma)=\max(0,v_{ik}(\sigma)-v_i(\sigma))</script><p>具体而言是如果参与人 $i$ 采取了纯策略 $s_{ik}$ 后的收益比现在的策略大多少。</p>
+<p>$f(\sigma)=\sigma’$，其中</p>
+<script type="math/tex; mode=display">
+\sigma'_i(s_{ik}) = \frac{\sigma_{i}(s_{ik})+\phi_{ik}(\sigma)}{\sum_j \sigma_{i}(s_{ij})+\phi_{ij}(\sigma)}</script><p>直观地理解，方法就是当前策略为 $\sigma$，那么我对这个点我可以得到一个各个方向的best response的归一化。总之存在一个 $f$ 不变的地方。也就是基本上都有奇数个nash均衡。</p>
+</li>
+</ul>
+<p><strong>Nash逼近</strong></p>
+<ul>
+<li>但注意到我们只是说明了存在性。所以其实要求解这个逼近有两种方法</li>
+<li>一种是weak的，具体是 $||F(x’)-x’|| &lt; \epsilon$，一种是strong的，为 $||x’-x^*|| &lt; \epsilon$</li>
+</ul>
+<p>后面引出了一个复杂度类称之为<strong>PPAD</strong>，关于二人博弈，四人以上博弈，多人一般和随机博弈，nash均衡的计算式PPAD-Complete的。</p>
+<h5 id="PPAD"><a href="#PPAD" class="headerlink" title="PPAD"></a>PPAD</h5><ul>
+<li><p>polynomial parity arguments on directed graphs，有向图的多项式校验参数</p>
+</li>
+<li><blockquote>
+<p>计算纳什均衡本质是一个搜索的问题，需要新的复杂度理论来 刻画，也就是FNP类</p>
+<p>TFNP是FNP的子类，表示问题一定有解。PPA是TFNP的子类， 表示无向图问题，+d表示有向图，就是PPAD。</p>
+<p>Nash → Brouwer → Sperner → End of Line → Nash 可以规约</p>
+</blockquote>
+</li>
+<li><p>一类PPAD完全的问题是：End of The Line，大概是每个点都有一个唯一的出度，但是要从起始点开始找到一个结束的无出度的点。不过没搞懂这里的问题规模是什么。</p>
+</li>
+</ul>
+<p>nash均衡的<strong>多重性</strong></p>
+<ul>
+<li><p>有时候有多个nash均衡的解，比如多个纯均衡的解。一般的解决思路有两种</p>
+<ul>
+<li>均衡精炼：剔除不合理的均衡，如子博弈精炼那什均衡，精炼贝叶斯nash均衡等</li>
+<li>非规范式方法：焦点效应、廉价磋商、相关均衡。</li>
+</ul>
+</li>
+<li><p>焦点效应：考虑一些被模型所抽象掉的信息</p>
+<ul>
+<li>廉价磋商的一种定义可能是，根据对手提出的建议选择接受或者不接受，并在这种setting下找到新的nash均衡。带有沟通过程</li>
+</ul>
+</li>
+<li><p>相关均衡：</p>
+<ul>
+<li>再引入一个随机变量，假设有 $m$ 种取值，双方对该随机变量不同取值下的反应不同，最终得到一个相关的矩阵，如果是两个人的话，这个矩阵是三维的，这里双方的策略有 $k^m$ 种，长度为 $m$。</li>
+<li>所谓的相关均衡，就是在各种概率的取值的情况下，<strong>期望上</strong>的收益最终能达到的nash均衡。双方收到的信号可以相关但是不同。</li>
+</ul>
+</li>
+</ul>
+<h4 id="扩展式博弈"><a href="#扩展式博弈" class="headerlink" title="扩展式博弈"></a>扩展式博弈</h4><ul>
+<li><p>大概就是引入了一个信息集的概念，一个人是否知道在哪个节点上，于是所有参与者在每个信息集上的行动 $A_i(I_i)$ 的笛卡尔积 $S_i$ 表示 参与人的策略集。静态博弈也可以扩展式表示。</p>
+</li>
+<li><p>在之前的通识课里我们已经知道了子博弈精炼纳什均衡（剔除一些不合理的nash均衡）及其求解（和动态规划差不多），我们这里重点关注子博弈精炼纳什均衡的合理性与唯一性。</p>
+</li>
+<li><p>Kuhn定理：在<strong>perfect recall</strong>的前提下，每一个混合策略都有一个行为策略和他等价。</p>
+</li>
+<li><blockquote>
+<p>不仅要求在博弈达到的路径上参与人的选择最优，而且要求在博弈<strong>没有达到的路径</strong>上参与人的选择也要最优。</p>
+</blockquote>
+</li>
+<li><p>关于合理性，虽然逆向归纳法在逻辑上是合理的，但是在蜈蚣博弈等情形下往往与常识相违背。</p>
+</li>
+<li><p>关于唯一性，如果不存在一个人在某个决策节点时其不同选择对自己的收益是无差异的，那么就是唯一的子博弈精炼nash均衡。</p>
+</li>
+</ul>
+<h5 id="贝叶斯博弈"><a href="#贝叶斯博弈" class="headerlink" title="贝叶斯博弈"></a>贝叶斯博弈</h5><ul>
+<li>贝叶斯的意思我理解成就是根据观测和先验概率，得到后验概率。</li>
+<li>对于存在非完全信息的情况，设置一个自然的存在（海萨尼转换），所有参与者关于自然的行动的<strong>信念</strong>是相同的，且为共同知识。</li>
+<li>在这个转换中有一个很有意思的点：参与人对包括自己在内的所有参与人的类型的联合概率推断(分布)都是一样的，但由于<strong>参与人掌握的私人信息不同</strong>，使得各自对其他参与人的类型的<strong>概率分布的推断不同</strong>。从贝叶斯公式可以看出来是这样的。</li>
+<li>那么贝叶斯博弈要求最关键的要素是：<ul>
+<li>参与人的集合</li>
+<li>参与人的<strong>类型集</strong></li>
+<li>参与人关于其它参与人的类型的<strong>推断</strong></li>
+<li>参与人类型集相应的行动集</li>
+<li>参与人类型集相应的收益函数</li>
+</ul>
+</li>
+<li>通过海萨尼转换后，得到了一个信息完全但非完美的动态博弈问题，则由于对自然的概率有一致的判断，则根据这个概率能得到均衡。</li>
+<li><strong>pass something</strong></li>
+<li>累了，真的累了，好繁杂，学点后来的吧会好玩一点</li>
+</ul>
+<hr>
+<h5 id="贝叶斯博弈-1"><a href="#贝叶斯博弈-1" class="headerlink" title="贝叶斯博弈"></a>贝叶斯博弈</h5><h5 id="重复博弈"><a href="#重复博弈" class="headerlink" title="重复博弈"></a>重复博弈</h5><h5 id="合作博弈"><a href="#合作博弈" class="headerlink" title="合作博弈"></a>合作博弈</h5><h5 id="随机博弈"><a href="#随机博弈" class="headerlink" title="随机博弈"></a>随机博弈</h5><hr>
+<h4 id="合作博弈-1"><a href="#合作博弈-1" class="headerlink" title="合作博弈"></a>合作博弈</h4><p>- </p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/05/04/note%20on%20multiAgent/" title="博弈论与强化学习の期中复习" target="_blank" rel="external">http://emoairx.github.io/blog/2024/05/04/note on multiAgent/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2024/05/04/diary/diary240504/" title="240504"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2024/05/01/diary/diary240501/" title="240501"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
