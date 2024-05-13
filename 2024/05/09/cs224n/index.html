@@ -18,19 +18,21 @@
   
   
   <title>新坑-CS224n | emoairx</title>
-  <meta name="description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  顺便补一补英语，六级刚过的水平能不能听懂一些  前七课应该只需要听一下就行，只是一些很简单的内容，虽然可能也很深刻。">
+  <meta name="description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要听一下就行，虽然可能也很深刻。 lab和Assignment就先不做了× 一些精简版 Lecture 1todo. Le">
 <meta property="og:type" content="article">
 <meta property="og:title" content="新坑-CS224n">
 <meta property="og:url" content="http://emoairx.github.io/blog/2024/05/09/cs224n/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  顺便补一补英语，六级刚过的水平能不能听懂一些  前七课应该只需要听一下就行，只是一些很简单的内容，虽然可能也很深刻。">
+<meta property="og:description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要听一下就行，虽然可能也很深刻。 lab和Assignment就先不做了× 一些精简版 Lecture 1todo. Le">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-6f4c462e08d9512f56ecd54b72907013_1440w.webp">
 <meta property="article:published_time" content="2024-05-09T13:54:30.517Z">
-<meta property="article:modified_time" content="2024-05-13T07:43:19.316Z">
+<meta property="article:modified_time" content="2024-05-13T13:16:03.513Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="NLP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-6f4c462e08d9512f56ecd54b72907013_1440w.webp">
   <!-- Canonical links -->
   <link rel="canonical" href="http://emoairx.github.io/blog/2024/05/09/cs224n/index.html">
   
@@ -370,9 +372,100 @@
 <p>很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的</p>
 <p>但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。</p>
 <blockquote>
-<p>顺便补一补英语，六级刚过的水平能不能听懂一些</p>
+<p>只是练一练英语，六级刚过的水平能不能听懂一些</p>
 </blockquote>
-<p><strong>前七课应该只需要听一下就行</strong>，只是一些很简单的内容，虽然可能也很深刻。</p>
+<p><strong>前七课应该只需要听一下就行</strong>，虽然可能也很深刻。</p>
+<p>lab和Assignment就先不做了×</p>
+<p><strong>一些精简版</strong></p>
+<h3 id="Lecture-1"><a href="#Lecture-1" class="headerlink" title="Lecture 1"></a>Lecture 1</h3><p>todo.</p>
+<h3 id="Lecture-2"><a href="#Lecture-2" class="headerlink" title="Lecture 2"></a>Lecture 2</h3><p><strong>Distributed Representations of Words and Phrases and their Compositionality</strong> (Mikolov et al. 2013)</p>
+<script type="math/tex; mode=display">
+J_t(\theta)=\log \sigma(u^T_o v_c)+\sum_{i=1}^k E_{j\sim P(w)}[\log \sigma(-u_j^T v_c)]</script><p>也就是又一些负样本，这里的 $\sigma$ 是sigmoid/logistic function。</p>
+<p><strong>Glove</strong>: 希望能Fast training，但是也能scale，在small copus上也能有用。</p>
+<p>具体而言，希望能利用上这个称之为共出现矩阵的东西。</p>
+<p>希望，$w_{i}^Tw_j=\log p(i\mid j)$，就是 $w_i^T(w_a-w_b)=\log \frac{P(i \mid a)}{P(i \mid b)}$</p>
+<script type="math/tex; mode=display">
+J=\sum_{i,j=1}^V f(X_{ij})(w_i^T\tilde w_j+b_i+\tilde b_j-\log X_{ij})</script><p>where X is the co-occurence matrix, and $f$ is to cut high value, like $f(x) = \min(x,C) / C,$ x &gt; 0</p>
+<p>(Why need f term? scale things on the frequency of the words, pay more attention to words that are more common)</p>
+<h5 id="evaluate-word-vectors"><a href="#evaluate-word-vectors" class="headerlink" title="evaluate word vectors:"></a>evaluate word vectors:</h5><ul>
+<li><strong>intrinsic</strong> word vector evaluation: <code>a:b :: c:?</code>, <code>man:woman :: king:?</code> </li>
+</ul>
+<p>and we have $d = \arg \max _i\frac{(x_b-x_a+x_c)^Tx_i}{||x_b-x_a+x_c||}$ ,</p>
+<p>one trick is that let $d\not =a,b,c$.</p>
+<ul>
+<li><strong>extrinsic</strong>: things like <strong>named entity recognition</strong> and etc.</li>
+</ul>
+<h5 id="Word-Sense"><a href="#Word-Sense" class="headerlink" title="Word Sense:"></a>Word Sense:</h5><p><strong>Improing Word Representations Via Global Context And Multiple Word Prototypes</strong> （Huang et al.2012)</p>
+<p>things like <strong>pike</strong> has many meanings, so maybe we need to have different word vector?</p>
+<p>Idea: Cluster word windows aroudn words, retrain with each word assigned to multiple different clusters.</p>
+<blockquote>
+<p>感觉不如attention，果然transformer非常完美解决了这个问题，不愧是十二年前的NLP了。</p>
+</blockquote>
+<p><strong>Linear Algebraic Structure of Word Senses, with Applications to Polysemy</strong> (Arora, Ma, TACL 2018)</p>
+<p>$v_{\text{pike}}=\alpha_1 v_1+\alpha_2v_2+\alpha_3v_3$</p>
+<p>and let $\alpha_1 = \frac{f_1}{f_1+f_2+f_3}$… for frequency $f$, and actuallly, In applications, </p>
+<p>This is enough!</p>
+<blockquote>
+<p>可以理解为由于单词存在于高维的向量空间之中，不同的纬度所包含的含义是不同的，所以加权平均值并不会损害单词在不同含义所属的纬度上存储的信息</p>
+</blockquote>
+<h4 id="Lecture-3"><a href="#Lecture-3" class="headerlink" title="Lecture 3"></a>Lecture 3</h4><p>这一节与NLP关系不大，大概是一些神经网络的基础知识× 读者需要对梯度下降，反向传播，Jacobians有一点了解</p>
+<p>这一章感觉 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/110281068">[CS224n笔记] L3 Word Window Classification,Neural… - 知乎 (zhihu.com)</a> 讲得很好，直接抄一下</p>
+<p>tips&amp;&amp;Tricks：</p>
+<ul>
+<li><p><strong>Regularization</strong>：比如可以加一个 <code>Frobenius</code> 范数 $w$，意思是可以增加一个超参数作为先验分布，使得权重较小以实现较好的泛化（？）</p>
+</li>
+<li><p><strong>Dropout</strong>：</p>
+<ul>
+<li><blockquote>
+<p>dropout 本质上作的是一次以指数形式训练许多较小的网络，并对其预测进行平均。</p>
+<p>最终的网络可以近似看作是集成了指数级个不同网络的组合模型。</p>
+<p>Dropout一般是针对神经元进行随机丢弃，但是也可以扩展到对神经元之间的连接进行随机丢弃，或每一层进行随机丢弃。</p>
+<p>在RNN中，不能直接对每个时刻的隐状态进行随机 丢弃，这样会损害循环网络在时间维度上记忆能力，一种简单的方法是对非时间维度的连接（即非循环连接）进行随机丢失。如图所示，虚线边表示进行随机丢弃，不同的颜色表示不同的丢弃掩码。然而根据贝叶斯学习的解释，丢弃法是一种对参数θ的采样。每次采样的参数需要在每个时刻保持不变。因此，在对循环神经网络上使用丢弃法时，需要对参数矩阵的每个元素进行随机丢弃，并在所有时刻都使用相同的丢弃掩码。这种方法称为变分丢弃法（Variational Dropout）。 在与时间有关地地方，<strong>使用相同的丢弃掩码</strong>。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Normalization</strong>：其实也不知道LayerNorm还是BatchNorm，反正以后总得深刻地理解到底是哪一个，之后会搞懂的。</p>
+</li>
+<li><p><strong>Mean Subtraction</strong>：大概就是一种数据处理。</p>
+</li>
+<li><p><strong>Whitening</strong>：让所有特征具有相同的方差，</p>
+</li>
+<li><p>Parameter Initialization：在 Understanding the difficulty of training deep feedforward neural networks (2010) 的论文中，给出了一种随机分布，能让 <code>sigmoid</code> 和 <code>tanh</code> 激活单元实现更快的收敛和得到更低的误差。</p>
+</li>
+<li>更多的优化方法，<a target="_blank" rel="noopener" href="https://www.ruder.io/optimizing-gradient-descent/">An overview of gradient descent optimization algorithms (ruder.io)</a>——这好像也已经是2016年了，好老啊。</li>
+</ul>
+<p><strong>Named Entity Recognition(NER)</strong></p>
+<p>一个NLP的任务，</p>
+<ul>
+<li><strong>find</strong> and <strong>classify</strong> names in text.</li>
+</ul>
+<p>simple Idea: classify each word in its context window. </p>
+<p>换言之就是给一句话，比如整个窗口五个词，中间这个词二分类一下看是不是一个类别。</p>
+<p>这个任务的但难点在于，很难计算出实体的边界，</p>
+<hr>
+<h3 id="Lecture-4-Dependency-Parsing"><a href="#Lecture-4-Dependency-Parsing" class="headerlink" title="Lecture 4 - Dependency Parsing"></a>Lecture 4 - Dependency Parsing</h3><p><strong>Syntactic Structure</strong>：</p>
+<p>有两种主要的观点，一种是<strong>Constituency grammar</strong> =phrase structure grammar，大概是上下文无关文法</p>
+<ol>
+<li><strong>基本概念</strong>：成分句法分析基于短语结构语法理论，该理论认为句子由<strong>一系列嵌套的短语组成</strong>，这些短语是句子的基本构建块。每个短语由一个中心词和可能的修饰词组成。</li>
+<li><strong>结构特点</strong>：在成分句法分析中，句子结构被表示为一个<strong>树状图</strong>，称为短语结构树或解析树。树中的每个节点代表一个短语或单词，节点之间的父子关系表示短语的嵌套关系。</li>
+</ol>
+<p>另一种是 <strong>Dependency Parsing</strong></p>
+<ol>
+<li><strong>基本概念</strong>：依存句法分析基于依存语法理论，该理论认为句子中的词通过依存关系相互连接。每个词（通常是名词、动词、形容词等实词）都有一个或多个依存词，形成一个依存关系树。</li>
+<li><strong>结构特点</strong>：在依存句法分析中，句子结构被表示为一个<strong>有向图</strong>，其中中心词（通常是动词或名词）是图的根节点，其他词作为子节点与之相连。每个依存关系都表示为一个有向边，边上标注了关系的类型（如主语、宾语、定语等）。</li>
+</ol>
+<p><img src="https://pic4.zhimg.com/80/v2-6f4c462e08d9512f56ecd54b72907013_1440w.webp" alt="img"></p>
+<blockquote>
+<p>关于 San Jose cops kill man with knife</p>
+<p>with prepositional phrase attachment ambiguites：介词短语附属不明确，但在中文不会出现×</p>
+</blockquote>
+<p><strong>Dependency Grammar and Treebanks</strong></p>
+<ul>
+<li><p><strong>Transition-based dependency parsing</strong></p>
+</li>
+</ul>
+<p><strong>Neural dependency parsing</strong></p>
 
       
     </div>
