@@ -18,16 +18,21 @@
   
   
   <title>新坑-CS224n | emoairx</title>
-  <meta name="description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要听一下就行，虽然可能也很深刻。 lab和Assignment就先不做了× 一些精简版 Lecture 1todo. Le">
+  <meta name="description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要快速过一下，虽然可能也很深刻。 前三次作业跳过  从作业4和作业5开始做  发现面向LLM学习真是一个好方法，这些经典的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="新坑-CS224n">
 <meta property="og:url" content="http://emoairx.github.io/blog/2024/05/09/cs224n/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要听一下就行，虽然可能也很深刻。 lab和Assignment就先不做了× 一些精简版 Lecture 1todo. Le">
+<meta property="og:description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要快速过一下，虽然可能也很深刻。 前三次作业跳过  从作业4和作业5开始做  发现面向LLM学习真是一个好方法，这些经典的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-6f4c462e08d9512f56ecd54b72907013_1440w.webp">
+<meta property="og:image" content="https://img-blog.csdn.net/20160721152411328">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-f85c81cbb259b80c3644a16e005679be_1440w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-c261ad307b2aeddc6e0dff4d4c7d1139_1440w.webp">
+<meta property="og:image" content="https://12kdh43.github.io/assets/images/cs224n/lec9_11.png">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-d44557c723b7b8ed46ea9affe4f2e926_1440w.webp">
 <meta property="article:published_time" content="2024-05-09T13:54:30.517Z">
-<meta property="article:modified_time" content="2024-05-13T13:16:03.513Z">
+<meta property="article:modified_time" content="2024-05-20T17:48:23.510Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="NLP">
@@ -187,7 +192,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -197,7 +202,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.25px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.6px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
     </div>
   </div>
 
@@ -206,7 +211,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -218,6 +223,36 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/14/max%20entropy%20RL/" class="title">最大熵强化学习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-14T10:43:23.367Z" itemprop="datePublished">2024-05-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/14/note%20on%20Information%20Theory/" class="title">Information Theory - wll</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-14T02:12:50.738Z" itemprop="datePublished">2024-05-14</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -259,36 +294,6 @@
               </p>
               <p class="item-date">
                 <time datetime="2024-05-04T06:21:48.056Z" itemprop="datePublished">2024-05-04</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/blog/2024/05/04/note%20on%20multiAgent/" class="title">博弈论与强化学习の期中复习</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-05-04T06:06:39.074Z" itemprop="datePublished">2024-05-04</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/blog/2024/05/01/diary/diary240501/" class="title">240501</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-05-01T15:49:28.167Z" itemprop="datePublished">2024-05-01</time>
               </p>
             </div>
           </li>
@@ -374,8 +379,12 @@
 <blockquote>
 <p>只是练一练英语，六级刚过的水平能不能听懂一些</p>
 </blockquote>
-<p><strong>前七课应该只需要听一下就行</strong>，虽然可能也很深刻。</p>
-<p>lab和Assignment就先不做了×</p>
+<p>前七课应该只需要快速过一下，虽然可能也很深刻。</p>
+<p>前三次作业跳过</p>
+<blockquote>
+<p>从作业4和作业5开始做</p>
+</blockquote>
+<p>发现面向LLM学习真是一个好方法，这些经典的东西最好玩的就是你告诉LLM，<strong>让它帮你举一个例子</strong>，然后你就能看着这个例子就看懂了。</p>
 <p><strong>一些精简版</strong></p>
 <h3 id="Lecture-1"><a href="#Lecture-1" class="headerlink" title="Lecture 1"></a>Lecture 1</h3><p>todo.</p>
 <h3 id="Lecture-2"><a href="#Lecture-2" class="headerlink" title="Lecture 2"></a>Lecture 2</h3><p><strong>Distributed Representations of Words and Phrases and their Compositionality</strong> (Mikolov et al. 2013)</p>
@@ -409,32 +418,6 @@ J=\sum_{i,j=1}^V f(X_{ij})(w_i^T\tilde w_j+b_i+\tilde b_j-\log X_{ij})</script><
 <p>可以理解为由于单词存在于高维的向量空间之中，不同的纬度所包含的含义是不同的，所以加权平均值并不会损害单词在不同含义所属的纬度上存储的信息</p>
 </blockquote>
 <h4 id="Lecture-3"><a href="#Lecture-3" class="headerlink" title="Lecture 3"></a>Lecture 3</h4><p>这一节与NLP关系不大，大概是一些神经网络的基础知识× 读者需要对梯度下降，反向传播，Jacobians有一点了解</p>
-<p>这一章感觉 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/110281068">[CS224n笔记] L3 Word Window Classification,Neural… - 知乎 (zhihu.com)</a> 讲得很好，直接抄一下</p>
-<p>tips&amp;&amp;Tricks：</p>
-<ul>
-<li><p><strong>Regularization</strong>：比如可以加一个 <code>Frobenius</code> 范数 $w$，意思是可以增加一个超参数作为先验分布，使得权重较小以实现较好的泛化（？）</p>
-</li>
-<li><p><strong>Dropout</strong>：</p>
-<ul>
-<li><blockquote>
-<p>dropout 本质上作的是一次以指数形式训练许多较小的网络，并对其预测进行平均。</p>
-<p>最终的网络可以近似看作是集成了指数级个不同网络的组合模型。</p>
-<p>Dropout一般是针对神经元进行随机丢弃，但是也可以扩展到对神经元之间的连接进行随机丢弃，或每一层进行随机丢弃。</p>
-<p>在RNN中，不能直接对每个时刻的隐状态进行随机 丢弃，这样会损害循环网络在时间维度上记忆能力，一种简单的方法是对非时间维度的连接（即非循环连接）进行随机丢失。如图所示，虚线边表示进行随机丢弃，不同的颜色表示不同的丢弃掩码。然而根据贝叶斯学习的解释，丢弃法是一种对参数θ的采样。每次采样的参数需要在每个时刻保持不变。因此，在对循环神经网络上使用丢弃法时，需要对参数矩阵的每个元素进行随机丢弃，并在所有时刻都使用相同的丢弃掩码。这种方法称为变分丢弃法（Variational Dropout）。 在与时间有关地地方，<strong>使用相同的丢弃掩码</strong>。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p><strong>Normalization</strong>：其实也不知道LayerNorm还是BatchNorm，反正以后总得深刻地理解到底是哪一个，之后会搞懂的。</p>
-</li>
-<li><p><strong>Mean Subtraction</strong>：大概就是一种数据处理。</p>
-</li>
-<li><p><strong>Whitening</strong>：让所有特征具有相同的方差，</p>
-</li>
-<li><p>Parameter Initialization：在 Understanding the difficulty of training deep feedforward neural networks (2010) 的论文中，给出了一种随机分布，能让 <code>sigmoid</code> 和 <code>tanh</code> 激活单元实现更快的收敛和得到更低的误差。</p>
-</li>
-<li>更多的优化方法，<a target="_blank" rel="noopener" href="https://www.ruder.io/optimizing-gradient-descent/">An overview of gradient descent optimization algorithms (ruder.io)</a>——这好像也已经是2016年了，好老啊。</li>
-</ul>
 <p><strong>Named Entity Recognition(NER)</strong></p>
 <p>一个NLP的任务，</p>
 <ul>
@@ -462,11 +445,392 @@ J=\sum_{i,j=1}^V f(X_{ij})(w_i^T\tilde w_j+b_i+\tilde b_j-\log X_{ij})</script><
 </blockquote>
 <p><strong>Dependency Grammar and Treebanks</strong></p>
 <ul>
-<li><p><strong>Transition-based dependency parsing</strong></p>
+<li><p>dependency: An arrow connects a head (governor, superior, regent) with a dependent (modifier, inferior, subordinate).</p>
+</li>
+<li><p>dependency grammar的历史悠久，可以追溯到5th century BCE，相比之下constituents/context free的历史是R.S. Wells 1947和Chomsky 1953这样过来的。</p>
+</li>
+<li><blockquote>
+<p>树库是包含大量句子及其结构化标注的语料库。这些标注可以是短语结构树（在短语结构语法中）或依赖关系树（在依赖语法中）。树库的目的是提供语言结构的实例，以便语言学家可以研究语言的规律，以及计算语言学家可以训练和测试自然语言处理系统。</p>
+<p>例如，一个英语依赖树库可能包含成千上万个句子的依赖关系标注，每个句子都有一个如上所述的依赖结构图。这些标注可以用于训练句法分析器，该分析器能够自动识别新句子中的依赖关系。</p>
+</blockquote>
+</li>
+<li><p>已经标注的数据可参考 <a target="_blank" rel="noopener" href="https://universaldependencies.org/">https://universaldependencies.org/</a></p>
 </li>
 </ul>
-<p><strong>Neural dependency parsing</strong></p>
-
+<p><strong>Transition-based dependency parsing</strong></p>
+<ul>
+<li><p>接下来我们考虑dependency parsing的方法</p>
+</li>
+<li><p>一种用于Dependency parsing的方法，此外还有的方法包括</p>
+<ul>
+<li>DP (Eisner 1996) , MSTPaser(McDonald et 2005)</li>
+<li><a target="_blank" rel="noopener" href="https://web.stanford.edu/class/cs224n/readings/cs224n-2019-notes04-dependencyparsing.pdf">cs224n-2019-notes04-dependencyparsing.pdf (stanford.edu)</a></li>
+</ul>
+</li>
+<li><p><strong>Greedy transition-based parsing</strong></p>
+</li>
+<li><p>MaltParser [Nivre and Hall 2005]</p>
+</li>
+<li><blockquote>
+<p>让我们通过一个简单的例子来说明 MaltParser 是如何工作的。假设我们有一个英文句子：”The cat sleeps on the mat.” 我们将展示如何使用 MaltParser 的基于转移的依赖句法分析算法来构建这个句子的依赖树。</p>
+<ol>
+<li><p><strong>初始状态</strong>：分析开始时，我们有一个空的分析栈和一个包含所有单词的输入队列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈: []</span><br><span class="line">队列: [The, cat, sleeps, on, the, mat]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 SHIFT 操作</strong>：我们将第一个单词 “The” 从队列移动到栈上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈: [The]</span><br><span class="line">队列: [cat, sleeps, on, the, mat]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 SHIFT 操作</strong>：我们将下一个单词 “cat” 从队列移动到栈上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈: [The, cat]</span><br><span class="line">队列: [sleeps, on, the, mat]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 RIGHT-ARC 操作</strong>：我们创建一个从 “cat” 到 “The” 的依赖关系，表示 “The” 是 “cat” 的定语，并将 “The” 从栈中移除。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">栈: [cat]</span><br><span class="line">队列: [sleeps, on, the, mat]</span><br><span class="line">依赖关系: cat --[det]→ The</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 SHIFT 操作</strong>：我们将下一个单词 “sleeps” 从队列移动到栈上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈: [cat, sleeps]</span><br><span class="line">队列: [on, the, mat]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 RIGHT-ARC 操作</strong>：我们创建一个从 “sleeps” 到 “cat” 的依赖关系，表示 “cat” 是 “sleeps” 的主语，并将 “cat” 从栈中移除。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">栈: [sleeps]</span><br><span class="line">队列: [on, the, mat]</span><br><span class="line">依赖关系: sleeps --[nsubj]→ cat</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 SHIFT 操作</strong>：我们将下一个单词 “on” 从队列移动到栈上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈: [sleeps, on]</span><br><span class="line">队列: [the, mat]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 SHIFT 操作</strong>：我们将下一个单词 “the” 从队列移动到栈上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈: [sleeps, on, the]</span><br><span class="line">队列: [mat]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 SHIFT 操作</strong>：我们将下一个单词 “mat” 从队列移动到栈上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈: [sleeps, on, the, mat]</span><br><span class="line">队列: []</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 RIGHT-ARC 操作</strong>：我们创建一个从 “mat” 到 “the” 的依赖关系，表示 “the” 是 “mat” 的定语，并将 “the” 从栈中移除。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">栈: [sleeps, on, mat]</span><br><span class="line">队列: []</span><br><span class="line">依赖关系: mat --[det]→ the</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 RIGHT-ARC 操作</strong>：我们创建一个从 “on” 到 “mat” 的依赖关系，表示 “mat” 是 “on” 的宾语，并将 “on” 从栈中移除。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">栈: [sleeps, mat]</span><br><span class="line">队列: []</span><br><span class="line">依赖关系: on --[obl]→ mat</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>应用 RIGHT-ARC 操作</strong>：我们创建一个从 “sleeps” 到 “on” 的依赖关系，表示 “on” 是 “sleeps” 的状语，并将 “sleeps” 从栈中移除。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">栈: [mat]</span><br><span class="line">队列: []</span><br><span class="line">依赖关系: sleeps --[advmod]→ on</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最终，我们得到了句子的依赖树，其中 “sleeps” 是根节点，其他单词都是它的依赖项。这个过程是自动化的，<strong>MaltParser 使用机器学习训练的分类器来决定在每个步骤中应用哪个转移操作。</strong>分类器会考虑当前的分析状态和预定义的特征来做出决策。</p>
+</blockquote>
+<p><strong>投影性假设</strong>：MaltParser 最初是为处理投影性依赖结构（即依赖弧不交叉的结构）而设计的。这意味着它在处理非投影性依赖结构（即依赖弧可能交叉的结构）时可能会遇到困难。虽然后来有扩展来处理非投影性依赖，但这些扩展可能不如专门为非投影性语言设计的工具效果好。</p>
+<blockquote>
+<p>该模型的精度略低于依赖解析的最高水平，但它提供了非常快的线性时间解析，性能非常好</p>
+</blockquote>
+<p>啊，二十年前的东西</p>
+</li>
+<li><p><strong>evaluation</strong>: (labeled) dependency accuracy</p>
+</li>
+</ul>
+<h3 id="Lecture5-Language-Modeling"><a href="#Lecture5-Language-Modeling" class="headerlink" title="Lecture5 - Language Modeling"></a>Lecture5 - Language Modeling</h3><ul>
+<li><p>Neural Dependency Parsing：<a target="_blank" rel="noopener" href="https://nlp.stanford.edu/pubs/emnlp2014-depparser.pdf">emnlp2014-depparser.pdf (stanford.edu)</a> </p>
+<ul>
+<li>[Danqi Chen, Christopher D. Manning @ 2014]</li>
+</ul>
+</li>
+<li><p><strong>解析算法（Parsing Algorithm）</strong>：神经依存解析模型通常采用两种主要的解析算法：基于转移的系统（Transition-based Systems）和基于图的系统（Graph-based Systems）。</p>
+<ul>
+<li><strong>基于转移的系统</strong>：这类系统通过一系列的“转移”操作来构建依存树。模型根据当前的状态（包括已处理的单词和它们之间的关系）预测下一个转移操作（如SHIFT、LEFT-ARC、RIGHT-ARC等）。每个转移操作都会改变系统的状态，直到生成完整的依存树。</li>
+<li><strong>基于图的系统</strong>：这类系统将依存解析视为一个图上的优化问题。模型为句子中的每对可能的词对（head和dependent）分配一个分数，表示它们形成依存关系的概率。然后，使用图算法（如最大生成树算法）来找到最大化总分数的依存树。</li>
+</ul>
+<hr>
+</li>
+<li><p><strong>a bit more about neural networks</strong></p>
+<ul>
+<li><p><strong>Regularization</strong>：比如可以加一个 <code>Frobenius</code> 范数 $w$，意思是可以增加一个超参数作为先验分布，使得权重较小以实现较好的泛化（？）</p>
+</li>
+<li><p><strong>Dropout</strong>：</p>
+<ul>
+<li><blockquote>
+<p>dropout 本质上作的是一次以指数形式训练许多较小的网络，并对其预测进行平均。</p>
+<p>最终的网络可以近似看作是集成了指数级个不同网络的组合模型。</p>
+<p>Dropout一般是针对神经元进行随机丢弃，但是也可以扩展到对神经元之间的连接进行随机丢弃，或每一层进行随机丢弃。</p>
+<p>在RNN中，不能直接对每个时刻的隐状态进行随机 丢弃，这样会损害循环网络在时间维度上记忆能力，一种简单的方法是对非时间维度的连接（即非循环连接）进行随机丢失。然而根据贝叶斯学习的解释，丢弃法是一种对参数θ的采样。每次采样的参数需要在每个时刻保持不变。因此，在对循环神经网络上使用丢弃法时，需要对参数矩阵的每个元素进行随机丢弃，并在所有时刻都使用相同的丢弃掩码。这种方法称为变分丢弃法（Variational Dropout）。 在与时间有关地地方，<strong>使用相同的丢弃掩码</strong>。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Normalization</strong>：其实也不知道LayerNorm还是BatchNorm，反正以后总得深刻地理解到底是哪一个，之后会搞懂的。</p>
+</li>
+<li><p><strong>Mean Subtraction</strong>：大概就是一种数据处理。</p>
+</li>
+<li><p><strong>Whitening</strong>：让所有特征具有相同的方差，</p>
+</li>
+<li><p><strong>Parameter Initialization</strong>：在 Understanding the difficulty of training deep feedforward neural networks (2010) 的论文中，给出了一种随机分布，能让 <code>sigmoid</code> 和 <code>tanh</code> 激活单元实现更快的收敛和得到更低的误差。</p>
+</li>
+<li><p><strong>Learning Rates：</strong> </p>
+</li>
+<li><p>更多的优化方法，<a target="_blank" rel="noopener" href="https://www.ruder.io/optimizing-gradient-descent/">An overview of gradient descent optimization algorithms (ruder.io)</a>——这好像也已经是2016年了，好老啊。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="n-gram"><a href="#n-gram" class="headerlink" title="n-gram"></a>n-gram</h5><ul>
+<li>using counting statistic approximation.</li>
+</ul>
+</li>
+<li><p><strong>Language Model</strong>: to predict the next word.</p>
+</li>
+</ul>
+<h3 id="Lecture6-RNN-amp-amp-more"><a href="#Lecture6-RNN-amp-amp-more" class="headerlink" title="Lecture6 - RNN&amp;&amp;more"></a>Lecture6 - RNN&amp;&amp;more</h3><ul>
+<li><p><strong>Perplexity </strong>困惑度是一种用于衡量语言模型好坏的方法</p>
+<script type="math/tex; mode=display">
+\prod_{i=1}^T\left(\frac{1}{P_{\text{LM}}(x^{t+1} \mid x_t,...x_1)}\right)^{1/T}</script><p>等价于 cross_entropy loss的exp版本。</p>
+</li>
+<li><p><strong>gradient clip</strong>：gradient的范数超过某个阈值之后，clip掉。</p>
+</li>
+<li><p><strong>LSTM</strong>：</p>
+<ul>
+<li>为了解决梯度消失问题。</li>
+<li>新的记忆只是被简单的加上去，在cell step上包括两步，forget门和input门。</li>
+<li><strong>前transformer时代的成功者</strong></li>
+</ul>
+</li>
+<li><p><strong>RNN</strong>的缺点：特别不稳定，因为repeated multiplication by the same weight matrix. [Bengio et al, 1994].</p>
+</li>
+</ul>
+<h3 id="Lecture7-Seq2Seq-Attention"><a href="#Lecture7-Seq2Seq-Attention" class="headerlink" title="Lecture7 Seq2Seq, Attention"></a>Lecture7 Seq2Seq, Attention</h3><p><strong>task: Machine Translation</strong></p>
+<ul>
+<li>$\arg\max_y P(y\mid x)=\arg \max_y P(x \mid y) P(y)$</li>
+<li>早期的Statistical Machine Translation</li>
+<li>分成两份，左边就是一个Translation Model，右边用一个Language Model去预测 $y$ 发生的可能性。</li>
+</ul>
+<p>关于<strong>翻译模型</strong>，往往加入一个叫做 <strong>Alignment</strong> 的东西，往往需要EM之类的算法去学一个</p>
+<blockquote>
+<p>deepseek-chat：在统计机器翻译（Statistical Machine Translation, SMT）中，对齐（Alignment）是一个显式的过程，它需要明确地展示源语言和目标语言之间的对应关系。</p>
+<p>它指的是源语言文本（source text）和目标语言文本（target text）之间的对应关系。这种对应关系可以是单词级别的，也可以是短语、句子甚至段落级别的。对齐的目的是为了帮助机器翻译系统理解源语言和目标语言之间的<strong>语义和结构</strong>上的<strong>对应关系</strong>，从而提高翻译的准确性和流畅性。</p>
+<p><strong>对齐就是一个分布迁移的过程</strong></p>
+</blockquote>
+<ul>
+<li>然后考虑如何做SMT的argmax这个方法，一个方法是引入强的独立性假设</li>
+</ul>
+<p>关于SMT，怎么把这些部分结合起来，一种就是用动态规划的方法，比如说一个区间的词翻译成另一个语言，然后做一个 $dp[i,j]$ 那样的东西。应该很快，但是上个世纪了。</p>
+<blockquote>
+<p>啊想起来了，最早读吴军的数学之美它讲统计机器翻译的。</p>
+</blockquote>
+<p><strong>seq-to-seq</strong> model</p>
+<ul>
+<li>时间来到了2014年，祂出了，祂就是 Neural Machine Translation！</li>
+<li>但chatgpt时代的我们应该知道seq-seq能做几乎所有任务。</li>
+<li><strong>Multi-layer RNN</strong> 有好几层的RNN，有点像difussion相比于VAE的感觉。</li>
+</ul>
+<blockquote>
+<p>含多个隐藏层，每个隐藏层都有自己的循环单元。每个时间步，信息不仅在同一层内的时间步之间传递，还在不同层之间传递。</p>
+</blockquote>
+<ul>
+<li><strong>decoding</strong>: 用贪心或者用 <strong>Beam search decoding</strong><ul>
+<li>beam search decoding 类似于一个优先队列大小的启发式搜索。具体而言是 $\log p$ 的和。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：可解释性，可控制性</li>
+</ul>
+<p><strong>BLEU</strong> score</p>
+<blockquote>
+<p>BLEU（Bilingual Evaluation Understudy）是一种广泛使用的自动评估机器翻译质量的指标。它通过比较机器翻译输出与一组高质量的人工翻译参考文本来计算得分。BLEU 分数的范围通常是 0 到 1，其中 1 表示机器翻译与参考翻译完全匹配。BLEU 指标主要关注翻译的精确度，尤其是单词和短语的匹配程度，但它不直接评估翻译的流畅性或语义准确性。</p>
+<ol>
+<li><strong>精确度计算</strong>：对于每个n-gram，计算它在参考翻译中出现的次数。然后，计算机器翻译输出中匹配的n-gram的总数与机器翻译输出中所有n-gram的总数的比例。这个比例就是n-gram的精确度。</li>
+<li><strong>修正的n-gram精确度</strong>：为了避免过短的翻译输出得到高分，BLEU引入了修正机制。如果机器翻译输出中的某个n-gram出现次数超过了所有参考翻译中该n-gram的最大出现次数，那么这个n-gram的计数将被限制为最大出现次数。</li>
+</ol>
+</blockquote>
+<ul>
+<li>NMT：perhaps the biggest success story of NLP Deep Learning.</li>
+</ul>
+<p><strong>Assignment4</strong></p>
+<ul>
+<li>cherokee-to-english translation</li>
+</ul>
+<h5 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h5><ul>
+<li>RNN有一个 <strong>Information bottleneck</strong>，大概是encoder的最后一层。</li>
+<li>原来这就是Information bottleneck！</li>
+<li>一开始是 <code>seq-to-seq with attention</code> 的模型，利用最后的bottleneck得到一个Attention scores，然后根据Attention Scores把注意力集中在RNN的每一层的输出。</li>
+</ul>
+<h3 id="Lecture8-Self-Attention-amp-amp-Transformer"><a href="#Lecture8-Self-Attention-amp-amp-Transformer" class="headerlink" title="Lecture8 Self-Attention&amp;&amp;Transformer"></a>Lecture8 Self-Attention&amp;&amp;Transformer</h3><ul>
+<li><strong>bidirectional LSTM</strong></li>
+</ul>
+<p><img src="https://img-blog.csdn.net/20160721152411328" alt="这里写图片描述" style="zoom:50%;"></p>
+<ul>
+<li>RNN with Attention……</li>
+<li>有很多之前的方法……大家想了很多很多方法</li>
+<li>RNN take O(seq length) steps for distant word pairs to interact.</li>
+</ul>
+<p>为什么叫 <strong>self-attention</strong>?</p>
+<ul>
+<li><blockquote>
+<p>之前一直用Neural Turing Machine的方法来理解成记忆的建模的</p>
+</blockquote>
+</li>
+<li><p>一句话，每个token都有一个注意力，关注这句话的各个部分。</p>
+</li>
+</ul>
+<p><img src="https://pic3.zhimg.com/80/v2-f85c81cbb259b80c3644a16e005679be_1440w.webp" alt="img" style="zoom:50%;"></p>
+<script type="math/tex; mode=display">
+q_i=Qx_i,k_i=Kx_i,v_i=Vv_i\\
+e_{ij}=q_i^Tk_j,\alpha_{ij}=\frac{\exp e_{ij}}{\sum \exp e_{i,j'}}\\
+o_i=\sum_j a_{ij}v_j</script><ul>
+<li><strong>order</strong></li>
+<li>然后一般再加上 <code>sinusoidal position representations</code> ，不过unlearnable×</li>
+<li>ok，那我们试试看学一个position embedding。然后让 $x’=x+p$，这里 $x$ 是一个每个词已经 embedding 之后的向量了。</li>
+<li><strong>nonlinearities</strong> 在这之后，我们对于每个self-attention完了之后的部分可以用一个简单的FF网络作为非线性化层。</li>
+<li><strong>don’t look at the future</strong> using mask our attention. — in <strong>decoder</strong>, we need to ensure we can’t peek at the future.</li>
+</ul>
+<blockquote>
+<p>再放一张我很喜欢的解释KV-cache的图，<strong>只需要重新计算橙色的权重</strong>。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-c261ad307b2aeddc6e0dff4d4c7d1139_1440w.webp" alt="img" style="zoom: 50%;"></p>
+</blockquote>
+<h5 id="From-Attention-to-Transformer"><a href="#From-Attention-to-Transformer" class="headerlink" title="From Attention to Transformer"></a>From Attention to Transformer</h5><blockquote>
+<p>transformer is not necessary the endpoint of our search for better and better ways of representing language even though it’s now ubiquitous and has been for couple of years!</p>
+</blockquote>
+<p><strong>multi-head Attention</strong></p>
+<ul>
+<li><p>首先是用上了 <strong>multi-head Attention</strong>，就是可以用不同的注意力的方式注意不同的东西。</p>
+</li>
+<li><p>所有的self-attention可以用矩阵的方法，使得GPU-efficient</p>
+</li>
+<li><blockquote>
+<p>这里很重要，关于矩阵乘法形式的</p>
+</blockquote>
+</li>
+<li><p>不妨假设输入是 $d$ 维的，然后考虑原来的 $q_i,k_i$，也就是嵌入之后的向量，它们原来比如说也 $d$ 维的，然后我就把这个 $q$ 变成 $h$ 个，也就是变成了 h 个 $d/h$ 维的向量。</p>
+</li>
+<li><p>ok这样的话考虑已经固定了一个头Head，对于一对 $q<em>{ti}$ 和很多 $k</em>{tj}$，其中 $t \in [0,d/h)$，就得到了一个标量，经过softmax之后得到了一个长度为 $d$ 的概率分布，这个 $d$ 维的概率分布再和 $d$ 个 $d/h$ 维的向量 $v_i$ 做加权和，得到了一个 $d/h$ 的值。所以这里的 $Q_t,K_t,V_t$ 都是 $R^{d\times d/h}$ ，最后把 $h$ 个拼接起来就是一个 $d$ 维的，也就是完成了 $q_i$ 这个地方的query后的output。</p>
+</li>
+<li><p>矩阵计算的方法是这样的：</p>
+</li>
+<li><p>首先让 $XQ,XK,XV\in R^{n\times d}$，然后reshape成 $R ^{n\times h\times d/h}$，对于每一个维度计算 $softmax(R^{n\times d/h} \times R^{d/h \times n}) \times R^{n\times n/d}\to R^{n\times d/h}$ 对于tensor的每一个维度都是这样的，也就是得到了一个 $R^{n\times d/h \times h}$ 的张量，最后reshape成 $R^{n \times d}$ 的。</p>
+</li>
+</ul>
+<p><strong>Scaled Dot Product</strong></p>
+<ul>
+<li>由于长度很长，为了让attention的softmax可以好用一点</li>
+<li>还要除以一个 $\sqrt {d/h}$，这个是维度，一个结论是 $q$ 和 $k$ 是相互独立的，所以 </li>
+<li>$Var(q_i)=E[q_i^2]-(E[q_i])^2=1=Var(k_i^2)$</li>
+<li>$Var(q_ik_i)=E[q_i^2]E[k_i^2]-(E[q_i]E[k_i])^2=Var(q_i)Var(k_i)=1$</li>
+<li>所以 $Var(q^Tk)=d_k$，所以除了这个东西就能让方差都归一化，防止softmax都跑得很远然后导数很小不好优化。</li>
+</ul>
+<p><strong>Residual Connections</strong></p>
+<ul>
+<li><img src="https://12kdh43.github.io/assets/images/cs224n/lec9_11.png" alt="png" style="zoom:50%;"></li>
+</ul>
+<p><strong>Layer Normalization</strong></p>
+<ul>
+<li>a trick to help models train faster.</li>
+<li>好用的原因可能是它的normalizing gradients：[Xu et al. 2019]</li>
+<li>对于所有输入的 $x_i\in R^d$ 的词向量做，首先算出所有 $x_i$ 的均值，然后算出方差。</li>
+<li>输出 $\frac{x-\mu}{\sqrt \sigma + \epsilon} * \gamma + \beta$。这里的 $\gamma \in R^d$ 和 $\beta \in R^d$ 可以省略。</li>
+<li>do not share across the batch.</li>
+</ul>
+<h5 id="Transformer-decoder"><a href="#Transformer-decoder" class="headerlink" title="Transformer decoder"></a>Transformer decoder</h5><p>于是我们就得到了：Transformer！</p>
+<ul>
+<li>embeddings -&gt; position embeddings -&gt; <ul>
+<li>[—&gt;Multi-head attention -&gt; <strong>add(residual)&amp;norm</strong> -&gt; FF -&gt; add&amp;norm—&gt;] * N</li>
+</ul>
+</li>
+<li>-&gt; Linear -&gt; Softmax -&gt; probabilities.</li>
+</ul>
+<p>如果需要<strong>encoder+decoder</strong>，在decoder阶段就是</p>
+<ul>
+<li><strong>Masked</strong> Multi-head Attention 之后作为query，然后把 encoder 过来得作为key和value。</li>
+</ul>
+<p><img src="https://pic1.zhimg.com/80/v2-d44557c723b7b8ed46ea9affe4f2e926_1440w.webp" alt="img" style="zoom:50%;"></p>
+<ul>
+<li>所以这里有一个cross attention</li>
+</ul>
+<p>但是现在的Llama都是Decoder only的</p>
+<blockquote>
+<p>据说有很多原因，包括Decoder only的注意力矩阵的秩很大？</p>
+</blockquote>
+<ul>
+<li>然后就attention is all you need了，但是有两个问题</li>
+</ul>
+<p>关于平方复杂度</p>
+<ul>
+<li><strong>In practice, almost no large Transformer language models use any but the quadratic cost attention we’ve presented here.</strong> The cheaper methods thend not to work as well at scale.</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2102.11972">2102.11972 (arxiv.org)</a></li>
+</ul>
+<p>关于position embedding</p>
+<ul>
+<li>Some more flexible representations of position:<ul>
+<li>Relative linear position attention (<em>Shaw et al., 2018</em>)</li>
+<li>Dependency syntax-based position (<em>Wang et al., 2019</em>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Lecture9-Pretraining"><a href="#Lecture9-Pretraining" class="headerlink" title="Lecture9 - Pretraining"></a>Lecture9 - Pretraining</h3><ul>
+<li>妈的，这个老师好帅啊，真的好帅啊</li>
+</ul>
+<p><strong>Word structure and subword models</strong></p>
+<ul>
+<li><p>有限的词表会让有些新的词好像没有出现过，那咋办呢</p>
+</li>
+<li><p><strong>the byte-pair encoding algorithm</strong></p>
+</li>
+<li><blockquote>
+<ol>
+<li><strong>初始化</strong>：将输入文本分割成单个字符的序列，每个字符作为一个token。</li>
+<li><strong>统计频率</strong>：统计文本中所有字符对的出现频率。</li>
+<li><strong>合并</strong>：选择出现频率最高的字符对，将其合并成一个新的token。这个过程会重复进行，每次都选择频率最高的字符对进行合并，直到达到预定的token数量或满足其他停止条件。</li>
+<li><strong>编码</strong>：使用新生成的token集合对文本进行编码。</li>
+</ol>
+</blockquote>
+</li>
+<li><pre><code>hat-&gt;hat
+learn-&gt;learn
+taaaaasty-&gt;taa## aaa## sty
+laern-&gt;la## ern##
+Transformerify-&gt; Transformer## ify
+</code></pre></li>
+</ul>
+<p>为什么分成了pretrain和finetuning</p>
+<ul>
+<li>高质量数据不多的问题？</li>
+</ul>
+<p><strong>encoder</strong></p>
+<ul>
+<li>encoder的pretrain的方法，给一个句子(mostly randomly)mask掉一部分，比如 <code>I __ to the __</code> ，然后去预测 <code>went,store</code>。</li>
+<li><strong>bert</strong><ul>
+<li>有时候用一个随机的词替代，有时候用mask，有时候原样输出。</li>
+<li>除了token embedding，position embedding，还有一个segment embedding。[后来的工作说next sentence prediction是不必要的]</li>
+<li>只有110M和340M的大小。</li>
+<li>finetuning方法可以是：prefix-tunning, prompt tuning.</li>
+<li>也可以是：对于所有的网络W(n <em> m)，弄一个低秩的A(n </em> d)和B(d * m)，然后 W+AB</li>
+</ul>
+</li>
+</ul>
+<p><strong>encoder-decoder</strong></p>
+<ul>
+<li>训练的方法类似bert的方法</li>
+<li><strong>T5</strong><ul>
+<li>非常fantastic的事情是，人们发现finetuning的时候，模型有很少的时候能从pretrain里获取一些在finetuning过程中没有见到的内容和信息。</li>
+<li>it learned this sort of implicit retrival sometimes.</li>
+</ul>
+</li>
+</ul>
+<p><strong>decoder</strong></p>
+<ul>
+<li>predict the next word</li>
+<li>在课程中没有提及为什么大部分大模型都是decoder only的架构，老师表示可能是参数少能一起用。</li>
+<li><strong>GPT</strong><ul>
+<li>发现了 In-context learning，但很神奇我们不知道为什么会有in-context learning。</li>
+</ul>
+</li>
+</ul>
+<p>那么应该用多少的token训多大的模型呢：scaling Efficiency</p>
+<ul>
+<li>Chinchilla！70B parameters and 1.4Trillion tokens.</li>
+</ul>
+<p>The prefix as task specification and scratch pad: chain-of-thought.</p>
+<ul>
+<li>依然不知道为什么能work</li>
+</ul>
+<p>pretraining学了些什么？</p>
+<ul>
+<li><p>trivia, syntax, coreference, lexical sematics, topic, sentiment, some reasoning, some basic arithmetic, ….. </p>
+</li>
+<li><blockquote>
+<p>所以这个意义上搞数学是不是还是很合理的。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Lecture10"><a href="#Lecture10" class="headerlink" title="Lecture10 -"></a>Lecture10 -</h3>
       
     </div>
     <div class="article-footer">
