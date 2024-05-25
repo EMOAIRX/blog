@@ -18,21 +18,19 @@
   
   
   <title>最大熵强化学习 | emoairx</title>
-  <meta name="description" content="纵观机器学习的方法，都在和KL-divergence，或者说Bregman divergence打交道。 Reinforcement Learning and Control as Probabilistic Inference: Tutorial and Review  control as inference. — From Sergey Levine  最大的问题是怎么把控制的问题看成一个图">
+  <meta name="description" content="to be completed">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大熵强化学习">
 <meta property="og:url" content="http://emoairx.github.io/blog/2024/05/14/max%20entropy%20RL/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="纵观机器学习的方法，都在和KL-divergence，或者说Bregman divergence打交道。 Reinforcement Learning and Control as Probabilistic Inference: Tutorial and Review  control as inference. — From Sergey Levine  最大的问题是怎么把控制的问题看成一个图">
+<meta property="og:description" content="to be completed">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-18ad69336db8b9e21b7a6a3457fcdc9b_1440w.webp">
 <meta property="article:published_time" content="2024-05-14T10:43:23.367Z">
-<meta property="article:modified_time" content="2024-05-14T11:29:07.339Z">
+<meta property="article:modified_time" content="2024-05-25T16:13:16.125Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="强化学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-18ad69336db8b9e21b7a6a3457fcdc9b_1440w.webp">
   <!-- Canonical links -->
   <link rel="canonical" href="http://emoairx.github.io/blog/2024/05/14/max%20entropy%20RL/index.html">
   
@@ -368,46 +366,7 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>纵观机器学习的方法，都在和KL-divergence，或者说Bregman divergence打交道。</p>
-<p><strong>Reinforcement Learning and Control as Probabilistic Inference: Tutorial and Review</strong></p>
-<blockquote>
-<p>control as inference. — From Sergey Levine</p>
-</blockquote>
-<p>最大的问题是怎么把控制的问题看成一个图模型的问题</p>
-<p><img src="https://pic4.zhimg.com/80/v2-18ad69336db8b9e21b7a6a3457fcdc9b_1440w.webp" alt="img"></p>
-<p>这里的 $O$ 被叫做最优化量，具体而言</p>
-<script type="math/tex; mode=display">
-p(O_t\mid s_t,a_t) = K \exp(r(s_t,a_t))</script><p>我们有三个问题</p>
-<ol>
-<li><p>$\beta<em>t(s_t,a_t)=p(O</em>{t:T} \mid s_t,a_t)$</p>
-</li>
-<li><p>$p(a<em>t \mid s_t,O</em>{1:T})$</p>
-</li>
-<li><p>$a<em>t(s_t)=p(s_t\mid O</em>{1:t-1})$</p>
-<p>[inverse RL]</p>
-</li>
-</ol>
-<p>为什么我们需要从这个视角去看呢？就像TRPO用了各种视角，我们能有各种insight。</p>
-<hr>
-<p>我们经过一系列的推导，最终可以发现</p>
-<p>如果让 $V_t(s_t)=\log \beta_t(s_t)$ ，让 $Q_t(s_t,a_t)=\log \beta_t(s_t,a_t)$</p>
-<p>可以得到 $V_t(s_t)=\log \int \exp (Q_t(s_t,a_t)) \mathrm d a_t$</p>
-<hr>
-<p>1.这个entropy是加在每一个步骤里面的</p>
-<p>2.为什么这个 $\pi$ 总是能增加的。</p>
-<p><strong>Soft Policy improvement theorem</strong></p>
-<ul>
-<li>为什么 $\tilde \pi(\cdot \mid s) = \exp\left (Q<em>{soft}^{\pi}(s,a)-V</em>{soft}^{\pi}(s)\right)$ 一定是optimal</li>
-<li>A：你如何证明 $\tilde \pi$ 比 $\pi$ 要好</li>
-<li>B：如何证明在新的情况下</li>
-</ul>
-<p>为什么我们要引入图模型：我希望尽可能保证策略的随机性，随机性越大说明这个策略越鲁棒</p>
-<blockquote>
-<p>unifiying …. </p>
-<p>这之后Policy gradient和Q-learning都可以写成某个公式的变形</p>
-</blockquote>
-<p>在Soft Q-learning的时候还在用SVGD</p>
-<p>Soft Q-learning + Actor Loss + Double-Q Trick</p>
+        <p>to be completed</p>
 
       
     </div>
