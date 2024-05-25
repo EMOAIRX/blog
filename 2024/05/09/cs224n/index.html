@@ -18,12 +18,12 @@
   
   
   <title>新坑-CS224n | emoairx</title>
-  <meta name="description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要快速过一下，虽然可能也很深刻。 前三次作业跳过  从作业4和作业5开始做  发现面向LLM学习真是一个好方法，这些经典的">
+  <meta name="description" content="还是开一个新坑，说不定就学了呢。  HR：你连cs224n都不会你还敢投简历？ 我：对不起我不敢  Stanford CS 224N | Natural Language Processing with Deep Learning  我不明白，我实在不明白，这是一门开了二十四年的课程，为什么他能一直与时俱进，而我能接触到的例如算法设计与分析等校内就不是这样。  很久以前看到neural turin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="新坑-CS224n">
 <meta property="og:url" content="http://emoairx.github.io/blog/2024/05/09/cs224n/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="还是开一个新坑，说不定就学了呢。 很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的 但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。  只是练一练英语，六级刚过的水平能不能听懂一些  前七课应该只需要快速过一下，虽然可能也很深刻。 前三次作业跳过  从作业4和作业5开始做  发现面向LLM学习真是一个好方法，这些经典的">
+<meta property="og:description" content="还是开一个新坑，说不定就学了呢。  HR：你连cs224n都不会你还敢投简历？ 我：对不起我不敢  Stanford CS 224N | Natural Language Processing with Deep Learning  我不明白，我实在不明白，这是一门开了二十四年的课程，为什么他能一直与时俱进，而我能接触到的例如算法设计与分析等校内就不是这样。  很久以前看到neural turin">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-6f4c462e08d9512f56ecd54b72907013_1440w.webp">
 <meta property="og:image" content="https://img-blog.csdn.net/20160721152411328">
@@ -31,8 +31,11 @@
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-c261ad307b2aeddc6e0dff4d4c7d1139_1440w.webp">
 <meta property="og:image" content="https://12kdh43.github.io/assets/images/cs224n/lec9_11.png">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-d44557c723b7b8ed46ea9affe4f2e926_1440w.webp">
+<meta property="og:image" content="https://picx.zhimg.com/80/v2-5475f453dec316093aed7e5f391ebd16_1440w.webp?source=d16d100b">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-4cac30f278d19996b7a7e2f6aee35c98_1440w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-e50d97014d358065f5400e4825c60701_1440w.webp">
 <meta property="article:published_time" content="2024-05-09T13:54:30.517Z">
-<meta property="article:modified_time" content="2024-05-20T17:48:23.510Z">
+<meta property="article:modified_time" content="2024-05-25T16:08:29.216Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="NLP">
@@ -211,7 +214,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -223,6 +226,21 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/23/deepspeed/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-23T11:00:47.583Z" itemprop="datePublished">2024-05-23</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -279,21 +297,6 @@
               </p>
               <p class="item-date">
                 <time datetime="2024-05-09T13:54:30.517Z" itemprop="datePublished">2024-05-09</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/blog/2024/05/04/diary/diary240504/" class="title">240504</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-05-04T06:21:48.056Z" itemprop="datePublished">2024-05-04</time>
               </p>
             </div>
           </li>
@@ -374,7 +377,15 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <p>还是开一个新坑，说不定就学了呢。</p>
-<p>很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的</p>
+<blockquote>
+<p>HR：你连cs224n都不会你还敢投简历？</p>
+<p>我：对不起我不敢</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://web.stanford.edu/class/cs224n/">Stanford CS 224N | Natural Language Processing with Deep Learning</a></p>
+<blockquote>
+<p>我不明白，我实在不明白，这是一门开了二十四年的课程，为什么他能一直与时俱进，而我能接触到的例如算法设计与分析等校内就不是这样。</p>
+</blockquote>
+<p>很久以前看到neural turing machine的时候感觉，transformer就是自然而然地从中脱颖而出的。</p>
 <p>但是还是不懂这些东西，可能有很多很多经典的原理，有一条脉络。</p>
 <blockquote>
 <p>只是练一练英语，六级刚过的水平能不能听懂一些</p>
@@ -830,7 +841,211 @@ Transformerify-&gt; Transformer## ify
 </blockquote>
 </li>
 </ul>
-<h3 id="Lecture10"><a href="#Lecture10" class="headerlink" title="Lecture10 -"></a>Lecture10 -</h3>
+<h3 id="Lecture10-from-LM-to-Assistants"><a href="#Lecture10-from-LM-to-Assistants" class="headerlink" title="Lecture10 - from LM to Assistants."></a>Lecture10 - from LM to Assistants.</h3><p>有至少三种方法来align AI和人类</p>
+<ol>
+<li>Zero-shot/Few-shot</li>
+<li>Instruction finetuning</li>
+<li>Reinforcement learning from human feedback [still data expensive]</li>
+<li>what’s next?</li>
+</ol>
+<ul>
+<li><strong>Zero-shot</strong> learning<ul>
+<li>Speicifying the right sequence prediction problem</li>
+<li>comparing probabilities of sequences.</li>
+<li><strong>Zero-shot</strong> <strong>chain-of-thought prompting</strong>.</li>
+</ul>
+</li>
+<li><strong>few-shot</strong> learning</li>
+</ul>
+<p><strong>Instruction finetuning</strong></p>
+<ul>
+<li>在一些task上做finetuning可以泛化到其它的任务。</li>
+<li><p>于是出现了 <strong>MMLU</strong> 在不同的benchmark上的测试。</p>
+</li>
+<li><p>除了太贵了，两个问题</p>
+<ul>
+<li>Tasks like open-ended creative generation have no right answer.</li>
+<li>language modeling penalizes all token-level mistakes equally, but some errors are worse than others.</li>
+</ul>
+</li>
+</ul>
+<p>基于上面这些问题，Instruction finetuning可能还不够好，所以出现了 </p>
+<p><strong>RLHF</strong></p>
+<ul>
+<li><p><a href="https://emoairx.github.io/blog/2024/05/04/note on multiAgent/">博弈论与强化学习の期中复习 | emoairx</a></p>
+</li>
+<li><p>带 KL 约束的带reward model的，其实我觉得入门RLHF应该用那篇Remax。</p>
+</li>
+</ul>
+<blockquote>
+<p>Can we directly using RLHF with the pretrained model?</p>
+</blockquote>
+<ul>
+<li><p><strong>30k tasks</strong> for SFT + RLHF</p>
+</li>
+<li><p>随着KL divergence增大，RM model的预测会和真实的preference偏离。 [Stinnnon et al., 2020]</p>
+</li>
+</ul>
+<p><img src="https://picx.zhimg.com/80/v2-5475f453dec316093aed7e5f391ebd16_1440w.webp?source=d16d100b" alt="img"></p>
+<p><strong>so what’s next?</strong> </p>
+<ul>
+<li>RL from AI feedback?</li>
+<li>Constitutional AI? <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.08073">[2212.08073] Constitutional AI: Harmlessness from AI Feedback (arxiv.org)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.11610">[2210.11610] Large Language Models Can Self-Improve (arxiv.org)</a></li>
+</ul>
+<h3 id="Lecture-11-Natural-Language-Generation"><a href="#Lecture-11-Natural-Language-Generation" class="headerlink" title="Lecture 11 - Natural Language Generation"></a>Lecture 11 - Natural Language Generation</h3><p>关于open-endedness程度，可以评价一个生成任务的open程度【好像只是一个随便的介绍】</p>
+<ul>
+<li>Machine Translation不怎么open</li>
+<li>Summarization更open一点</li>
+<li>Task-driven Dialog更open一点</li>
+<li>chitchat dialog更open一点</li>
+<li>story generation更open一点。</li>
+</ul>
+<p>For non-open-ended tasks, we typically use a <strong>encoder-decoder</strong> system. while for open-ended tasks, this autoregressive <strong>generation model</strong> is often the only component.</p>
+<p><strong>negative loglikelihood</strong> ，实验发现，随着你重复的越多它越容易觉得应该重复输出。即使是openai也容易不断地重复输出一部分。</p>
+<blockquote>
+<p>这个好常见啊，就是不断地重复重复重复，然后mean长度起飞。</p>
+</blockquote>
+<ul>
+<li>unlikelihood objective(Welleck et al., 2020) penalize generation of already-seen tokens</li>
+<li>conveage loss(See et al., 2017) Prevents attention mechanism from attending to the same words.</li>
+</ul>
+<p>此外，人类的输出往往不是概率最高的beam search的，所望sample往往是更好的？</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/442557114">Nucleus Sampling与不同解码策略简介 - 知乎 (zhihu.com)</a></p>
+<p><strong>decoding: top-k sampling</strong></p>
+<ul>
+<li>language is a <strong>heavy tailed</strong> distributions.</li>
+<li>while k could be varies depending on the uniformity of $P_t$</li>
+<li>-&gt; Top-p(nucleus) sampling</li>
+<li>但其实这个 $k$ 其实和分布关系很大，所以一种方法是用entropy算k</li>
+<li>没有减少compute，但是增加了performance，可以based on <strong>entropy</strong>.</li>
+</ul>
+<p><strong>scaling randomness: temperature</strong></p>
+<script type="math/tex; mode=display">
+P_t(y_t=w)=\frac{\exp (S_w/\tau)}{\sum_{w' \in V}\exp (S_{w'}/\tau)}</script><p>显然 $\tau$ 越小，越像argmax。</p>
+<p><strong>Re-ranking</strong></p>
+<ul>
+<li>decode 10 candidates.(but it’s up to you)</li>
+</ul>
+<p>define a score to approxiamte quality of sequences and re-rank by this score.</p>
+<ul>
+<li>perplexity? no [repetitive utterances generally get low perplexity]</li>
+<li>usually variety of <strong>properties</strong>:<ul>
+<li>style, discourse, entailment/factuality, logical consistency, and many more…</li>
+<li>Beware poorly-calibrated re-ranker.</li>
+</ul>
+</li>
+<li>can compose multiple re-rankers together.</li>
+</ul>
+<blockquote>
+<p>我还发现了一点，中国人的英语发音真容易听懂。</p>
+</blockquote>
+<p><strong>Exposure Bias</strong></p>
+<ul>
+<li><p><strong>Exposure bias</strong> causes text generation models to <strong>lose coherence</strong> easily.</p>
+</li>
+<li><p>曝光误差（exposure bias）简单来讲是因为文本生成在训练和推断时的不一致造成的。不一致体现在推断和训练时使用的输入不同，在训练时每一个词输入都来自真实样本（GroudTruth），但是在推断时当前输入用的却是上一个词的输出。</p>
+</li>
+</ul>
+<ol>
+<li><p>scheduled sampling (Bengio et al., 2015)</p>
+<ul>
+<li>1.使用scheduled-sampling，简单的做法就是在训练阶段使用的输入以p的概率选择真实样本，以1-p的概率选择上一个词的输出。而这个概率p是随着训练次数的增加衰减。</li>
+<li>but lead to strange training objectives.</li>
+</ul>
+</li>
+<li><p>data aggregation</p>
+<ul>
+<li><p>At various intervals during training, generate sequences from your current model</p>
+</li>
+<li><p>Add these sequences to your training set as additional examples</p>
+</li>
+<li><blockquote>
+<p>这个没搞懂，这个和exposure bias有什么关系？是不是</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Retrieval Augmentation(Guu<em>, Hashimoto</em>,et al., 2018)</p>
+<ul>
+<li><p>Learn to retrieve a sequence from an existing corpus of human-written prototypes(e.g., dialogue responses)</p>
+</li>
+<li><p>Learn to edit the retrieved sequence by adding, removing, and modifying tokens inthe prototype-this will still result in a more “human-like” generation</p>
+</li>
+<li><blockquote>
+<p>这个没搞懂，这个和exposure bias有什么关系？好像是为了让模型的输出更像人？毕竟是2018年的文章了，那时候还没有大模型</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Reinforcement Learning: cast your text generation model as a Markov decision process.</p>
+</li>
+</ol>
+<p>how do we define a <strong>reward function</strong>? some evalutaion </p>
+<ol>
+<li>BLEU (Bilingual Evaluation Understudy)<ul>
+<li>用于机器翻译任务的评价指标。BLEU通过比较机器翻译结果与一组高质量参考翻译之间的n-gram重叠来计算得分。得分范围通常是0到1，其中1表示完全匹配。</li>
+</ul>
+</li>
+<li>ROUGE (Recall-Oriented Understudy for Gisting Evaluation)</li>
+<li>CIDEr (Consensus-Based Image Description Evaluation)</li>
+<li>SPIDEr (SPan-based Image DEscriptors)</li>
+</ol>
+<blockquote>
+<p>但是这些reward不一定就是human想要的。</p>
+</blockquote>
+<ol>
+<li>Cross-modality consistency in image captioning (Ren et al., CVPR 2017)<ul>
+<li>在图像字幕生成任务中，跨模态一致性指的是生成的文本描述与图像内容之间的一致性。例如，如果图像中有一只狗，那么生成的描述应该包含“狗”这个词。研究者们可能会设计一种奖励机制，以鼓励模型生成与图像内容高度一致的描述。</li>
+</ul>
+</li>
+<li>Sentence simplicity (Zhang and Lapata, EMNLP 2017)</li>
+<li>Temporal Consistency (Bosselut et al., NAACL 2018)</li>
+<li>Utterance Politeness (Tan et al., TACL 2018)</li>
+<li>Formality (Gong et al., NAACL 2019)</li>
+</ol>
+<p>所以不如 ！ <strong>learned representations</strong> of words and sentences to compute sematic similarity. 比如BERTSCORE。</p>
+<p>and Human Preference(RLHF) like reward model.</p>
+<ul>
+<li>下游任务一般都需要 <strong>50K-100K</strong> 的数据</li>
+</ul>
+<p>感觉RLHF的pipeline好像更合理一点？</p>
+<ul>
+<li><p><strong>Evaluating Open-ended Text Generation</strong> by <strong>MAUVE</strong> score.（2022，）</p>
+</li>
+<li><p>真实文本和生成文本之间的KL散度，$KL(P||Q),KL(Q||P)$</p>
+</li>
+<li><p>但是直接KL不行因为有零点，作者用了一个很巧妙的方法，他把两个概率分布以一定比例混合起来，这样就是一定能算KL。随着混合比例能得到一条曲线，曲线下方的就是。</p>
+</li>
+<li><script type="math/tex; mode=display">
+R_\lambda =\lambda P+(1-\lambda ) Q</script></li>
+<li><p><img src="https://pic1.zhimg.com/80/v2-4cac30f278d19996b7a7e2f6aee35c98_1440w.webp" alt="img"></p>
+</li>
+<li><p>use k-means to transform a continuous text space to discreate type. and compute the forward/backward KL.</p>
+</li>
+<li><p><img src="https://pic2.zhimg.com/80/v2-e50d97014d358065f5400e4825c60701_1440w.webp" alt="img"></p>
+</li>
+</ul>
+<p><strong>how to evaluate a metric</strong></p>
+<ul>
+<li><p>和人类打分的正相关性。</p>
+</li>
+<li><p>Note: Don’t compare humanevaluation scores acrossdifferently conducted studies</p>
+</li>
+<li>Even if they claim to evaluatethe same dimensions!</li>
+<li>because human evaluations tends to <strong>not be well-calibrated</strong>. (expensive)</li>
+</ul>
+<h3 id="Lecture14-Insights-between-NLP-and-linguistics"><a href="#Lecture14-Insights-between-NLP-and-linguistics" class="headerlink" title="Lecture14 - Insights between NLP and linguistics"></a>Lecture14 - Insights between NLP and linguistics</h3><ul>
+<li>是不是有点像CV和图形学的关系？</li>
+</ul>
+<h3 id="Lecture15-Code-Generation"><a href="#Lecture15-Code-Generation" class="headerlink" title="Lecture15 - Code Generation"></a>Lecture15 - Code Generation</h3><ul>
+<li>todo</li>
+</ul>
+<h3 id="Lecture-17-Model-Analysis-and-Explanation"><a href="#Lecture-17-Model-Analysis-and-Explanation" class="headerlink" title="Lecture 17 - Model Analysis and Explanation"></a>Lecture 17 - Model Analysis and Explanation</h3><ul>
+<li>会不会有点过时了×</li>
+<li>不如补一补今年旁听的那门可信机器学习。</li>
+</ul>
+
       
     </div>
     <div class="article-footer">
