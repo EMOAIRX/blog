@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>凸分析·江湖救急 | emoairx</title>
+  <meta name="description" content="6月12下午期中考，来得及复习吗  Chapter1: Overview这一节不是很重要  \min_{x \in R^n} \frac{1}{m} f_i(x) + \lambda R(x) 一定要写优化的变量，就是针对什么来优化的。  例如，SVM的优化是  \min_{w,v} ||w||^2 , s.t.\ y_i(w^Tx_i+b) \ge 1GAN的优化目标是  \min _G \m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="凸分析·江湖救急">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/05/26/convex%20A&OM-saveme/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="6月12下午期中考，来得及复习吗  Chapter1: Overview这一节不是很重要  \min_{x \in R^n} \frac{1}{m} f_i(x) + \lambda R(x) 一定要写优化的变量，就是针对什么来优化的。  例如，SVM的优化是  \min_{w,v} ||w||^2 , s.t.\ y_i(w^Tx_i+b) \ge 1GAN的优化目标是  \min _G \m">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-26T08:21:03.870Z">
+<meta property="article:modified_time" content="2024-05-28T13:32:24.586Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="凸分析">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/05/26/convex%20A&OM-saveme/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" rel="tag">凸分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" style="font-size: 13px;">凸分析</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.6px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/26/convex%20A&OM-saveme/" class="title">凸分析·江湖救急</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-26T08:21:03.870Z" itemprop="datePublished">2024-05-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/23/deepspeed/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-23T11:00:47.583Z" itemprop="datePublished">2024-05-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/14/max%20entropy%20RL/" class="title">最大熵强化学习</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-14T10:43:23.367Z" itemprop="datePublished">2024-05-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/14/note%20on%20Information%20Theory/" class="title">Information Theory - wll</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-14T02:12:50.738Z" itemprop="datePublished">2024-05-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/09/Reinforce%20and%20VanillaPG/" class="title">Vanilla PG and Reinforce，两种策略梯度</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-09T14:39:07.401Z" itemprop="datePublished">2024-05-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-convex A&amp;OM-saveme" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      凸分析·江湖救急
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/05/26/convex%20A&OM-saveme/" class="article-date">
+	  <time datetime="2024-05-26T08:21:03.870Z" itemprop="datePublished">2024-05-26</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" rel="tag">凸分析</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/05/26/convex%20A&OM-saveme/" class="leancloud_visitors"  data-flag-title="凸分析·江湖救急">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/05/26/convex%20A&OM-saveme/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <ul>
+<li>6月12下午期中考，来得及复习吗</li>
+</ul>
+<h3 id="Chapter1-Overview"><a href="#Chapter1-Overview" class="headerlink" title="Chapter1: Overview"></a>Chapter1: Overview</h3><p>这一节不是很重要</p>
+<script type="math/tex; mode=display">
+\min_{x \in R^n} \frac{1}{m} f_i(x) + \lambda R(x)</script><blockquote>
+<p>一定要写优化的变量，就是针对什么来优化的。</p>
+</blockquote>
+<p>例如，SVM的优化是</p>
+<script type="math/tex; mode=display">
+\min_{w,v} ||w||^2 , s.t.\ y_i(w^Tx_i+b) \ge 1</script><p>GAN的优化目标是</p>
+<script type="math/tex; mode=display">
+\min _G \max _D V(D,G) =\mathbb E _{x \sim p_{data}(x)} [\log D(x)] + E_{z \sim p_z(z)} [\log (1-D(G(z)))]</script><p>Adversarial Learning的目标是</p>
+<script type="math/tex; mode=display">
+\min_{\delta \in R^n} d(x,x+\delta), s.t. C(x+\delta)=c,x+\delta \in [0,1]^n</script><blockquote>
+<p>噪声要小，效果要好</p>
+</blockquote>
+<p>Hyper parameter Search</p>
+<script type="math/tex; mode=display">
+\min_x F(x,y),\\s.t. x\in C_1,y\in\arg\min_{y\in C_2 } f(x,y)</script><p><strong>Machine Learning = Representation  + Optimization + Evaluation</strong> — Pedro Domingos</p>
+<blockquote>
+<p> P. Domingos. A few useful things to know about machine learning. Communications of the ACM,  55(10):78-87, 2012</p>
+</blockquote>
+<p>Is optimization difficult? </p>
+<blockquote>
+<p>NO! <a target="_blank" rel="noopener" href="https://blog.sina.com.cn/s/blog_649886d60102drfd.html">[转载]来自南京大学数学系张高飞老师<em>谢纳新</em>新浪博客 (sina.com.cn)</a></p>
+<p>代数几何&gt;复分析、调和分析、微分方程&gt;几何&gt;动力系统&gt;组合数学&gt;统计&gt;计算数学</p>
+<p>最后这一条是专门针对那些悲情人物的。他们连小学的数学也没学好。不要说 把上千个数加起来，就是把两个数加起来，对他们来说都是件很吃力的事。然 而这一切丝毫没有削弱他们对数学的一片痴情。他们日日夜夜泡在图书馆里。 他们翻阅了所有的数学文献，却从未找到一本能读懂的。 但他们仍坚持不懈，  为的就是找到一个适合自己的专业。他们的行为感动了上帝。上世纪的某一天， 上帝为他们创造了一台机器帮他们计算。这就是计算机。借助计算机，他们可 以很快地进行加减乘除的运算。这就是计算数学。</p>
+</blockquote>
+<p><strong>No-free-lunch Theorem for Opt.</strong></p>
+<ul>
+<li><p>If algorithm A performs better than algorithm B for some  optimization functions, then B will outperform A for other  functions. </p>
+</li>
+<li><blockquote>
+<p>D. H. Wolpert and W. G. Macready, No free lunch theorems for optimization, IEEE T. Evolutionary  Computation, 1, 67-82 (1997).</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>优化问题的分类</strong></p>
+<p>the nature of the solution set</p>
+<ul>
+<li>Continuous opt. problems</li>
+<li>Discrete opt. problems</li>
+<li>Combinatorial opt. problems</li>
+<li>Variational opt. problems </li>
+</ul>
+<p>the description (definition) of the solution set</p>
+<ul>
+<li>Unconstrained, Constrained(Equality constrained,Inequality constrained)</li>
+</ul>
+<p>the properties of the objective function </p>
+<ul>
+<li>Convex vs. nonconvex</li>
+<li>convex programs:<ul>
+<li>quadratic program，semi-definite programs，second-order cone programs</li>
+<li>in ML, a lot of regression.</li>
+</ul>
+</li>
+<li>nonconvex：要么是函数非凸，要么是约束域非凸。<ul>
+<li>比如分数规划，minmax问题，spare models</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Chapter2-math"><a href="#Chapter2-math" class="headerlink" title="Chapter2 - math"></a>Chapter2 - math</h3><p><strong>Open set</strong>：开集</p>
+<p><strong>Closed set</strong>：闭集（补集是开集）</p>
+<p><strong>bounded set</strong>：有界集，每个元素的范数不超过一个 $R$</p>
+<p><strong>compact set</strong>：紧集，有界闭</p>
+<p><strong>interior</strong>：内点集，$C^o={y\mid \exist \epsilon&gt;0,B_\epsilon(y)\sub C}$</p>
+<p><strong>closure</strong>：闭包集，补集的内点 $\bar C$</p>
+<p><strong>boundary</strong>：边界，$\bar C \backslash C^o$</p>
+<p><strong>Global Convergence</strong>: 每个点都能收敛到FONC ($\nabla f(x^*)=0$) 条件的点。</p>
+<p><strong>Local Convergence:</strong> 只有足够近才能收敛，否则不收敛（比如牛顿法）或者不FONC（比如鞍点）</p>
+<p><strong>Convergence rate</strong>:</p>
+<ul>
+<li><p>$x_k \to x^*$</p>
+</li>
+<li><script type="math/tex; mode=display">
+e_k=x_k-x^*</script></li>
+<li></li>
+<li><p>如果说 rate 为 $r$ ，rate constant为 $C$，说明</p>
+<script type="math/tex; mode=display">
+\lim_{k \to \infty} \frac{||e_{k+1}||}{||e_k||^r}=C, (C < \infty)</script></li>
+<li><blockquote>
+<p>显然是 r 越大越好， C 越小越好。</p>
+</blockquote>
+</li>
+<li><p>线性收敛则 $r=1,0&lt;C&lt;1$，<strong>Q-linear</strong></p>
+</li>
+<li><p>sublinear则 $r=1,C=1$,  superlinear 则 $r=1,C=0$, Quadratic 则 $r=2$。r 可以不是整数。</p>
+</li>
+</ul>
+<blockquote>
+<p>比如 $x<em>k=0.99^k,x^*=0,e</em>{k+1}/e_k=0.99$ 这个就是线性收敛。</p>
+</blockquote>
+<ul>
+<li>注意到 $\log ||e_{k+1}||\approx r \log ||e_k|| + \log C$，所以可以估计 $r$。</li>
+</ul>
+<blockquote>
+<p>有时候不太能用 Q-linear收敛</p>
+</blockquote>
+<ul>
+<li>如果 $||x_k-x^<em>|| \le e_k$ 且 $e_k$ 以 <strong>Q-linear</strong> 收敛到零，那么 ${x_k}$ 就以 <em>*R-linear</em></em> 收敛，</li>
+</ul>
+<p><strong>closedness</strong>(函数的)</p>
+<ul>
+<li>函数 $f$ 是闭的，如果对于所有 $\alpha$ 有 $\set{x \in dom f\mid f(x) \le \alpha}$ 是闭的。</li>
+<li><p>也就是 $\text{epi} f={(x,t) \in R^{n+1} \mid x \in dom f,f(x) \le t}$ 是闭的。</p>
+</li>
+<li><p>连续函数只要定义域是闭的就是闭的，如果定义域是开的，那么到从内点到边界点的一个收敛序列的函数值必须是趋向于无穷。</p>
+</li>
+</ul>
+<blockquote>
+<p>$f(x)=\cases{x\log x&amp; x&gt;0\0&amp;x=0}$ 是闭的， $f(x)=-\log x ,x&gt;0$ 是闭的。$f(x)=x\log x,x&gt;0$ 是开的</p>
+</blockquote>
+<p><strong>Derivative</strong>(函数的)</p>
+<ul>
+<li>对于函数 $f:R^n \to R^m$</li>
+<li>定义m*n 的 Jacobian矩阵 $J$ 的第 i 列为 $\frac{\partial f(x)}{\partial x_i}$。</li>
+</ul>
+<script type="math/tex; mode=display">
+\lim _{z\to x,z\not=x,z\in domf} \frac{||f(z)-f(x)-J(z-x)||}{||z-x||^2} =0</script><p><strong>Gradient</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+\nabla f(x)=Df(x)^T</script></li>
+</ul>
+<script type="math/tex; mode=display">
+f(x)=\log \det X,f =\mathbb S^n_{++}</script><p>let $Z$ be close to $X$, $\Delta X=Z-X$ , $\lambda_i$ be the ith eigenvalue of $X^{-1/2}\Delta X X^{-1/2}$</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\log \det Z&=\log \det (X+\Delta X)\\
+&=\log \det (X^{1/2}(I+X^{-1/2}\Delta X X^{-1/2})X^{1/2})\\
+&=\log \det X+ \log \det (I+X^{-1/2}\Delta XX^{-1/2})\\
+&=\log \det X+\sum_{i=1}^n \log (1+\lambda_i)\\
+&\approx\log \det X+\sum_{i=1}^n \lambda_i\\
+&=\log \det X+\tr(X^{-1}\Delta X)\\
+&=\log \det X+\tr(X^{-1}(Z-X))\\
+\end{align*}</script><p><strong>Chain rule</strong></p>
+<script type="math/tex; mode=display">
+A:R^{n*p},b:R^n,g:R^p\to R^m,g(x)=f(Ax+b)</script><p>when f is a real-valued</p>
+<script type="math/tex; mode=display">
+Dg(x)=Df(Ax+b)A\\\nabla g(x)=A^T\nabla f(Ax+b)</script><blockquote>
+<p>lets have a try at </p>
+<script type="math/tex; mode=display">
+f(x)=\log \sum_{i=1}^m \exp(a_i^T x+b_i)</script></blockquote>
+<p><strong>Second derivative</strong></p>
+<script type="math/tex; mode=display">
+D^2f(x)=\mathrm H</script><p>H means Hessian.</p>
+<script type="math/tex; mode=display">
+f(z)=f(x)+\nabla f(x)^T(z-x)+\frac{1}{2}(z-x)^T \nabla^2f(x) (z-x)\\
+=Df(x)(z-x)+\frac{1}{2}\left<D^2f(x)(z-x),z-x\right></script><blockquote>
+<p>so lets have a try of $f(x)=\log \det X$</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\log \det Z = \log \det X+\sum_{i=1}^n \log (1+\lambda_i) \\\approx \log \det X + \sum \lambda_i - \frac{1}{2}\sum \lambda_i^2</script><p><strong>Chain rules for second derivative</strong></p>
+<ul>
+<li><p>for $g(x)=f(Ax+b)$</p>
+</li>
+<li><script type="math/tex; mode=display">
+\nabla^2 g(x)=A^T \nabla^2 f(Ax+b) A</script></li>
+</ul>
+<p><strong>Reparameterization trick</strong></p>
+<script type="math/tex; mode=display">
+L(\theta)= \mathbb E_{z\sim p_\theta(z)} [f(z)]</script><p><strong>SVD</strong></p>
+<ul>
+<li><p>with $A \in R^{m<em>n},rank A=r$, satisfies $U\in R^{m</em>r},U^TU = I,V \in R^{n*r},V^TV=I$</p>
+</li>
+<li><p>for $\sigma_1 \ge \sigma_2 \ge …\ge \sigma_r &gt;0$</p>
+<script type="math/tex; mode=display">
+A=\sum_{i=1}^r \sigma_i u_iv_i^T</script></li>
+</ul>
+<p><strong>norm</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+\left<X,Y\right>=\tr(X^TY)</script></li>
+<li><p><strong>nuclear norm</strong></p>
+</li>
+<li><script type="math/tex; mode=display">
+||A||_*=\sum_i \sigma_i(A)=\max_{U^TU=I,V^TV=I} \tr(U^TXV)</script></li>
+<li><p>usually used for approximating the rank of a matrix.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://web.stanford.edu/~pilanci/papers/ConvexAttention2022.pdf">ConvexAttention2022.pdf (stanford.edu)</a></p>
+</li>
+<li><p><strong>(p,q)-norm</strong> usually used in sparse representation.</p>
+</li>
+</ul>
+<p><strong>dual norm</strong></p>
+<script type="math/tex; mode=display">
+||z||^*=\sup \{z^Tx \mid ||x|| \le 1\}</script><p>性质有</p>
+<script type="math/tex; mode=display">
+\forall x,\exist x^*,\left<x,x^*\right>=||x||||x^*||^*</script><p>以及知名的Cauchy-Schwartz inequality</p>
+<script type="math/tex; mode=display">
+z^Tx \le ||x|| ||z||^*</script><p><strong>condition number</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+cond(A)=||A||_2 ||A^{-1}||_2=\sigma_{max}(A)/\sigma_{min}(A)</script></li>
+<li><p>描述了矩阵对向量的拉伸和压缩能力。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91393594">矩阵的条件数 - 知乎 (zhihu.com)</a></p>
+</li>
+<li><blockquote>
+<p>对于 $Ax=b$，条件数唯一决定了线性方程的解关于观测的噪声的影响程度。条件数越大越严重。（x的变化率<strong>偏离</strong>b的变化率就更大）</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>Adjoint operator</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+\left<A^*(x),y\right> =\left<x,A(y)\right>,\forall x\in \mathbb R^n,y\in \mathbb R^m</script></li>
+</ul>
+<p><strong>von Neumann trace theorem</strong></p>
+<ul>
+<li><p>Suppose $A,B \in R^{m*n}$，then</p>
+</li>
+<li><script type="math/tex; mode=display">
+|\left<A,B\right>| \le \sum_{i=1}^{\min(m,n)} \sigma_i(A)\sigma_i(B)</script></li>
+</ul>
+<p><strong>convex set</strong></p>
+<ul>
+<li>every two points can see each other.</li>
+</ul>
+<blockquote>
+<p>$\empty, {x_0},R^n$ </p>
+</blockquote>
+<p><strong>convex hull</strong></p>
+<ul>
+<li>all the convex combination of points</li>
+<li>the smallest convex set contains C</li>
+</ul>
+<blockquote>
+<script type="math/tex; mode=display">
+\{e_ie_j^T\}\\
+\{uu^T \mid ||u||=1\}\\
+\{uv^T \mid ||u||=1,||v||=1\}</script></blockquote>
+<p><strong>这个习题必须重新做一遍，补一下回放吧</strong></p>
+<p><strong>Cones</strong></p>
+<ul>
+<li>$x\in C,\theta&gt;0 \implies \theta x\in C$</li>
+</ul>
+<p><strong>convex cone</strong></p>
+<ul>
+<li>$x_1,x_2\in C,\theta_1,\theta_2 &gt;0,\theta_1x_1+\theta_2x_2 \in C$</li>
+</ul>
+<p><strong>conic hull</strong></p>
+<ul>
+<li>conic combination of points.</li>
+</ul>
+<p><strong>affine set</strong></p>
+<ul>
+<li>contains all <strong>lines</strong> passing through any two points. if x0 in C, C-x0 is a subspace.</li>
+</ul>
+<p><strong>dual cone</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+K^*=\{y\mid x^Ty \ge 0\text{ for all x}\}</script></li>
+<li><p>is closed and convex.</p>
+</li>
+<li><p>$K_1\subseteq K_2 \implies K_2^<em>\subseteq K_1^</em>$</p>
+</li>
+<li><p>$K^{**}$ is the closure of the convex hull of $K$.</p>
+</li>
+</ul>
+<blockquote>
+<p>subspace, non-negtive orthant, postive semi-definite cone, norm cone.</p>
+</blockquote>
+<p><strong>Operations that preserve convexity</strong></p>
+<ul>
+<li><p>Intersection，如 $S<em>+^n=\bigcap</em>{z\not=0}{X\in S^n\mid z^TXz\ge 0}$ </p>
+</li>
+<li><p><strong>Affine functions</strong></p>
+</li>
+<li>Sum and Cartesian product</li>
+<li><strong>Perspective functions</strong><ul>
+<li>$P(\mathrm z,t)=\mathrm z/t$</li>
+</ul>
+</li>
+<li>Linear-fractional functions</li>
+</ul>
+<p><strong>Separating hyperplane theorem</strong></p>
+<ul>
+<li>如果两个凸集是不交的，那么就存在一个向量 $a\not=0,b$ ，使得 $a^Tx-b$ 再一个集合大于等于零，一个集合小于等于零。</li>
+<li>如果是严格不等，叫做Strictly separation</li>
+<li>如果两个凸集至少有一个是开集，那么只要存在分割平面他们就不交。</li>
+</ul>
+<p>考虑强二择一定理，即<strong>Faka’s Lemma</strong></p>
+<script type="math/tex; mode=display">
+1) \exist x\in R_+^n, Ax=b\\
+2)\exist y \in R^m, A^Ty \ge 0,b^Ty<0</script><p>第一个如果有 $Ax=b,A^Ty\ge 0\implies b^Ty=x^TA^Ty\ge 0$</p>
+<p>第二个如果 $Ax\not =b$，也就是 $b$ 在 $cone(A)$ 这个集合的外面，那么存在一个 $y$，使得 $\left<y,Ax\right> \ge \mu \ge \left<y,b\right>$。然后因为 $A^Ty \ge 0$ 且 $x \ge 0$，所以 $\mu \le 0$。</y,b\right></y,Ax\right></p>
+<p><strong>Supporting hyperplanes</strong></p>
+<ul>
+<li>非空凸集的任何一个边界上的点，至少存在一个支撑超平面。</li>
+<li>也就是一个向外的方向 $a$，对于边界上的点 $x_0$，使得 $a^Tx \le a^Tx_0$。</li>
+</ul>
+<h4 id="Convex-function"><a href="#Convex-function" class="headerlink" title="Convex function"></a>Convex function</h4><ul>
+<li>定义线性组合的函数值小于函数值的线性组合。</li>
+</ul>
+<p><strong>Rademacher’s Theorem</strong> 凸函数的几乎所有相对内点都可微。</p>
+<p><strong>Extended-value extensions</strong></p>
+<ul>
+<li>对于凸函数，把对于非定义域的地方扩充为 $\infty$，值域变成了 $R\cup{\infty}$</li>
+</ul>
+<p><strong>First-order conditions</strong></p>
+<ul>
+<li><p>如果函数可微，那么这个条件和函数凸等价</p>
+</li>
+<li><script type="math/tex; mode=display">
+f(y)\ge f(x)+\left<\nabla f(x),y-x\right></script></li>
+<li><p>对于所有的 $x,y \in dom f$ 成立。</p>
+</li>
+<li><p>可以写成</p>
+</li>
+<li><script type="math/tex; mode=display">
+f(y) \ge f(x)+ \frac{f(x+\alpha(y-x))-f(x)}{\alpha}</script></li>
+<li><p><strong>Strongly Convex</strong>: $f(y)\ge f(x)+\left&lt;\nabla f(x),y-x\right&gt;+\frac{\mu}{2}||y-x||^2$</p>
+</li>
+</ul>
+<p><strong>Second-order conditions</strong>: $\nabla^2 f(x) \succeq 0$</p>
+<ul>
+<li>Strongly convex: $\nabla^2 f(x) \succeq \mu I$,</li>
+<li>but for strictly convex, $\nabla^2f(x) \succeq 0$ ,and $\succ 0$ <strong>not holds</strong>.</li>
+</ul>
+<p><strong>sublevel</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+C_\alpha =\{x\in domf \mid f(x)\le \alpha\}</script></li>
+</ul>
+<p><strong>quasi-convex</strong></p>
+<ul>
+<li>$f(\alpha x+(1-\alpha)y)\le \max [f(x),f(y)],\alpha \in [0,1]$</li>
+</ul>
+<p><strong>epigraph</strong></p>
+<p><strong>proper function</strong></p>
+<ul>
+<li>$f(x)&lt;\infty$ for at least one x, and $f(x)&gt;-\infty$ for all $x \in \mathcal X$ .</li>
+</ul>
+<p><strong>Jesen’s inequality</strong></p>
+<ul>
+<li>$f(\mathbb E x)\le \mathbb E f(x)$</li>
+</ul>
+<p><strong>Bregman distrance</strong></p>
+<ul>
+<li>$B_f(y,x)=f(y)-f(x)-\left&lt;\nabla f(x),x\right&gt;$</li>
+</ul>
+<p><strong>subgradient</strong></p>
+<ul>
+<li>$\partial f(x)={g \mid f(y) \ge f(x)+\left<g,y-x\right>}$</g,y-x\right></li>
+<li>可以加法分解</li>
+<li>可以链式法则，这里如果 $F=h(f(x))$在 $h$ 是convex 以及单调非递减的时候可以链式法则分解。</li>
+</ul>
+<p><strong>Danskin’s Theorem</strong></p>
+<ul>
+<li>TBD</li>
+</ul>
+<p><strong>subdifferential of norms</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+\partial ||x|| = \{y \mid \left<y,x\right>=||x||,||y||^*\le 1 \}</script></li>
+<li><p>证明分两步，一定要满足条件是容易的，还有一种是满足条件的一定是subgradint</p>
+</li>
+<li><p>用定义，$\left<y,w-x\right>=\left<y,w\right>-||x||\le ||y^*||||w||-||x||\le ||w||-||x||$</y,w\right></y,w-x\right></p>
+</li>
+</ul>
+<p><strong>函数保凸运算</strong></p>
+<ul>
+<li>Nonnegative weighted sums</li>
+<li>Composition with an affine mapping，$g(x)=f(Ax+b)$</li>
+<li><p><strong>Pointwise maximum and supremum</strong>，</p>
+</li>
+<li><p><strong>Composition – Scalar composition</strong></p>
+<ul>
+<li>$f(x)=h(g(x))$</li>
+<li>有两种情况</li>
+<li>h是convex而且非递减的，那么g是convex的</li>
+<li>h是convex且非递增的，那么g是concave的。</li>
+<li>从 $f’’(x)=h’’(g(x))g’(x)^2+h’(g(x))g’’(x)$ 可以想到</li>
+</ul>
+</li>
+<li><p>比如 $-\log (-g(x)),\exp g(x)$ 在 $g(x)$ convex的时候</p>
+</li>
+<li><p><strong>Composition – Vector composition</strong></p>
+<ul>
+<li>$h(g(x))=h(g_1(x)…g_k(x))$</li>
+<li>条件和上面一样的，不过对每个g都成立。</li>
+</ul>
+</li>
+<li><p><strong>Minimization</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+g(x)=\inf_{y \in C} f(x,y)</script></li>
+<li><p><strong>epi g是epi f的一个投影！</strong></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Perspective of a function</strong></p>
+<ul>
+<li>$g(x,t)=tf(x/t)$。</li>
+<li><strong>epi g</strong> 是 <strong>epi f</strong> 的inverse mapping</li>
+<li>比如取 $f(x)=-\log x$，就能得到相对熵是凸的。</li>
+</ul>
+</li>
+</ul>
+<p><strong>conjugate function</strong></p>
+<script type="math/tex; mode=display">
+f^*(y)=\sup_{x} \left<y,x\right>-f(x) =\sup_{(x,t)\in epi_f}\pmatrix{y\\-1}^T\pmatrix{x\\t}</script><p>（强烈建议看那张图）</p>
+<p><strong>examples</strong></p>
+<ul>
+<li>affine function</li>
+<li>negative logarithm</li>
+<li>exponential</li>
+<li>negative entropy: $f(x)=x\log x,[xy-x\log x]f^*(y)=e^{y-1}$</li>
+<li>inverse</li>
+</ul>
+<p><strong>Fenchel’s inequality</strong></p>
+<script type="math/tex; mode=display">
+f(x)+f^*(x) \ge \left<x,y\right></script><p>such like take $f(x)=\frac{1}{2}||x||^2$ or $f(x)=\frac{1}{2}x^TQx$</p>
+<p><strong>conjugate of the conjugate</strong></p>
+<ul>
+<li>If $f$ is proper, convex and closed, then $f^{**}=f$</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align*}
+f^{**}(x)&=\sup_y(x,y)-(\sup_x (x,y)-f(x))\\
+&= (x,y^*)-(\sup_{x'} (x',y^*)-f(x'))\\
+&= (x,y^*)-[(x',y^*)-f(x')]\\
+&\le (x,y^*)-[(x,y^*)-f(x)]\\
+&=f(x)
+\end{align*}</script><ul>
+<li>Suppose $\exist (x_0^T,\gamma)^T \not \in epi f$ , where $\gamma \ge f^{**}(x_0)$. Since $f$ is proper, convex, closed, its epigraph is closed and does not include a vertical line. Thus <script type="math/tex; mode=display">
+(w^T,\zeta)(x^T,t)^T < \mu<(w^T,\zeta)(x_0^T,\gamma)^T,x\in dom f,t\ge f(x)</script>since t can very large, let $$</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/05/26/convex%20A&OM-saveme/" title="凸分析·江湖救急" target="_blank" rel="external">http://emoairx.github.io/blog/2024/05/26/convex A&OM-saveme/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2024/05/23/deepspeed/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
