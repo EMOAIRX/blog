@@ -247,7 +247,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2024/05/14/max%20entropy%20RL/" class="title">最大熵强化学习</a>
+                <a href="/blog/2024/05/14/max%20entropy%20RL/" class="title">最大熵强化学习——从概率图模型到SAC</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-05-14T10:43:23.367Z" itemprop="datePublished">2024-05-14</time>
@@ -680,5 +680,20 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

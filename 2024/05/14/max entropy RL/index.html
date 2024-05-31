@@ -17,20 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>最大熵强化学习 | emoairx</title>
-  <meta name="description" content="to be completed">
+  <title>最大熵强化学习——从概率图模型到SAC | emoairx</title>
+  <meta name="description" content="我们最初有的设定是  p(O_t\mid s_t,a_t)\propto \exp (r(s_t,a_t))对于给定的一张概率图  \begin{align*} \beta_t(s_t,a_t)&amp;&#x3D;p(O_{t:T}\mid s_t,a_t)\\ &amp;&#x3D;\int p(O_{t:T},s_{t+1}\mid s_t,a_t) \mathrm d s_{t+1}\\ &amp;&#x3D;\int p(O_{t+1:T">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最大熵强化学习">
+<meta property="og:title" content="最大熵强化学习——从概率图模型到SAC">
 <meta property="og:url" content="http://emoairx.github.io/blog/2024/05/14/max%20entropy%20RL/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="to be completed">
+<meta property="og:description" content="我们最初有的设定是  p(O_t\mid s_t,a_t)\propto \exp (r(s_t,a_t))对于给定的一张概率图  \begin{align*} \beta_t(s_t,a_t)&amp;&#x3D;p(O_{t:T}\mid s_t,a_t)\\ &amp;&#x3D;\int p(O_{t:T},s_{t+1}\mid s_t,a_t) \mathrm d s_{t+1}\\ &amp;&#x3D;\int p(O_{t+1:T">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/zs0zum8g.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ygmz2jdc.png">
 <meta property="article:published_time" content="2024-05-14T10:43:23.367Z">
-<meta property="article:modified_time" content="2024-05-25T16:13:16.125Z">
+<meta property="article:modified_time" content="2024-05-31T13:46:22.257Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="强化学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/zs0zum8g.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://emoairx.github.io/blog/2024/05/14/max%20entropy%20RL/index.html">
   
@@ -253,7 +256,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2024/05/14/max%20entropy%20RL/" class="title">最大熵强化学习</a>
+                <a href="/blog/2024/05/14/max%20entropy%20RL/" class="title">最大熵强化学习——从概率图模型到SAC</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-05-14T10:43:23.367Z" itemprop="datePublished">2024-05-14</time>
@@ -331,7 +334,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      最大熵强化学习
+      最大熵强化学习——从概率图模型到SAC
     </h1>
   
 
@@ -355,7 +358,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/blog/2024/05/14/max%20entropy%20RL/" class="leancloud_visitors"  data-flag-title="最大熵强化学习">
+    	<span id="/blog/2024/05/14/max%20entropy%20RL/" class="leancloud_visitors"  data-flag-title="最大熵强化学习——从概率图模型到SAC">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
@@ -366,7 +369,202 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>to be completed</p>
+        <p><img src="https://cdn.luogu.com.cn/upload/image_hosting/zs0zum8g.png" alt></p>
+<p>我们最初有的设定是</p>
+<script type="math/tex; mode=display">
+p(O_t\mid s_t,a_t)\propto \exp (r(s_t,a_t))</script><p>对于给定的一张概率图</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\beta_t(s_t,a_t)&=p(O_{t:T}\mid s_t,a_t)\\
+&=\int p(O_{t:T},s_{t+1}\mid s_t,a_t) \mathrm d s_{t+1}\\
+&=\int p(O_{t+1:T}\mid s_{t+1})p(s_{t+1}\mid s_t,a_t)p(O_t\mid s_t,a_t) \mathrm d s_{t+1}
+\end{align*}</script><script type="math/tex; mode=display">
+\beta_t(s_{t+1})=p(O_{t+1:T}\mid s_{t+1})=\int  p(O_{t+1:T}\mid {s_{t+1},a_{t+1}})p(a_{t+1}\mid s_{t+1})\dd a_{t+1}</script><script type="math/tex; mode=display">
+\beta_{t}(s_t,a_t)=p(O_t\mid s_t,a_t)\mathbb E_{s_{t+1}\sim p(s_{t+1}\mid s_t,a_t)}[\beta_{t+1}(s_{t+1})]\\
+\beta_{t}(s_t)=\mathbb E_{a_t \sim p(a_t\mid s_t)}[\beta_t(s_t,a_t)]</script><p>let $V_t(s_t)=\log \beta_t(s_t)$, $Q_t(s_t,a_t)=\log \beta_t(s_t,a_t)$</p>
+<p>if We take $p(a_t\mid s_t)$ as uniform,</p>
+<script type="math/tex; mode=display">
+V_t(s_t) = \log \int \exp(Q_t(s_t,a_t))\mathrm d a_t\\
+Q_t(s_t,a_t)=r(s_t,a_t)+\log \mathbb E[\exp V_{t+1}(s_{t+1})]</script><p>Then we consider if $p(a_t\mid s_t)$ as a prior distribution which is not uniform.</p>
+<script type="math/tex; mode=display">
+V_t(s_t)=\log \int \exp(Q_t(s_t,a_t)+\log p(a_t\mid s_t)) \mathrm d a_t\\
+Q_t(s_t,a_t)=r(s_t,a_t)+\log \mathbb E_{s_{t+1}}[\exp V_{t+1}(s_{t+1})]</script><p>so let </p>
+<script type="math/tex; mode=display">
+\tilde Q(s_t,a_t)=r(s_t,a_t)+\log  p(s_t\mid a_t) + \log \mathbb E[\exp V(s_{t+1})]</script><p>Then</p>
+<script type="math/tex; mode=display">
+V(s_t)=\log \int \exp ({\tilde Q(s_t,a_t)})</script><p>so, the policy $\pi(a_t\mid s_t)$ which is </p>
+<script type="math/tex; mode=display">
+\begin{align*}
+p(a_t\mid s_t,O_{1:T})&=\pi(a_t\mid s_t)\\
+&=\frac{p(a_t,s_t\mid O_{t:T})}{p(s_t\mid O_{t:T})}\\
+&=\frac{p(O_{t:T}\mid a_t,s_t)p(s_t,a_t)/p(O_{t:T})}{p(O_{t:T}\mid s_t)p(s_t)/p(O_{t:T})}\\&=\frac{p(O_{t:T}\mid a_t,s_t)p(s_t,a_t)}{p(O_{t:T}\mid s_t)p(s_t)}\\
+&=\frac{\beta_t(s_t,a_t)}{\beta_t(s_t)}p(a_t\mid s_t)\\
+&=  \frac{\beta_t(s_t,a_t)}{\beta_t(s_t)}
+\end{align*}</script><p>so we have</p>
+<script type="math/tex; mode=display">
+\pi(a_t\mid s_t)=\exp(Q_t(s_t,a_t)-V_t(s_t))=\exp A_t(s_t,a_t)</script><p>and temperature are allow to add.</p>
+<p>Then we consider the <strong>optimism problem</strong>, for that </p>
+<script type="math/tex; mode=display">
+Q_t(s_t,a_t)=r(s_t,a_t)=\log E(\exp(V_{t+1}(s_{t+1})))</script><p>我们再回过头来回顾一下这些变量都代表什么意思：</p>
+<p>$p(O_{t:T}\mid s_t,a_t)$：现在处于状态 $s_t$，选了方法 $a_t$，接下来能获得的得分的期望</p>
+<p>$p(a<em>t\mid s_t,O</em>{1:T})$：为了获得最大的得分，我在当前状态的期望是什么，也就是当前的policy</p>
+<p>$p(s<em>t\mid O</em>{1:{t-1}})$ </p>
+<p>$p(s<em>{t+1}\mid s_t,a_t,O</em>{1:T})$ 是如果能获得最大的分数，那么转移的概率是什么</p>
+<p>$p(s_{t+1}\mid s_t,a_t)$ 是转移的概率，和上面一个不一样。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+p(\tau\mid O_{1:T})\propto&\ 
+p(\tau,O_{1:T})\\
+=&p(s_1)\prod _{t=1}^T p(O_{T}\mid s_t,a_t) p(s_{t+1}\mid s_t,a_t)
+\\
+=&p(s_1)\prod _{t=1}^T \exp (r(s_t,a_t)) p(s_{t+1}\mid s_t,a_t)
+\\
+=&\left[p(s_1)\prod_{t=1}^Tp(s_{t+1}\mid s_t,a_t)\right] \exp ({\sum_{i=1}^T r(s_t,a_t)})
+\end{align*}</script><p>下面简记 $p(\tau) = p(\tau \mid O_{1:T})$</p>
+<p>在这里，如果<strong>我们先假设</strong> $p(s<em>{t+1}\mid s_t,a_t,O</em>{1:T})=p(s_{t+1}\mid s_t,a_t)$，我们做如下推导</p>
+<p>在给定最优变量 $O_{1:T}=1$ 的时候，整个概率图的轨迹分布可以表示为 $p(\tau)$ </p>
+<p>而给定策略 $\pi(a_t\mid s_t)$ 的时候，整条轨迹的分布表示为</p>
+<script type="math/tex; mode=display">
+\hat p(\tau)=p(s_1 \mid O_{1:T})\prod p(s_{t+1}\mid s_t,a_t,O_{1:T}) \pi(a_t\mid s_t)
+\\
+\approx p(s_1)\prod p(s_{t+1}\mid s_t,a_t) \pi(a_t\mid s_t)</script><p>最小化两者的KL散度，也就是<strong>最大化</strong>负的散度</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+-D_{KL}(\hat p(\tau)||p(\tau))=&\mathbb E_{\tau \in \hat p(\tau)}
+[
+\log (p(s_1))+\sum_{t=1}^T(\log p(s_{t+1}\mid s_t,a_t)+r(s_t,a_t))\\
+    &-\log (p(s_1))+\sum_{t=1}^T(\log p(s_{t+1}\mid s_t,a_t)+\log \pi(s_t,a_t))
+]\\
+=&\mathbb E_{\tau \in \hat p(\tau)}\left[\sum_{t=1}^T (r(s_t,a_t)-\log \pi(a_t\mid s_t)\right]\\
+=&\sum_{t=1}^T \mathbb E_{(s_t,a_t) \sim \hat p(s_t,a_t)} [r(s_t,a_t)]+\mathbb E_{s_t \sim \hat p(s_t)} [\mathcal H(\pi(a_t\mid s_t))]
+\end{align*}</script><blockquote>
+<p>也就是按当前策略的方法去采样能获得的reward的情况。</p>
+</blockquote>
+<p>如果去掉 $p(s<em>{t+1}\mid s_t,a_t,O</em>{1:T})=p(s_{t+1}\mid s_t,a_t)$，这个假设，那么应该有</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\hat p(\tau)=&p(s_1\mid O_{1:T}) \prod _{t=1}^T p(s_{t+1}\mid s_t,a_t,O_{1:T})p(a_t\mid s_t,O_{1:T})\\
+\end{align*}</script><p>而</p>
+<script type="math/tex; mode=display">
+p(\tau)=\left[p(s_1)\prod_{t=1}^Tp(s_{t+1}\mid s_t,a_t)\right] \exp ({\sum_{i=1}^T r(s_t,a_t)})</script><blockquote>
+<p>这里的 p(tau) 意味着在后验分布的情况下的，</p>
+</blockquote>
+<p>这两项之间如果还是求 <code>KL</code> 散度</p>
+<script type="math/tex; mode=display">
+\log p(s_1)-\log p(s_1\mid O_{1:T})+\sum_{t=1}^T\log p(s_{t+1}\mid s_t,a_t)\\-\sum_{t=1}^T \log p(s_{t+1}\mid s_t,a_t,O_{1:T}) + \sum_{t=1}^T (r(s_t,a_t)-\log \pi(a_t\mid s_t    ))\\</script><blockquote>
+<p>据说是不太好优化的，我没具体搞懂</p>
+</blockquote>
+<p>我们考虑变分推断，用一个简单的变分函数去近似后验分布</p>
+<script type="math/tex; mode=display">
+p(\tau)=\left[p(s_1)\prod _{t=1}^T p(s_{t+1}\mid s_t,a_t)\right]\exp (\sum_{t=1}^T{r(s_t,a_t)})</script><p>这里用一个函数 $q$</p>
+<script type="math/tex; mode=display">
+q(\tau)=q(s_1) \prod_{t=1}^T q(s_{t+1}\mid s_t,a_t) q(a_t\mid s_t)</script><p>如果我们假设 $x=O<em>{1:T}, z=(s</em>{1:T},a_{1:T})$，那么可以理解成我们想要的分布是 $p(z\mid x)$，我们想用分布 $q(z)$ 来逼近它。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ygmz2jdc.png" alt></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\log p(x) =&\log \int_{z} p(x,z)\\
+=&\log \int_z p(x,z)\frac{q(z)}{q(z)}\\
+=&\log \mathbb E_{q} \left[\frac{p(x,z)}{q(z)}\right]\\
+\ge& E_{z\sim q(z)}[\log p(x,z)-\log q(z)]
+\end{align*}</script><script type="math/tex; mode=display">
+\log p(\tau) \ge \mathbb E_{(s_{1:T},a_{1:T})\sim q}</script><p>我们在这里给 $q$ 设置一个约束条件，使得 $q(s<em>1)=p(s_1),q(s</em>{t+1}\mid s<em>t,a_t)=p(s</em>{t+1}\mid s_t,a_t)$ 成立，那么就能有</p>
+<script type="math/tex; mode=display">
+q(\tau)=p(s_1) \prod_{t=1}^T p(s_{t+1}\mid s_t,a_t) q(a_t\mid s_t)</script><p>于是</p>
+<script type="math/tex; mode=display">
+\log p(O_{1:T})\ge
+\mathbb E_{(s_t,a_t) \sim q(s_t,a_t)}\left[\sum_{t=1}^T (r(s_t,a_t)-\log q(a_t\mid s_t)\right]\\</script><p>在上文中我们记</p>
+<script type="math/tex; mode=display">
+L=\mathbb E_q[\log p(x,z)]+\mathcal H(z)</script><p>这里做一个补充，为什么我们需要 $\log p(x)$，考虑一个KL散度</p>
+<script type="math/tex; mode=display">
+\begin{align} 
+K L[q(Z) \| p(Z | X)] &=\int_{Z} q(Z) \log \frac{q(Z)}{p(Z | X)} \tag{6}\\ 
+&=-\int_{Z} q(Z) \log \frac{p(Z | X)}{q(Z)} \tag{7}\\ 
+&=-\left(\int_{Z} q(Z) \log \frac{p(X, Z)}{q(Z)}-\int_{Z} q(Z) \log p(X)\right) \tag{8}\\ 
+&=-\int_{Z} q(Z) \log \frac{p(X, Z)}{q(Z)}+\log p(X) \int_{Z} q(Z) \tag{9}\\ 
+&=-L+\log p(X) \tag{10}
+\end{align}</script><p>上文中我们有</p>
+<script type="math/tex; mode=display">
+L=\log p(X)-K L[q(Z) \| p(Z | X)]</script><p>就是说如果估计分布和真实后验分布完美接近，那么这个 $L$ 就等于 $\log p(x)$。</p>
+<p>我们型要让KL等于零，那么这里的log是多少？</p>
+<p>所以我要优化这个KL尽可能地小，在 $\log p(x)$ 不变的情况下，我就去优化这个 $L$ 尽可能大。也就是这里的 $L$ 就变成了目标函数。天然地多出来一个 $\mathcal H(z)$</p>
+<p>接下来我们呢继续推导 $q(a_T\mid s_T)$ 长什么样子</p>
+<script type="math/tex; mode=display">
+q(a_T\mid s_T)=\arg \max \mathbb E_{s_T\sim q(s_T),a_T\sim q(a_T\mid s_T)}\left[r(s_T,a_T)-\log q(a_T\mid s_T)\right]</script><p>可以解出来</p>
+<script type="math/tex; mode=display">
+q(a_T\mid s_T)\propto\ \exp(r(s_T,a_T))</script><p>也就是说，对于最后一个步骤</p>
+<script type="math/tex; mode=display">
+q(a_T\mid S_T)=\frac{\exp r(s_T,a_T)}{\int \exp (r(s_T,a))\mathrm da}=\exp(Q(s_T,a_T)-V(s_T))</script><p>这里设</p>
+<script type="math/tex; mode=display">
+V(S_T)=\log \int \exp(Q(s_T,a_T))\mathrm d a_T</script><p>同理得到对于中间的步骤</p>
+<script type="math/tex; mode=display">
+q(a_t\mid s_t)=\exp(Q(s_t,a_t)-V(s_t))</script><p>在这个基础上，我们试着得出 <strong>soft Q-learning</strong></p>
+<p>首先先看Q-learning with soft optimality，应该是这样的</p>
+<script type="math/tex; mode=display">
+\phi\leftarrow \phi+\alpha \nabla _{\phi}Q_\phi(s,a)(r(s,a)+\gamma V(s')-Q_\phi(s,a))</script><p>这里target value</p>
+<script type="math/tex; mode=display">
+V(s')=\text{soft}\max _{a'} Q_\phi(s',a')=\log \int \exp(Q_\phi(s',a'))da'</script><p>最后有</p>
+<script type="math/tex; mode=display">
+\pi(a\mid s)=\exp (Q_\phi(s,a)-V(s))=\exp (A(s,a))</script><p>我们考虑 soft Q learning的推导</p>
+<p><strong>Reinforcement Learning with Deep Energy-Based Policies</strong></p>
+<p>如果我们引入熵的话，我们想要有</p>
+<script type="math/tex; mode=display">
+\pi_{MaxEnt}^*=\arg \max_\pi \sum_{t=0} \mathbb E_{\rho_\pi}[\gamma^t(r_t+\alpha \mathcal H(\pi(\cdot \mid s_t)))]</script><p>在给定一个 $\pi$ 之后定义</p>
+<script type="math/tex; mode=display">
+Q_{soft}^\pi(s,a)\triangleq r(s_0,a_0)\mid_{s_0=s,a_0=a} + \mathbb E_{\tau \sim \pi}[\sum_{t=1}^\infty \gamma^t(r_t+\alpha \mathcal H(\pi(\cdot\mid s_t)))]\mid _{s_0=s,a_0=a}</script><p>那么最大熵策略的目标函数是</p>
+<script type="math/tex; mode=display">
+J(\pi)=\sum_t \mathbb E_{(s_t,a_t)\sim \rho_\pi}[Q_{soft}^\pi(s_t,a_t)+\alpha \mathcal H(\pi(\cdot \mid s_t))]</script><p>再来一个定义是</p>
+<script type="math/tex; mode=display">
+V_{soft}^\pi(s)\triangleq\alpha \log \int_A \exp(\frac{1}{\alpha}Q_{soft}^\pi{(s,a)})da\\
+=\alpha \log \mathbb E_{q_a} \exp(\frac{1}{\alpha}Q_{soft}^\pi{(s,a)}-\log {q_a(a)})da</script><p>能够证明</p>
+<script type="math/tex; mode=display">
+Q_{soft}^\pi(s,a)=r(s,a)+\gamma \mathbb E_{s'}[V^\pi_{soft}(s')]</script><p>在这个基础上可以导出一个最优的policy</p>
+<script type="math/tex; mode=display">
+\tilde \pi(a\mid s)=\exp (\frac{1}{\alpha}({Q_{soft}^\pi(s,a)-V_{soft}^\pi(s))})</script><p>注意，这一项就是等号，不是一个正比号。</p>
+<p>然后一个性质就是可以证明</p>
+<script type="math/tex; mode=display">
+Q_{soft}^\tilde \pi(s,\cdot )\ge Q_{soft}^\pi(s,\cdot )</script><p><strong>暂且略去这个证明</strong>。</p>
+<p>总之我们也有了单调递增性。</p>
+<blockquote>
+<p><strong>entropy-regularized policy gradient can be viewed as performing soft Q-learning on the maximum-entropy.</strong></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32448644">漫谈Entropy, Energy and Learning. - 知乎 (zhihu.com)</a></p>
+<p>这里另一种方法是是基于能量的模型 EBM</p>
+<script type="math/tex; mode=display">
+\max_p \mathbb E_{x\sim p}[\phi(x)]+\alpha \mathcal H(p)</script><p>它的最优分布是玻尔兹曼分布</p>
+<script type="math/tex; mode=display">
+p^*(x)\propto\ e^{-\phi(x)/\alpha}</script><p>这里的 $\alpha$ 是一个温度的系数。</p>
+<script type="math/tex; mode=display">
+\mathbb E_{x\sim p}[\frac{\phi(x)}{\alpha}-\log p(x)]=-KL(p||p_\phi)</script><p>这里 $p_\phi(x)=\frac{e^{\phi(x)/\alpha}}{Z}=\frac{e^{-\mathcal E(x)}}{Z}$，其中 $\mathcal E(x)=-\phi(x)/\alpha$。</p>
+<p>能量越低越容易保持在这样一个状态，能量越高越容易一晃而过。</p>
+<p>从这个角度我们来看策略优化，在某个状态下去找</p>
+<script type="math/tex; mode=display">
+\text{soft} \max_a \mathbb E_{a\sim \pi(\cdot \mid s)}[Q(s,a)] + \alpha \mathcal H(\pi(\cdot \mid s))</script><p>就有</p>
+<script type="math/tex; mode=display">
+\pi^*(a\mid s)\propto \exp(Q(s,a)/\alpha)</script><p>从上文我们定义了soft的V和Q，我们有</p>
+<script type="math/tex; mode=display">
+V^\pi_{soft}(s_t)=\mathbb E_{a\sim \pi}[Q^\pi_{soft}(s_t,a_t)]+\alpha \mathcal H(\pi(\cdot \mid s_t))
+\\Q_{soft}^\pi(s,a)=r(s,a)+\gamma \mathbb E_{s'}[V^\pi_{soft}(s')]</script><p>接着我们来说一下soft Q-learning，首先是去学习（更新）<code>Qsoft</code></p>
+<script type="math/tex; mode=display">
+J_Q(\theta)=\mathbb E_{(s_t,a_t)}[\frac{1}{2}(r(s,a)+\gamma \mathbb E_{s'}[V^{\bar \theta}_{soft}(s')-Q^\theta_{soft}(s_t,a_t))^2]</script><p>因为希望通过当前的policy对Q更新， $V$ 要做一步重要性采样来算出来，前文提到的</p>
+<script type="math/tex; mode=display">
+V_{soft}^\theta(s_t)=\alpha \log \mathbb E_{\pi} 
+\frac{
+\exp(\frac{1}{\alpha}Q_{soft}^{\theta}{(s_t,a')})
+}{\pi(a')}</script><p>但是 $\pi$ 还是不能直接通过贪心来求。</p>
+<p>所以在 soft Q-learning 里面，通过最小化当前policy和基于价值函数构造出来的soft max分布的形式，用 SVGD 通过KL散度优化策略。（对于连续空间）</p>
+<p><strong>soft Actor-Critic</strong> 希望直接去优化策略</p>
+<p>前文提到</p>
+<script type="math/tex; mode=display">
+\pi_{new}=\arg \min_{\pi'} D_{KL}(\pi'||\exp(Q^{\pi}old)/Z)</script><p>策略迭代能保证迭代之后的价值不小于迭代之前的价值。</p>
+<p>所以这个方法的算法的细节包括如下两种</p>
+<p>首先通过bellman方程迭代更新Q和V，使用两个Q网络，$\bar \psi=\tau \psi +(1-\tau)\bar \psi$。</p>
+<p>还有一个策略函数的学习目标，通过正比于 $Q+\mathcal H$ 的方法，这是我们之前用概率图方法推导出来的。</p>
+<script type="math/tex; mode=display">
+J_\pi(\phi)=\mathbb E_{s_t\sim D,\epsilon _t\sim N}[\log \pi_\phi(f_\phi(\epsilon_t;s_t)\mid s_t)-Q_\theta(s_t,f_\phi(\epsilon_t;s_t))]</script><p>所以迭代更新。</p>
+<p>实验：</p>
+<p>认为它非常diverse，确实是鼓励了探索。</p>
+<p>softQ作为预训练，对于不同的环境，也更好。</p>
+<p>SAC认为策略用随机策略比固定策略更好，虽然一开始比较慢，但是最终会好。但是估值的时候相比于随机策略，用固定策略的更好。</p>
 
       
     </div>
@@ -376,7 +574,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://emoairx.github.io/blog/2024/05/14/max%20entropy%20RL/" title="最大熵强化学习" target="_blank" rel="external">http://emoairx.github.io/blog/2024/05/14/max entropy RL/</a>
+      <a href="http://emoairx.github.io/blog/2024/05/14/max%20entropy%20RL/" title="最大熵强化学习——从概率图模型到SAC" target="_blank" rel="external">http://emoairx.github.io/blog/2024/05/14/max entropy RL/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -534,5 +732,20 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
