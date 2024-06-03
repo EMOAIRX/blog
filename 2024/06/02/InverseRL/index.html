@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Inverse Reinforcement Learning | emoairx</title>
+  <meta name="description" content="CS 285: Lecture 20, Inverse Reinforcement Learning, Part 1 (youtube.com) CampusAI lec-20.pdf (berkeley.edu) The imitation learning perspectiveStandard imitation learning:  copy the actions performed b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inverse Reinforcement Learning">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/06/02/InverseRL/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="CS 285: Lecture 20, Inverse Reinforcement Learning, Part 1 (youtube.com) CampusAI lec-20.pdf (berkeley.edu) The imitation learning perspectiveStandard imitation learning:  copy the actions performed b">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/zs0zum8g.png">
+<meta property="og:image" content="https://campusai.github.io/_rl/lecture_15/maxentr_irl.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200312234655417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDA1NjU3Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2024-06-02T07:56:28.276Z">
+<meta property="article:modified_time" content="2024-06-03T07:36:15.364Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="强化学习">
+<meta property="article:tag" content="cs285">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/zs0zum8g.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/06/02/InverseRL/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" rel="tag">凸分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">80</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" style="font-size: 13px;">凸分析</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.5px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/06/02/InverseRL/" class="title">Inverse Reinforcement Learning</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-06-02T07:56:28.276Z" itemprop="datePublished">2024-06-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/26/convex%20A&OM-saveme/" class="title">凸分析·江湖救急</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-26T08:21:03.870Z" itemprop="datePublished">2024-05-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/23/deepspeed/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-23T11:00:47.583Z" itemprop="datePublished">2024-05-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/14/max%20entropy%20RL/" class="title">最大熵强化学习——从概率图模型到SAC</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-14T10:43:23.367Z" itemprop="datePublished">2024-05-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/05/14/note%20on%20Information%20Theory/" class="title">Information Theory - wll</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-05-14T02:12:50.738Z" itemprop="datePublished">2024-05-14</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-InverseRL" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Inverse Reinforcement Learning
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/06/02/InverseRL/" class="article-date">
+	  <time datetime="2024-06-02T07:56:28.276Z" itemprop="datePublished">2024-06-02</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/cs285/" rel="tag">cs285</a>, <a class="article-tag-link-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/06/02/InverseRL/" class="leancloud_visitors"  data-flag-title="Inverse Reinforcement Learning">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/06/02/InverseRL/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=EcxpbhDeuZw&amp;list=PLORWgNI8p25n1vLQMspe_9L7kuwZjcy-U&amp;ab_channel=RAIL">CS 285: Lecture 20, Inverse Reinforcement Learning, Part 1 (youtube.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://campusai.github.io/lectures/lecture15">CampusAI</a></p>
+<p><a target="_blank" rel="noopener" href="http://rail.eecs.berkeley.edu/deeprlcourse/deeprlcourse/static/slides/lec-20.pdf">lec-20.pdf (berkeley.edu)</a></p>
+<h5 id="The-imitation-learning-perspective"><a href="#The-imitation-learning-perspective" class="headerlink" title="The imitation learning perspective"></a>The imitation learning perspective</h5><p>Standard imitation learning:</p>
+<ul>
+<li>copy the actions performed by the expert</li>
+<li>no reasoning about outcomes of actions</li>
+</ul>
+<p>Human imitation learning:</p>
+<ul>
+<li>copy the intent of the expert</li>
+<li>might take very different actions!</li>
+</ul>
+<hr>
+<p><strong>Inverse reinforcement learning</strong></p>
+<ul>
+<li><p>Infer <strong>reward functions</strong> from <strong>demonstrations</strong></p>
+</li>
+<li><p>给定了 $s\in S,a \in A,p(s’\mid s,a)$以及一些从 $\pi^*(\tau)$ 中采样的轨迹</p>
+</li>
+<li>求 $r_{\psi}(s,a)$ (reward parameters)</li>
+<li>然后用它来求 $\pi^*(a\mid s)$</li>
+</ul>
+<p><strong>feature matching IRL</strong></p>
+<p>如果我们用linear的方法来建模reward function。</p>
+<script type="math/tex; mode=display">
+r_\psi(s,a)=\sum_i \psi_i f_i(s,a)=\psi^T f(s,a)</script><p>如果这些feature $f$ 是重要的：</p>
+<p>我们想要 $\pi^{r<em>\psi}$ 作为一个关于 $r</em>\psi$ 的最优的policy，也就是希望</p>
+<script type="math/tex; mode=display">
+E_{\pi^{r_\psi}}[f(s,a)]=E_{\pi^*}[f(s,a)]</script><p>这里的</p>
+<script type="math/tex; mode=display">
+E_{\pi^*}[f(s,a)]=\sum_{(s,a)} f(s,a) \times \rho(s,a)</script><p>这里 $\rho(s,a)$ 表示在数据集中 $(s,a)$ 这样的pair出现了多少次。</p>
+<p>而左边的部分，如果环境未知可以用sample的方法来作同样的事情（expensive but useful），如果环境不大而且已知可以用动态规划来学。</p>
+<p>为了找到最佳的参数，借鉴SVM中的 maximum margin principle。</p>
+<script type="math/tex; mode=display">
+\max_{\psi,m} m;s.t. \psi^T E_{\pi^*}[f(s,a)] \ge \max_{\pi \in \Pi} \psi^T E_\pi[f(s,a)]+m</script><p>一个很启发式的方法，找到那个让expert非常厉害的 $\psi$。</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+max_{\psi} \frac{1}{2} \Vert \psi \Vert^2  \space \space \space s.t.
+\psi^T E_{\pi^*} [f(s, a)] \geq
+max_{\pi \in \Pi} \psi^T E_{\pi} [f(s, a)] +
+D ( \pi, \pi^\star )
+\end{equation}</script><p>Issues：</p>
+<ul>
+<li>Maximizing the margin is a bit arbitrary</li>
+<li>What if the “expert” demonstrations are suboptimal? We could add slack variables as in a SVM setup.</li>
+<li>It might be ok for this linear case but become very messy for ANN reward approximation.</li>
+</ul>
+<p><strong>optimal control as a model of human behavior</strong></p>
+<p>回到这张图</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/zs0zum8g.png" alt></p>
+<p>现在我们要inference the reward function.</p>
+<p>这里 $\psi$ 是reward的一个参数。</p>
+<script type="math/tex; mode=display">
+p(O_t\mid s_t,a_t,\psi)=\exp(r_\psi(s_t,a_t))</script><script type="math/tex; mode=display">
+p(\tau \mid O_{1:T}) \propto \exp(\sum_t r_\psi{(s_t,a_t)})</script><p>那么最大似然估计的方法，我们从 $\pi^*$ 中sample 一些 $\tau_i$ </p>
+<script type="math/tex; mode=display">
+\max_\psi \frac{1}{N} \sum_{i=1}^N \log p(\tau_i\mid O_{1:T},\psi)=\max_\psi  \frac{1}{N}\sum_{i=1}^N r_\psi(i)-\log Z</script><p>所以IRL partition function就是</p>
+<script type="math/tex; mode=display">
+\max_\psi  \frac{1}{N}\sum_{i=1}^N r_\psi(i)-\log Z</script><p>这里的</p>
+<script type="math/tex; mode=display">
+Z=\int p(\tau)\exp(r_\psi(\tau)) d\tau</script><p>代入展开我们有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\nabla_\psi \mathcal{L} = \frac{1}{N} \sum_i \nabla_\psi r_\psi (\tau_i) - \frac{1}{Z} \int p(\tau) exp(r_\psi(\tau)) \nabla_\psi r_\psi(\tau) d \tau
+\end{equation}</script><p>这里第二项就是 $\tau$ 发生的概率，也就写成</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\label{grad}
+\nabla_\psi \mathcal{L} =
+E_{\tau \sim \pi^\star (\tau)} \left[ \nabla_\psi r_\psi (\tau_i) \right] -
+E_{\tau \sim p(\tau \mid O_{1:T}, \psi)} \left[ \nabla_\psi r_\psi(\tau) \right]
+\end{equation}</script><p>展开</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_{\tau \sim p(\tau \mid O_{1:T}, \psi)} \left[ \nabla_\psi r_\psi(\tau) \right] = 
+
+\sum_t E_{(s_t, a_t) \sim p(s_t, a_t \mid O_{1:T}, \psi)} \left[ \nabla_\psi r_\psi(s_t, a_t) \right]
+\end{equation}</script><p>利用</p>
+<script type="math/tex; mode=display">
+p(s_t, a_t \mid O_{1:T}, \psi) = p(a_t \mid O_{1:T}, \psi) p(s_t \mid O_{1:T}, \psi)</script><p>得到</p>
+<script type="math/tex; mode=display">
+p(a_t \mid O_{1:T}, \psi) p(s_t \mid O_{1:T}, \psi) \propto \beta(s_t, a_t) \alpha(s_t)</script><p>那么如果定义</p>
+<script type="math/tex; mode=display">
+\mu_t(s_t, a_t) \propto \beta(s_t, a_t) \alpha(s_t)</script><p>就有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_{\tau \sim p(\tau \mid O_{1:T}, \psi)} \left[ \nabla_\psi r_\psi(\tau) \right] = 
+\sum_t \int \int
+\mu_t(s_t, a_t) \nabla_\psi r_\psi(\tau)
+ds_t da_t =
+\sum_t  \vec{\mu_t}^T \cdot \nabla_\psi \vec{r}_\psi
+\end{equation}</script><p>这样我们就得出了 MaxEnt IRL Algorithm</p>
+<p><img src="https://campusai.github.io/_rl/lecture_15/maxentr_irl.png" alt="MaxEntr IRL algorithm"></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cdn.aaai.org/AAAI/2008/AAAI08-227.pdf">AAAI08-227.pdf</a></li>
+</ul>
+<blockquote>
+<p>关于为什么叫MaxEnt，据说是，在 $r<em>\psi (s_t, a_t) = \psi^T f(s_t, a_t)$ 的时候他优化了 $max</em>\psi \mathcal{H} \left( \pi^{r<em>\psi} \right)<br>\space \space s.t.<br>E</em>{\pi^{r<em>\psi}}[f] = E</em>{\pi^\star} [f]$</p>
+<p>推导 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44044411/article/details/119922423">【逆强化学习-2】最大熵学习（Maximum Entropy Learning）_最大熵逆向强化学习代码-CSDN博客</a> 比较好，从最大熵的目标函数除法，利用拉格朗日乘子法重新得到了那个优化公式。</p>
+</blockquote>
+<p>To apply this in practical problem settings, we need to handle… </p>
+<ol>
+<li>Large and continuous state and action spaces</li>
+<li>States obtained via sampling only</li>
+<li>Unknown dynamics</li>
+</ol>
+<p>注意我们的公式其实就是：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\nabla_\psi \mathcal{L} \simeq
+\frac{1}{N} \sum_i \nabla_\psi r_\psi (\tau_i) -
+\frac{1}{M} \sum_j \nabla_\psi r_\psi (\tau_j)
+\end{equation}</script><p>第一项是expert的policy，第二项是目前的policy。</p>
+<p>一个直观的想法是学习 $p(a<em>t \mid s_t, O</em>{1:T}, \psi)$，不过这会比较慢。</p>
+<p>一个想法是用一个分布 $\pi<em>\theta(a_t\mid s_t)$ 去近似 $p(a_t \mid s_t, O</em>{1:T}, \psi)$。那么从 $\pi_\theta$ 中取就需要一个重要性采样。</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\nabla_\psi \mathcal{L} \simeq
+\frac{1}{N} \sum_i \nabla_\psi r_\psi (\tau_i) -
+\frac{1}{\sum_j w_j} \sum_j  w_j \nabla_\psi r_\psi (\tau_j)
+\end{equation}</script><p>这里 $w<em>j = \frac{p(\tau) exp ( r</em>\psi (\tau<em>j) ) }{\pi</em>\theta(\tau<em>j)}$,展开的话就是 $w_j = \frac{exp \left( \sum_t r</em>\psi (s<em>t, a_t)\right)}{\prod_t \pi</em>\theta (a_t \mid s_t)}$。</p>
+<p>所以假设我们已经有 $\pi<em>\theta,\pi^*$ 之后，可以用 $\psi \leftarrow \psi + \alpha \nabla </em>\psi L(\psi)$ 来更新 reward function。</p>
+<p>在此之外，固定当前的reward function，对policy也可以更新</p>
+<script type="math/tex; mode=display">
+\nabla_\theta L(\theta)=\frac{1}{M} \sum_{j=1}^M \nabla_\theta \log \pi_\theta(\tau_j) r_\psi(\tau_j)</script><p>持续迭代更新reward function和policy。</p>
+<p>其中Rewad Function往能使专家行为产生高价值同时使当前Policy行为产生低价值的方向跑，然后Policy往能在当前Reward下产生高价值的行为方向跑，从而又体现出了对抗的思想!</p>
+<p><img src="https://img-blog.csdnimg.cn/20200312234655417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDA1NjU3Nw==,size_16,color_FFFFFF,t_70#pic_center" alt="4"></p>
+<p><strong>Inverse RL as a GAN</strong></p>
+<ul>
+<li>Finn<em>, Christiano</em> et al. “A Connection Between Generative Adversarial Networks, Inverse Reinforcement Learning, and Energy-Based Models.”</li>
+</ul>
+<p>假设读者已经对GAN有所了解，GAN的优化目标是</p>
+<script type="math/tex; mode=display">
+\psi=\arg \max_\psi \frac{1}{N}\sum_{x\sim p^*} \log D_\psi(x)+\frac{1}{M}\sum _{x \sim p_\theta}\log (1-D\psi (x))</script><p>而</p>
+<script type="math/tex; mode=display">
+\theta \leftarrow \arg \max_\theta E_{x\sim p_\theta}\log D_\psi(x)</script><p>注意到如果</p>
+<script type="math/tex; mode=display">
+D^*(x)=\frac{p^*(x)}{p_\theta(x)+p^*(x)}</script><p>那么这个判别器是最优的。</p>
+<p>对于InverseRL我们知道 $\pi<em>\theta(\tau) \propto p(\tau)\exp (r</em>\psi(\tau))$</p>
+<p>这里的</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+D_\psi(\tau)=&\frac{p(\tau)\frac{1}{Z}\exp (r(\tau))}{p_\theta(\tau)+p(\tau)\frac{1}{Z}\exp (r(\tau))}\\
+=&\frac{\frac{1}{Z}\exp (r(\tau))}{\prod_t \pi_\theta(a_t\mid s_t)+\frac{1}{Z}\exp (r(\tau))}\\
+\end{align*}</script><p>这样的话就可以用GAN的思路来看待offline RL。</p>
+<p><strong>Can we just use a regular discriminator?</strong></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/06/02/InverseRL/" title="Inverse Reinforcement Learning" target="_blank" rel="external">http://emoairx.github.io/blog/2024/06/02/InverseRL/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2024/05/26/convex%20A&OM-saveme/" title="凸分析·江湖救急"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
