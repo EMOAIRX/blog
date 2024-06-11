@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/itmzw9y5.png">
 <meta property="article:published_time" content="2024-05-26T08:21:03.870Z">
-<meta property="article:modified_time" content="2024-06-11T14:22:36.184Z">
+<meta property="article:modified_time" content="2024-06-11T14:24:13.605Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="凸分析与优化方法">
@@ -438,7 +438,7 @@
 <p><strong>Closed set</strong>：闭集（补集是开集）</p>
 <p><strong>bounded set</strong>：有界集，每个元素的范数不超过一个 $R$</p>
 <p><strong>compact set</strong>：紧集，有界闭</p>
-<p><strong>interior</strong>：内点集，$C^o={y\mid \exist \epsilon&gt;0,B_\epsilon(y)\sub C}$</p>
+<p><strong>interior</strong>：内点集，$C^o={y\mid \exists \epsilon&gt;0,B_\epsilon(y)\sub C}$</p>
 <p><strong>closure</strong>：闭包集，补集的内点 $\bar C$</p>
 <p><strong>boundary</strong>：边界，$\bar C \backslash C^o$</p>
 <p><strong>Global Convergence</strong>: 每个点都能收敛到FONC ($\nabla f(x^*)=0$) 条件的点。</p>
@@ -798,7 +798,7 @@ f^{**}(x)&=\sup_y(x,y)-(\sup_x (x,y)-f(x))\\
 &\le (x,y^*)-[(x,y^*)-f(x)]\\
 &=f(x)
 \end{align*}</script><ul>
-<li>Suppose $\exist (x_0^T,\gamma)^T \not \in epi f$ , where $\gamma \ge f^{**}(x_0)$. Since $f$ is proper, convex, closed, its epigraph is closed and does not include a vertical line. Thus <script type="math/tex; mode=display">
+<li>Suppose $\exists (x_0^T,\gamma)^T \not \in epi f$ , where $\gamma \ge f^{**}(x_0)$. Since $f$ is proper, convex, closed, its epigraph is closed and does not include a vertical line. Thus <script type="math/tex; mode=display">
 (w^T,\zeta)(x^T,t)^T < \mu<(w^T,\zeta)(x_0^T,\gamma)^T,x\in dom f,t\ge f(x)</script>since t can very large, let $\zeta$ must be negative. assume $\zeta = -1$, take $t=f(x)$<script type="math/tex; mode=display">
 w^Tx-f(x)<\mu<w^TTx_0-\gamma\le w^Tx_0-f^{**}(x);\forall x\in domf</script>Thus $f^<em>(w)&lt;w^Tx_0-f^{*</em>}(x)$</li>
 </ul>
