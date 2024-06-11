@@ -17,22 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>凸分析·江湖救急 | emoairx</title>
-  <meta name="description" content="6月12下午期中考，来得及复习吗  Chapter1: Overview这一节不是很重要  \min_{x \in R^n} \frac{1}{m} f_i(x) + \lambda R(x) 一定要写优化的变量，就是针对什么来优化的。  例如，SVM的优化是  \min_{w,v} ||w||^2 , s.t.\ y_i(w^Tx_i+b) \ge 1GAN的优化目标是  \min _G \m">
+  <title>凸分析与优化方法笔记 | emoairx</title>
+  <meta name="description" content="本课又名林教授的人生哲理和他十五年前的工作，本笔记不包含人生哲理部分。 依然是学不会也没花太多时间学的一门课，靠，就是这种什么都不会，慌的一批的感觉。 学疯了，第五章第六章第七章第八章真的完全学不会。 草我不会是个傻子吧，怎么什么都不会啊。 我不会真是个傻子吧 Chapter1: Overview这一节不是很重要  \min_{x \in R^n} \frac{1}{m} f_i(x) + \la">
 <meta property="og:type" content="article">
-<meta property="og:title" content="凸分析·江湖救急">
+<meta property="og:title" content="凸分析与优化方法笔记">
 <meta property="og:url" content="http://emoairx.github.io/blog/2024/05/26/convex%20A&OM-saveme/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="6月12下午期中考，来得及复习吗  Chapter1: Overview这一节不是很重要  \min_{x \in R^n} \frac{1}{m} f_i(x) + \lambda R(x) 一定要写优化的变量，就是针对什么来优化的。  例如，SVM的优化是  \min_{w,v} ||w||^2 , s.t.\ y_i(w^Tx_i+b) \ge 1GAN的优化目标是  \min _G \m">
+<meta property="og:description" content="本课又名林教授的人生哲理和他十五年前的工作，本笔记不包含人生哲理部分。 依然是学不会也没花太多时间学的一门课，靠，就是这种什么都不会，慌的一批的感觉。 学疯了，第五章第六章第七章第八章真的完全学不会。 草我不会是个傻子吧，怎么什么都不会啊。 我不会真是个傻子吧 Chapter1: Overview这一节不是很重要  \min_{x \in R^n} \frac{1}{m} f_i(x) + \la">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://files.oaiusercontent.com/file-4mic2muCOZJaAUTbEzso5heT?se=2024-06-05T13%3A59%3A08Z&amp;sp=r&amp;sv=2023-11-03&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable&amp;rscd=attachment%3B%20filename%3Dimage.png&amp;sig=Bdzw79JDpveODBVE%2Bijt7UVk/X/Xr/X%2BKUJaixKGGBU%3D">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/itmzw9y5.png">
 <meta property="article:published_time" content="2024-05-26T08:21:03.870Z">
-<meta property="article:modified_time" content="2024-06-08T12:04:09.687Z">
+<meta property="article:modified_time" content="2024-06-11T14:22:36.184Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
-<meta property="article:tag" content="凸分析">
+<meta property="article:tag" content="凸分析与优化方法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://files.oaiusercontent.com/file-4mic2muCOZJaAUTbEzso5heT?se=2024-06-05T13%3A59%3A08Z&amp;sp=r&amp;sv=2023-11-03&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable&amp;rscd=attachment%3B%20filename%3Dimage.png&amp;sig=Bdzw79JDpveODBVE%2Bijt7UVk/X/Xr/X%2BKUJaixKGGBU%3D">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/itmzw9y5.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://emoairx.github.io/blog/2024/05/26/convex%20A&OM-saveme/index.html">
   
@@ -187,7 +187,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" rel="tag">凸分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">81</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">81</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -197,7 +197,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" style="font-size: 13px;">凸分析</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.5px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.5px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
     </div>
   </div>
 
@@ -255,7 +255,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2024/05/26/convex%20A&OM-saveme/" class="title">凸分析·江湖救急</a>
+                <a href="/blog/2024/05/26/convex%20A&OM-saveme/" class="title">凸分析与优化方法笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-05-26T08:21:03.870Z" itemprop="datePublished">2024-05-26</time>
@@ -333,7 +333,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      凸分析·江湖救急
+      凸分析与优化方法笔记
     </h1>
   
 
@@ -349,7 +349,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90/" rel="tag">凸分析</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+	<a class="article-tag-link-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
   </span>
 
 
@@ -357,7 +357,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/blog/2024/05/26/convex%20A&OM-saveme/" class="leancloud_visitors"  data-flag-title="凸分析·江湖救急">
+    	<span id="/blog/2024/05/26/convex%20A&OM-saveme/" class="leancloud_visitors"  data-flag-title="凸分析与优化方法笔记">
 			<span class="leancloud-visitors-count">0</span>
 		</span>
     </span>
@@ -368,9 +368,11 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <ul>
-<li>6月12下午期中考，来得及复习吗</li>
-</ul>
+        <p>本课又名林教授的人生哲理和他十五年前的工作，本笔记不包含人生哲理部分。</p>
+<p>依然是学不会也没花太多时间学的一门课，靠，就是这种什么都不会，慌的一批的感觉。</p>
+<p>学疯了，第五章第六章第七章第八章真的完全学不会。</p>
+<p>草我不会是个傻子吧，怎么什么都不会啊。</p>
+<p>我不会真是个傻子吧</p>
 <h3 id="Chapter1-Overview"><a href="#Chapter1-Overview" class="headerlink" title="Chapter1: Overview"></a>Chapter1: Overview</h3><p>这一节不是很重要</p>
 <script type="math/tex; mode=display">
 \min_{x \in R^n} \frac{1}{m} f_i(x) + \lambda R(x)</script><blockquote>
@@ -662,7 +664,7 @@ K^*=\{y\mid x^Ty \ge 0\text{ for all x}\}</script></li>
 <li>非空凸集的任何一个边界上的点，至少存在一个支撑超平面。</li>
 <li>也就是一个向外的方向 $a$，对于边界上的点 $x_0$，使得 $a^Tx \le a^Tx_0$。</li>
 </ul>
-<h4 id="Convex-function"><a href="#Convex-function" class="headerlink" title="Convex function"></a>Convex function</h4><ul>
+<h3 id="Convex-function"><a href="#Convex-function" class="headerlink" title="Convex function"></a>Convex function</h3><ul>
 <li>定义线性组合的函数值小于函数值的线性组合。</li>
 </ul>
 <p><strong>Rademacher’s Theorem</strong> 凸函数的几乎所有相对内点都可微。</p>
@@ -827,9 +829,155 @@ g(x)\le g(x_k)+\left<\nabla g(x_k),x-x_k\right>+\frac{L}{2}||x-x_k||^2</script><
 </ul>
 <p>if $f(u,v)=f_1(u)+f_2(v)$, both closed proper functions.</p>
 <script type="math/tex; mode=display">
-Prox_c f(u,v)=(Prox_cf_1(u),Prox_cf_2(v))</script><hr>
-<p>Lecture19</p>
-<h4 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h4><p><strong>Alternating Direction Method</strong></p>
+Prox_c f(u,v)=(Prox_cf_1(u),Prox_cf_2(v))</script><p>能证明</p>
+<script type="math/tex; mode=display">
+\nabla Env_c f(x)=\frac{1}{c}(x-Prox_c f(x))</script><p>也就是</p>
+<script type="math/tex; mode=display">
+\frac{1}{c}(x-u)\in \partial Env_c f(x)</script><p><strong>Moreau Decomposition</strong></p>
+<script type="math/tex; mode=display">
+x=Prox_c f(x)+c Prox_{c^{-1}} f^*(c^{-1}x)</script><p>proximal mapping</p>
+<p>if f is convex, the proximal operator is 1-Lipschitz and the envelope function is (1/c)-smooth.</p>
+<p><strong>proximal mapping of a norm</strong></p>
+<script type="math/tex; mode=display">
+f(x)=||x||,f^*(y)=I_{B}(y)\\
+Prox_c f(x)=x-cProx_{c^{-1}}f^*(x/c)\\
+=x-cP_{cB}(x/c)\\
+==x-P_{cB}(x)</script><p>where B is the unit ball of the dual norm $||\cdot ||_*$</p>
+<h3 id="Unconstrained-Optimization"><a href="#Unconstrained-Optimization" class="headerlink" title="Unconstrained Optimization"></a>Unconstrained Optimization</h3><p><strong>Descent methods</strong></p>
+<script type="math/tex; mode=display">
+\nabla f(x^{(k)})^T(y-x^{(k)})\ge 0</script><p>停止准则是 $||\nabla f(x)||_2\le \eta$</p>
+<p> Exact line search: 去求min</p>
+<p>Backtracking line search: while $f(x+t\Delta x)&gt;f(x)+\alpha t \nabla f(x)^T\Delta x$, do $t=\beta t$</p>
+<p><strong>gradient descent method</strong>: $\Delta x=-\nabla f(x)$</p>
+<p>如果强凸则有</p>
+<script type="math/tex; mode=display">
+\nabla ^2 f(x)\succeq mI\\
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{m}{2}||y-x||_2^2</script><p>在这种情况下，一旦 $\nabla f(x)$ 足够小，我们就有对于任何一个 $y$，取 $\tilde y=x-(1/m)\nabla f(x)$</p>
+<script type="math/tex; mode=display">
+p^*\ge f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{m}{2}||y-x||_2^2\\
+\ge f(x)+\nabla f(x)^T(\tilde y-x)+\frac{m}{2}||y-x||_2^2\\
+= f(x)-\frac{1}{2m}||\nabla f(x)||_2^2</script><p>上面的结论是</p>
+<script type="math/tex; mode=display">
+||\nabla f(x)||_2^2 \ge 2m(f(x)-p^*)</script><p>另外我们还有一个upperbound，然后有一个 <strong>descent lemma</strong></p>
+<p>如果M-smooth，最大特征值被bound</p>
+<script type="math/tex; mode=display">
+MI\succeq \nabla^2f(x)</script><p>那么</p>
+<script type="math/tex; mode=display">
+f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{M}{2}||y-x||_2^2</script><p>也就有</p>
+<script type="math/tex; mode=display">
+p^*\le f(x)-\frac{1}{2M}||\nabla f(x)||_2^2</script><p>也就有对于新的 $x^+$，对于exact line search</p>
+<script type="math/tex; mode=display">
+f(x^+)-p^*\le f(x)-\frac{1}{2M}||\nabla f(x)||_2^2\le (1-m/M)(f(x)-p^*)</script><p>linear convergence.</p>
+<p>对于backtracking line search，要分情况讨论，关于有没有发生，这里看不懂跳过。</p>
+<p><strong>steepest descent method</strong></p>
+<ul>
+<li>对于二模的最速方向确实就是 $-\nabla f(x)$，但是对于矩阵 $P$ 下的模是，$-P^{-1}\nabla f(x)$，需要归一化一下。</li>
+</ul>
+<p>对于L1的则是：</p>
+<script type="math/tex; mode=display">
+\arg\min_{v} \set{\nabla f(x)^Tv\mid ||v||_1\le 1}</script><p>算出来是最大的方向的负。</p>
+<p><strong>newton’s method</strong></p>
+<script type="math/tex; mode=display">
+0=g^{(k)}+F(x^{(k)})(x-x^{(k)})\\
+x_{k+1}=x_k-F^{-1}g</script><p>Theorem 2: Newton’s Method for Strongly Convex Functions</p>
+<p><strong>Theorem:</strong> Suppose that $f \in C^2$ is strongly convex, with Lipschitz continuous second order derivative:</p>
+<script type="math/tex; mode=display">
+\nabla^2 f(x) \ge mI, \quad ||\nabla^2 f(x) - \nabla^2 f(y)||_F \le L||x - y||^2,</script><p>and $x^<em> \in \mathbb{R}^n$ is a local minimizer. Then, for all $x^{(0)}$ sufficiently close to $x^</em>$, Newton’s method converges to $x^*$ with order of convergence at least 2.</p>
+<blockquote>
+<p><strong>Proof:</strong></p>
+<p>Let $x^{(k)}$ be the $k$th iterate of Newton’s method, defined by</p>
+<script type="math/tex; mode=display">
+x^{(k+1)} = x^{(k)} - \nabla^2 f(x^{(k)})^{-1} \nabla f(x^{(k)}).</script><p>Then, we can write</p>
+<script type="math/tex; mode=display">
+f(x^{(k+1)}) = f(x^{(k)}) + \nabla f(x^{(k)})^T (x^{(k+1)} - x^{(k)}) + \frac{1}{2} (x^{(k+1)} - x^{(k)})^T \nabla^2 f(x^{(k)}) (x^{(k+1)} - x^{(k)}).</script><p>Using the strong convexity of $f$, we have</p>
+<script type="math/tex; mode=display">
+f(x^{(k+1)}) \ge f(x^{(k)}) + \nabla f(x^{(k)})^T (x^{(k+1)} - x^{(k)}) + \frac{m}{2} ||x^{(k+1)} - x^{(k)}||^2.</script><p>Expanding the first term on the right-hand side, we get</p>
+<script type="math/tex; mode=display">
+\nabla f(x^{(k)})^T (x^{(k+1)} - x^{(k)}) = - \frac{1}{2} (x^{(k+1)} - x^{(k)})^T \nabla^2 f(x^{(k)}) (x^{(k+1)} - x^{(k)}).</script><p>Substituting this into the inequality above, we get</p>
+<script type="math/tex; mode=display">
+f(x^{(k+1)}) \ge f(x^{(k)}) - \frac{1}{2} (x^{(k+1)} - x^{(k)})^T \nabla^2 f(x^{(k)}) (x^{(k+1)} - x^{(k)}) + \frac{m}{2} ||x^{(k+1)} - x^{(k)}||^2.</script><p>Completing the square on the right-hand side, we get</p>
+<script type="math/tex; mode=display">
+f(x^{(k+1)}) \ge f(x^{(k)}) + \frac{1}{2} ||x^{(k+1)} - x^{(k)} - \nabla^2 f(x^{(k)})^{-1} \nabla f(x^{(k)})||^2 \left( m - \frac{L}{m} \right).</script><p>Since $m &gt; 0$ and $L &gt; 0$, we can choose $\delta &gt; 0$ such that $m - \frac{L}{m} \ge \delta$ for all $x^{(k)}$ sufficiently close to $x^*$. Then, we have</p>
+<script type="math/tex; mode=display">
+f(x^{(k+1)}) \ge f(x^{(k)}) + \frac{\delta}{2} ||x^{(k+1)} - x^*||^2.</script><p>This shows that Newton’s method converges to $x^*$ with quadratic rate of convergence.</p>
+</blockquote>
+<p><strong>conjugate gradient algorithm</strong></p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{2}x^TQx-x^Tb\\
+d^{(0)}=-g^{(0)}\\
+\alpha_k=\arg \min_{\alpha>0} f(x^{(k)}+\alpha d^{(k)})=\frac{g^{(0)T}d^{(0)}}{d^{(0)T}Qd^{(0)}}\\
+g^{(k+1)}=\nabla f(x^{(k+1)})\\
+\beta_k=\frac{g^{(k+1)T}Qd^{(k)}}{d^{(k)T}Qd^{(k)}}\\
+d^{(k+1)}=-g^{(k+1)}+\beta_k d^{(k)}</script><p>目的是包括</p>
+<script type="math/tex; mode=display">
+\lang g^{(k+1)T},d^{(i)}\rang=0\\
+\lang g^{(k+1)T},g^{(i)}\rang=0</script><p>此外所有的 $Q^{1/2} d^{(i)}$ 也是两两正交的，也就是要 $d^{(i)}Qd^{(j)}=0$</p>
+<p><strong>Quasi-Newton Methods</strong></p>
+<ul>
+<li>估计hess矩阵</li>
+</ul>
+<script type="math/tex; mode=display">
+g^{(k+1)}-g^{(k)}=Q(x^{(k+1)}-x^{(k)})</script><p><strong>Rank One Correction Formula</strong></p>
+<script type="math/tex; mode=display">
+H_{k+1}=H_k+ a_kz^{(k)}z^{(k)T}</script><p>要让</p>
+<script type="math/tex; mode=display">
+H_{k+1}\Delta g^{(k)}=\Delta x^{(k)}</script><p>展开解这个 $z^{(k)}$</p>
+<ul>
+<li>但是rank one的修正有问题，不保证positive definition</li>
+</ul>
+<p><strong>DFP algorithm</strong></p>
+<ul>
+<li>也是一个公式，但真消化不了这么多了。</li>
+<li><strong>先pass吧，考了也没办法</strong>。</li>
+</ul>
+<p><strong>BFGS algorithm</strong></p>
+<ul>
+<li>维护一个矩阵 $B$，$B$ 是用DFP的方法来更新的。</li>
+<li>然后用 $B_{k+1}^{-1}$ 来估计 BFGS的H，然后求逆可以直接展开。</li>
+</ul>
+<p><strong>L-BFGS</strong></p>
+<ul>
+<li>只用几个变量来估计 $B$</li>
+</ul>
+<p><strong>Majorization Minimization</strong></p>
+<ul>
+<li>就那个MM算法，看之前的博客吧，但也学不会。</li>
+</ul>
+<h4 id="optimality-conditions"><a href="#optimality-conditions" class="headerlink" title="optimality conditions"></a>optimality conditions</h4><p>local first order condition</p>
+<p><strong>KKT condition</strong></p>
+<ol>
+<li><script type="math/tex; mode=display">
+\nabla f(x_0)+\sum_{i=1}^m \lambda_i \nabla g_i(x_0)+\sum_{j=1}^p \mu_j \nabla h_j(x_0)=0</script></li>
+<li><script type="math/tex; mode=display">
+\lambda_j g_i(x_0)=0</script></li>
+<li><script type="math/tex; mode=display">
+x_0 \in F</script></li>
+<li><script type="math/tex; mode=display">
+\lambda \in R_{+}^m</script></li>
+</ol>
+<p>KKT-point $(x,\lambda,\mu)$</p>
+<p><strong>SCQ condition</strong></p>
+<p>The functions $g_i$ are convex for all $i\in \mathcal I$</p>
+<script type="math/tex; mode=display">
+\exist x\in F,g_i(x)<0,\forall  i \in \mathcal I_{1}</script><p>where $\mathcal I_{1}$ is the index set of nonlinear constraints.</p>
+<p>=&gt;<strong>ACQ</strong> $c_l(x_0)=c_t(x_0)$ =&gt;<strong>GCQ</strong>: $C_l(x_0)^<em>=C_t(x_0)^</em>$.</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/itmzw9y5.png" alt="img"></p>
+<h4 id="duality"><a href="#duality" class="headerlink" title="duality"></a>duality</h4><ul>
+<li>如果SCQ就是strong duality的。</li>
+</ul>
+<p>不是我真学不会啊啊啊啊</p>
+<h3 id="Unconstrained-Optimization-1"><a href="#Unconstrained-Optimization-1" class="headerlink" title="Unconstrained Optimization"></a>Unconstrained Optimization</h3><p><strong>projected gradient descent</strong></p>
+<p><strong>dual method</strong></p>
+<p><strong>Newton’s method with equality constraints</strong></p>
+<p><strong>penalty method</strong></p>
+<p><strong>frank-wolfe algorithm</strong></p>
+<ul>
+<li>直接在定义域内做线性化，找到线性化之后定义域内最优的那个点，$s_k$，让$s_k-x_k$作为下降方向。</li>
+</ul>
+<p><strong>Lagrangian method of multiplier</strong></p>
+<p><strong>augmented Lagrangians and the method of multiplier</strong></p>
+<script type="math/tex; mode=display">
+L_\beta(x,\lambda)=f(x)+\lambda^T(Ax-b)+(\beta/2)||Ax-b||_2^2</script><p><strong>Alternating Direction Method</strong></p>
 <ul>
 <li><p>$\min_{x,y} f(x)+g(y),s.t. A(x)+B(y)=c$, where f and g are convex, A and B are linear mappings.</p>
 </li>
@@ -855,7 +1003,12 @@ y_{k+1}&=\arg \min_x L(x_{k+1},y,\lambda_k)\\\\
 <ul>
 <li>把二次项做线性化，</li>
 </ul>
-<p><strong>辅助变量等价变形</strong></p>
+<p>这里面最有意思的是，两种闭解的形式。</p>
+<p>一种是一范数的proximal的close form，类似于</p>
+<script type="math/tex; mode=display">
+y_{k+1}=S_{\beta^{-1}} (x_{k+1}+\lambda_k/\beta-b)+b\\S_{\epsilon}=\text{sgn}(x) \max(|x|-\epsilon,0)</script><p>一种是二范数的proximal的close form，类似于</p>
+<script type="math/tex; mode=display">
+x_{k+1}=\frac{\beta (-a+y_k-\lambda_k/\beta)}{\beta+1}+a</script><p><strong>辅助变量等价变形</strong></p>
 <ul>
 <li>原来的问题如何做一个re-fomulation让它更好解。</li>
 <li>如果一个东西是有close-form solution的话就比较好解。</li>
@@ -867,10 +1020,12 @@ y_{k+1}&=\arg \min_x L(x_{k+1},y,\lambda_k)\\\\
 <script type="math/tex; mode=display">
 \beta_{k+1}=\min(\beta_{max},\rho \beta_k)</script><p><strong>LADMPSAP</strong></p>
 <ul>
-<li>对于三个以上的。</li>
+<li>对于三个以上的，同时更新。</li>
 </ul>
-<p><img src="https://files.oaiusercontent.com/file-4mic2muCOZJaAUTbEzso5heT?se=2024-06-05T13%3A59%3A08Z&amp;sp=r&amp;sv=2023-11-03&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable&amp;rscd=attachment%3B%20filename%3Dimage.png&amp;sig=Bdzw79JDpveODBVE%2Bijt7UVk/X/Xr/X%2BKUJaixKGGBU%3D" alt></p>
 <p><strong>Proximal LADMPSAP</strong></p>
+<ul>
+<li></li>
+</ul>
 <p><strong>concensus problem</strong></p>
 <script type="math/tex; mode=display">
 \min_x \sum_{i=1}^n f_i(x)</script><p>这个问题叫做 composite</p>
@@ -898,10 +1053,130 @@ y_{k+1}&=\arg \min_x L(x_{k+1},y,\lambda_k)\\\\
 </ul>
 <p><strong>example: adaboost</strong></p>
 <p><strong>example: Sequential Minimal Optimization</strong></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\max_{\boldsymbol{\lambda}} &\quad \sum_{i=1}^m \lambda_i - \frac{1}{2}\sum_{i=1}^m \sum_{j=1}^m \lambda_i \lambda_j y_i y_j \left( x_i \cdot x_j\right)  \\
+\text{s.t.} &\quad \sum_{i=1}^m \lambda_i y_i = 0 \\
+&\quad \lambda_i \geq 0, \quad i = 1,\ldots,m.
+\end{align*}</script><p>选择两个变量 $\lambda<em>1,\lambda_2$ 违反了KKT条件，让 $\lambda_i,i\not=1,2$ 固定，且 $\lambda_1y_1+\lambda_2y_2=C=-\sum</em>{i\not=1,2}\lambda_iy_i$，用 $\lambda_2=y_2(C-\lambda_1y_1)$ 替代，变成（$\alpha,\beta$ 是一些常数）</p>
+<script type="math/tex; mode=display">
+\min_{\lambda_1} \alpha \lambda_1^2+\beta \lambda_1,\\
+\text{s.t.}\quad \lambda_1\ge 0,y_2(C-\lambda_1y_1)\ge 0</script><p>这东西有一个close form的solution。</p>
+<h4 id="Randomized-Algorithms"><a href="#Randomized-Algorithms" class="headerlink" title="Randomized Algorithms"></a>Randomized Algorithms</h4><p><strong>Stochastic Gradient Descent (SGD)</strong></p>
+<p><strong>Theorem1</strong></p>
+<script type="math/tex; mode=display">
+w^*\in \arg \min_{w:||w||\le B} f(w)</script><p>assume SGD is run for $T$ times, with $\eta=\sqrt {\frac{B^2}{\rho^2T}}$. Assume also that for all $t$, $v_t \le \rho$ with probability 1, then</p>
+<script type="math/tex; mode=display">
+E[f(\bar w)]-f(w^*)\le \frac{B\rho}{\sqrt T}</script><p>注意是平均意义上的收敛。</p>
+<p>这个的证明分成两步，第一个是</p>
+<p>如果 $w^{(t+1)}=w^{(t)}-\eta v_t$，</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\langle \mathbf{w}^{(t)} - \mathbf{w}^*, \mathbf{v}_t \rangle 
+&= \frac{1}{\eta} \langle \mathbf{w}^{(t)} - \mathbf{w}^*, \eta \mathbf{v}_t \rangle \\
+&= \frac{1}{2\eta} \left( - \|\mathbf{w}^{(t)} - \mathbf{w}^* - \eta \mathbf{v}_t\|^2 + \|\mathbf{w}^{(t)} - \mathbf{w}^*\|^2 + \eta^2 \|\mathbf{v}_t\|^2 \right) \\
+&= \frac{1}{2\eta} \left( - \|\mathbf{w}^{(t+1)} - \mathbf{w}^*\|^2 + \|\mathbf{w}^{(t)} - \mathbf{w}^*\|^2 \right) + \frac{\eta}{2} \|\mathbf{v}_t\|^2.
+\end{align*}</script><p>满足</p>
+<script type="math/tex; mode=display">
+\sum_{t=1}^T\left<w^{(t)}-w^*,v_t\right>\le \frac{||w^*||^2}{2\eta}+\frac{\eta}{2} \sum_{t=1}^T ||v_t||^2</script><p>注意这里如果让 $\eta=\frac{B}{\rho\sqrt T}$ 就有</p>
+<script type="math/tex; mode=display">
+\frac{1}{T}\sum_{t=1}^T\left<w^{(t)}-w^*,v_t\right> \le \frac{B\rho}{\sqrt T}</script><p>第二个是：</p>
+<script type="math/tex; mode=display">
+E_{v_{1:T}}\left[\frac{1}{T}\sum_{t=1}^T\left<w^{(t)}-w^*,v_t\right>\right]</script><p>对于每一个有</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\mathbb{E}_{\mathbf{v}_{1:T}} \left[ \langle \mathbf{w}^{(t)} - \mathbf{w}^*, \mathbf{v}_t \rangle \right]
+=& \mathbb{E}_{\mathbf{v}_{1:t}} \left[ \langle \mathbf{w}^{(t)} - \mathbf{w}^*, \mathbf{v}_t \rangle \right] 
+\\=& \mathbb{E}_{\mathbf{v}_{1:t-1}} \mathbb{E}_{\mathbf{v}_{1:t}} \left[ \langle \mathbf{w}^{(t)} - \mathbf{w}^*, \mathbf{v}_t \rangle \big| \mathbf{v}_{1:t-1} \right] 
+\\=& \mathbb{E}_{\mathbf{v}_{1:t-1}} \left\langle \mathbf{w}^{(t)} - \mathbf{w}^*, \mathbb{E}_{\mathbf{v}_t} \left[ \mathbf{v}_t \big| \mathbf{v}_{1:t-1} \right] \right\rangle 
+\\\geq& \mathbb{E}_{\mathbf{v}_{1:t-1}} \left[ f(\mathbf{w}^{(t)}) - f(\mathbf{w}^*) \right] 
+\\=& \mathbb{E}_{\mathbf{v}_{1:T}} \left[ f(\mathbf{w}^{(t)}) - f(\mathbf{w}^*) \right].
+\end{align*}</script><p><strong>variant1</strong></p>
+<p>如果加一步，每次迭代之后做一个argmin，</p>
+<p>因为 $||w-u||^2\ge ||v-u||^2$，如果 $v=\arg\min_{x\in \mathcal H} ||x-w||^2$，所以</p>
+<script type="math/tex; mode=display">
+-||w^{(t+\frac{1}{2})}-w^{}||^{2}+||w^{(t)}-w^{}||^{2}\le-||w^{(t+1)}-w^{}||^{2}+||w^{(t)}-w^{}||^{2}</script><p>前面的结论依然可以继承下来。</p>
+<p>variant2：$\eta_t=\frac{B}{\rho \sqrt t}$</p>
+<p>variant3: 可能可以只用partial的平均，而不是所有的平均，只用后 $\alpha T$ 论。</p>
+<p>关于 $\lambda$ 强凸：</p>
+<script type="math/tex; mode=display">
+\eta_t=1/(\lambda t)</script><p>就可以让收敛率提升</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[f(\hat{w})]-f(w^{*})\le\frac{\rho^{2}}{2\lambda T}(1+log(T)).</script><p>推导是，因为</p>
+<script type="math/tex; mode=display">
+\left<w(t) - w^*, \nabla (t)\right> \geq f(w^{(t)}) - f(w^*) + \frac{\lambda}{2}||w(t) - w^*||^2</script><p>代入之前的公式，就多了一项。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\sum_{t=1}^{T} \mathbb{E}[f(w^{(t)})] - f(w^{*}) &\leq \mathbb{E}\left[\frac{\|w^{(t)} - w^{*}\|^2 - \|w^{(t+1)} - w^{*}\|^2}{2\eta_t} - \frac{\lambda}{2}\|w^{(t)} - w^{*}\|^2\right] \\
+&\quad + \frac{\rho^2}{2\lambda }\sum_{t=1}^{T}\eta_t \leq \frac{\rho^2}{2\lambda}\sum_{t=1}^{T}\frac{1}{t} \leq \frac{\rho^2}{2\lambda }\left(1 + \log\left(T\right)\right).
+\end{align*}</script><p>然后这里 $\eta_t$ 的取值就可以几乎完全是通过差分来实现的，就是考虑前后两项在某个地方要消掉。</p>
+<p>其它方法：</p>
+<ul>
+<li>除以梯度平方累计的根号（但不是无量纲化的）</li>
+<li><strong>sgn SGD</strong> 要么更新正一要么更新负一</li>
+</ul>
+<p><strong>Random Coordinate Descent</strong></p>
+<ul>
+<li><p>选 $\eta=R/L\sqrt{2/nt}$</p>
+</li>
+<li><p>随机选一个，然后优化。</p>
+</li>
+<li><blockquote>
+<p>lzc：我个人感觉优化算法有一个计算量守恒的定理，但是没法定量描述</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>Stochastic ADAM/ADAN</strong></p>
+<p>技巧1</p>
+<script type="math/tex; mode=display">
+\theta_{t+1}=\theta_t-\frac{\eta}{\sqrt{E[g^2]+\epsilon}}\cdot g</script><p>技巧2：两种加速方法，一种是基于momentum的（Adam），一种是Nesterov的</p>
+<script type="math/tex; mode=display">
+g_k=\nabla f(\theta_k)\\
+m_k=(1-\beta_1)m_{k-1}+g_k\\
+\theta_{k+1}=\theta_k-\eta m_k</script><p>以及</p>
+<script type="math/tex; mode=display">
+g_k=\nabla f(\theta_k-\eta(1-\beta_1)m_{k-1})\\
+m_k=(1-\beta_1)m_{k-1}+g_k\\
+\theta_{k+1}=\theta_k-\eta m_k</script><p>有一个新的formulation</p>
+<script type="math/tex; mode=display">
+g_k\approx \nabla f(\theta_k)+(1-\beta)(\nabla f(\theta_k)-\nabla f(\theta_{k-1}))</script><p>用这个方法加上动量的一阶矩和二阶矩</p>
+<blockquote>
+<p>林教授：投了两次没中，觉得应该学一学Adam，虽然也没发表但是已经十几万引用了</p>
+</blockquote>
 <hr>
-<h3 id="Randomized-Algorithms"><a href="#Randomized-Algorithms" class="headerlink" title="Randomized Algorithms"></a>Randomized Algorithms</h3><p><strong>Stochastic Gradient Descent (SGD)</strong></p>
-<p><strong>Randomized Coordinate Descent (RCD)</strong></p>
-<p><strong>Stochastic ADMM</strong></p>
+<p>什么是凸集</p>
+<script type="math/tex; mode=display">
+\alpha x_0+(1-\alpha )x_1\in S</script><p>什么是强凸函数</p>
+<script type="math/tex; mode=display">
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\lambda}{2}||y-x||^2</script><p>什么是对偶范数</p>
+<script type="math/tex; mode=display">
+||y||_*=\arg \min_{||x||\le 1} \lang x,y\rang</script><p>什么是 $L$-smooth</p>
+<script type="math/tex; mode=display">
+||\nabla f(x)-\nabla f(y)||_2\le L||x-y||_2</script><p>怎么判断是否是凸函数</p>
+<p>怎么求对偶问题</p>
+<script type="math/tex; mode=display">
+L(x,\lambda)=||Ax-b||_2^2+\lambda(||x||_2^2-1);\lambda \ge 0\\
+g(\lambda)=\sup_{x} L(x,\lambda);\lambda \ge 0</script><script type="math/tex; mode=display">
+2A^T(Ax-b)+2\lambda x=0</script><p>怎么判断是否满足SCQ条件</p>
+<ul>
+<li>只要看是否存在一个点满足所有非凸的条件。</li>
+</ul>
+<p>如何给出KKT条件</p>
+<ul>
+<li>四个要求，缺一不可。</li>
+</ul>
+<p>矩阵的范数是怎么样的</p>
+<ul>
+<li>$||A||_{2,1}$ 表示所有行的 $L_2$ 范数的和。</li>
+<li>Frobenius范数是所有元素平方的和的根号</li>
+<li>谱范数是最大的奇异值</li>
+<li>1范数是每一列绝对值之和的最大值</li>
+<li>oo范数是每一行的绝对值之和的最大值。记忆方法可以考虑1是竖着的oo是横着的。</li>
+</ul>
+<p>如何给出proximal</p>
+<ul>
+<li>$prox<em>cf(V)=\arg \min_A ||A||</em>{2,1}+\frac{1}{2c}||A-V||_F^2$</li>
+</ul>
 
       
     </div>
@@ -911,7 +1186,7 @@ y_{k+1}&=\arg \min_x L(x_{k+1},y,\lambda_k)\\\\
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://emoairx.github.io/blog/2024/05/26/convex%20A&OM-saveme/" title="凸分析·江湖救急" target="_blank" rel="external">http://emoairx.github.io/blog/2024/05/26/convex A&OM-saveme/</a>
+      <a href="http://emoairx.github.io/blog/2024/05/26/convex%20A&OM-saveme/" title="凸分析与优化方法笔记" target="_blank" rel="external">http://emoairx.github.io/blog/2024/05/26/convex A&OM-saveme/</a>
     </li>
     
     <li class="post-copyright-license">
