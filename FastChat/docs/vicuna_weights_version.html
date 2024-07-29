@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>emoairx</title>
+  <meta name="description" content="Vicuna Weights    Weights version Link FastChat version compatibility Base Model Release Date Fine-tuning Data     v1.5 7B, 7B-16k, 13B, 13B-16k &gt;&#x3D;0.2.21 Llama 2 Aug. 1, 2023 370M tokens   v1.3 7B,">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Emoairx">
+<meta property="og:url" content="http://emoairx.github.io/blog/FastChat/docs/vicuna_weights_version.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="Vicuna Weights    Weights version Link FastChat version compatibility Base Model Release Date Fine-tuning Data     v1.5 7B, 7B-16k, 13B, 13B-16k &gt;&#x3D;0.2.21 Llama 2 Aug. 1, 2023 370M tokens   v1.3 7B,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-20T05:59:19.894Z">
+<meta property="article:modified_time" content="2024-07-20T05:59:19.894Z">
+<meta property="article:author" content="emoairx">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/FastChat/docs/vicuna_weights_version.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">82</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.4px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/29/Unsupervised%20Reinforcement%20learning/" class="title">REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-29T04:59:28.363Z" itemprop="datePublished">2024-07-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/13/XXO/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-13T12:22:54.171Z" itemprop="datePublished">2024-07-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/07/MirrorDescent/" class="title">Mirror Descent (Bubeck 1-9)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-07T14:13:46.095Z" itemprop="datePublished">2024-07-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/03/scalable%20services/" class="title">scalable services</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-03T03:21:08.405Z" itemprop="datePublished">2024-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/02/LLM_inference/" class="title">CMU10-414, Deep Learning Systems, notes</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-02T05:45:31.599Z" itemprop="datePublished">2024-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/FastChat/docs/vicuna_weights_version.html" class="article-date">
+	  <time datetime="2024-07-20T05:59:19.894Z" itemprop="datePublished">2024-07-20</time>
+	</a>
+</span>
+        
+        
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/FastChat/docs/vicuna_weights_version.html" class="leancloud_visitors"  data-flag-title="">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/FastChat/docs/vicuna_weights_version.html#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="Vicuna-Weights"><a href="#Vicuna-Weights" class="headerlink" title="Vicuna Weights"></a>Vicuna Weights</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Weights version</th>
+<th>Link</th>
+<th>FastChat version compatibility</th>
+<th>Base Model</th>
+<th>Release Date</th>
+<th>Fine-tuning Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.5</td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-7b-v1.5">7B</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-7b-v1.5-16k">7B-16k</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-v1.5">13B</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-v1.5-16k">13B-16k</a></td>
+<td><code>&gt;=0.2.21</code></td>
+<td>Llama 2</td>
+<td>Aug. 1, 2023</td>
+<td>370M tokens</td>
+</tr>
+<tr>
+<td>v1.3</td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-7b-v1.3">7B</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-v1.3">13B</a>, <a target="_blank" rel="noopener" href="//huggingface.co/lmsys/vicuna-33b-v1.3">33B</a></td>
+<td><code>&gt;=0.2.1</code></td>
+<td>Llama 1</td>
+<td>Jun. 22, 2023</td>
+<td>370M tokens</td>
+</tr>
+<tr>
+<td>v1.1</td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-7b-v1.1">7B</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-v1.1">13B</a></td>
+<td><code>&gt;=0.2.1</code></td>
+<td>Llama 1</td>
+<td>Apr. 12, 2023</td>
+<td>-</td>
+</tr>
+<tr>
+<td>v0</td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-7b-delta-v0">7B-delta</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-delta-v0">13B-delta</a></td>
+<td><code>&lt;=0.1.10</code></td>
+<td>Llama 1</td>
+<td>Mar. 30, 2023</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Updates"><a href="#Updates" class="headerlink" title="Updates"></a>Updates</h3><ul>
+<li><p>Major updates of weights v1.5</p>
+<ul>
+<li>Use Llama2 as the base model.</li>
+<li>Provide 16K context length versions using linear RoPE scaling.</li>
+</ul>
+</li>
+<li><p>Major updates of weights v1.3</p>
+<ul>
+<li>Train with twice the amount of ShareGPT data compared to previous versions.</li>
+<li>Provide merged weights directly instead of delta weights.</li>
+</ul>
+</li>
+<li><p>Major updates of weights v1.1</p>
+<ul>
+<li>Refactor the tokenization and separator. In Vicuna v1.1, the separator has been changed from <code>###</code> to the EOS token <code>&lt;/s&gt;</code>. This change makes it easier to determine the generation stop criteria and enables better compatibility with other libraries.</li>
+<li>Fix the supervised fine-tuning loss computation for better model quality.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Prompt-Template"><a href="#Prompt-Template" class="headerlink" title="Prompt Template"></a>Prompt Template</h2><h3 id="Example-prompt-weights-v1-1-v1-3-v1-5"><a href="#Example-prompt-weights-v1-1-v1-3-v1-5" class="headerlink" title="Example prompt (weights v1.1, v1.3, v1.5)"></a>Example prompt (weights v1.1, v1.3, v1.5)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user&#x27;s questions.</span><br><span class="line"></span><br><span class="line">USER: Hello!</span><br><span class="line">ASSISTANT: Hello!&lt;/s&gt;</span><br><span class="line">USER: How are you?</span><br><span class="line">ASSISTANT: I am good.&lt;/s&gt;</span><br></pre></td></tr></table></figure>
+<p>See a full prompt template <a target="_blank" rel="noopener" href="https://github.com/lm-sys/FastChat/blob/d578599c69d060e6d40943f1b5b72af98956092a/fastchat/conversation.py#L286-L299">here</a> and example output <a target="_blank" rel="noopener" href="https://github.com/lm-sys/FastChat/blob/d578599c69d060e6d40943f1b5b72af98956092a/fastchat/conversation.py#L748-L753">here</a>.</p>
+<h3 id="Example-prompt-weights-v0"><a href="#Example-prompt-weights-v0" class="headerlink" title="Example prompt (weights v0)"></a>Example prompt (weights v0)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A chat between a curious human and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the human&#x27;s questions.</span><br><span class="line"></span><br><span class="line">### Human: Hello!</span><br><span class="line">### Assistant: Hello!</span><br><span class="line">### Human: How are you?</span><br><span class="line">### Assistant: I am good.</span><br></pre></td></tr></table></figure>
+<p>See the full prompt template <a target="_blank" rel="noopener" href="https://github.com/lm-sys/FastChat/blob/d578599c69d060e6d40943f1b5b72af98956092a/fastchat/conversation.py#L238-L269">here</a>.</p>
+<h2 id="How-to-Apply-Delta-Weights-Only-Needed-for-Weights-v0"><a href="#How-to-Apply-Delta-Weights-Only-Needed-for-Weights-v0" class="headerlink" title="How to Apply Delta Weights (Only Needed for Weights v0)"></a>How to Apply Delta Weights (Only Needed for Weights v0)</h2><p>We release <a target="_blank" rel="noopener" href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> weights v0 as delta weights to comply with the LLaMA model license.<br>You can add our delta to the original LLaMA weights to obtain the Vicuna weights. Instructions:</p>
+<ol>
+<li>Get the original LLaMA weights in the Hugging Face format by following the instructions <a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/main/model_doc/llama">here</a>.</li>
+<li>Use the following scripts to get Vicuna weights by applying our delta. They will automatically download delta weights from our Hugging Face <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys">account</a>.</li>
+</ol>
+<p><strong>NOTE</strong>:<br>Weights v1.1 are only compatible with <code>transformers&gt;=4.28.0</code> and <code>fschat &gt;= 0.2.0</code>.<br>Please update your local packages accordingly. If you follow the above commands to do a fresh install, then you should get all the correct versions.</p>
+<h4 id="Vicuna-7B"><a href="#Vicuna-7B" class="headerlink" title="Vicuna-7B"></a>Vicuna-7B</h4><p>This conversion command needs around 30 GB of CPU RAM.<br>See the “Low CPU Memory Conversion” section below if you do not have enough memory.<br>Replace <code>/path/to/*</code> with the real paths.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.model.apply_delta \</span><br><span class="line">    --base-model-path /path/to/llama-7b \</span><br><span class="line">    --target-model-path /path/to/output/vicuna-7b \</span><br><span class="line">    --delta-path lmsys/vicuna-7b-delta-v1.1</span><br></pre></td></tr></table></figure></p>
+<h4 id="Vicuna-13B"><a href="#Vicuna-13B" class="headerlink" title="Vicuna-13B"></a>Vicuna-13B</h4><p>This conversion command needs around 60 GB of CPU RAM.<br>See the “Low CPU Memory Conversion” section below if you do not have enough memory.<br>Replace <code>/path/to/*</code> with the real paths.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.model.apply_delta \</span><br><span class="line">    --base-model-path /path/to/llama-13b \</span><br><span class="line">    --target-model-path /path/to/output/vicuna-13b \</span><br><span class="line">    --delta-path lmsys/vicuna-13b-delta-v1.1</span><br></pre></td></tr></table></figure></p>
+<h4 id="Low-CPU-Memory-Conversion"><a href="#Low-CPU-Memory-Conversion" class="headerlink" title="Low CPU Memory Conversion"></a>Low CPU Memory Conversion</h4><p>You can try these methods to reduce the CPU RAM requirement of weight conversion.</p>
+<ol>
+<li>Append <code>--low-cpu-mem</code> to the commands above, which will split large weight files into smaller ones and use the disk as temporary storage. This can keep the peak memory at less than 16GB.</li>
+<li>Create a large swap file and rely on the operating system to automatically utilize the disk as virtual memory.</li>
+</ol>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="Tokenizer-issues"><a href="#Tokenizer-issues" class="headerlink" title="Tokenizer issues"></a>Tokenizer issues</h3><p>There are some frequently asked tokenizer issues (<a target="_blank" rel="noopener" href="https://github.com/lm-sys/FastChat/issues/408">https://github.com/lm-sys/FastChat/issues/408</a>).<br>Some of them are not only related to FastChat or Vicuna weights but are also related to how you convert the base llama model.</p>
+<p>We suggest that you use <code>transformers&gt;=4.28.0</code> and redo the weight conversion for the base llama model.<br>After applying the delta, you should have a file named <code>special_tokens_map.json</code> in your converted weight folder for either v0 or v1.1.<br>The contents of this file should be the same as this file: <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-delta-v0/blob/main/special_tokens_map.json">https://huggingface.co/lmsys/vicuna-13b-delta-v0/blob/main/special_tokens_map.json</a>.<br>If the file is not present, please copy the <code>special_tokens_map.json</code> and <code>tokenizer_config.json</code> files from <a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-delta-v0/tree/main">https://huggingface.co/lmsys/vicuna-13b-delta-v0/tree/main</a> to your converted weight folder. This works for both v0 and v1.1.</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/FastChat/docs/vicuna_weights_version.html" title="" target="_blank" rel="external">http://emoairx.github.io/blog/FastChat/docs/vicuna_weights_version.html</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

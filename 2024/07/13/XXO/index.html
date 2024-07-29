@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>emoairx</title>
+  <meta name="description" content="pairwise XXO 按照字典序排序 APOBPOCPOShadow AlignmentPreference Fine-Tuning of LLMs Should Leverage Suboptimal, On-Policy Data  mode-seeking，而不是 mode-covering  DPO形式  -\log \sigma(\beta \log \frac{\pi_{\thet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emoairx">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/07/13/XXO/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="pairwise XXO 按照字典序排序 APOBPOCPOShadow AlignmentPreference Fine-Tuning of LLMs Should Leverage Suboptimal, On-Policy Data  mode-seeking，而不是 mode-covering  DPO形式  -\log \sigma(\beta \log \frac{\pi_{\thet">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-0c005a5c7223bc2532fc074d1848c134_b.jpg">
+<meta property="article:published_time" content="2024-07-13T12:22:54.171Z">
+<meta property="article:modified_time" content="2024-07-29T04:58:06.402Z">
+<meta property="article:author" content="emoairx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/v2-0c005a5c7223bc2532fc074d1848c134_b.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/07/13/XXO/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">82</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.4px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/29/Unsupervised%20Reinforcement%20learning/" class="title">REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-29T04:59:28.363Z" itemprop="datePublished">2024-07-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/13/XXO/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-13T12:22:54.171Z" itemprop="datePublished">2024-07-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/07/MirrorDescent/" class="title">Mirror Descent (Bubeck 1-9)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-07T14:13:46.095Z" itemprop="datePublished">2024-07-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/03/scalable%20services/" class="title">scalable services</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-03T03:21:08.405Z" itemprop="datePublished">2024-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/02/LLM_inference/" class="title">CMU10-414, Deep Learning Systems, notes</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-02T05:45:31.599Z" itemprop="datePublished">2024-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-XXO" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/07/13/XXO/" class="article-date">
+	  <time datetime="2024-07-13T12:22:54.171Z" itemprop="datePublished">2024-07-13</time>
+	</a>
+</span>
+        
+        
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/07/13/XXO/" class="leancloud_visitors"  data-flag-title="">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/07/13/XXO/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><strong>pairwise XXO</strong></p>
+<p>按照字典序排序</p>
+<h4 id="APO"><a href="#APO" class="headerlink" title="APO"></a>APO</h4><h4 id="BPO"><a href="#BPO" class="headerlink" title="BPO"></a>BPO</h4><h4 id="CPO"><a href="#CPO" class="headerlink" title="CPO"></a>CPO</h4><h4 id="Shadow-Alignment"><a href="#Shadow-Alignment" class="headerlink" title="Shadow Alignment"></a>Shadow Alignment</h4><p><strong>Preference Fine-Tuning of LLMs Should Leverage Suboptimal, On-Policy Data</strong></p>
+<ul>
+<li>mode-seeking，而不是 mode-covering</li>
+</ul>
+<h4 id="DPO"><a href="#DPO" class="headerlink" title="DPO"></a>DPO</h4><p><strong>形式</strong></p>
+<script type="math/tex; mode=display">
+-\log \sigma(\beta \log \frac{\pi_{\theta}(y^+\mid x)}{\pi_{ref}(y^+\mid x)}-\beta \log \frac{\pi_{\theta}(y^-\mid x)}{\pi_{ref}(y^-\mid x)})</script><p><strong>解释</strong>：</p>
+<ul>
+<li>使用闭式解优化带KL约束的，用最大似然估计的方法推。</li>
+</ul>
+<p>观点1：使用偏导数理解</p>
+<ul>
+<li><p>DPO的如果有一个loss，是不是chosen和rejected是同时增加或者减小？    </p>
+</li>
+<li><p>定义 $\pi<em>+=\pi(a</em>+\mid x),\pi<em>-=\pi(a</em>-\mid x),z=\pi<em>-/\pi</em>+$</p>
+</li>
+<li>定义 $\alpha=(\pi<em>0(a</em>+\mid x)/\pi<em>0(a</em>-\mid x))^\beta$，则常数 $C=\alpha\beta /(1+\alpha z^\beta)z^{\beta-1}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{\partial z}{\partial \pi_-}=1/\pi_+,\frac{\partial z}{\partial \pi_+}=-\pi_-/\pi_+^2</script><ul>
+<li>容易发现两者的符号是不一样的，chosen理应增加，rejected理应减少。但是当 $\pi<em>+&lt;\pi</em>-$ 的时候，两者的reward都会增加，当 $\pi<em>+&gt;\pi</em>-$ 的时候，两者的reward更倾向于减少。</li>
+</ul>
+<p>观点2：</p>
+<ul>
+<li>DPO可以理解成一个最大熵强化学习里面的Q function</li>
+</ul>
+<p>为什么DPO的reward恰好就是一个log的？log会不会产生什么问题？</p>
+<ul>
+<li><h4 id="FPO"><a href="#FPO" class="headerlink" title="FPO"></a>FPO</h4></li>
+</ul>
+<h4 id="SLiC-HF"><a href="#SLiC-HF" class="headerlink" title="SLiC-HF"></a>SLiC-HF</h4><p><strong>形式</strong></p>
+<script type="math/tex; mode=display">
+L^{cal}(\theta)=\max (0,\beta-\log P_{\theta}(y^+\mid x)+\log P_\theta(y^-\mid x))</script><p>或者可以加一个reg的penalty</p>
+<script type="math/tex; mode=display">
+\mathcal L(\theta)=\max (0,\beta-\log P_{\theta}(y^+\mid x)+\log P_\theta(y^-\mid x))-\lambda \log P_\theta (y_{ref}\mid x)</script><p><strong>评价</strong></p>
+<ul>
+<li>暂时不知道怎么理论推导写成这样。</li>
+<li>hinge lossvariation of DPO</li>
+</ul>
+<blockquote>
+<p>在训练时，SLiC仅需要来自参考模型的采样输出，而DPO则需要来自该（冻结的）参考模型的对于正负序列的逻辑回归值。</p>
+</blockquote>
+<h4 id="RSO"><a href="#RSO" class="headerlink" title="RSO"></a>RSO</h4><p><strong>形式</strong></p>
+<ul>
+<li>虽然也是优化同一个目标函数，但是采用不是从当前policy中采样，也不是从sft中采样，而是利用拒绝采样的方法从先学到的reward function所构造的policy $\pi_r$ 中采样。 </li>
+</ul>
+<script type="math/tex; mode=display">
+r(x,y)=\beta \log \frac{\pi_{r}(y\mid x)}{\pi_{sft}(y\mid x)}+\beta \log Z(x)</script><ul>
+<li>所以先构造了一个reward model (preference model)，形式如下，然后让reward小但是sft大的部分获得采样的概率更低。</li>
+</ul>
+<script type="math/tex; mode=display">
+r_{\psi}(x,y)=logit(\rho_\psi(x,y,y_b))</script><p><strong>评价</strong></p>
+<ul>
+<li>确实DPO保证的是如果收敛，在最后的时候能满足训练出来的reward是对的，但是中间过程没有训好的情况下，不一定implicit reward就是对的。</li>
+</ul>
+<h4 id="IPO"><a href="#IPO" class="headerlink" title="IPO"></a>IPO</h4><p><strong>形式</strong></p>
+<p>定义</p>
+<script type="math/tex; mode=display">
+h_\pi(y,y',x)=\log \frac{\pi(y\mid x)\pi_{ref}(y'\mid x)}{\pi_{ref}(y\mid x)\pi(y'\mid x)}</script><p>首先认为</p>
+<script type="math/tex; mode=display">
+L(\pi)=\mathbb E_{y,y'\sim \mu} \left[ \left(h_\pi(y,y')-\frac{p^*(y\succ \mu)-p^*(y'\succ \mu)}{\tau} \right)^2\right]</script><p>证明这是唯一的一个最优的东西，然后这里的 $\mu$ 是一个策略，然后通过一系列推导得到一个基于采样的无偏等价形式：</p>
+<script type="math/tex; mode=display">
+E_{(x,y_+,y_-)\sim D}\left(h_\pi(y_+,y_-,x)-\frac{\tau^{-1}}{2}\right)^2</script><p><strong>解释</strong></p>
+<blockquote>
+<p>DPO 的一个缺点是它在人类偏好数据集上很快就会过拟合。为了避免这种情况，谷歌 DeepMind 的研究人员引入了身份偏好优化（IPO），这种方法为 DPO 损失添加了一个正则，能够在不使用「提前停止」等技巧的情况下让模型收敛。</p>
+<p>DPO的问题说是chosen的概率高于rejected的概率，如果 $y’$ 一定比 $y$ 差， $\pi(y’)/\pi(y)\to 0$，那么无论正则化系数是多少都会变成 $\pi(y’)\to 0$。</p>
+</blockquote>
+<p>直观理解的话，这是一个尝试减少 $\log (\pi(y<em>w)/\pi(y_l))$ 和 $\log (\pi</em>{ref}(y<em>w)/\pi</em>{ref}(y_l))$ 之间的差，使得他们变成 $\tau^{-1} / 2$。这个 $\tau$ 是一个调整和 ref 以及 optimal policy 之间差别的系数，系数越大就越接近ref，越小就越接近optimal policy（也就是DPO的那个最优形式）</p>
+<p>实验结果里Figure2显示了DPO对unseen的内容会下降，而IPO没问题，应该是一开始训练的时候DPO能让chosen的reward和reject的reward都增加（？）想象一下一开始DPO的loss是</p>
+<script type="math/tex; mode=display">
+-\log \sigma(\beta \log \frac{\pi_{\theta}(y^+\mid x)}{\pi_{ref}(y^+\mid x)}-\beta \log \frac{\pi_{\theta}(y^-\mid x)}{\pi_{ref}(y^-\mid x)})</script><p>所以比如一开始的时候两个东西都是一样的概率，两边都是1，得到$-\log 0.5$，</p>
+<p><strong>评价</strong></p>
+<p>这个参数怎么调比较好啊，像是多了一个自由度。</p>
+<h4 id="IPO-MD"><a href="#IPO-MD" class="headerlink" title="IPO-MD"></a>IPO-MD</h4><ul>
+<li><strong>online IPO</strong>多一个preference model，然后online地采样就算online IPO，文章说能证明online IPO就是一个self-play求nash均衡的问题。证明在<strong>appendixC</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+[\pi(y)\log \pi(y)]'=\pi(y)\log \pi(y)\nabla \log \pi(y)+\nabla \pi(y)\log \pi(y)\\
+[\pi(y)\log \pi_r(y)]'=\pi(y)\log \pi_r(y)\nabla \log\pi(y)\\
+\sum\pi(y)\nabla \log \pi(y)=0</script><p>所以</p>
+<script type="math/tex; mode=display">
+\nabla [\sum_{y,y'}\pi(y)SG[\pi(y')]p(y\succ y')-\tau \sum_{y}\pi(y)\log (\pi(y)/\pi_r(y))]\\</script><h4 id="忘记哪个了"><a href="#忘记哪个了" class="headerlink" title="忘记哪个了"></a>忘记哪个了</h4><p>用大模型来猜这个优化函数是什么，然后让测一下结果看哪个最好，改后继续改，忘记哪篇文章了。</p>
+<h4 id="TDPO"><a href="#TDPO" class="headerlink" title="TDPO"></a>TDPO</h4><p><strong>形式</strong></p>
+<script type="math/tex; mode=display">
+\log \sigma[u(x,y_+,y_-)-\alpha \delta(x,y_+,y_-)]</script><p>where </p>
+<script type="math/tex; mode=display">
+u(x,y_+,y_-)=\beta \log \frac{\pi_{\theta}(y^+\mid x)}{\pi_{ref}(y^+\mid x)}-\beta \log \frac{\pi_{\theta}(y^-\mid x)}{\pi_{ref}(y^-\mid x)}</script><script type="math/tex; mode=display">
+\delta(u,y_+,y_-)=\beta D_{KL}(x,y_+;\pi_{ref}||\pi_\theta)-sg(\beta D_{KL}(x,y_-;\pi_{ref}||\pi_\theta))</script><p><strong>解释</strong>：</p>
+<ul>
+<li>观察发现 $y<em>-$ 偏离 $\pi</em>{ref}$ 的速度比 $y_+$ 偏离的速度要快，加了一些per token的KL的约束。</li>
+</ul>
+<p><strong>评价</strong>：</p>
+<ul>
+<li>不知道这个KL约束能不能对DPO的数据集外色散问题有一些帮助。思考了一下就是偏导求得时候还要算上后面得KL项，直观来看的话是 $\pi_+$ 的partial会减小。</li>
+</ul>
+<p>$KL(P;Q)$ 对 $Q<em>j$ 的梯度是 $-P_j/Q_j$ ，所以 $y</em>+$ 的梯度上会加一项 $1/\pi_+ $，好像并没有什么用。总的中间的梯度应该是</p>
+<script type="math/tex; mode=display">
+\frac{\partial z}{\partial \pi_+}=\beta(\frac{1}{\pi_+}-\alpha \frac{\pi_{ref}(y_+)}{\pi(y_+)})
+=\beta \frac{1-\alpha \pi_{ref}(y_+)}{\pi(y_+)}
+\\
+\frac{\partial z}{\partial \pi_-}=-\beta(\frac{1}{\pi_-}-\alpha \frac{\pi_{ref}(y_-)}{\pi(y_-)})\\
+=-\beta \frac{1-\alpha \pi_{ref}(y_-)}{\pi(y_-)}</script><ul>
+<li><p>那么假设 $\pi<em>+$ 很大，$\pi</em>-$ 很小，两个ref也是常数，也没什么用，但至少一开始如果 $\pi<em>{ref}(y</em>+)$ 比较小，这个梯度的值就比较大。</p>
+</li>
+<li><p>所以结论是没有帮助，不过这东西不一样的点在于它是token level的，还是得有用的。</p>
+</li>
+</ul>
+<h4 id="online-DPO"><a href="#online-DPO" class="headerlink" title="online DPO"></a>online DPO</h4><p>公式</p>
+<p><strong>评价</strong></p>
+<ul>
+<li>看了一个百川的工作之后觉得onlineDPO的好处应该是on policy。</li>
+</ul>
+<h4 id="ORPO"><a href="#ORPO" class="headerlink" title="ORPO"></a>ORPO</h4><h4 id="simPO"><a href="#simPO" class="headerlink" title="simPO"></a>simPO</h4><p><strong>形式：</strong></p>
+<ul>
+<li><script type="math/tex; mode=display">
+\log \sigma (\frac{\beta}{|y_w|}\log \pi_\theta(y_w\mid x)-\frac{\beta}{|y_l|}\log \pi_{\theta}(y_l,x)-\gamma)</script></li>
+</ul>
+<p>或者是</p>
+<p><strong>评价</strong></p>
+<ul>
+<li>看不懂，但在知乎上有大佬在喷（？）</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{\partial z}{\partial \pi_-}/\frac{\partial z}{\partial \pi_+}=\frac{|y_w|\pi_+}{|y_l|\pi_-}</script><ul>
+<li>一般理性而言 $y_w$ 会比 $y_l$ 短一点？所以效果才会比较好，是这样吗。然后log ratio平均在 $-5$ 的样子，</li>
+</ul>
+<p><strong>非pairwise的</strong></p>
+<h4 id="KTO"><a href="#KTO" class="headerlink" title="KTO"></a>KTO</h4><p><strong>形式</strong></p>
+<p><img src="https://pic1.zhimg.com/v2-0c005a5c7223bc2532fc074d1848c134_b.jpg" alt></p>
+<p>然后说明DPO和SLIC都是特例，$r<em>\theta =\beta \log \frac{\pi</em>\theta(y\mid x)}{\pi<em>{ref}(y\mid x)}$ 或者 $r</em>{\theta}=\log p_\theta(y\mid x)$</p>
+<p>于是定义了KTO</p>
+<script type="math/tex; mode=display">
+E_{x,y \sim D}[w(y)(1-v_{KTO}(x,y))]</script><h4 id="Remax"><a href="#Remax" class="headerlink" title="Remax"></a>Remax</h4><ul>
+<li>入门RLHF的第一篇文章，强推</li>
+</ul>
+<p><strong>形式</strong></p>
+<ul>
+<li>先采样一条轨迹，算一个reward，然后通过贪心采样得到另一条轨迹，得到一个baseline的reward用于降低方差。然后用最简单的reinforce算法来优化这个算法。</li>
+</ul>
+<p><strong>评价</strong></p>
+<ul>
+<li>如果只是bandit的setting，确实是不需要critic model的。</li>
+</ul>
+<p>DPO的limitation</p>
+<ul>
+<li></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.07327">3D-Properties: Identifying Challenges in DPO and Charting a Path Forward</a> 是一个很好的总结了，说gradient descent下，正例和负例的梯度尺度不匹配导致了DPO的三种问题。</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/07/13/XXO/" title="" target="_blank" rel="external">http://emoairx.github.io/blog/2024/07/13/XXO/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2024/07/29/Unsupervised%20Reinforcement%20learning/" title="REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2024/07/07/MirrorDescent/" title="Mirror Descent (Bubeck 1-9)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

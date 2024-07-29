@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>柱透镜光栅成像 | emoairx</title>
+  <meta name="description" content="柱透镜光栅成像是一种利用柱透镜光栅进行图像处理和显示的技术。柱透镜光栅是由一系列平行的柱面透镜组成的，每个透镜的轴线都平行于同一方向。这种结构可以用来产生特殊的视觉效果，如三维图像、全息图像或立体显示。  光栅效应：当光线通过柱透镜光栅时，每个柱面透镜会将入射光分散成不同的方向。这种分散效应可以用来控制光线的传播路径，从而在特定的观察位置形成图像。 图像合成：通过精确控制每个柱面透镜的参数（如透镜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="柱透镜光栅成像">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="柱透镜光栅成像是一种利用柱透镜光栅进行图像处理和显示的技术。柱透镜光栅是由一系列平行的柱面透镜组成的，每个透镜的轴线都平行于同一方向。这种结构可以用来产生特殊的视觉效果，如三维图像、全息图像或立体显示。  光栅效应：当光线通过柱透镜光栅时，每个柱面透镜会将入射光分散成不同的方向。这种分散效应可以用来控制光线的传播路径，从而在特定的观察位置形成图像。 图像合成：通过精确控制每个柱面透镜的参数（如透镜">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://emoairx.github.io/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20240627003147288.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/jfx3p5p8.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/2kbsdy92.png">
+<meta property="article:published_time" content="2024-06-26T16:25:11.202Z">
+<meta property="article:modified_time" content="2024-07-06T06:56:53.779Z">
+<meta property="article:author" content="emoairx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://emoairx.github.io/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20240627003147288.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">82</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.4px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/29/Unsupervised%20Reinforcement%20learning/" class="title">REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-29T04:59:28.363Z" itemprop="datePublished">2024-07-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/13/XXO/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-13T12:22:54.171Z" itemprop="datePublished">2024-07-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/07/MirrorDescent/" class="title">Mirror Descent (Bubeck 1-9)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-07T14:13:46.095Z" itemprop="datePublished">2024-07-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/03/scalable%20services/" class="title">scalable services</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-03T03:21:08.405Z" itemprop="datePublished">2024-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/02/LLM_inference/" class="title">CMU10-414, Deep Learning Systems, notes</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-02T05:45:31.599Z" itemprop="datePublished">2024-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-柱透镜光栅成像" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      柱透镜光栅成像
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/" class="article-date">
+	  <time datetime="2024-06-26T16:25:11.202Z" itemprop="datePublished">2024-06-27</time>
+	</a>
+</span>
+        
+        
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/" class="leancloud_visitors"  data-flag-title="柱透镜光栅成像">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>柱透镜光栅成像是一种利用柱透镜光栅进行图像处理和显示的技术。柱透镜光栅是由一系列平行的柱面透镜组成的，每个透镜的轴线都平行于同一方向。这种结构可以用来产生特殊的视觉效果，如三维图像、全息图像或立体显示。</p>
+<ol>
+<li><strong>光栅效应</strong>：当光线通过柱透镜光栅时，每个柱面透镜会将入射光分散成不同的方向。这种分散效应可以用来控制光线的传播路径，从而在特定的观察位置形成图像。</li>
+<li><p><strong>图像合成</strong>：通过精确控制每个柱面透镜的参数（如透镜的宽度、间距和曲率），可以合成复杂的图像，如三维图像或动态图像。</p>
+</li>
+<li><p><strong>三维显示</strong>：柱透镜光栅可以用来创建不需要特殊眼镜就能观看的三维显示效果。</p>
+</li>
+<li><strong>全息显示</strong>：在全息技术中，柱透镜光栅可以用来增强全息图像的视觉效果。</li>
+<li><strong>光学防伪</strong>：在安全印刷和防伪技术中，柱透镜光栅可以用来制作难以复制的特殊图像，提高防伪效果。</li>
+</ol>
+<ul>
+<li><strong>高分辨率</strong>：柱透镜光栅可以提供高分辨率的图像显示。</li>
+<li><strong>无需辅助设备</strong>：观看者不需要特殊的眼镜或其他辅助设备就能看到三维或全息效果。</li>
+<li><strong>灵活性</strong>：通过调整柱透镜的参数，可以实现多种不同的视觉效果。</li>
+</ul>
+<p>参考：王琼海老师的书</p>
+<p><strong>正向方法和技术原理</strong></p>
+<p>假设 $F$ 和 $F’$ 是柱透镜单元的第一焦点和第二焦点，根据几何光学原理，可以得到焦距公式为</p>
+<script type="math/tex; mode=display">
+f=f'=\frac{r}{n-1}</script><p>取 $F’$ 作为人眼在正向视角的焦距。</p>
+<p>其中 $n$ 是折射率， $r$ 是曲率半径， 节距 $p$，厚度为 $d$。</p>
+<p><img src="/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/Users\emoairx\AppData\Roaming\Typora\typora-user-images\image-20240627003147288.png" alt="image-20240627003147288"></p>
+<p>第一主点与柱透镜单元后表面间的距离为</p>
+<script type="math/tex; mode=display">
+x_H=\frac{d}{n}</script><p>则后镜面上高度为 $h$ 的点 $A$，我们以射向主光轴的光线 $AH$ 作为分析柱透镜光栅的光学特性。</p>
+<p>对于观看距离为 $l$ 的，眼睛垂直于光轴距离为 $v$，则</p>
+<script type="math/tex; mode=display">
+h=\frac{f'v}{l}</script><p>后面如果放2d显示屏，那么最佳视点是 $(L,(i-(K+1)/2)Q)$ ，这里的 $Q$ 是相邻视差图像视点间距。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/jfx3p5p8.png" style="zoom:50%;"></p>
+<p>所以眼睛分别位于第 $i$ 幅和第 $i+1$ 幅视差图像最佳视点处透过第 $k$ 个柱透镜单元看到的点距离为 $h<em>{k,i} , h</em>{k,i+1}$</p>
+<script type="math/tex; mode=display">
+h_{k,i}=f'\frac{kp-[i-(K+1)/2]Q}{L}\\
+h_{k,i+1}=f'\frac{kp-[(i+1)-(K+1)/2]Q}{L}</script><p>从而可以计算出</p>
+<script type="math/tex; mode=display">
+W_p=h_{k,i}-h_{k,i+1}</script><p>以及曲率半径</p>
+<script type="math/tex; mode=display">
+r=\frac{W_pL(n-1)}{Q}</script><p>如果柱透镜个数 $m$ 足够大，那么节距</p>
+<script type="math/tex; mode=display">
+p=\frac{KQW_p}{Q+W_p}</script><p>柱透镜光栅与2D显示屏的距离为 $D$，那么</p>
+<script type="math/tex; mode=display">
+f=D+x_H</script><p>也就是</p>
+<script type="math/tex; mode=display">
+d=\frac{nr}{n-1}-nD</script><p>如果以角度 $\theta$ 倾斜，那么实际节距应该是</p>
+<script type="math/tex; mode=display">
+p'=p\cos \theta</script><p><strong>合成图像的方法</strong></p>
+<p>考虑存在一个模型</p>
+<p>我有很多参数，这些参数包括 $h,n,r,p,d$，我都不知道。</p>
+<p>光栅周期为 $p$，光栅倾斜角度为 $\theta$，显示屏子像素宽度为 $W_p$，在合适的取值应该满足</p>
+<script type="math/tex; mode=display">
+K=\frac{p}{W_p\cos \theta}=ceif\left(\frac{p}{W_p}\right)</script><p>向上取整。</p>
+<p>如果确定了视点数 $K$ 和倾斜角度 $\theta$，就可以合成一副 $K$ 图像。</p>
+<p>定义</p>
+<script type="math/tex; mode=display">
+\delta_i=\text{round}(3(i-1) \tan \theta)\mod K</script><p>则有</p>
+<script type="math/tex; mode=display">
+B_{ij}=K+j-\delta_i\mod K</script><p><strong>逆向方法</strong></p>
+<p>对于已有的柱透镜光栅成像显示器，我们获取它的分辨率，譬如4K。</p>
+<p>我们需要估计一个视点个数 $K$，一个光栅倾斜角度 $\theta$。</p>
+<p>其中 $K$ 是离散的，可以通过屏幕会闪几下数出来，$\theta$ 可以通过屏幕上膜的角度估计出来。但 $\theta$ 并不完全准确。可以通过设置 $\delta<em>i$ 和 $B</em>{ij}$ 来评估是否可以完整有效地把不同视点的图像呈现出来。</p>
+<p>这里的元素对于每个子像素灰度有关，关于RGB三种色彩需要分别考虑。如图所示</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/2kbsdy92.png" style="zoom:50%;"></p>
+<p>在估计出 $\theta$ 和 $K$ 之后。</p>
+<p>我还想要知道参数为，光栅周期 $p’=p\cos \theta$，屏幕子像素宽度 $W_p$ （这个也可以尝试通过显示屏的参数获得，但我们这里假设它是未知量）。</p>
+<p>我们假定最佳视点的 $K$ 个位置分别为</p>
+<script type="math/tex; mode=display">
+(L,(i-(K+1)/2)Q)</script><p>这里的 $L$ 和 $Q$ 未知，但其实考虑到等比的情况，可以直接假设 $Q$ 定义为人两眼的距离。</p>
+<p>假设知道 $K,L,Q,W_p,\theta$，可以计算透镜曲率半径 $r=\frac{W_pL(n-1)}{Q}$，节距 $p=\frac{KQW_p}{Q+W_p} \cos \theta$，柱透镜光栅与屏的距离（也就是厚度） $d=\frac{nr}{n-1}-nD$. </p>
+<p>这里面参数 $K$ 是离散的，角度 $\theta$ 先能得到一个较为精确的估计。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/06/27/%E6%9F%B1%E9%80%8F%E9%95%9C%E5%85%89%E6%A0%85%E6%88%90%E5%83%8F/" title="柱透镜光栅成像" target="_blank" rel="external">http://emoairx.github.io/blog/2024/06/27/柱透镜光栅成像/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2024/07/02/LLM_inference/" title="CMU10-414, Deep Learning Systems, notes"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2024/06/15/nonsense/" title="nonsense"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

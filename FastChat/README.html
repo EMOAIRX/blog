@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>emoairx</title>
+  <meta name="description" content="FastChat| Demo | Discord | X | FastChat is an open platform for training, serving, and evaluating large language model based chatbots.  FastChat powers Chatbot Arena (https:&#x2F;&#x2F;chat.lmsys.org&#x2F;), serving">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Emoairx">
+<meta property="og:url" content="http://emoairx.github.io/blog/FastChat/README.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="FastChat| Demo | Discord | X | FastChat is an open platform for training, serving, and evaluating large language model based chatbots.  FastChat powers Chatbot Arena (https:&#x2F;&#x2F;chat.lmsys.org&#x2F;), serving">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://emoairx.github.io/blog/FastChat/demo_narrow.gif">
+<meta property="og:image" content="http://emoairx.github.io/blog/FastChat/screenshot_cli.png">
+<meta property="og:image" content="http://emoairx.github.io/blog/FastChat/screenshot_gui.png">
+<meta property="article:published_time" content="2024-07-20T05:59:19.820Z">
+<meta property="article:modified_time" content="2024-07-20T05:59:19.820Z">
+<meta property="article:author" content="emoairx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://emoairx.github.io/blog/FastChat/demo_narrow.gif">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/FastChat/README.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">82</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.4px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/29/Unsupervised%20Reinforcement%20learning/" class="title">REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-29T04:59:28.363Z" itemprop="datePublished">2024-07-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/13/XXO/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-13T12:22:54.171Z" itemprop="datePublished">2024-07-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/07/MirrorDescent/" class="title">Mirror Descent (Bubeck 1-9)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-07T14:13:46.095Z" itemprop="datePublished">2024-07-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/03/scalable%20services/" class="title">scalable services</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-03T03:21:08.405Z" itemprop="datePublished">2024-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/02/LLM_inference/" class="title">CMU10-414, Deep Learning Systems, notes</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-02T05:45:31.599Z" itemprop="datePublished">2024-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/FastChat/README.html" class="article-date">
+	  <time datetime="2024-07-20T05:59:19.820Z" itemprop="datePublished">2024-07-20</time>
+	</a>
+</span>
+        
+        
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/FastChat/README.html" class="leancloud_visitors"  data-flag-title="">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/FastChat/README.html#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="FastChat"><a href="#FastChat" class="headerlink" title="FastChat"></a>FastChat</h1><p>| <a target="_blank" rel="noopener" href="https://chat.lmsys.org/"><strong>Demo</strong></a> | <a target="_blank" rel="noopener" href="https://discord.gg/HSWAKCrnFx"><strong>Discord</strong></a> | <a target="_blank" rel="noopener" href="https://x.com/lmsysorg"><strong>X</strong></a> |</p>
+<p>FastChat is an open platform for training, serving, and evaluating large language model based chatbots.</p>
+<ul>
+<li>FastChat powers Chatbot Arena (<a target="_blank" rel="noopener" href="https://chat.lmsys.org/">https://chat.lmsys.org/</a>), serving over 10 million chat requests for 70+ LLMs.</li>
+<li>Chatbot Arena has collected over 500K human votes from side-by-side LLM battles to compile an online <a target="_blank" rel="noopener" href="https://leaderboard.lmsys.org">LLM Elo leaderboard</a>.</li>
+</ul>
+<p>FastChat’s core features include:</p>
+<ul>
+<li>The training and evaluation code for state-of-the-art models (e.g., Vicuna, MT-Bench).</li>
+<li>A distributed multi-model serving system with web UI and OpenAI-compatible RESTful APIs.</li>
+</ul>
+<h2 id="News"><a href="#News" class="headerlink" title="News"></a>News</h2><ul>
+<li>[2024/03] 🔥 We released Chatbot Arena technical <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2403.04132">report</a>.</li>
+<li>[2023/09] We released <strong>LMSYS-Chat-1M</strong>, a large-scale real-world LLM conversation dataset. Read the <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.11998">report</a>.</li>
+<li>[2023/08] We released <strong>Vicuna v1.5</strong> based on Llama 2 with 4K and 16K context lengths. Download <a href="#vicuna-weights">weights</a>.</li>
+<li>[2023/07] We released <strong>Chatbot Arena Conversations</strong>, a dataset containing 33k conversations with human preferences. Download it <a target="_blank" rel="noopener" href="https://huggingface.co/datasets/lmsys/chatbot_arena_conversations">here</a>.</li>
+</ul>
+<details>
+<summary>More</summary>
+
+- [2023/08] We released **LongChat v1.5** based on Llama 2 with 32K context lengths. Download [weights](#longchat).
+- [2023/06] We introduced **MT-bench**, a challenging multi-turn question set for evaluating chatbots. Check out the blog [post](https://lmsys.org/blog/2023-06-22-leaderboard/).
+- [2023/06] We introduced **LongChat**, our long-context chatbots and evaluation tools. Check out the blog [post](https://lmsys.org/blog/2023-06-29-longchat/).
+- [2023/05] We introduced **Chatbot Arena** for battles among LLMs. Check out the blog [post](https://lmsys.org/blog/2023-05-03-arena).
+- [2023/03] We released **Vicuna: An Open-Source Chatbot Impressing GPT-4 with 90% ChatGPT Quality**. Check out the blog [post](https://vicuna.lmsys.org).
+
+</details>
+
+<p><a target="_blank" rel="noopener" href="https://chat.lmsys.org"><img src="/blog/FastChat/demo_narrow.gif" width="70%"></a></p>
+<h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#model-weights">Model Weights</a></li>
+<li><a href="#inference-with-command-line-interface">Inference with Command Line Interface</a></li>
+<li><a href="#serving-with-web-gui">Serving with Web GUI</a></li>
+<li><a href="#api">API</a></li>
+<li><a href="#evaluation">Evaluation</a></li>
+<li><a href="#fine-tuning">Fine-tuning</a></li>
+<li><a href="#citation">Citation</a></li>
+</ul>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h3 id="Method-1-With-pip"><a href="#Method-1-With-pip" class="headerlink" title="Method 1: With pip"></a>Method 1: With pip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install <span class="string">&quot;fschat[model_worker,webui]&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Method-2-From-source"><a href="#Method-2-From-source" class="headerlink" title="Method 2: From source"></a>Method 2: From source</h3><ol>
+<li>Clone this repository and navigate to the FastChat folder<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/lm-sys/FastChat.git</span><br><span class="line"><span class="built_in">cd</span> FastChat</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>If you are running on Mac:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install rust cmake</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Install Package<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --upgrade pip  <span class="comment"># enable PEP 660 support</span></span><br><span class="line">pip3 install -e <span class="string">&quot;.[model_worker,webui]&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Model-Weights"><a href="#Model-Weights" class="headerlink" title="Model Weights"></a>Model Weights</h2><h3 id="Vicuna-Weights"><a href="#Vicuna-Weights" class="headerlink" title="Vicuna Weights"></a>Vicuna Weights</h3><p><a target="_blank" rel="noopener" href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> is based on Llama 2 and should be used under Llama’s <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/llama/blob/main/LICENSE">model license</a>.</p>
+<p>You can use the commands below to start chatting. It will automatically download the weights from Hugging Face repos.<br>Downloaded weights are stored in a <code>.cache</code> folder in the user’s home folder (e.g., <code>~/.cache/huggingface/hub/&lt;model_name&gt;</code>).</p>
+<p>See more command options and how to handle out-of-memory in the “Inference with Command Line Interface” section below.</p>
+<p><strong>NOTE: <code>transformers&gt;=4.31</code> is required for 16K versions.</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Chat Command</th>
+<th>Hugging Face Repo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7B</td>
+<td><code>python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5</code></td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-7b-v1.5">lmsys/vicuna-7b-v1.5</a></td>
+</tr>
+<tr>
+<td>7B-16k</td>
+<td><code>python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5-16k</code></td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-7b-v1.5-16k">lmsys/vicuna-7b-v1.5-16k</a></td>
+</tr>
+<tr>
+<td>13B</td>
+<td><code>python3 -m fastchat.serve.cli --model-path lmsys/vicuna-13b-v1.5</code></td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-v1.5">lmsys/vicuna-13b-v1.5</a></td>
+</tr>
+<tr>
+<td>13B-16k</td>
+<td><code>python3 -m fastchat.serve.cli --model-path lmsys/vicuna-13b-v1.5-16k</code></td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-13b-v1.5-16k">lmsys/vicuna-13b-v1.5-16k</a></td>
+</tr>
+<tr>
+<td>33B</td>
+<td><code>python3 -m fastchat.serve.cli --model-path lmsys/vicuna-33b-v1.3</code></td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/vicuna-33b-v1.3">lmsys/vicuna-33b-v1.3</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Old weights</strong>: see <a href="docs/vicuna_weights_version.md">docs/vicuna_weights_version.md</a> for all versions of weights and their differences.</p>
+<h3 id="Other-Models"><a href="#Other-Models" class="headerlink" title="Other Models"></a>Other Models</h3><p>Besides Vicuna, we also released two additional models: <a target="_blank" rel="noopener" href="https://lmsys.org/blog/2023-06-29-longchat/">LongChat</a> and FastChat-T5.<br>You can use the commands below to chat with them. They will automatically download the weights from Hugging Face repos.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Chat Command</th>
+<th>Hugging Face Repo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LongChat-7B</td>
+<td><code>python3 -m fastchat.serve.cli --model-path lmsys/longchat-7b-32k-v1.5</code></td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/longchat-7b-32k-v1.5">lmsys/longchat-7b-32k</a></td>
+</tr>
+<tr>
+<td>FastChat-T5-3B</td>
+<td><code>python3 -m fastchat.serve.cli --model-path lmsys/fastchat-t5-3b-v1.0</code></td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/lmsys/fastchat-t5-3b-v1.0">lmsys/fastchat-t5-3b-v1.0</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Inference-with-Command-Line-Interface"><a href="#Inference-with-Command-Line-Interface" class="headerlink" title="Inference with Command Line Interface"></a>Inference with Command Line Interface</h2><p><a target="_blank" rel="noopener" href="https://chat.lmsys.org"><img src="/blog/FastChat/screenshot_cli.png" width="70%"></a></p>
+<p>(Experimental Feature: You can specify <code>--style rich</code> to enable rich text output and better text streaming quality for some non-ASCII content. This may not work properly on certain terminals.)</p>
+<h4 id="Supported-Models"><a href="#Supported-Models" class="headerlink" title="Supported Models"></a>Supported Models</h4><p>FastChat supports a wide range of models, including<br>LLama 2, Vicuna, Alpaca, Baize, ChatGLM, Dolly, Falcon, FastChat-T5, GPT4ALL, Guanaco, MTP, OpenAssistant, OpenChat, RedPajama, StableLM, WizardLM, xDAN-AI and more.</p>
+<p>See a complete list of supported models and instructions to add a new model <a href="docs/model_support.md">here</a>.</p>
+<h4 id="Single-GPU"><a href="#Single-GPU" class="headerlink" title="Single GPU"></a>Single GPU</h4><p>The command below requires around 14GB of GPU memory for Vicuna-7B and 28GB of GPU memory for Vicuna-13B.<br>See the <a href="#not-enough-memory">“Not Enough Memory” section</a> below if you do not have enough memory.<br><code>--model-path</code> can be a local folder or a Hugging Face repo name.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5</span><br></pre></td></tr></table></figure></p>
+<h4 id="Multiple-GPUs"><a href="#Multiple-GPUs" class="headerlink" title="Multiple GPUs"></a>Multiple GPUs</h4><p>You can use model parallelism to aggregate GPU memory from multiple GPUs on the same machine.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --num-gpus 2</span><br></pre></td></tr></table></figure></p>
+<p>Tips:<br>Sometimes the “auto” device mapping strategy in huggingface/transformers does not perfectly balance the memory allocation across multiple GPUs.<br>You can use <code>--max-gpu-memory</code> to specify the maximum memory per GPU for storing model weights.<br>This allows it to allocate more memory for activations, so you can use longer context lengths or larger batch sizes. For example,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --num-gpus 2 --max-gpu-memory 8GiB</span><br></pre></td></tr></table></figure>
+<h4 id="CPU-Only"><a href="#CPU-Only" class="headerlink" title="CPU Only"></a>CPU Only</h4><p>This runs on the CPU only and does not require GPU. It requires around 30GB of CPU memory for Vicuna-7B and around 60GB of CPU memory for Vicuna-13B.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --device cpu</span><br></pre></td></tr></table></figure></p>
+<p>Use Intel AI Accelerator AVX512_BF16/AMX to accelerate CPU inference.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CPU_ISA=amx python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --device cpu</span><br></pre></td></tr></table></figure></p>
+<h4 id="Metal-Backend-Mac-Computers-with-Apple-Silicon-or-AMD-GPUs"><a href="#Metal-Backend-Mac-Computers-with-Apple-Silicon-or-AMD-GPUs" class="headerlink" title="Metal Backend (Mac Computers with Apple Silicon or AMD GPUs)"></a>Metal Backend (Mac Computers with Apple Silicon or AMD GPUs)</h4><p>Use <code>--device mps</code> to enable GPU acceleration on Mac computers (requires torch &gt;= 2.0).<br>Use <code>--load-8bit</code> to turn on 8-bit compression.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --device mps --load-8bit</span><br></pre></td></tr></table></figure><br>Vicuna-7B can run on a 32GB M1 Macbook with 1 - 2 words / second.</p>
+<h4 id="Intel-XPU-Intel-Data-Center-and-Arc-A-Series-GPUs"><a href="#Intel-XPU-Intel-Data-Center-and-Arc-A-Series-GPUs" class="headerlink" title="Intel XPU (Intel Data Center and Arc A-Series GPUs)"></a>Intel XPU (Intel Data Center and Arc A-Series GPUs)</h4><p>Install the <a target="_blank" rel="noopener" href="https://intel.github.io/intel-extension-for-pytorch/xpu/latest/tutorials/installation.html">Intel Extension for PyTorch</a>. Set the OneAPI environment variables:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /opt/intel/oneapi/setvars.sh</span><br></pre></td></tr></table></figure></p>
+<p>Use <code>--device xpu</code> to enable XPU/GPU acceleration.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --device xpu</span><br></pre></td></tr></table></figure><br>Vicuna-7B can run on an Intel Arc A770 16GB.</p>
+<h4 id="Ascend-NPU"><a href="#Ascend-NPU" class="headerlink" title="Ascend NPU"></a>Ascend NPU</h4><p>Install the <a target="_blank" rel="noopener" href="https://github.com/Ascend/pytorch">Ascend PyTorch Adapter</a>. Set the CANN environment variables:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /usr/local/Ascend/ascend-toolkit/set_env.sh</span><br></pre></td></tr></table></figure></p>
+<p>Use <code>--device npu</code> to enable NPU acceleration.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --device npu</span><br></pre></td></tr></table></figure><br>Vicuna-7B/13B can run on an Ascend NPU.</p>
+<h4 id="Not-Enough-Memory"><a href="#Not-Enough-Memory" class="headerlink" title="Not Enough Memory"></a>Not Enough Memory</h4><p>If you do not have enough memory, you can enable 8-bit compression by adding <code>--load-8bit</code> to commands above.<br>This can reduce memory usage by around half with slightly degraded model quality.<br>It is compatible with the CPU, GPU, and Metal backend.</p>
+<p>Vicuna-13B with 8-bit compression can run on a single GPU with 16 GB of VRAM, like an Nvidia RTX 3090, RTX 4080, T4, V100 (16GB), or an AMD RX 6800 XT.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.cli --model-path lmsys/vicuna-7b-v1.5 --load-8bit</span><br></pre></td></tr></table></figure>
+<p>In addition to that, you can add <code>--cpu-offloading</code> to commands above to offload weights that don’t fit on your GPU onto the CPU memory.<br>This requires 8-bit compression to be enabled and the bitsandbytes package to be installed, which is only available on linux operating systems.</p>
+<h4 id="More-Platforms-and-Quantization"><a href="#More-Platforms-and-Quantization" class="headerlink" title="More Platforms and Quantization"></a>More Platforms and Quantization</h4><ul>
+<li>For AMD GPU users, please install ROCm and <a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">the ROCm version of PyTorch</a> before you install FastChat. See also this <a target="_blank" rel="noopener" href="https://github.com/lm-sys/FastChat/issues/104#issuecomment-1613791563">post</a>.</li>
+<li>FastChat supports ExLlama V2. See <a href="/docs/exllama_v2.md">docs/exllama_v2.md</a>.</li>
+<li>FastChat supports GPTQ 4bit inference with <a target="_blank" rel="noopener" href="https://github.com/qwopqwop200/GPTQ-for-LLaMa">GPTQ-for-LLaMa</a>. See <a href="/docs/gptq.md">docs/gptq.md</a>.</li>
+<li>FastChat supports AWQ 4bit inference with <a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/llm-awq">mit-han-lab/llm-awq</a>. See <a href="/docs/awq.md">docs/awq.md</a>.</li>
+<li><a target="_blank" rel="noopener" href="https://mlc.ai/mlc-llm/">MLC LLM</a>, backed by <a target="_blank" rel="noopener" href="https://github.com/apache/tvm/tree/unity">TVM Unity</a> compiler, deploys Vicuna natively on phones, consumer-class GPUs and web browsers via Vulkan, Metal, CUDA and WebGPU.</li>
+</ul>
+<h4 id="Use-models-from-modelscope"><a href="#Use-models-from-modelscope" class="headerlink" title="Use models from modelscope"></a>Use models from modelscope</h4><p>For Chinese users, you can use models from www.modelscope.cn via specify the following environment variables.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> FASTCHAT_USE_MODELSCOPE=True</span><br></pre></td></tr></table></figure></p>
+<h2 id="Serving-with-Web-GUI"><a href="#Serving-with-Web-GUI" class="headerlink" title="Serving with Web GUI"></a>Serving with Web GUI</h2><p><a target="_blank" rel="noopener" href="https://chat.lmsys.org"><img src="/blog/FastChat/screenshot_gui.png" width="70%"></a></p>
+<p>To serve using the web UI, you need three main components: web servers that interface with users, model workers that host one or more models, and a controller to coordinate the webserver and model workers. You can learn more about the architecture <a href="docs/server_arch.md">here</a>.</p>
+<p>Here are the commands to follow in your terminal:</p>
+<h4 id="Launch-the-controller"><a href="#Launch-the-controller" class="headerlink" title="Launch the controller"></a>Launch the controller</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.controller</span><br></pre></td></tr></table></figure>
+<p>This controller manages the distributed workers.</p>
+<h4 id="Launch-the-model-worker-s"><a href="#Launch-the-model-worker-s" class="headerlink" title="Launch the model worker(s)"></a>Launch the model worker(s)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.model_worker --model-path lmsys/vicuna-7b-v1.5</span><br></pre></td></tr></table></figure>
+<p>Wait until the process finishes loading the model and you see “Uvicorn running on …”. The model worker will register itself to the controller .</p>
+<p>To ensure that your model worker is connected to your controller properly, send a test message using the following command:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.test_message --model-name vicuna-7b-v1.5</span><br></pre></td></tr></table></figure><br>You will see a short output.</p>
+<h4 id="Launch-the-Gradio-web-server"><a href="#Launch-the-Gradio-web-server" class="headerlink" title="Launch the Gradio web server"></a>Launch the Gradio web server</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.gradio_web_server</span><br></pre></td></tr></table></figure>
+<p>This is the user interface that users will interact with.</p>
+<p>By following these steps, you will be able to serve your models using the web UI. You can open your browser and chat with a model now.<br>If the models do not show up, try to reboot the gradio web server.</p>
+<h4 id="Optional-Advanced-Features-Scalability-Third-Party-UI"><a href="#Optional-Advanced-Features-Scalability-Third-Party-UI" class="headerlink" title="(Optional): Advanced Features, Scalability, Third Party UI"></a>(Optional): Advanced Features, Scalability, Third Party UI</h4><ul>
+<li>You can register multiple model workers to a single controller, which can be used for serving a single model with higher throughput or serving multiple models at the same time. When doing so, please allocate different GPUs and ports for different model workers.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># worker 0</span><br><span class="line">CUDA_VISIBLE_DEVICES=0 python3 -m fastchat.serve.model_worker --model-path lmsys/vicuna-7b-v1.5 --controller http://localhost:21001 --port 31000 --worker http://localhost:31000</span><br><span class="line"># worker 1</span><br><span class="line">CUDA_VISIBLE_DEVICES=1 python3 -m fastchat.serve.model_worker --model-path lmsys/fastchat-t5-3b-v1.0 --controller http://localhost:21001 --port 31001 --worker http://localhost:31001</span><br></pre></td></tr></table></figure></li>
+<li>You can also launch a multi-tab gradio server, which includes the Chatbot Arena tabs.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m fastchat.serve.gradio_web_server_multi</span><br></pre></td></tr></table></figure></li>
+<li>The default model worker based on huggingface/transformers has great compatibility but can be slow. If you want high-throughput batched serving, you can try <a href="docs/vllm_integration.md">vLLM integration</a>.</li>
+<li>If you want to host it on your own UI or third party UI, see <a href="docs/third_party_ui.md">Third Party UI</a>.</li>
+</ul>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="OpenAI-Compatible-RESTful-APIs-amp-SDK"><a href="#OpenAI-Compatible-RESTful-APIs-amp-SDK" class="headerlink" title="OpenAI-Compatible RESTful APIs &amp; SDK"></a>OpenAI-Compatible RESTful APIs &amp; SDK</h3><p>FastChat provides OpenAI-compatible APIs for its supported models, so you can use FastChat as a local drop-in replacement for OpenAI APIs.<br>The FastChat server is compatible with both <a target="_blank" rel="noopener" href="https://github.com/openai/openai-python">openai-python</a> library and cURL commands.<br>The REST API is capable of being executed from Google Colab free tier, as demonstrated in the <a target="_blank" rel="noopener" href="https://github.com/lm-sys/FastChat/blob/main/playground/FastChat_API_GoogleColab.ipynb">FastChat_API_GoogleColab.ipynb</a> notebook, available in our repository.<br>See <a href="docs/openai_api.md">docs/openai_api.md</a>.</p>
+<h3 id="Hugging-Face-Generation-APIs"><a href="#Hugging-Face-Generation-APIs" class="headerlink" title="Hugging Face Generation APIs"></a>Hugging Face Generation APIs</h3><p>See <a href="fastchat/serve/huggingface_api.py">fastchat/serve/huggingface_api.py</a>.</p>
+<h3 id="LangChain-Integration"><a href="#LangChain-Integration" class="headerlink" title="LangChain Integration"></a>LangChain Integration</h3><p>See <a href="docs/langchain_integration.md">docs/langchain_integration</a>.</p>
+<h2 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h2><p>We use MT-bench, a set of challenging multi-turn open-ended questions to evaluate models.<br>To automate the evaluation process, we prompt strong LLMs like GPT-4 to act as judges and assess the quality of the models’ responses.<br>See instructions for running MT-bench at <a href="fastchat/llm_judge">fastchat/llm_judge</a>.</p>
+<p>MT-bench is the new recommended way to benchmark your models. If you are still looking for the old 80 questions used in the vicuna blog post, please go to <a target="_blank" rel="noopener" href="https://github.com/lm-sys/vicuna-blog-eval">vicuna-blog-eval</a>.</p>
+<h2 id="Fine-tuning"><a href="#Fine-tuning" class="headerlink" title="Fine-tuning"></a>Fine-tuning</h2><h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>Vicuna is created by fine-tuning a Llama base model using approximately 125K user-shared conversations gathered from ShareGPT.com with public APIs. To ensure data quality, we convert the HTML back to markdown and filter out some inappropriate or low-quality samples. Additionally, we divide lengthy conversations into smaller segments that fit the model’s maximum context length. For detailed instructions to clean the ShareGPT data, check out <a href="docs/commands/data_cleaning.md">here</a>.</p>
+<p>We will not release the ShareGPT dataset. If you would like to try the fine-tuning code, you can run it with some dummy conversations in <a href="data/dummy_conversation.json">dummy_conversation.json</a>. You can follow the same format and plug in your own data.</p>
+<h3 id="Code-and-Hyperparameters"><a href="#Code-and-Hyperparameters" class="headerlink" title="Code and Hyperparameters"></a>Code and Hyperparameters</h3><p>Our code is based on <a target="_blank" rel="noopener" href="https://github.com/tatsu-lab/stanford_alpaca">Stanford Alpaca</a> with additional support for multi-turn conversations.<br>We use similar hyperparameters as the Stanford Alpaca.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Hyperparameter</th>
+<th style="text-align:right">Global Batch Size</th>
+<th style="text-align:right">Learning rate</th>
+<th style="text-align:right">Epochs</th>
+<th style="text-align:right">Max length</th>
+<th style="text-align:right">Weight decay</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vicuna-13B</td>
+<td style="text-align:right">128</td>
+<td style="text-align:right">2e-5</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">2048</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Fine-tuning-Vicuna-7B-with-Local-GPUs"><a href="#Fine-tuning-Vicuna-7B-with-Local-GPUs" class="headerlink" title="Fine-tuning Vicuna-7B with Local GPUs"></a>Fine-tuning Vicuna-7B with Local GPUs</h3><ul>
+<li><p>Install dependency</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -e <span class="string">&quot;.[train]&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You can use the following command to train Vicuna-7B with 4 x A100 (40GB). Update <code>--model_name_or_path</code> with the actual path to Llama weights and <code>--data_path</code> with the actual path to data.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">torchrun --nproc_per_node=4 --master_port=20001 fastchat/train/train_mem.py \</span><br><span class="line">    --model_name_or_path meta-llama/Llama-2-7b-hf \</span><br><span class="line">    --data_path data/dummy_conversation.json \</span><br><span class="line">    --bf16 True \</span><br><span class="line">    --output_dir output_vicuna \</span><br><span class="line">    --num_train_epochs 3 \</span><br><span class="line">    --per_device_train_batch_size 2 \</span><br><span class="line">    --per_device_eval_batch_size 2 \</span><br><span class="line">    --gradient_accumulation_steps 16 \</span><br><span class="line">    --evaluation_strategy <span class="string">&quot;no&quot;</span> \</span><br><span class="line">    --save_strategy <span class="string">&quot;steps&quot;</span> \</span><br><span class="line">    --save_steps 1200 \</span><br><span class="line">    --save_total_limit 10 \</span><br><span class="line">    --learning_rate 2e-5 \</span><br><span class="line">    --weight_decay 0. \</span><br><span class="line">    --warmup_ratio 0.03 \</span><br><span class="line">    --lr_scheduler_type <span class="string">&quot;cosine&quot;</span> \</span><br><span class="line">    --logging_steps 1 \</span><br><span class="line">    --fsdp <span class="string">&quot;full_shard auto_wrap&quot;</span> \</span><br><span class="line">    --fsdp_transformer_layer_cls_to_wrap <span class="string">&#x27;LlamaDecoderLayer&#x27;</span> \</span><br><span class="line">    --tf32 True \</span><br><span class="line">    --model_max_length 2048 \</span><br><span class="line">    --gradient_checkpointing True \</span><br><span class="line">    --lazy_preprocess True</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Tips:</p>
+<ul>
+<li>If you are using V100 which is not supported by FlashAttention, you can use the <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2112.05682">memory-efficient attention</a> implemented in <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/xformers">xFormers</a>. Install xformers and replace <code>fastchat/train/train_mem.py</code> above with <a href="fastchat/train/train_xformers.py">fastchat/train/train_xformers.py</a>.</li>
+<li>If you meet out-of-memory due to “FSDP Warning: When using FSDP, it is efficient and recommended… “, see solutions <a target="_blank" rel="noopener" href="https://github.com/huggingface/transformers/issues/24724#issuecomment-1645189539">here</a>.</li>
+<li>If you meet out-of-memory during model saving, see solutions <a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/issues/98823">here</a>.</li>
+<li>To turn on logging to popular experiment tracking tools such as Tensorboard, MLFlow or Weights &amp; Biases, use the <code>report_to</code> argument, e.g. pass <code>--report_to wandb</code> to turn on logging to Weights &amp; Biases.</li>
+</ul>
+<h3 id="Other-models-platforms-and-LoRA-support"><a href="#Other-models-platforms-and-LoRA-support" class="headerlink" title="Other models, platforms and LoRA support"></a>Other models, platforms and LoRA support</h3><p>More instructions to train other models (e.g., FastChat-T5) and use LoRA are in <a href="docs/training.md">docs/training.md</a>.</p>
+<h3 id="Fine-tuning-on-Any-Cloud-with-SkyPilot"><a href="#Fine-tuning-on-Any-Cloud-with-SkyPilot" class="headerlink" title="Fine-tuning on Any Cloud with SkyPilot"></a>Fine-tuning on Any Cloud with SkyPilot</h3><p><a target="_blank" rel="noopener" href="https://github.com/skypilot-org/skypilot">SkyPilot</a> is a framework built by UC Berkeley for easily and cost effectively running ML workloads on any cloud (AWS, GCP, Azure, Lambda, etc.).<br>Find SkyPilot documentation <a target="_blank" rel="noopener" href="https://github.com/skypilot-org/skypilot/tree/master/llm/vicuna">here</a> on using managed spot instances to train Vicuna and save on your cloud costs.</p>
+<h2 id="Citation"><a href="#Citation" class="headerlink" title="Citation"></a>Citation</h2><p>The code (training, serving, and evaluation) in this repository is mostly developed for or derived from the paper below.<br>Please cite it if you find the repository helpful.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@misc&#123;zheng2023judging,</span><br><span class="line">      title=&#123;Judging LLM-as-a-judge with MT-Bench and Chatbot Arena&#125;,</span><br><span class="line">      author=&#123;Lianmin Zheng and Wei-Lin Chiang and Ying Sheng and Siyuan Zhuang and Zhanghao Wu and Yonghao Zhuang and Zi Lin and Zhuohan Li and Dacheng Li and Eric. P Xing and Hao Zhang and Joseph E. Gonzalez and Ion Stoica&#125;,</span><br><span class="line">      year=&#123;2023&#125;,</span><br><span class="line">      eprint=&#123;2306.05685&#125;,</span><br><span class="line">      archivePrefix=&#123;arXiv&#125;,</span><br><span class="line">      primaryClass=&#123;cs.CL&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We are also planning to add more of our research to this repository.</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/FastChat/README.html" title="" target="_blank" rel="external">http://emoairx.github.io/blog/FastChat/README.html</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

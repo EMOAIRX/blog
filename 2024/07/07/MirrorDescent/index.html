@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Mirror Descent (Bubeck 1-9) | emoairx</title>
+  <meta name="description" content="Chapter1lemma2 如果有  K&#x3D;\{x:\forall j\in [m],a_j\cdot x\le b_j\}\\那么有  N_{K}(x)&#x3D;\set{\sum_{j,a_j\cdot x&#x3D;b_j}\lambda_j a_j,\lambda_j\ge 0,\forall j\in [m]}\\ KKT这些东西全忘了  这里重新解释两个概念(参考文献)，首先切锥 $T_K(x)$ 定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mirror Descent (Bubeck 1-9)">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/07/07/MirrorDescent/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="Chapter1lemma2 如果有  K&#x3D;\{x:\forall j\in [m],a_j\cdot x\le b_j\}\\那么有  N_{K}(x)&#x3D;\set{\sum_{j,a_j\cdot x&#x3D;b_j}\lambda_j a_j,\lambda_j\ge 0,\forall j\in [m]}\\ KKT这些东西全忘了  这里重新解释两个概念(参考文献)，首先切锥 $T_K(x)$ 定义">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-07T14:13:46.095Z">
+<meta property="article:modified_time" content="2024-07-24T12:29:57.157Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/07/07/MirrorDescent/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">82</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.4px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/29/Unsupervised%20Reinforcement%20learning/" class="title">REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-29T04:59:28.363Z" itemprop="datePublished">2024-07-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/13/XXO/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-13T12:22:54.171Z" itemprop="datePublished">2024-07-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/07/MirrorDescent/" class="title">Mirror Descent (Bubeck 1-9)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-07T14:13:46.095Z" itemprop="datePublished">2024-07-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/03/scalable%20services/" class="title">scalable services</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-03T03:21:08.405Z" itemprop="datePublished">2024-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/02/LLM_inference/" class="title">CMU10-414, Deep Learning Systems, notes</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-02T05:45:31.599Z" itemprop="datePublished">2024-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-MirrorDescent" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mirror Descent (Bubeck 1-9)
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/07/07/MirrorDescent/" class="article-date">
+	  <time datetime="2024-07-07T14:13:46.095Z" itemprop="datePublished">2024-07-07</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/07/07/MirrorDescent/" class="leancloud_visitors"  data-flag-title="Mirror Descent (Bubeck 1-9)">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/07/07/MirrorDescent/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h4 id="Chapter1"><a href="#Chapter1" class="headerlink" title="Chapter1"></a>Chapter1</h4><p><strong>lemma2</strong></p>
+<p>如果有</p>
+<script type="math/tex; mode=display">
+K=\{x:\forall j\in [m],a_j\cdot x\le b_j\}\\</script><p>那么有</p>
+<script type="math/tex; mode=display">
+N_{K}(x)=\set{\sum_{j,a_j\cdot x=b_j}\lambda_j a_j,\lambda_j\ge 0,\forall j\in [m]}\\</script><blockquote>
+<p>KKT这些东西全忘了 </p>
+<p>这里重新解释两个概念(<a target="_blank" rel="noopener" href="https://louisyzk.github.io/notes/2019/12/31/cvp07-Subdifferential-Optimization-condition">参考文献</a>)，首先切锥 $T_K(x)$ 定义为集合 $K$ 在点 $x$ 处的全体切向量构成的集合（也就是到达 $x$ 的路径序列最后的方向的极限），那么法锥 <code>normal cone</code> 定义为，对于给定的 $x$，如果一致地存在一个趋向于 $z$ 的序列 $z_k$ 和一个趋向于 $x$ 的序列 $x_k$，使得 $z_k \in T_C(x_k)^<em>$，那么 $z$ 称为法向量，他们的集体叫做法锥。如果有 $N_C(x)=T_C(x)^</em>$，我们叫做 $C$ 在 $x$ 是正则的。</p>
+</blockquote>
+<p>如果 $S$ 是n维欧氏空间中的非空集合，那么 $N_S(x)={z\in R^n\mid \left<z,y\right> \le 0,y \in T_S(x)}$</z,y\right></p>
+<p>如果 $S$ 是凸集，法锥可以表示为 $N_S(x)={z\in R^n\mid \left<z,y-x\right> \le 0,y\in S}$</z,y-x\right></p>
+<p>证明考虑两个角度，第一是 右边 的任何一个元素都在 左边</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\sum_{j,a_j\cdot x=b_j} \lambda_{j} a_j\cdot (y-x) =\sum_{j}\lambda_j (a_j\cdot y-b_j) \le 0</script></li>
+<li></li>
+</ul>
+<p>第二是左边的任何一个元素都在右边</p>
+<ul>
+<li>假设存在一个左边的元素不在右边，所以存在一个平面能分开这个元素和 $a_j$ 张成的空间，$w\cdot \theta=1,w\cdot p &lt;1$ 也就是 $w \cdot p\le 0$，这里 $p$ 是 $\sum \lambda_ja_j$ 的一个。所以选取足够小的 $\epsilon$，$x+\epsilon w \in K,\epsilon w \in K$,  and $\epsilon w$ 与 $\theta$ 正相关。这和它在左边这个集合矛盾。</li>
+</ul>
+<blockquote>
+<p>但这是怎么想出来的，不太明白</p>
+</blockquote>
+<p>总结：半平面的交的集合，它的法锥是它现在恰好在的那些边上的法向量的线性组合（也挺合理，毕竟半平面交是凸的）</p>
+<hr>
+<p><strong>Constraint do not matter</strong></p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k-\eta \nabla f(x_k)</script><p>Lemma3: Project only make it better</p>
+<p>具体根据之前的推导我们可以知道一个结论</p>
+<script type="math/tex; mode=display">
+\sum_{t=1}^T g_t \cdot (x_t-x^*) = \frac{||x^*-x_1||^2-||x^*-x_{T+1}||^2}{2\eta}+\frac{\eta}{2}\sum_{t=1}^T ||g_t||^2_2</script><p>利用 $||a||^2-||a-b||^2=2ab-b^2$，取 $a=x^*-x<em>T,b=x</em>{T+1}-x_T$</p>
+<p>我们把前半部分叫做range，后半部分叫做variance</p>
+<p>如果有 $E[g_t\mid part]=\nabla f(x_t)$，那它就是一个SGD。</p>
+<p>我们直接带入（选择optimal $\eta$）就会发现</p>
+<script type="math/tex; mode=display">
+E[f(x_t)-f(x^*)]\le \frac{||x^*-x_1|| B}{\sqrt T}</script><p>where $B = \max _t E[||g_t||^2]$</p>
+<p><strong>First miracle: Robust</strong> 每一步如果有噪声，对总的没怎么影响。</p>
+<p>如果有noise，或者叫bias，$\epsilon$-fraction也是最后期望加了个一个epsilon</p>
+<script type="math/tex; mode=display">
+E[f(x_t)-f(x^*)]\le \frac{||x^*-x_1|| B}{\sqrt T}+\epsilon</script><blockquote>
+<p>没太懂</p>
+</blockquote>
+<hr>
+<h4 id="Chapter2"><a href="#Chapter2" class="headerlink" title="Chapter2"></a>Chapter2</h4><p>regret against $f_1,…f_T$ of sequence of convex function.</p>
+<script type="math/tex; mode=display">
+\frac{1}{T}\sum_{t=1}^T(f_t(x_t)-f_t(x^*)) \le \frac{1}{\sqrt T}</script><p><strong>A first non-Euclidean setting</strong> </p>
+<ul>
+<li>prediction with expert advice.</li>
+</ul>
+<p>第一种方法：</p>
+<p>在 $f<em>t(p)=l_t \cdot p$ 上使用GD, with $K=\Delta _n={p\in R</em>+^m\mid \sum p_i=1}$, $\nabla f_t(p)=l_t$ </p>
+<p>那么这时候如果用之前的分析方法，gradient $\nabla f_t(p)=l_t$,似乎和dimension 有关，但是我们之后会说这个和dimension无关。</p>
+<script type="math/tex; mode=display">
+\sum_{t=1}^T l_t\cdot p_t-l_t\cdot q \le \frac{1}{2\eta} + \frac{\eta}{2} Tn \le \sqrt {Tn}</script><p>这个问题中， $\sqrt {Tn}$ 其实可以改进到 $\sqrt{T\log n}$，用别的方法，这个是因为GD没有利用上问题的好的性质：这个问题的OPT是sparse的。</p>
+<p><strong>MWU</strong></p>
+<blockquote>
+<p>我们之后会说这只是MD的一种特例</p>
+</blockquote>
+<p>如果犯错则 $w<em>t=(1-\eta)w</em>{t-1}$ ，否则 $w<em>t=w</em>{t-1}$，然后 $p_t=\frac{w_t}{||w_t||_1}$</p>
+<blockquote>
+<p>经典机器学习算法sigh</p>
+</blockquote>
+<p>定义</p>
+<script type="math/tex; mode=display">
+L_T=\sum_{t=1}^T l_t \cdot p_t\\
+L^*=\min_{q\in\Delta_n} \sum_{t=1}^T l_t \cdot q</script><script type="math/tex; mode=display">
+L_T-L^* \le \eta L^*+\frac{\log n}{\eta} \le C\sqrt{T\log n}</script><p>选的势能函数是 $||w_t||_1$ 这个potential函数。</p>
+<script type="math/tex; mode=display">
+||w_{t+1}||_1 =||w_t||_1-\eta \cdot l_t \cdot w_t=(||w_t||_1)(1-\eta l_tp_t)\\
+\le ||w_t||_1 e^{-\eta l_t p_t}\le ne^{\eta L_T}</script><p>所以这是一个upperbound，我们考虑还有一个lowerbound</p>
+<p>然后 $L^<em>=w_{T}(i^</em>)\le ||w_T||_1$。</p>
+<p>注意看，这里已经是optimal了。</p>
+<hr>
+<p>一个更加principal的方式导出这个算法</p>
+<script type="math/tex; mode=display">
+f(x+dx)\approx  f(x)+\left<  \text{grad }f(x), dx\right>_X</script><p>这个 $\left&lt;\cdot \mid \cdot \right&gt; $ 可以当成 $\nabla ^2\Phi(x)[\cdot \mid \cdot ]$</p>
+<p>所以这就控制了这个速度，就好像有两个维度的时候你可以控制其中一个维度步伐大一点其中一个维度步伐小一点，但总而言之，比如你在一个凸集中找最优点，可以在边界的时候慢一点平时快一点。</p>
+<script type="math/tex; mode=display">
+x_{t+1}=x_t-\eta \nabla ^2 \Phi(x_t)^{-1} g_t</script><p>这里的 $\Phi$ 是一个fixed convex function。</p>
+<p>问题在于，你怎么去分析这个的复杂度，我的potential是什么呢？</p>
+<p>Miracle：$D_\Phi$ is a potential，D是bregman divergence。79年最早提出MD的时候形式定义成这样然后就能得到一个potential。[Neminovski79]</p>
+<p><strong>Continuoustune mirror descent</strong></p>
+<p>如果 $g:R_+\to R^n$ 是一个smooth vector filed</p>
+<script type="math/tex; mode=display">
+\frac{d}{dt}x(t)=-\nabla ^2 \Phi(x(t))^{-1}(\eta g(t)+\lambda (t))</script><p>where </p>
+<script type="math/tex; mode=display">
+\lambda(t) \in N_k(x(t)),x(t)\in K</script><p>换句话说</p>
+<script type="math/tex; mode=display">
+x(t+dt)=\arg \min_{x\in K} \eta g(t)\cdot x + \frac{1}{2}||x-x(t)||^2_{x_{(t)}}</script><hr>
+<p>回到定义</p>
+<script type="math/tex; mode=display">
+D_\Phi(y,x(t))=\Phi(y)-\Phi(x(t))- \nabla  \Phi(x(t))\cdot (y-x(t))</script><p>带入</p>
+<script type="math/tex; mode=display">
+\frac{d}{dt}D_\Phi=-\nabla \Phi(x(t))\cdot \frac{d}{dt}x(t)-\nabla ^2 \Phi(x(t))\frac{d}{dt}x(t)\cdot (y-x(y))\\
+-\nabla \Phi(x(t))\cdot (-\frac{d}{dt}x(t))\\
+=-\nabla ^2 \Phi(x(t))\frac{d}{dt}x(t)\cdot (y-x(t))</script><p>另一方面，利用normal cone的性质，</p>
+<script type="math/tex; mode=display">
+\frac{d}{dt}D\Phi=(\eta g(t)+\lambda(t))\cdot (y-x(t))\\
+\le \eta g(t)\cdot (y-x(t))</script><p>积分后得到</p>
+<script type="math/tex; mode=display">
+\int_{0}^T g(t)\cdot (x(t)-y) \le \frac{D_\Phi(y,x(t))}{\eta}</script><p><strong>Discrete time version：</strong></p>
+<script type="math/tex; mode=display">
+\frac{d}{dt}x(t)=-\nabla ^2 \Phi(x(t))^{-1}g(t)\\
+\implies \nabla^2 \Phi(x(t)) \frac{d}{dt} x(t)=-g(t)</script><p>GD的 $g(t)$ 是一个dual 上做的，但是GD是在 primal space 上对每个元素做。但是对于MD（离散时间的形式是）</p>
+<script type="math/tex; mode=display">
+\nabla \Phi(x_{t+1})=\nabla \Phi(x_t) - \eta g(t)</script><p>你会发现这里都是在dual space上做的。Doing the update in the dual, and then mapping them into the promal point.</p>
+<h4 id="Chapter3"><a href="#Chapter3" class="headerlink" title="Chapter3"></a>Chapter3</h4><p>MTS: Metrical task systems</p>
+<p>Let $X$ be finite metrice space, the player maintains a state $\rho_t \in X$</p>
+<p>At time $t+1$, we receive a task function. $C<em>{t+1}:X\to R</em>+$ and move to $\rho_{t+1}$.</p>
+<p>movement cost: $dist(\rho<em>t,\rho</em>{t+1})$; service cost: $c<em>{t+1}(\rho</em>{t+1})$</p>
+<p>这个建模可以应对好多好多的问题。（比如电脑什么时候休眠的问题）。</p>
+<p>这个和之前的问题 的差别还包括，我是先看到cost function，然后再有我的decision。</p>
+<p>可以类似在线算法的方式定义离线最优算法和竞争比</p>
+<p>就是 $ALG/OPT$ 。</p>
+<p>人们认为的定理是，对于 $\forall X, |X|=m$ 存在一个算法的竞争比是 $O(\log n)$</p>
+<blockquote>
+<p>所以这个 $\log n$ 和 $T\log n$ 和entropy的 $\log n$ 有什么差别呢——</p>
+</blockquote>
+<p>18年的结果是，[B Cohen, J Lee, YTLee 18] 证明了 $O(\log ^2n)$</p>
+<p>以及 $\Omega(\frac{\log n}{\log \log n})$ 是必要的，如果我们不知道关于问题的特殊性质。</p>
+<p>结论：deterministic algorithm不行，下面证明deterministic的问题，一定是 $\Omega(n),O(n)$</p>
+<p>证明一个上界：假设有一个算法，每次从一个没有mark的状态出发，一直呆着等到代价超过1，然后移动到另一个节点。一旦所有节点都标记了，我的算法代价不超过2n，但是OPT大于等于1。 （没有特别理解）</p>
+<p>证明一个下界：我可以让每个位置 $c<em>{t+1}(e</em>{t}=\infty)$ ，也就是每次都把这个人从当前的位置赶出去，这里我显然需要转移，而且是被迫转移，总的转移复杂度是 $n$，因为OPT能看到未来的情况，所以OPT&lt;=1。（确实，OPT其实看到所有的话可以不动或者最多动一次，而我要动n次）。</p>
+<p>随机的话：</p>
+<p>如果让 $f(n)$ 表示d当 $n$ 个state 都被mark的时候，我期望的移动此时。$f(n)=1/n+f(n-1)$，$f(n)=\log n$。</p>
+<p>所以最坏的人对我来说，只能是：每次hit一个randomly的location。那么我的cost在n次之后期望上是1，但是OPT根据COUPON COLLETE的结论，应该要 $n\log n$ 次。</p>
+<p><strong>mirror descent </strong>在 weighted 的情况下的应用：</p>
+<p>类似于weighted coupon collector。</p>
+<p><strong>Lemma</strong> 对于discrete time的cost function和continuous time的cost function，连续时间的保证能够迁移到离散时间的保证。</p>
+<p>证明：使用water filling的方法，只要让离散时间的状态cost小于等于连续时间的状态cost。离散情况的移动cost小于等于连续情况的移动cost。但是，连续时间的OPT小于等于离散时间的OPT，（这个证明还是没看懂，pass先）</p>
+<p>SC表示service cost，$SC=\int c(t)\cdot x(t) dt$。</p>
+<p>MC表示Movement cost，$MC=\int ||\frac{d}{dt} x(t)||dt$ 。</p>
+<hr>
+<p><strong>Mirror Descent Flow</strong> 在 $\Delta _n$ 上。</p>
+<script type="math/tex; mode=display">
+\frac{d}{dt} x(y)=-\nabla ^2 \phi(x(t))^{-1}(c(t)+\lambda(t))\\
+\lambda(t)\in N_k(x(t)), x(t)\in K</script><p>注意MD的性质， <strong>Miracle 2</strong></p>
+<script type="math/tex; mode=display">
+\frac{d}{dt} D_\phi(y,x(t))\le \eta \cdot c(t)\cdot (y-x(t))</script><p>这个可以理解成，比如最优的在 $y$，但是我在 $x$，</p>
+<p><strong>Miracle 3</strong></p>
+<script type="math/tex; mode=display">
+\frac{d}{dt} D_\phi(y(t),x) \le \text{?some movement of y(t) = }||\dot y(t)||</script><p>这个可以这么理解，左边的展开其实就是</p>
+<script type="math/tex; mode=display">
+(\nabla \phi(y(t))-\nabla \phi(x)) \cdot \dot y(t)</script><p>假设 $L = \sup<em>{z\in K}||\nabla \phi(z)||</em>*$，也就是对偶范数最大的那个地方的梯度，两倍其实就能bound住差</p>
+<p>那么</p>
+<script type="math/tex; mode=display">
+(\nabla \phi(y(t))-\nabla \phi(x)) \cdot \dot y(t) \le 2 L\cdot ||\dot y(t)||</script><p>所以合起来就是</p>
+<script type="math/tex; mode=display">
+0\le  D_\phi(y(T),x(T))-D_\phi(x(0),y(0)) \le \eta (SCOPT-SCALG)+2L(MCOPT)</script><p>take $\eta=2L$ , then $SCALG \le OPT$</p>
+<blockquote>
+<p>也没懂</p>
+</blockquote>
+<hr>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/07/07/MirrorDescent/" title="Mirror Descent (Bubeck 1-9)" target="_blank" rel="external">http://emoairx.github.io/blog/2024/07/07/MirrorDescent/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2024/07/13/XXO/" title="(no title)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2024/07/03/scalable%20services/" title="scalable services"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
