@@ -18,15 +18,15 @@
   
   
   <title>Mirror Descent (Bubeck 1-9) | emoairx</title>
-  <meta name="description" content="Chapter1lemma2 如果有  K&#x3D;\{x:\forall j\in [m],a_j\cdot x\le b_j\}\\那么有  N_{K}(x)&#x3D;\set{\sum_{j,a_j\cdot x&#x3D;b_j}\lambda_j a_j,\lambda_j\ge 0,\forall j\in [m]}\\ KKT这些东西全忘了  这里重新解释两个概念(参考文献)，首先切锥 $T_K(x)$ 定义">
+  <meta name="description" content="From GPT: 镜像下降法（Mirror Descent）是一种优化算法，它可以被视为在对偶空间（dual space）进行的梯度下降。要理解这一点，可以从以下几个方面来解释： 1. 基本概念在传统的梯度下降法中，我们直接在原始空间（primal space）更新变量，以最小化目标函数。假设我们的目标函数是 (f(x))，那么梯度下降的更新规则为： $ x_{t+1} &#x3D; x_t - \eta">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mirror Descent (Bubeck 1-9)">
 <meta property="og:url" content="http://emoairx.github.io/blog/2024/07/07/MirrorDescent/index.html">
 <meta property="og:site_name" content="Emoairx">
-<meta property="og:description" content="Chapter1lemma2 如果有  K&#x3D;\{x:\forall j\in [m],a_j\cdot x\le b_j\}\\那么有  N_{K}(x)&#x3D;\set{\sum_{j,a_j\cdot x&#x3D;b_j}\lambda_j a_j,\lambda_j\ge 0,\forall j\in [m]}\\ KKT这些东西全忘了  这里重新解释两个概念(参考文献)，首先切锥 $T_K(x)$ 定义">
+<meta property="og:description" content="From GPT: 镜像下降法（Mirror Descent）是一种优化算法，它可以被视为在对偶空间（dual space）进行的梯度下降。要理解这一点，可以从以下几个方面来解释： 1. 基本概念在传统的梯度下降法中，我们直接在原始空间（primal space）更新变量，以最小化目标函数。假设我们的目标函数是 (f(x))，那么梯度下降的更新规则为： $ x_{t+1} &#x3D; x_t - \eta">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-07T14:13:46.095Z">
-<meta property="article:modified_time" content="2024-07-24T12:29:57.157Z">
+<meta property="article:modified_time" content="2024-08-07T14:33:00.115Z">
 <meta property="article:author" content="emoairx">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -184,7 +184,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">82</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">83</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -194,7 +194,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.4px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.4px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.5px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
     </div>
   </div>
 
@@ -203,7 +203,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/08/">August 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -222,10 +222,25 @@
                 
               </p>
               <p class="item-title">
-                <a href="/blog/2024/07/29/Unsupervised%20Reinforcement%20learning/" class="title">REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS</a>
+                <a href="/blog/2024/08/09/diary/diary240809/" class="title">diary240809</a>
               </p>
               <p class="item-date">
-                <time datetime="2024-07-29T04:59:28.363Z" itemprop="datePublished">2024-07-29</time>
+                <time datetime="2024-08-09T15:38:01.256Z" itemprop="datePublished">2024-08-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/07/29/note%20on%20PRML/" class="title">模式识别与机器学习 笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-07-29T15:48:09.472Z" itemprop="datePublished">2024-07-29</time>
               </p>
             </div>
           </li>
@@ -256,21 +271,6 @@
               </p>
               <p class="item-date">
                 <time datetime="2024-07-07T14:13:46.095Z" itemprop="datePublished">2024-07-07</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/blog/2024/07/03/scalable%20services/" class="title">scalable services</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2024-07-03T03:21:08.405Z" itemprop="datePublished">2024-07-03</time>
               </p>
             </div>
           </li>
@@ -365,7 +365,32 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h4 id="Chapter1"><a href="#Chapter1" class="headerlink" title="Chapter1"></a>Chapter1</h4><p><strong>lemma2</strong></p>
+        <p>From GPT:</p>
+<p>镜像下降法（Mirror Descent）是一种优化算法，它可以被视为在对偶空间（dual space）进行的梯度下降。要理解这一点，可以从以下几个方面来解释：</p>
+<h3 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h3><p>在传统的梯度下降法中，我们直接在原始空间（primal space）更新变量，以最小化目标函数。假设我们的目标函数是 (f(x))，那么梯度下降的更新规则为：</p>
+<p>$ x_{t+1} = x_t - \eta \nabla f(x_t) $</p>
+<p>其中，(\eta) 是学习率。</p>
+<h3 id="2-对偶空间"><a href="#2-对偶空间" class="headerlink" title="2. 对偶空间"></a>2. 对偶空间</h3><p>镜像下降法引入了一个凸函数 ( \psi(x) )，称为“镜像函数”或“规范化函数”（potential function），它是强凸的。这个函数定义了一个从原始空间到对偶空间的映射：</p>
+<p>$\nabla \psi(x): \mathbb{R}^n \rightarrow \mathbb{R}^n $</p>
+<p>镜像下降法在对偶空间中进行优化，然后映射回原始空间。</p>
+<h3 id="3-镜像下降的步骤"><a href="#3-镜像下降的步骤" class="headerlink" title="3. 镜像下降的步骤"></a>3. 镜像下降的步骤</h3><p>镜像下降法的更新步骤如下：</p>
+<ol>
+<li><strong>计算梯度：</strong> 在原始空间计算目标函数的梯度 ( \nabla f(x_t) )。</li>
+<li><strong>映射到对偶空间：</strong> 使用镜像函数 ( \psi(x) ) 将当前点 ( x_t ) 映射到对偶空间，即计算 ( \nabla \psi(x_t) )。</li>
+<li><p><strong>在对偶空间更新：</strong> 在对偶空间进行梯度下降更新：</p>
+<p>$ y_{t+1} = \nabla \psi(x_t) - \eta \nabla f(x_t) $</p>
+</li>
+<li><p><strong>映射回原始空间：</strong> 使用镜像函数的对偶映射将更新后的点 ( y_{t+1} ) 映射回原始空间：</p>
+<p>$ x<em>{t+1} = (\nabla \psi)^{-1}(y</em>{t+1}) $</p>
+</li>
+</ol>
+<h3 id="4-理解为对偶空间的梯度下降"><a href="#4-理解为对偶空间的梯度下降" class="headerlink" title="4. 理解为对偶空间的梯度下降"></a>4. 理解为对偶空间的梯度下降</h3><p>从以上步骤可以看出，镜像下降法首先通过镜像函数将原始空间中的点映射到对偶空间，然后在对偶空间中执行梯度下降更新，最后再映射回原始空间。因此，可以理解为镜像下降法是在对偶空间中进行的梯度下降。</p>
+<hr>
+<p>但是这个算法好像能用到online learning里？？？</p>
+<p><strong><a target="_blank" rel="noopener" href="https://pages.cs.wisc.edu/~shuchi/courses/880-F19/scribe-notes/lecture23-draft.pdf">lecture23-draft.pdf (wisc.edu)</a></strong></p>
+<p>CS880的笔记。</p>
+<hr>
+<h4 id="Chapter1"><a href="#Chapter1" class="headerlink" title="Chapter1"></a>Chapter1</h4><p><strong>lemma2</strong></p>
 <p>如果有</p>
 <script type="math/tex; mode=display">
 K=\{x:\forall j\in [m],a_j\cdot x\le b_j\}\\</script><p>那么有</p>
@@ -374,6 +399,7 @@ N_{K}(x)=\set{\sum_{j,a_j\cdot x=b_j}\lambda_j a_j,\lambda_j\ge 0,\forall j\in [
 <p>KKT这些东西全忘了 </p>
 <p>这里重新解释两个概念(<a target="_blank" rel="noopener" href="https://louisyzk.github.io/notes/2019/12/31/cvp07-Subdifferential-Optimization-condition">参考文献</a>)，首先切锥 $T_K(x)$ 定义为集合 $K$ 在点 $x$ 处的全体切向量构成的集合（也就是到达 $x$ 的路径序列最后的方向的极限），那么法锥 <code>normal cone</code> 定义为，对于给定的 $x$，如果一致地存在一个趋向于 $z$ 的序列 $z_k$ 和一个趋向于 $x$ 的序列 $x_k$，使得 $z_k \in T_C(x_k)^<em>$，那么 $z$ 称为法向量，他们的集体叫做法锥。如果有 $N_C(x)=T_C(x)^</em>$，我们叫做 $C$ 在 $x$ 是正则的。</p>
 </blockquote>
+<p><strong>normal cone</strong> consists of all the directions that would take you out of $K$.</p>
 <p>如果 $S$ 是n维欧氏空间中的非空集合，那么 $N_S(x)={z\in R^n\mid \left<z,y\right> \le 0,y \in T_S(x)}$</z,y\right></p>
 <p>如果 $S$ 是凸集，法锥可以表示为 $N_S(x)={z\in R^n\mid \left<z,y-x\right> \le 0,y\in S}$</z,y-x\right></p>
 <p>证明考虑两个角度，第一是 右边 的任何一个元素都在 左边</p>
@@ -405,10 +431,7 @@ E[f(x_t)-f(x^*)]\le \frac{||x^*-x_1|| B}{\sqrt T}</script><p>where $B = \max _t 
 <p><strong>First miracle: Robust</strong> 每一步如果有噪声，对总的没怎么影响。</p>
 <p>如果有noise，或者叫bias，$\epsilon$-fraction也是最后期望加了个一个epsilon</p>
 <script type="math/tex; mode=display">
-E[f(x_t)-f(x^*)]\le \frac{||x^*-x_1|| B}{\sqrt T}+\epsilon</script><blockquote>
-<p>没太懂</p>
-</blockquote>
-<hr>
+E[f(x_t)-f(x^*)]\le \frac{||x^*-x_1|| B}{\sqrt T}+\epsilon</script><hr>
 <h4 id="Chapter2"><a href="#Chapter2" class="headerlink" title="Chapter2"></a>Chapter2</h4><p>regret against $f_1,…f_T$ of sequence of convex function.</p>
 <script type="math/tex; mode=display">
 \frac{1}{T}\sum_{t=1}^T(f_t(x_t)-f_t(x^*)) \le \frac{1}{\sqrt T}</script><p><strong>A first non-Euclidean setting</strong> </p>
@@ -447,6 +470,23 @@ f(x+dx)\approx  f(x)+\left<  \text{grad }f(x), dx\right>_X</script><p>这个 $\l
 x_{t+1}=x_t-\eta \nabla ^2 \Phi(x_t)^{-1} g_t</script><p>这里的 $\Phi$ 是一个fixed convex function。</p>
 <p>问题在于，你怎么去分析这个的复杂度，我的potential是什么呢？</p>
 <p>Miracle：$D_\Phi$ is a potential，D是bregman divergence。79年最早提出MD的时候形式定义成这样然后就能得到一个potential。[Neminovski79]</p>
+<p><strong>为什么EG是一种MD</strong></p>
+<script type="math/tex; mode=display">
+x_{t+1} = \arg\min_{x \in \mathcal{C}} \left\{ \langle \nabla f(x_t), x \rangle + \frac{1}{\eta} B_{\Phi}(x, x_t) \right\}</script><script type="math/tex; mode=display">
+B_{\Phi}(x, y) = \Phi(x) - \Phi(y) - \langle \nabla \Phi(y), x - y \rangle</script><p><strong>definition space and corresponding mirror map</strong></p>
+<script type="math/tex; mode=display">
+\Delta_n = \{x \in \mathbb{R}^n: x_i \geq 0, \sum_{i=1}^n x_i = 1\}</script><script type="math/tex; mode=display">
+\Phi(x) = \sum_{i=1}^n x_i \log x_i</script><script type="math/tex; mode=display">
+\nabla \Phi(x) = \left[1 + \log x_1, 1 + \log x_2, ..., 1 + \log x_n\right]</script><script type="math/tex; mode=display">
+B_{\Phi}(x, y) = \sum_{i=1}^n x_i \log x_i - \sum_{i=1}^n y_i \log y_i - \sum_{i=1}^n (1 + \log y_i)(x_i - y_i)\\
+B_{\Phi}(x, y) = \sum_{i=1}^n x_i \log \frac{x_i}{y_i}</script><script type="math/tex; mode=display">
+x_{t+1} = \arg\min_{x \in \Delta_n} \left\{ \langle \nabla f(x_t), x \rangle + \frac{1}{\eta} \sum_{i=1}^n x_i \log \frac{x_i}{x_{ti}} \right\}</script><script type="math/tex; mode=display">
+L(x, \lambda) = \langle \nabla f(x_t), x \rangle + \frac{1}{\eta} \sum_{i=1}^n x_i \log \frac{x_i}{x_{ti}} + \lambda \left(\sum_{i=1}^n x_i - 1\right)\\
+\frac{\partial L}{\partial x_i} = \nabla f_{ti} + \frac{1}{\eta} \left(1 + \log \frac{x_i}{x_{ti}}\right) + \lambda = 0\\
+x_{t+1,i} = x_{ti} \exp(-\eta (\nabla f_{ti} + \lambda))</script><p><strong>得到更新公式</strong></p>
+<script type="math/tex; mode=display">
+x_{t+1,i} = \frac{x_{ti} \exp(-\eta g_{ti})}{\sum_j x_{tj} \exp(-\eta g_{tj})}</script><p><strong>我想要的不等式是怎么来的</strong>，就是 no regret 和 mirror descent 有什么关联。</p>
+<p><a target="_blank" rel="noopener" href="https://pages.cs.wisc.edu/~shuchi/courses/880-F19/scribe-notes/lecture23-draft.pdf">lecture23-draft.pdf (wisc.edu)</a></p>
 <p><strong>Continuoustune mirror descent</strong></p>
 <p>如果 $g:R_+\to R^n$ 是一个smooth vector filed</p>
 <script type="math/tex; mode=display">
@@ -519,7 +559,17 @@ D_\Phi(y,x(t))=\Phi(y)-\Phi(x(t))- \nabla  \Phi(x(t))\cdot (y-x(t))</script><p>�
 <p>也没懂</p>
 </blockquote>
 <hr>
-
+<h4 id="Chapter4"><a href="#Chapter4" class="headerlink" title="Chapter4"></a>Chapter4</h4><p><strong>一个独立的问题</strong></p>
+<p>如果对于两个空间 $X,Y$ 的度量，以及一个映射，使得</p>
+<script type="math/tex; mode=display">
+1 \le \frac{D_Y(f(A),f(B))}{D_X(A,B)} \le D</script><p>其中第一个等号严格成立，第二个等号期望上成立，那么就有（如果有 $\alpha$ 竞争比）</p>
+<script type="math/tex; mode=display">
+ALG_X\le ALG_Y\le \alpha OPT_Y \le \alpha D\cdot  OPT_Y</script><p><strong>一个定理</strong></p>
+<p>存在一个 $O(\log n)$ 的</p>
+<p><strong>一个引理</strong></p>
+<p>hierarchical partition lemma：任何一个度量空间，都存在一个随机的分割 $P_X$，使得所有的分割的元素的都比较小，小于等于 $\Delta$，使得对于所有 $x \in X$，任何标量 $r \ge \Delta/poly(n)$，都有</p>
+<script type="math/tex; mode=display">
+P(B(x,r) \text{is cut by $P_X$}) = O(\frac{r\log n}{\Delta})</script>
       
     </div>
     <div class="article-footer">
@@ -580,7 +630,7 @@ D_\Phi(y,x(t))=\Phi(y)-\Phi(x(t))- \nabla  \Phi(x(t))\cdot (y-x(t))</script><p>�
     
     
     <li class="next">
-      <a href="/blog/2024/07/03/scalable%20services/" title="scalable services"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/blog/2024/07/02/LLM_inference/" title="CMU10-414, Deep Learning Systems, notes"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
