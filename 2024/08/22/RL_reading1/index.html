@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>RLHF经典论文 | emoairx</title>
+  <meta name="description" content="很久之后才会发现，原来大浪淘沙过后的经典的价值那么高。 SACmodel-free deep RL methods are notoriously expensive in terms of their sample complexity. Off-policy algorithms aim to reuse past experience. This is not directly feasib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RLHF经典论文">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/08/22/RL_reading1/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="很久之后才会发现，原来大浪淘沙过后的经典的价值那么高。 SACmodel-free deep RL methods are notoriously expensive in terms of their sample complexity. Off-policy algorithms aim to reuse past experience. This is not directly feasib">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://emoairx.github.io/blog/2024/08/22/RL_reading1/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20240825165720046.png">
+<meta property="og:image" content="http://emoairx.github.io/blog/2024/08/22/RL_reading1/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20240827151626124.png">
+<meta property="article:published_time" content="2024-08-22T05:58:22.406Z">
+<meta property="article:modified_time" content="2024-09-01T07:11:00.978Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://emoairx.github.io/blog/2024/08/22/RL_reading1/Users/emoairx/AppData/Roaming/Typora/typora-user-images/image-20240825165720046.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/08/22/RL_reading1/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">84</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.5px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/08/">August 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/29/AIs/" class="title">大模型是泡沫吗？</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-29T10:02:06.443Z" itemprop="datePublished">2024-08-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/24/reward_is_enough/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-24T12:01:44.703Z" itemprop="datePublished">2024-08-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/23/inner_structures/" class="title">inner structure of transformer models</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-23T05:07:47.063Z" itemprop="datePublished">2024-08-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/22/RL_reading1/" class="title">RLHF经典论文</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-22T05:58:22.406Z" itemprop="datePublished">2024-08-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/09/diary/diary240809/" class="title">diary240809</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-09T15:38:01.256Z" itemprop="datePublished">2024-08-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-RL_reading1" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RLHF经典论文
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/08/22/RL_reading1/" class="article-date">
+	  <time datetime="2024-08-22T05:58:22.406Z" itemprop="datePublished">2024-08-22</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/08/22/RL_reading1/" class="leancloud_visitors"  data-flag-title="RLHF经典论文">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/08/22/RL_reading1/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>很久之后才会发现，原来大浪淘沙过后的经典的价值那么高。</p>
+<h3 id="SAC"><a href="#SAC" class="headerlink" title="SAC"></a>SAC</h3><p><strong>model-free</strong> deep RL methods are notoriously expensive in terms of their <strong>sample complexity</strong>.</p>
+<p><strong>Off-policy algorithms</strong> aim to reuse past experience. This is not directly feasible with conventional policy gradient formulations, but is relatively <strong>straightforward for Q-learning based methods</strong> (Mnih et al., 2015).</p>
+<p><strong>On-policy training</strong> tends to <strong>improve stability but results in poor sample complexity</strong>.</p>
+<p>the interplay between the deterministic actor network and the Q-function typically makes DDPG extremely <strong>difficult to stabilize and brittle to hyperparameter settings</strong> (Duan et al., 2016; Henderson et al., 2017).As a consequence, it is difficult to extend DDPG to <strong>complex, high-dimensional tasks</strong>, and on-policy policy gradient methods still tend to produce the best results in such settings (Gu et al., 2016).</p>
+<h4 id="HH-RLHF-Anthropic"><a href="#HH-RLHF-Anthropic" class="headerlink" title="HH-RLHF(Anthropic)"></a>HH-RLHF(Anthropic)</h4><p><strong>context-distill</strong>：</p>
+<p><strong>larger</strong> PMs are more robust than smaller PMs. <strong>overfitting increases during RLHF training</strong></p>
+<p><strong>large</strong> models have <strong>alignment bonuses</strong> while small models may have taxes. </p>
+<p>$\sqrt{D_{KL}(\pi||\pi_0)}$ and <strong>reward</strong> are <strong>approximately linearly related</strong>. [Section 4.3]</p>
+<p>一种解释是 $D_{KL}(\pi+\delta \pi || \pi)$ 根据 $\delta \pi$ 展开，在很小的region内，和 $\delta \pi$ 是线性的。【所以想把RLHF限制在很小的邻域内】，<strong>在Stiennon et al., 2020中有对拒绝采样的一些解释</strong>【但感觉还是不能解释】</p>
+<p><strong>Basic Scaling Results for preference model</strong> : we observe log-linear trends in both dataset and model size.</p>
+<p>PM和Human的Align程度（<strong>PM作为reward的合理性</strong>）：<strong>We observe that PMs trained only on helpfulness data are very well calibrated, but PMs trained on a mixture of helpful and harmless data are slightly under-confident.</strong> we can trust that they faithfully encode the probabilities that humans will prefer specific model samples。</p>
+<p>越往后越难学习。学习<strong>HH</strong>的model会比学习<strong>Helpful-only</strong>的model更难和人类偏好一致。觉得因为在</p>
+<p>好厉害的一句话：<strong>we expect that with more experience and study we could do better</strong> </p>
+<p><img src="/blog/2024/08/22/RL_reading1/Users\emoairx\AppData\Roaming\Typora\typora-user-images\image-20240825165720046.png" alt="image-20240825165720046"></p>
+<p>所以reward和KL之间的关系是什么？</p>
+<h4 id="Scaling-Laws-for-Reward-Model-Overoptimization"><a href="#Scaling-Laws-for-Reward-Model-Overoptimization" class="headerlink" title="Scaling Laws for Reward Model Overoptimization"></a>Scaling Laws for Reward Model Overoptimization</h4><p>通过一些数据生成了一个 <code>gold RM</code>，利用 <code>gold RM</code> 生成了一个 <code>proxy RM</code>。下文中 $d=\sqrt {D<em>\text{KL}(\pi || \pi</em>{\text{ref}})}$.</p>
+<p>1、<strong>Best of N</strong>的方法：We use the unbiased estimator from Nakano et al. [2021, Appendix I] . $KL_{bon}\approx \log n-\frac{n-1}{n}$</p>
+<script type="math/tex; mode=display">
+R_{\text{bo}n}(d)=d(\alpha_{\text{bo}n} -\beta_{\text{bo}n} d)\\
+R_{\text{RL}}=d(\alpha_{\text{RL}}-\beta_{\text{RL}} \log d)</script><p>在同样的数据量和策略网络的情况下，考虑reward model的参数大小：其中 $\alpha<em>{\text{bo}n}$ 随着reward model参数增大线性增长， $\beta</em>{\text{bo}n},\beta<em>{\text{RL}}$ 随着reward model参数增大线性增长，而 $\alpha</em>{\text{RL}}$ 基本不变。</p>
+<p>数据量增大也明显能提升效果，但没有具体的公式（也类似于KL先增加后减少），</p>
+<p>更大的策略网络参数，使用RL的方法并不会使得最优点的KL发生较大变化。</p>
+<p><strong>Effect of KL penalty</strong></p>
+<p>并不影响真实golden reward，效果相当于early stop（即使proxy reward已经很大了）。</p>
+<p><strong>iterative RLHF</strong> 迭代 $k$ 次，不过没仔细看，好像也没有更多的文章了。</p>
+<script type="math/tex; mode=display">
+R_{\text{RL}}=d(\alpha_{\text{RL}}-\beta_{\text{RL}} \log d+\beta_{\text{RL}}\log k)</script><p><img src="/blog/2024/08/22/RL_reading1/Users\emoairx\AppData\Roaming\Typora\typora-user-images\image-20240827151626124.png" alt="image-20240827151626124"></p>
+<h4 id="scaling-law-for-DPO"><a href="#scaling-law-for-DPO" class="headerlink" title="scaling law for DPO"></a>scaling law for DPO</h4><p>感觉没什么用。或者说看不出有什么真的东西，但确实很容易过拟合就是了。</p>
+<h4 id="scaling-law"><a href="#scaling-law" class="headerlink" title="scaling law"></a>scaling law</h4>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/08/22/RL_reading1/" title="RLHF经典论文" target="_blank" rel="external">http://emoairx.github.io/blog/2024/08/22/RL_reading1/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2024/08/23/inner_structures/" title="inner structure of transformer models"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2024/08/09/diary/diary240809/" title="diary240809"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
