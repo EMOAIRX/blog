@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Finding Equilibrium via Regularization | emoairx</title>
+  <meta name="description" content="Finding Equilibrium via Regularization - 知乎 (zhihu.com) 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Finding Equilibrium via Regularization">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/09/10/Finding%20Equilibrium%20via%20Regularization/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="Finding Equilibrium via Regularization - 知乎 (zhihu.com) 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-10T08:23:24.981Z">
+<meta property="article:modified_time" content="2024-09-15T09:26:39.273Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/09/10/Finding%20Equilibrium%20via%20Regularization/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">84</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.25px;">ICS</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.25px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.25px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.5px;">强化学习</a> <a href="/blog/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 13px;">技术</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.5px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.25px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.75px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.5px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/09/">September 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/08/">August 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/09/10/Finding%20Equilibrium%20via%20Regularization/" class="title">Finding Equilibrium via Regularization</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-09-10T08:23:24.981Z" itemprop="datePublished">2024-09-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/29/diary/diary240829/" class="title">240829 - LLM 泡沫?</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-29T10:02:06.443Z" itemprop="datePublished">2024-08-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/23/inner_structures/" class="title">inner structure of transformer models</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-23T05:07:47.063Z" itemprop="datePublished">2024-08-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/22/RL_reading1/" class="title">RLHF经典论文</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-22T05:58:22.406Z" itemprop="datePublished">2024-08-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/08/09/diary/diary240809/" class="title">240809 - 北京的雨</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-08-09T15:38:01.256Z" itemprop="datePublished">2024-08-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Finding Equilibrium via Regularization" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Finding Equilibrium via Regularization
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/09/10/Finding%20Equilibrium%20via%20Regularization/" class="article-date">
+	  <time datetime="2024-09-10T08:23:24.981Z" itemprop="datePublished">2024-09-10</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/09/10/Finding%20Equilibrium%20via%20Regularization/" class="leancloud_visitors"  data-flag-title="Finding Equilibrium via Regularization">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/09/10/Finding%20Equilibrium%20via%20Regularization/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/720309314">Finding Equilibrium via Regularization - 知乎 (zhihu.com)</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[[R-NaD解读\] Finding Equilibrium via Regularization - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/665560516)</span><br><span class="line"></span><br><span class="line">在日常生活中，我们经常遇到需要求解博弈的Nash均衡的问题，然而，使用简单的自博弈或其它方法，容易出现剪刀比布好，布比石头好，石头比剪刀好这样的结论，不一定能收敛到 $$(1/3,1/3,1/3)$$ 这样的均衡状态。本文研究了修改 `FoReL` 算法，通过增加正则项的方式，使得最后一轮的策略能收敛到Nash equilibrium。</span><br><span class="line"></span><br><span class="line">文章研究的类型属于 **sequential imperfect information** 的 **monotone game** 。这是一类更广泛的game类型，常见的如零和博弈都能包括在其中。</span><br><span class="line"></span><br><span class="line">**序列非完美信息博弈**</span><br><span class="line"></span><br><span class="line">首先说 sequential imperfect information game 是什么，以打牌的游戏为例，非完美信息意味着不知道对手的手牌等信息，不过对手的目标是要打完最后一张牌这种是知道的。我作为player 1，当前看到的一个状态 $$x$$，表示我现在知道的所有信息。但是因为我不知道别的player的信息，所以可能会对应很多不同的其他人的（手牌）状态，别人打了一张大王，可能手里还有小王，可能没有小王。</span><br><span class="line"></span><br><span class="line">形式化地定义，$$H=\bigcup_&#123;i\in[1,..,N,c]&#125; H_i$$ 是第 $$i$$ 个player的历史（包括chance player），还有我这一轮观测到的内容 $$X=\bigcup X_i$$ 作为信息集，有一个 $$Z=\bigcup Z_i$$ 表示游戏的终止状态，$$Z_i$$ 是 $$H_i$$ 的一个子集。我们定义 $$x(h)$$ 表示在历史 $$h$$ 的情况下的信息集。我们可以定义完美回忆（perfect recall，也就是我不会忘记之前看到的信息，比如别人打过的牌），我的理解是对于 $$i$$ 而言，如果现在的状态是 $$x$$，那么有唯一的一种可能的历史，但是别人可能有多个历史到达这个状态 $$x$$。我们还可以定义 $$\tau(h)\to i$$ 表示当前历史下，下一步做决策的是谁。</span><br><span class="line"></span><br><span class="line">如果用 $$\rho^\pi(h)$$ 历史 $$h$$ 的到达概率，用 $$\rho^&#123;\pi^i&#125;(h)$$ 表示到达 $$h$$ 这个历史，并且只考虑 $$i$$ 的概率，有 $$\rho^\pi(h)=\rho^&#123;\pi^&#123;i&#125;&#125;(h)\times \rho^&#123;\pi^&#123;-i&#125;&#125;(h)$$，如果用 $$\rho^&#123;\pi&#125;(x)=\sum_&#123;h \in x&#125;\rho^&#123;\pi&#125;(h)$$ 那么前面说到的完美回忆意味着，对于player $$i$$ 观测到的信息 $$x \in X_i$$，有 $$\rho^&#123;\pi&#125;(x)=\rho^&#123;\pi^i&#125;(h)\times \rho^&#123;\pi^&#123;-i&#125;&#125;(x)$$。</span><br><span class="line"></span><br><span class="line">在定义了游戏的属性之后（完美回忆，非完美信息，序列决策，扩展式博弈），我们就可以定义Value function和Q function，这里的定义方法和强化学习里的一样。</span><br><span class="line">$$</span><br><span class="line">V_\pi^i(h)=\mathbb E \sum_&#123;n\ge 0&#125; r_&#123;\pi&#125;^i(h_n,a_n)=\sum_a \pi(a\mid x(h))[r_\pi^i(h,a)+V_\pi^i(ha)]</span><br><span class="line">$$</span><br><span class="line">其中 $$h_0=h,h_&#123;n+1&#125;=h_na_n,a_n\sim \pi(x\mid x(h_n))$$。</span><br><span class="line"></span><br><span class="line">很容易理解，就是所有可能的历史信息，玩家 $$i$$ 可能得到的奖励函数之和，注意我只关心玩家 $$i$$，所以不管某个步骤是谁在做决策，都可能产生玩家 $$i$$ 的收益 $$r_\pi^i(h&#x27;,a&#x27;)$$。nash均衡就是在初始历史信息下找一个稳定的 $$\pi^i,\pi^&#123;-i&#125;$$。</span><br><span class="line"></span><br><span class="line">同样的定义 $$Q$$ 函数表示选择策略的优势</span><br><span class="line">$$</span><br><span class="line">Q_\pi^h(h,a)=r_\pi^i(h,a)+V_\pi^i(ha)</span><br><span class="line">$$</span><br><span class="line">这是在历史序列上定义的V函数和Q函数，定义在信息集上则是</span><br><span class="line">$$</span><br><span class="line">V_\pi^i(x)=\frac&#123;\sum _&#123;h \in x&#125;\rho^\pi(h)V_\pi^i(h)&#125;&#123;\sum_&#123;h\in x&#125;\rho^\pi(x)&#125;</span><br><span class="line">$$</span><br><span class="line">我们之所以要介绍完美回忆是因为完美回忆的情况下，$$\rho^&#123;\pi^i&#125;(x)=\rho^&#123;\pi^i&#125;(h)$$，所以可以提取出一个公因式 $$\rho^&#123;\pi^i&#125;(h)$$，变成</span><br><span class="line">$$</span><br><span class="line">V_\pi^i(x)=\frac&#123;\sum _&#123;h \in x&#125;\rho^&#123;\pi^&#123;-i&#125;&#125;(h)V_\pi^&#123;i&#125;(h)&#125;&#123;\sum_&#123;h\in x&#125;\rho^&#123;\pi^&#123;-i&#125;&#125;(x)&#125;</span><br><span class="line">$$</span><br><span class="line">我个人的理解是，在后面关于为什么算法能收敛的证明里，因为和 $$\pi^i$$ 的无关，可以忽略掉 $$\pi^i$$ 相关的 reward 的影响，那么我新增一个 $$\bar \pi^i$$ 就能把两个合起来变成一个 $$\pi&#x27;=(\bar \pi^i,\pi^&#123;-i&#125;)$$，从而能运用上单调函数的性质。</span><br><span class="line"></span><br><span class="line">照抄之前的定义我们也可以得到</span><br><span class="line">$$</span><br><span class="line">Q_\pi^i(x,a)=\frac&#123;\sum_&#123;h\in x&#125;\rho^&#123;\pi^&#123;-i&#125;&#125;(h)Q_\pi^i(h,a)&#125;&#123;\sum_&#123;h\in x&#125;\rho^&#123;\pi^&#123;-i&#125;&#125;(h)&#125;</span><br><span class="line">$$</span><br><span class="line">**单调博弈**</span><br><span class="line"></span><br><span class="line">然后我们来给一个单调博弈的定义。他是说，如果对于所有策略 $$\pi\not =\mu$$</span><br><span class="line">$$</span><br><span class="line">\Omega^i(\pi, \mu) = V^i_&#123;\pi^i, \pi^&#123;-i&#125;&#125;(h_&#123;init&#125;) - V^i_&#123;\mu^i, \pi^&#123;-i&#125;&#125;(h_&#123;init&#125;) - V^i_&#123;\pi^i, \mu^&#123;-i&#125;&#125;(h_&#123;init&#125;) + V^i_&#123;\mu^i, \mu^&#123;-i&#125;&#125;(h_&#123;init&#125;)</span><br><span class="line">$$</span><br><span class="line">满足</span><br><span class="line">$$</span><br><span class="line">\sum_&#123;i \in \&#123;1, \ldots, N\&#125;&#125; \Omega^i(\pi, \mu) \leq 0</span><br><span class="line">$$</span><br><span class="line">任何两个策略之间的变化都是负的，用来说明 $$V$$ 是一个单调</span><br><span class="line"></span><br><span class="line">在其它的地方也能看到另外的几种定义，比如 MD 里面说</span><br><span class="line">$$</span><br><span class="line">\sum_&#123;i=1&#125;^N \left&lt; \nabla_&#123;\pi_i&#125; u_i(\pi_i, \pi_&#123;-i&#125;) - \nabla_&#123;\pi_i&#125; u_i(\mu_i, \mu_&#123;-i&#125;)  , \pi_i - \mu_i \right&gt; \leq 0</span><br><span class="line">$$</span><br><span class="line">虽然从形式上最后能理解这个公式在证明中的作用，但还是试着直观地感受一下。（这个V可以理解成和u的梯度同样阶的东西，所以这句话是说 $$\nabla u$$ 是单调的，上面那个是在说 $$V$$ 是一个单调的）</span><br><span class="line"></span><br><span class="line">从感性上来说：</span><br><span class="line"></span><br><span class="line">&gt; 在经济和社会环境中，一个参与者的决策会影响其他人的福祉。当机构、组织或个人做出影响他人选择的决策时，最终结果往往复杂，并可能导致意想不到的后果。当决策受到其他决策者相互依赖行为和决策环境本身的特定方式影响时，会出现可预测的模式。问题是在哪些环境中，参与者有动机采取特定方向的决策，无论是与他人协调的决策，还是与他人对立的决策，或是两者的结合。</span><br><span class="line">&gt;</span><br><span class="line">&gt; 例如，如果越来越多的存款人一起挤兑银行，其他存款人也最好在资金耗尽前做同样的事情。如果两家公司生产相同的商品，公司2的产量上升，公司1的利润最大化选择可能是减少产量。在执法中，警察希望与罪犯在同一个地方（协调移动），但罪犯希望与警察在不同的地方（对立移动）。卡特尔有集体利益限制产量以增加他们的集体利润，但每个成员的个人利益是生产超过他们的配额。</span><br><span class="line">&gt;</span><br><span class="line">&gt; 这些例子展示了单调相互依赖激励在模拟各种现象方面的多功能性。这些是典型模型，它们的概括和修改被用于许多现实世界的应用中。</span><br><span class="line"></span><br><span class="line">我们定义凸函数是说</span><br><span class="line">$$</span><br><span class="line">\forall x\in \mathcal X,x&#x27;\in \mathcal X,z\in \partial f(x),z&#x27;\in \partial f(x&#x27;)\\</span><br><span class="line">\left&lt;z-z&#x27;,x-x&#x27;\right&gt;\ge 0</span><br><span class="line">$$</span><br><span class="line">可以进一步泛化，假设有一个**映射**（map） $$F$$ 是 L-Lipschitz 的，满足</span><br><span class="line">$$</span><br><span class="line">\forall x\in \mathcal X,x&#x27;\in \mathcal X,z\in F(x),z&#x27;\in F(x&#x27;)\\</span><br><span class="line">\left&lt;z-z&#x27;,x-x&#x27;\right&gt;\ge 0</span><br><span class="line">$$</span><br><span class="line">那么 $$F$$ 就是单调的。（如果Jacobian矩阵是半定的或者F是可微的那么就可以当单调的）</span><br><span class="line"></span><br><span class="line">特别的，如果 $$F$$ 的环路积分是零，那么也就是积分与路径无关，那么这个函数是保守的。保守的单调函数是某个**凸函数**的次微分。</span><br><span class="line"></span><br><span class="line">我们不考虑序列非完美信息的上下文的话，假设 $$f^i(x)$$ 表示第 $$i$$ 个玩家在 $$x\in \mathcal X$$ 下的成本函数。定义</span><br><span class="line">$$</span><br><span class="line">F=[z^1,z^2,..z^N]:\mathcal X\to R^n\mid z^i\in \partial x_i f^i</span><br><span class="line">$$</span><br><span class="line">也就是这些成本函数的任何一个次微分，如果 $$F$$ 是单调的，那么称游戏是单调的。</span><br><span class="line"></span><br><span class="line">&gt; Although the local stability of some equilibrium can be seen as a weak requirement for a game to possess reasonable equilibrium predictions, conditions under which such equilibria generally exist remain an open question, as we give examples of monotone games in which no stable equilibrium exists. </span><br><span class="line"></span><br><span class="line">这种定义和前面提到的某个形式是一样的。一个是说 $$V$$ 定义的 $$F$$ 是单调的，一个是说 $$du$$</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">**FTRL**</span><br><span class="line"></span><br><span class="line">然后我们来看最原始的而这个算法，证明这个算法会出现庞加莱复现。</span><br><span class="line"></span><br><span class="line">随着时间，其实是定义了一系列的策略 $$(\pi_s)_&#123;s \ge 0&#125;$$，对于每个 $$i$$ 和 $$x$$，算法是：</span><br><span class="line">$$</span><br><span class="line">y_t^i(x, a) = \int_0^t \rho_s^&#123;\pi^&#123;-i&#125;&#125;(x)Q_&#123;\pi_s&#125;^i(x, a)ds \\</span><br><span class="line"> \pi_t^i(\cdot | x) = \arg \max_&#123;p \in \Delta A&#125; \Lambda^i(p, y_t^i(x, \cdot))</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">&gt; 这个是不是意思是其实有两个空间，然后这两个是共轭的？</span><br><span class="line"></span><br><span class="line">这里的 $$Q$$是某些时候有机会得到的反馈，然后每次去求一个argmax，这里</span><br><span class="line">$$</span><br><span class="line">\Lambda^i(p,y)=\left&lt;p,y\right&gt; - \phi_i(p)</span><br><span class="line">$$</span><br><span class="line">是一个势函数，有点类似优化过程中有一个surrogate，假如收敛的话它并不影响收敛到的位置，但是影响迭代过程中的方式。一个很简单的想法是说我把 $$y$$ 看成是当前轮的梯度，那么变成一个</span><br><span class="line">$$</span><br><span class="line">x_&#123;k+1&#125;=\arg \max_&#123;x&#125; \left&lt;\nabla F(x_k),x-x_k\right&gt;+\phi(x)</span><br><span class="line">$$</span><br><span class="line">是不是就几乎完全就是带一个正则项的梯度下降了，直观上来看，后面这一项其实是取 $$D_\phi(x,x_k)=\phi(x)-\phi(x_k)-\left&lt;\nabla \phi(x_k),x-x_k\right&gt;$$ ，会改变中间步骤但是应该不影响收敛结果。（TODO）</span><br><span class="line"></span><br><span class="line">上半部分是所有 $$Q$$ 的总和（或者说积分），确实唯一让人费解的地方在于这个求和，我们等下再考虑这件事。</span><br><span class="line"></span><br><span class="line">我们想要证明，如果所有人都用这个算法，如果奖励函数是和策略无关的，那么这个算法在我们定义的单调博弈中并不收敛。具体而言证明了两件事，第一是说这个算法的动力学系统是无散度的，第二是说这个动力学系统是有界的，然后引用Poincare recurrent的方法说这个系统是会不断地复现重复。</span><br><span class="line"></span><br><span class="line">##### **Poincare recurrent**</span><br><span class="line"></span><br><span class="line">这一节的陈述我个人觉得是有必要的，他其实是引入了一个度量工具，这个工具在后续关于收敛性的证明中很有用，在这里也就用来说明无法收敛，而且论文的标题也是这么写的，所以还是试着也写一点。</span><br><span class="line"></span><br><span class="line">&gt; If a flow preserves volume (is Divergence free) and has only bounded orbits then for each open set here exist orbits that intersect the set infinitely often.</span><br><span class="line"></span><br><span class="line">大家都把它当常识了，在维基百科上有完整的表述。[Poincaré recurrence theorem - Wikipedia](https://en.wikipedia.org/wiki/Poincaré_recurrence_theorem)。作者说，如果 $$w$$ 是发散的话可能确实会收敛到一个确定性的策略，但是如果nash均衡是full support的（这个概念是指$$\pi^*(a)&gt;0\mid \forall a$$，也就是均衡在单纯形的内部），那一定不会成为动力系统的attractor。</span><br><span class="line"></span><br><span class="line">散度$$\nabla \cdot F=\sum_&#123;i=1&#125;^n\frac&#123;\partial F_i&#125;&#123;\partial x_i&#125;$$ 是针对向量场在某一点处对各方向分量的求其对应坐标的偏导数的和。</span><br><span class="line"></span><br><span class="line">条件是两个，第一个是说要有界，一个是无散度。这个证明的核心在于 如果奖励函数和 $$\pi^i$$ 无关，那么这里散度为零。</span><br><span class="line"></span><br><span class="line">所以作者选择了一个新的动力系统</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">&amp;\dot w_t^i(x,a)= \rho^&#123;\pi_t^&#123;-i&#125;&#125;(x)\left[Q_&#123;\pi_t^i&#125;^i-Q_&#123;\pi_t&#125;^i(x,a_x)\right]\\</span><br><span class="line">&amp; \pi_t^i(\cdot | x) = \arg \max_&#123;p \in \Delta A&#125; \Lambda^i(p, w_t^i(x, \cdot)) \end&#123;align*&#125;</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">1. 这里的 $$w_t$$ 演化有 $$\dot w_t=\xi(w_t)$$，演化只依赖于当前状态 $$w_t$$ 而不是显示地依赖时间 $$t$$。因为有了 $$w_t$$ 就有了 $$\pi_t$$ 就有了 $$\dot w_t$$ 。</span><br><span class="line">2. 系统在某种意义上是守恒的，无散度的。</span><br><span class="line">3. 这里的策略 $$\pi_t$$ 的动力学等价于之前定义的FTRL的动力学，这个很容易看出来，因为一个常量在argmax里可以省略。这个等价性其实很重要。</span><br><span class="line"></span><br><span class="line">主要来说明这个无散度，如果写作 $$w_t=\xi(w_t)$$，</span><br><span class="line"></span><br><span class="line">感受一下有一个 $$\R^3$$ 维的向量场，也就是 $$\xi(w)$$，在某一个维度上有一个强度 $$\xi(w)(i,x,a)$$，</span><br><span class="line">$$</span><br><span class="line">\xi(w)(i,x,a)=\rho^&#123;\pi^&#123;-i&#125;&#125;(x)\left[Q_&#123;\pi&#125;^i(x,a)-Q_&#123;\pi&#125;^i(x,a_x)\right]</span><br><span class="line">$$</span><br><span class="line">这里，向量场 $$\xi$$，状态向量 $$w$$，向量场的分量 $$\xi(w)(i,x,a)$$，注意到</span><br><span class="line">$$</span><br><span class="line">\rho^&#123;\pi^&#123;-i&#125;&#125;(x)Q_\pi^i(x,a)=\sum_&#123;h\in x&#125;\left[r^i(h,a)+V_\pi^i(ha)\right]</span><br><span class="line">$$</span><br><span class="line">**如果这里的奖励函数是和 $$\pi^i$$ 无关的**，然后 $$V_\pi^i$$ 也是和 $$\pi^i$$ 无关的，所以这里的 $$\xi(w)(i,x,a)$$ 只和 $$i,x,a,\pi^&#123;-i&#125;$$ 有关，也就是说和 $$w^i(x,a)=w(i,x,a)$$ 无关。那么就有</span><br><span class="line">$$</span><br><span class="line">\nabla \cdot \xi(w)=\sum_&#123;i=1&#125;^n\sum_&#123;x\in \mathcal X&#125;\sum_&#123;a\in A&#125;\frac&#123;\partial \xi(w)(i,x,a)&#125;&#123;w^i(x,a)&#125;=0</span><br><span class="line">$$</span><br><span class="line">也就得到了散度为零的性质。（但是如果奖励是和 $$\pi^i$$ 有关的就会有不一样的结论）</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line">**Lyapunov函数**</span><br><span class="line"></span><br><span class="line">除了散度为零，还要证明有界，能被bound住，这里用的方法是说定义了一个函数（这个函数并不是Lyapunov函数，因为可以是负数），并证明其梯度小于零。</span><br><span class="line"></span><br><span class="line">在这里，这个函数的定义是这样的</span><br><span class="line">$$</span><br><span class="line">J(y) = \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;x \in \mathcal&#123;X&#125;_i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(x) \left[ \phi_i^&#123;*&#125; \left( y^i(x, \cdot) \right) - \left\langle \pi^&#123;*&#125;(\cdot \mid x), y^i(x, \cdot) \right\rangle \right]</span><br><span class="line">$$</span><br><span class="line">这里的 $$\phi_i^*(y)=\max_p \Lambda ^i(p,y)$$ 表示对偶函数，根据Young不等式的取等条件我们还有这个argmax是一个满足次梯度的东西。</span><br><span class="line">$$</span><br><span class="line">\pi_t=\arg \max_&#123;p\in \Delta A&#125; \Lambda^i(p,y)=\nabla _y \phi_i^*(y)</span><br><span class="line">$$</span><br><span class="line">在其它的地方也有这样的函数的定义，用来衡量到均衡的举例，比如某篇文章用了</span><br><span class="line">$$</span><br><span class="line">\text&#123;GAP&#125;(\pi)=\max _&#123;\bar \pi\in \mathcal X&#125; \sum_&#123;i=1&#125;^N \left&lt;\nabla _\pi v_i(\pi_i,\pi_&#123;-i&#125;),\bar \pi_i-\pi_i\right&gt;</span><br><span class="line">$$</span><br><span class="line">注意看GAP这个函数相当于是在 $$v_i(\pi)$$ 处做了一个泰勒展开（在单调博弈的意义下，这玩意确实能衡量到均衡的距离）。回过头来看，这里定义的函数就是在其他文章里说到的 GAP 函数。GAP函数之所以这么衡量，一方面是符合直观，另一方面是通过一阶近似展开确实会方便计算。不过有不一样的地方，这里的 $$J$$ 是需要用上一个假定已知的均衡，而GAP函数似乎没有直接用到最终的那什均衡。</span><br><span class="line"></span><br><span class="line">我们看上面这个函数，展开后其实是</span><br><span class="line">$$</span><br><span class="line">\max _&#123;z&#125; \left&lt;z,y\right&gt;-\phi(z)-\left&lt;\pi,y\right&gt;=\max_&#123;z&#125;\left&lt;z-\pi,y\right&gt;-\phi(z)</span><br><span class="line">$$</span><br><span class="line">直觉上看没有什么太大的差别，除了引入了 $$\phi$$ 这个函数，文章说这是用于构造下面这个 **Strong Lyapunov function**。我们会在证明策略相关的奖励函数的收敛性证明中用到这个函数。</span><br><span class="line">$$</span><br><span class="line">\Xi(\pi^*,\pi_t)=\sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H_i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) D_&#123;\phi_i&#125;(\pi^*(\cdot \mid x(h)), \pi_t(\cdot \mid x(h)))</span><br><span class="line">$$</span><br><span class="line">但本文是通过证明</span><br><span class="line">$$</span><br><span class="line">J(y)+\sum_&#123;i=1&#125;^N\sum_&#123;x\in \mathcal X_i&#125;\rho^&#123;\pi^&#123;*i&#125;&#125; \phi_i(\pi^*(.\mid x))=\Xi\left(\pi^*,\pi\right)</span><br><span class="line">$$</span><br><span class="line">（代入后发现可以写成 $$\phi(\pi^*)-\phi(\pi)+\left&lt;\pi^*-\pi,y\right&gt;$$，然后如果是内点的话有 $$y\in \nabla \phi(\nabla \phi^*(y))=\nabla \phi(\pi)$$ （这个也是Fenchel不等式），所以就可以把他写成</span><br><span class="line"></span><br><span class="line">并且两者的梯度相同，我个人暂时还不清楚为什么要引入这样的函数，但至少这里 $$\frac&#123;d&#125;&#123;dt&#125;J(y)=\frac&#123;d&#125;&#123;dt&#125;\Xi(\pi^*,\pi)$$。这里是和 $$y$$ 相关的，而不是和 $$\pi$$ 相关的，虽然两者可以互相转化。</span><br><span class="line"></span><br><span class="line">思考一下 $$J$$ 这里 $$i$$ 和 $$x$$ 出现的意义，或者说思考这个序列问题中，$$\Xi$$ 里 $$i$$ 和 $$h$$ 出现的意义</span><br><span class="line"></span><br><span class="line">一个满足条件的问题需要满足两个性质，第一是除了均衡位置它都是大于等于零的，第二是说在均衡位置这个是等于零的，第三是说梯度是负定的。</span><br><span class="line"></span><br><span class="line">我们来研究 $$\frac&#123;d&#125;&#123;dt&#125; J(y)$$.</span><br><span class="line"></span><br><span class="line">**J 函数求导**</span><br><span class="line"></span><br><span class="line">这个推导其实很容易，直接求导</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125;J(y)&amp;=\sum_i\sum_x\rho^&#123;\pi^&#123;*i&#125;&#125;\left( (\frac&#123;d \phi_i^*(y)&#125;&#123;dy&#125;-\pi^*)\times \frac&#123;dy&#125;&#123;dt&#125; \right)\\</span><br><span class="line">&amp;=\sum_&#123;i=1&#125;^N\sum_&#123;x\in \mathcal X_i&#125;\rho^&#123;\pi^&#123;*i&#125;&#125;\rho^&#123;\pi_t^&#123;-i&#125;&#125;\left&lt; \pi_t(.\mid x(h))-\pi^*(.\mid h(x)), Q_&#123;\pi_t&#125;^i(h,.) \right&gt;\\</span><br><span class="line">&amp;= \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;x \in \mathcal&#123;X&#125;_i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(x) \sum_&#123;h \in x&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \langle \pi_t(\cdot | x(h)) - \pi^*(\cdot | x(h)), Q_&#123;\pi_t&#125;^&#123;i&#125;(h, \cdot) \rangle\\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;x \in \mathcal&#123;X&#125;_i&#125; \sum_&#123;h \in x&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \langle \pi_t(\cdot | x(h)) - \pi^*(\cdot | x(h)), Q_&#123;\pi_t&#125;^&#123;i&#125;(h, \cdot) \rangle\\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H_i&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \langle \pi_t(\cdot | x(h)) - \pi^*(\cdot | x(h)), Q_&#123;\pi_t&#125;^&#123;i &#125;(h, \cdot) \rangle</span><br><span class="line"></span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line">$$</span><br><span class="line">有一个不喜欢的地方，第一个是这里的 $$H_i$$ 是和 $$i$$ 强相关的，我们想把它去掉。这里，我们可以定义一个策略 $$&#123;^i\bar \pi_t&#125;=(\pi^&#123;*i&#125;,\pi_t^&#123;-i&#125;)$$ ，那么上面这个概率就合成这个策略。</span><br><span class="line"></span><br><span class="line">注意到对 $$h \in H^&#123;i&#125;$$，有 $$\pi^*(.\mid x(h))=^i\bar \pi_t(.\mid x(h))$$ 而对于 $$h\in H^&#123;-i&#125;$$，有 $$^i\bar \pi_t(.\mid x(h))=\pi_t(.\mid x(h))$$ ，也就是 $$\langle \pi_t(\cdot | x(h)) -  &#123;&#125;^i\bar \pi_t(\cdot | x(h)), Q_&#123;\pi_t&#125;^&#123;i &#125;(h, \cdot) \rangle=0$$，所以</span><br><span class="line"></span><br><span class="line">我们得到：</span><br><span class="line">$$</span><br><span class="line">&#123;% raw %&#125;</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125; J(y) &amp;= \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \left&lt; \pi_t(\cdot \mid x(h)) - \pi^&#123;*&#125;(\cdot \mid x(h)), Q_&#123;\pi_t&#125;^i(h, \cdot) \right&gt; \\</span><br><span class="line">&amp;= \sum_&#123;i=1&#125;^&#123;N&#125; \left[ \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;&#123;^i\bar \pi_t&#125;&#125;(h) \left( V_&#123;\pi_t&#125;^i(h) - \sum_&#123;a \in A&#125; \pi_t(a \mid x(h)) \left( r_&#123;\pi_t&#125;^i(h, a) + V_&#123;\pi_t&#125;^i(ha) \right) \right) + \sum_&#123;h \in \mathcal&#123;Z&#125;&#125; \rho^&#123;&#123;^i\bar \pi_t&#125;&#125;(h) V_&#123;\pi_t&#125;^i(h) \right] \\</span><br><span class="line">&amp;= \sum_&#123;i=1&#125;^&#123;N&#125; \left[ \sum_&#123;h \in H&#125; \rho^&#123;&#123;^i\bar \pi_t&#125;&#125;(h) V_&#123;\pi_t&#125;^i(h)-\sum_&#123;h\in H\setminus h_&#123;init&#125;&#125;\rho^&#123;^i\bar \pi_t&#125;(h) V_&#123;\pi_t&#125;^i(h) \right] - \left[ \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;&#123;^i\bar \pi_t&#125;&#125;(h) \sum_&#123;a \in A&#125; \pi_t(a \mid x(h)) r_&#123;\pi_t&#125;^i(h, a) \right] \\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;i=1&#125;^&#123;N&#125; V_&#123;\pi_t&#125;^i(h_&#123;\text&#123;init&#125;&#125;) - \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;&#123;^i\bar \pi_t&#125;&#125;(h) \sum_&#123;a \in A&#125; &#123;^i\bar \pi_t&#125;(a \mid x(h)) r_&#123;&#123;^i\bar \pi_t&#125;&#125;^i(h, a) \\</span><br><span class="line">&amp;\quad + \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;\pi^&#123;&#123;^i\bar \pi_t&#125;&#125;&#125;(h)  \sum_&#123;a \in A&#125; &#123;^i\bar \pi_t&#125;(a \mid x(h)) \left( r_&#123;&#123;^i\bar \pi_t&#125;&#125;^i(h, a) - r_&#123;\pi_t&#125;^i(h, a) \right) \\</span><br><span class="line">&amp;= \left[ \sum_&#123;i=1&#125;^&#123;N&#125; V_&#123;\pi_t&#125;^i(h_&#123;\text&#123;init&#125;&#125;) - V_&#123;(\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)&#125;^i(h_&#123;\text&#123;init&#125;&#125;) \right] + \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \mathbb&#123;E&#125;_&#123;a \sim (\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)(\cdot \mid x(h))&#125; \left[ r_&#123;(\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)&#125;^i(h, a) - r_&#123;\pi_t&#125;^i(h, a) \right] \\</span><br><span class="line">&amp;= \left[ \sum_&#123;i=1&#125;^&#123;N&#125; V^&#123;i&#125;_&#123;\pi_&#123;t&#125;^&#123;i&#125;, \pi_&#123;*&#125;^&#123;-i&#125;&#125;(h_&#123;\text&#123;init&#125;&#125;) - V^&#123;i&#125;_&#123;\pi_&#123;*&#125;&#125;(h_&#123;\text&#123;init&#125;&#125;) \right] + \left[ \sum_&#123;i=1&#125;^&#123;N&#125; V^&#123;i&#125;_&#123;\pi_&#123;t&#125;&#125;(h_&#123;\text&#123;init&#125;&#125;) - V^&#123;i&#125;_&#123;\pi_&#123;t&#125;^&#123;i&#125;, \pi_&#123;*&#125;^&#123;-i&#125;&#125;(h_&#123;\text&#123;init&#125;&#125;) - V^&#123;i&#125;_&#123;\pi_&#123;t&#125;^&#123;i&#125;, \pi_&#123;*&#125;^&#123;-i&#125;&#125;(h_&#123;\text&#123;init&#125;&#125;) + V^&#123;i&#125;_&#123;\pi_&#123;*&#125;&#125;(h_&#123;\text&#123;init&#125;&#125;) \right] </span><br><span class="line"> \\</span><br><span class="line">&amp;\quad + \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \mathbb&#123;E&#125;_&#123;a \sim (\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)(\cdot \mid x(h))&#125; \left[ r_&#123;(\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)&#125;^i(h, a) - r_&#123;\pi_t&#125;^i(h, a) \right]</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line">&#123;% endraw %&#125;</span><br><span class="line">$$</span><br><span class="line">注意看第二行我们用了一个高中数列学过的很知名的trick，类似于强化学习里把 $$Q$$ 按定义展开，然后裂项成两部分。</span><br><span class="line"></span><br><span class="line">于是后面发现大部分都是按照 $$&#123;^i\bar \pi_t&#125;$$ 在推，所以尝试把 $$r_&#123;\pi_t&#125;$$ 裂出一项 $$r_&#123;^i\bar \pi_t&#125;$$，好处是这样能把整个变成三部分。</span><br><span class="line"></span><br><span class="line">第一部分是初始的 $$V$$，第二部分是按照策略 $$&#123;^i\bar \pi_t&#125;$$ 得到的奖励函数，于是就得到了倒数第二行，比较有意思的是这里通过一个变换分离出了两项。</span><br><span class="line"></span><br><span class="line">为什么要这么做，从直观上来看是为了凑出单调博弈，因为怎么看让当前player的策略用当前的，而对手策略用均衡都是一个很奇怪的。但anyway，至少能分成三项，第一项是负的（如果在内部的话，nash均衡每个玩家换最好的策略应该是恰好等于零），第二项因为单调博弈也是负的。</span><br><span class="line"></span><br><span class="line">第一部分对于如果均衡策略是在内部的话，这个值应该是零。</span><br><span class="line"></span><br><span class="line">第三项是个奇怪的值，但其实容易发现，**如果奖励和策略无关的话**，这个值一定是零。</span><br><span class="line"></span><br><span class="line">于是我们有了推论是说，这个动力学系统是有界的，然后又因为无散度，所以结论是它能出现庞加莱复现。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">**reward transformation**</span><br><span class="line"></span><br><span class="line">上面我们已经得到了，如果奖励函数和 $$\pi$$ 无关，那么最终结论是无散度的，接下来我们会说明，通过 Lyapunov function 的方法，能够证明收敛性。</span><br><span class="line"></span><br><span class="line">想要通过Lyapunov function证明某个常微分方程 $$\frac&#123;d&#125;&#123;dt&#125;y_t=\xi(y_t)$$</span><br><span class="line">$$</span><br><span class="line">\mathcal F(x )\ge 0,\mathcal F(x^*)=0\\</span><br><span class="line">\forall y\not =y^*,\frac&#123;d&#125;&#123;dt&#125;\mathcal F(y_t)&lt;0</span><br><span class="line">$$</span><br><span class="line">如果是strong，类比强凸函数，我们可以说</span><br><span class="line">$$</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125;\mathcal F(y_t) \le -\beta \mathcal F(t_y),\beta &gt;0</span><br><span class="line">$$</span><br><span class="line">在上面的证明中，我们已经得到一个函数 $$\Xi$$，</span><br><span class="line">$$</span><br><span class="line">\Xi(\pi^*,\pi_t)=\sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H_i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) D_&#123;\phi_i&#125;(\pi^*(\cdot \mid x(h)), \pi_t(\cdot \mid x(h)))</span><br><span class="line">$$</span><br><span class="line">而且 $$\frac&#123;d&#125;&#123;dt&#125;\Xi=\frac&#123;d&#125;&#123;dt&#125;J$$ ，而</span><br><span class="line">$$</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125;J(y)\le \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \mathbb&#123;E&#125;_&#123;a \sim (\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)(\cdot \mid x(h))&#125; \left[ r_&#123;(\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)&#125;^i(h, a) - r_&#123;\pi_t&#125;^i(h, a) \right]</span><br><span class="line">$$</span><br><span class="line">所以，我们想把 $$J$$ 往 $$\Xi$$ 上凑一凑，尝试把 $$h\in H_i$$，也要尝试去掉 $$\rho_t^&#123;\pi^&#123;-i&#125;&#125;$$。</span><br><span class="line">$$</span><br><span class="line">r_\pi^i(h,a)=r^i(h,a) - \eta \frac&#123;1_&#123;i=\tau(h)&#125;&#125;&#123;\rho^&#123;\pi^&#123;-i&#125;&#125;(h)&#125; \log \frac&#123;\pi(a\mid x(h))&#125;&#123;\mu(a\mid x(h))&#125;</span><br><span class="line">$$</span><br><span class="line">就可以发现现在 $$J$$ 能完美符合我们的需求了，当然现在也是一个 KL，所以取 $$\phi(\pi)$$ 是一个熵的话，靠着这个，我们就有</span><br><span class="line">$$</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125;J(y)\le -\eta\sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H_i&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL(\pi^*(.\mid x(h)),\pi_t(.\mid x(h)))</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">$$</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125; \Xi(\pi^*,\pi_t)\le -\eta \Xi(\pi^*,\pi_t)</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">也就意味着能有一个指数效率的收敛速度。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">**another reward transformation** </span><br><span class="line"></span><br><span class="line">对于2p0s游戏可以尝试另一种定义方法，用</span><br><span class="line">$$</span><br><span class="line">r_\pi^i(h,a)=r^i(h,a)-1_&#123;i=\tau(h)&#125; \frac&#123;\pi(a\mid x(h))&#125;&#123;\mu(a\mid x(h))&#125;+1_&#123;i\not=\tau(h)&#125; \frac&#123;\pi(a\mid x(h))&#125;&#123;\mu(a\mid x(h))&#125;</span><br><span class="line">$$</span><br><span class="line">这是保持零和的方法，同时又不希望有$$1/\rho^&#123;\pi^&#123;-i&#125;&#125;(h)$$ 这个不容易sample的量，所以那么变成</span><br><span class="line">$$</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125;J(y)\le \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H \setminus \mathcal&#123;Z&#125;&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \mathbb&#123;E&#125;_&#123;a \sim (\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)(\cdot \mid x(h))&#125; \left[ r_&#123;(\pi^&#123;*i&#125;, \pi_t^&#123;-i&#125;)&#125;^i(h, a) - r_&#123;\pi_t&#125;^i(h, a) \right]</span><br><span class="line">$$</span><br><span class="line">在 $$i\not=\tau(h)$$ 的时候，也就是 $$h\not \in H_i$$，两个 $$r$$ 相减等于零，在 $$i=\tau(h)$$ 的时候和上面一样，如果选 $$\phi$$ 为熵的话，能变成一个 KL 散度。</span><br><span class="line">$$</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125;J(y)\le -\eta\sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H_i&#125; \rho_t^&#123;\pi^&#123;-i&#125;&#125;(h) \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL(\pi^*(.\mid x(h)),\pi_t(.\mid x(h)))</span><br><span class="line">$$</span><br><span class="line">设 $$\zeta=\min_&#123;x&#125;\min_&#123;\pi=\arg\max_p \Lambda(p,y)\and J(y)\le J(y_0)&#125;\sum _&#123;h\in x&#125;\rho^&#123;\pi^&#123;-i&#125;&#125;(h)$$ ，如果对一个 $$x$$ 从成立那么对 $$H_i$$ 里的和也成立，$$y_0$$ 是初始的那个 $$y$$。</span><br><span class="line">$$</span><br><span class="line">\frac&#123;d&#125;&#123;dt&#125; \Xi(\pi^*,\pi_t)\le -\eta\zeta \Xi(\pi^*,\pi_t)</span><br><span class="line">$$</span><br><span class="line">综上，我们证明了如果带有reward transformation是可以收敛的，而且可以收敛地比较快。</span><br><span class="line"></span><br><span class="line">**origin equilibrium**</span><br><span class="line"></span><br><span class="line">&gt; 但是这个是真收敛，还是假装收敛，就很奇怪，因为argmax能不能恰好达到是不好说的东西</span><br><span class="line"></span><br><span class="line">接下来，我们考虑如何收敛到原始的均衡，一种想法是每一次迭代都换reward，那么这样能不能收敛(LIC)呢？也就是取 $$\mu=\pi_&#123;k-1&#125;$$。</span><br><span class="line"></span><br><span class="line">我们会证明（在熵的意义下）</span><br><span class="line">$$</span><br><span class="line">\Xi(\pi^*,\pi_k)-\Xi(\pi^*,\pi_&#123;k-1&#125;) = -\Xi(\pi_k,\pi_&#123;k-1&#125;)+\frac&#123;1&#125;&#123;\eta&#125;\sum_&#123;i=1&#125;^N(m_k^i+\delta_k^i+\kappa_k^i)</span><br><span class="line">$$</span><br><span class="line">其中</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">\kappa_&#123;k&#125;^&#123;i&#125; &amp;= \sum_&#123;x \in \mathcal&#123;X&#125;^&#123;i&#125;&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(x) \rho^&#123;\pi^&#123;-i&#125;&#125;_&#123;k&#125;(x) \times \sum_&#123;a \in A&#125; \left[ \pi^&#123;*i&#125;(a \mid x(h)) - \pi_&#123;k&#125;(a \mid x(h)) \right]^&#123;k&#125; Q_&#123;\pi_&#123;k&#125;&#125;^&#123;i&#125;(x, a) </span><br><span class="line">\\</span><br><span class="line">\delta_&#123;k&#125;^&#123;i&#125; &amp;= V_&#123;\pi_&#123;k&#125;, \pi^&#123;-i&#125;&#125;^&#123;i&#125;(h_&#123;init&#125;) - V_&#123;\pi_&#123;*&#125;&#125;^&#123;i&#125;(h_&#123;init&#125;)</span><br><span class="line">\\</span><br><span class="line">m_&#123;k&#125;^&#123;i&#125; &amp;= V_&#123;\pi_&#123;k&#125;&#125;^&#123;i&#125;(h_&#123;init&#125;) - V_&#123;\pi^&#123;*i&#125;, \pi_&#123;k&#125;^&#123;-i&#125;&#125;^&#123;i&#125;(h_&#123;init&#125;) - V_&#123;\pi_&#123;k&#125;, \pi_&#123;*&#125;^&#123;-i&#125;&#125;^&#123;i&#125;(h_&#123;init&#125;) + V_&#123;\pi_&#123;*&#125;&#125;^&#123;i&#125;(h_&#123;init&#125;)</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line">$$</span><br><span class="line">原文的证明方法是通过下面的方式，我的理解是为了把各个距离给找出来，而为了得到从 $$\pi^*$$ 的展开，我们希望能有一项是 $$\pi^*()\log \frac&#123;\pi_k&#125;&#123;\pi_&#123;k-1&#125;&#125;$$</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">&amp;\underbrace&#123;\sum_&#123;h \in H&#125; \rho^&#123;\pi_k&#125;(h) \sum_&#123;a \in A&#125; \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a)&#125;_&#123;(2)&#125;= </span><br><span class="line"></span><br><span class="line">\underbrace&#123;\sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a)&#125;_&#123;(3)&#125; \\</span><br><span class="line"></span><br><span class="line">&amp;+ \underbrace&#123;\sum_&#123;h \in H&#125; \rho^&#123;\pi_k&#125;(h) \sum_&#123;a \in A&#125; \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a) - \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a)&#125;_&#123;(1)&#125;</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line">$$</span><br><span class="line">这里有记号</span><br><span class="line">$$</span><br><span class="line">&#123;&#123;&#125;^kr_\pi^i(h,a)&#125;=r^i(h,a)-\eta\frac&#123;\bold&#123;1&#125;_&#123;i=\tau(h)&#125;&#125;&#123;\rho^&#123;\pi^&#123;-i&#125;&#125;(h)&#125; \log \frac&#123;\pi(a\mid x(h))&#125;&#123;\pi_&#123;k-1&#125;(a\mid x(h))&#125;</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">$$</span><br><span class="line">&#123;^i\bar \pi_t&#125;=(\pi^&#123;*i&#125;,\pi_t^&#123;-i&#125;)</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">直觉上来看就是多了一步，一个是 $$\pi_k$$ 的收益，一个是 $$&#123;^i\bar \pi_k&#125;$$ 的收益，还有一个是差。</span><br><span class="line"></span><br><span class="line">我们看第二项和第三项，本质是展开奖励项和策略</span><br><span class="line"></span><br><span class="line">第二项直接展开，会发现只有 $$\pi_k^i$$ 项是有值的。</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">(2) &amp;= \sum_&#123;h \in H&#125; \rho^&#123;\pi_k&#125;(h)\sum_&#123;a \in A&#125; \pi_k(a \mid x(h)) r^i(h, a) </span><br><span class="line">\\&amp;\quad \quad \quad - \eta \sum_&#123;h \in H^i&#125; \rho^&#123;\pi_k^i&#125;(h) \sum_&#123;a \in A&#125; \pi_k^i(a \mid x(h)) \log \frac&#123;\pi_k^i(a \mid x(h))&#125;&#123;\pi_&#123;k-1&#125;^i(a \mid x(h))&#125;</span><br><span class="line">\\</span><br><span class="line">&amp;=V_&#123;\pi_k&#125;^i(h_&#123;init&#125;)-\eta\sum_&#123;h\in H_i&#125; \rho^&#123;\pi_k^i&#125;(h) KL(\pi_k^i(.\mid x(h)),\pi_&#123;k-1&#125;^i(.\mid x(h)))</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line">$$</span><br><span class="line">第三项展开，但是奖励并不是完全的</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">(3) &amp;= \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h)\sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) r^i(h, a) </span><br><span class="line">\\&amp;\quad \quad \quad - \eta \sum_&#123;h \in H^i&#125; \rho^&#123;\pi_k^i&#125;(h) \sum_&#123;a \in A&#125; \pi^&#123;*i&#125;(a \mid x(h)) \log \frac&#123;\pi_k(a \mid x(h))&#125;&#123;\pi_&#123;k-1&#125;(a \mid x(h))&#125;</span><br><span class="line">\\</span><br><span class="line">&amp;=V_&#123;\pi_k&#125;^i(h_&#123;init&#125;)-\eta\sum_&#123;h\in H_i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) (</span><br><span class="line">KL(\pi^&#123;*i&#125;(.\mid x(h)),\pi_&#123;k-1&#125;(.\mid x(h)))\\&amp;\quad \quad \quad -KL(\pi^&#123;*i&#125;(.\mid x(h)),\pi_&#123;k&#125;(.\mid x(h)) )</span><br><span class="line">)</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line">$$</span><br><span class="line">这里用到的就是说可以把 $$p \log \frac&#123;a&#125;&#123;b&#125;=p\log\frac&#123;p&#125;&#123;b&#125;-p\log \frac&#123;p&#125;&#123;a&#125;$$</span><br><span class="line"></span><br><span class="line">然后我们展开(1)，我们期待能把他放缩掉。因为有一个作差，而他们除了第一步其实是一样的，我们希望把第一步展开，但是直接展开会发现两项还是不一样，主要是 $$\rho$$ 造成的，但仔细一想，(1)的一部分不就只和初始状态有关吗，所以是可以做差的。</span><br><span class="line"></span><br><span class="line">我们定义</span><br><span class="line">$$</span><br><span class="line">^&#123;k&#125;V_&#123;\pi_k&#125;^i(h)=\sum_a \pi_k(a\mid x(h))\left[&#123;&#125;^kr_&#123;\pi_k&#125;^i(h,a)+&#123;&#125;^kV_&#123;\pi_k&#125;^i(ha)\right]</span><br><span class="line">$$</span><br><span class="line">可以发现</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align*&#125;</span><br><span class="line">(1)&amp;=\sum_&#123;h \in H&#125; \rho^&#123;\pi_k&#125;(h) \sum_&#123;a \in A&#125; \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a) - \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a)\\</span><br><span class="line">&amp;= &#123;&#125;^k V_&#123;\pi_k&#125;^i(h_&#123;\text&#123;init&#125;&#125;) - \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a)</span><br><span class="line">\\</span><br><span class="line">&amp;= \sum_&#123;h \in H&#125; \underbrace&#123;\rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h)&#125;_&#123;\text&#123;not &#125;\pi_k&#125; &#123;&#125;^k V_&#123;\pi_k&#125;^i(h) - \sum_&#123;h \in H \setminus \&#123;h_&#123;\text&#123;init&#125;&#125;\&#125;&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) &#123;&#125;^k V_&#123;\pi_k&#125;^i(h) - \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^&#123;i&#125;(h, a) \\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \left[ &#123;&#125;^k V_&#123;\pi_k&#125;^i(h) - \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) &#123;&#125;^k V_&#123;\pi_k&#125;^i(ha) \right] - \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) &#123;&#125;^k r_&#123;\pi_k&#125;^i(h, a)\\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;h \in H&#125; \rho^&#123;&#123;&#125;^i\bar \pi_k&#125;(h) \left[ &#123;&#125;^k V_&#123;\pi_k&#125;^i(h) - \sum_&#123;a \in A&#125; &#123;&#125;^i\bar \pi_k(a \mid x(h)) \left[ &#123;&#125;^k r_&#123;\pi_k&#125;^i(h, a) + &#123;&#125;^k V_&#123;\pi_k&#125;^i(ha) \right] \right]\\</span><br><span class="line">&amp;= \sum_&#123;h\in H&#125; \rho^&#123;^&#123;i&#125;\bar \pi_k&#125;(h) \sum_&#123;a \in A&#125; \left[ \pi_k(a \mid x(h)) - \pi^&#123;*i&#125;(a \mid x(h)) \right] &#123;&#125;^k Q_&#123;\pi_k&#125;^i(h, a)\\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;x \in \mathcal&#123;X&#125;^i&#125; \sum_&#123;h \in x&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) \rho^&#123;\pi^&#123;-i&#125;_k&#125;(h) \sum_&#123;a \in A&#125; \left[ \pi_k(a \mid x(h)) - \pi^&#123;*i&#125;(a \mid x(h)) \right] &#123;&#125;^k Q_&#123;\pi_k&#125;^i(h, a)\\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;x \in \mathcal&#123;X&#125;^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(x) \left[\sum_&#123;h \in x&#125; \rho^&#123;\pi^&#123;-i&#125;_k&#125;(h)\right] \sum_&#123;h\in x&#125;\sum_&#123;a \in A&#125; \left[ \pi_k(a \mid x(h)) - \pi^&#123;*i&#125;(a \mid x(h)) \right] &#123;&#125;^k Q_&#123;\pi_k&#125;^i(h, a)\\</span><br><span class="line"></span><br><span class="line">&amp;= \sum_&#123;x \in \mathcal&#123;X&#125;^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(x) \rho^&#123;\pi_k^&#123;-i&#125;&#125;(x) \sum_&#123;h\in x&#125;\sum_&#123;a \in A&#125; \left[ \pi_k(a \mid x(h)) - \pi^&#123;*i&#125;(a \mid x(h)) \right] \frac&#123;\sum_&#123;h \in x&#125; \rho^&#123;\pi^&#123;-i&#125;_k&#125;(h) \, &#123;&#125;^k Q_&#123;\pi_k&#125;^i(h, a)&#125;&#123;\sum_&#123;h \in x&#125; \rho^&#123;\pi^&#123;-i&#125;_k&#125;(h)&#125;</span><br><span class="line">\\</span><br><span class="line">&amp;= \sum_&#123;x \in \mathcal&#123;X&#125;^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(x) \rho^&#123;\pi_k^&#123;-i&#125;&#125;(x) \sum_&#123;a \in A&#125; \left[ \pi_k(a \mid x(h)) - \pi^&#123;*i&#125;(a \mid x(h)) \right] &#123;&#125;^k Q_&#123;\pi_k&#125;^i(x, a)</span><br><span class="line">\\</span><br><span class="line">&amp;=-\kappa_&#123;k&#125;^&#123;i&#125; \ge 0</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line">$$</span><br><span class="line">通过一通推导，作者说 $$\pi_k$$ 是 $$^kr_&#123;\pi_k&#125;^i$$ 这个游戏的nash均衡，所以整个的价值就是非负的。</span><br><span class="line"></span><br><span class="line">这里第四行有一些很有意思的推导，通过一些努力我们可以把原本应该是一个策略的路径概率换成另一个策略的，从而统一作差的时候的公因式。</span><br><span class="line"></span><br><span class="line">合并</span><br><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">&amp;\eta \sum_&#123;h \in H^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL \left( \pi^&#123;*i&#125;(\cdot \mid x(h)), \pi_k(\cdot \mid x(h)) \right) - \eta \sum_&#123;h \in H^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL \left( \pi^&#123;*i&#125;(\cdot \mid x(h)), \pi_&#123;k-1&#125;(\cdot \mid x(h)) \right) \\</span><br><span class="line">&amp;= V_&#123;\pi_k&#125;^i(h_&#123;\text&#123;init&#125;&#125;) - V_&#123;\pi^&#123;*i&#125;, \pi_k^&#123;-i&#125;&#125;^i(h_&#123;\text&#123;init&#125;&#125;) + \kappa_k^i - \eta \sum_&#123;h \in H^i&#125; \rho^&#123;\pi_k^i&#125;(h) KL \left( \pi_k^i(\cdot \mid x(h)), \pi_&#123;k-1&#125;^i(\cdot \mid x(h)) \right) \\</span><br><span class="line">&amp;= V_&#123;\pi_k&#125;^i(h_&#123;\text&#123;init&#125;&#125;) - V_&#123;\pi^&#123;*i&#125;, \pi_k^&#123;-i&#125;&#125;^i(h_&#123;\text&#123;init&#125;&#125;) - V_&#123;\pi_k^&#123;i&#125;, \pi_&#123;k-1&#125;^&#123;-i&#125;&#125;^i(h_&#123;\text&#123;init&#125;&#125;) + V_&#123;\pi_k^&#123;i&#125;, \pi_&#123;k-1&#125;^&#123;-i&#125;&#125;^i(h_&#123;\text&#123;init&#125;&#125;) + V_&#123;\pi_k^&#123;i&#125;, \pi_&#123;k-1&#125;^&#123;-i&#125;&#125;^i(h_&#123;\text&#123;init&#125;&#125;) - V_&#123;\pi^&#123;*&#125;, \pi_&#123;k-1&#125;^&#123;-i&#125;&#125;^i(h_&#123;\text&#123;init&#125;&#125;) + \kappa_k^i \\</span><br><span class="line">&amp;= m_k^i - \eta \sum_&#123;h \in H^i&#125; \rho^&#123;\pi_k^i&#125;(h) KL \left( \pi_k^i(\cdot \mid x(h)), \pi_&#123;k-1&#125;^i(\cdot \mid x(h)) \right)</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">$$</span><br><span class="line">也就是得到</span><br><span class="line">$$</span><br><span class="line">\sum_&#123;h \in H^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL \left( \pi^&#123;*i&#125;(\cdot \mid x(h)), \pi_k(\cdot \mid x(h)) \right) - \sum_&#123;h \in H^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL \left( \pi^&#123;*i&#125;(\cdot \mid x(h)), \pi_&#123;k-1&#125;(\cdot \mid x(h)) \right)\\</span><br><span class="line">= \frac&#123;1&#125;&#123;\eta&#125; m_k^i + \frac&#123;1&#125;&#123;\eta&#125; \delta_k^i + \frac&#123;1&#125;&#123;\eta&#125; \kappa_k^i - \sum_&#123;h \in H^i&#125; \rho^&#123;\pi_k^i&#125;(h) KL \left( \pi_k^i(\cdot \mid x(h)), \pi_&#123;k-1&#125;^i(\cdot \mid x(h)) \right)</span><br><span class="line">$$</span><br><span class="line">求和得到</span><br><span class="line">$$</span><br><span class="line">\sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL \left( \pi^&#123;*i&#125;(\cdot \mid x(h)), \pi_k(\cdot \mid x(h)) \right) - \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H^i&#125; \rho^&#123;\pi^&#123;*i&#125;&#125;(h) KL \left( \pi^&#123;*i&#125;(\cdot \mid x(h)), \pi_&#123;k-1&#125;(\cdot \mid x(h)) \right)\\</span><br><span class="line">= \frac&#123;1&#125;&#123;\eta&#125; \sum_&#123;i=1&#125;^&#123;N&#125; m_k^i + \frac&#123;1&#125;&#123;\eta&#125; \sum_&#123;i=1&#125;^&#123;N&#125; \delta_k^i + \frac&#123;1&#125;&#123;\eta&#125; \sum_&#123;i=1&#125;^&#123;N&#125; \kappa_k^i - \sum_&#123;i=1&#125;^&#123;N&#125; \sum_&#123;h \in H^i&#125; \rho^&#123;\pi_k^i&#125;(h) KL \left( \pi_k^i(\cdot \mid x(h)), \pi_&#123;k-1&#125;^i(\cdot \mid x(h)) \right)</span><br><span class="line">$$</span><br><span class="line">$$m$$ 因为单调博弈所以是非正的，$$\kappa$$ 因为中间某个游戏的均衡是 $$\pi_k$$ 所以是非正的，$$\delta_k$$ 因为不是均衡所以也是非正的。</span><br><span class="line"></span><br><span class="line">也就总而言之得到了一个</span><br><span class="line">$$</span><br><span class="line">\Xi(\pi^*,\pi_k)-\Xi(\pi^*,\pi_&#123;k-1&#125;) = -\Xi(\pi_k,\pi_&#123;k-1&#125;)+\frac&#123;1&#125;&#123;\eta&#125;\sum_&#123;i=1&#125;^N(m_k^i+\delta_k^i+\kappa_k^i)</span><br><span class="line">$$</span><br><span class="line">这样的结论。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">还是和刚才一样，我们遵循几乎一样的原则，构造一个strict Lyapunov functions。（但是离散版本）就是要有一个map $$F$$，每一步是说，$$\pi_k=F^k(\pi_0)$$ 收敛到 $$\pi^*$$。我们需要 $$F$$ 连续，也就是尝试求导之后，证明能L-Lipschitz连续。</span><br><span class="line"></span><br><span class="line">我们来看下面这个东西</span><br><span class="line">$$</span><br><span class="line">\min_&#123;\pi^*\in \Pi^*&#125; \Xi(\pi^*,F(\mu))-\min_&#123;\pi^*\in \Pi^*&#125; \Xi(\pi^*,\mu) &lt; 0</span><br><span class="line">$$</span><br><span class="line">这对于所有外面的来说，这都是能严格下降，就是收敛，而之后会证明这个收敛只能收敛到零。我们先来看这个小于零的断言，首先证明如果 $$\Xi(F(\mu),\mu)=0$$，那么 $$F(\mu),\mu \in \Pi^*$$ .</span><br><span class="line"></span><br><span class="line">1. recall一下之前 (1) 那个的推导，我们已经有（LemmaH1）：</span><br><span class="line">   $$</span><br><span class="line">   \begin&#123;equation&#125;</span><br><span class="line">   V_&#123;\pi^*&#125;^i(h_&#123;init&#125;)-V_&#123;\pi^i,\pi^&#123;*-i&#125;&#125;^i(h_&#123;init&#125;)=\\\sum_&#123;x\in \mathcal X_i&#125;\rho^&#123;\pi^i&#125;(x)\rho^&#123;\pi^&#123;*-i&#125;&#125;(x)\sum_&#123;a&#125;\left( \pi^i(a\mid x) -\pi^&#123;*i&#125;(a\mid x)\right)Q_&#123;\pi^*&#125;^i(x,a)</span><br><span class="line">   </span><br><span class="line">   \end&#123;equation&#125;</span><br><span class="line">   $$</span><br><span class="line">   这个结论其实也可以比较直观地理解，就是枚举第一个出现差别的位置，然后前面用 $$\pi^i$$ 来走（$$\rho$$），后面用 $$\pi^&#123;*i&#125;$$ 来走 （$$Q$$），这一步的差别是两者的差，然后因为路径是乘积的所以我需要做一个累和，大概是</span><br><span class="line">   $$</span><br><span class="line">   x_1x_2x_3-y_1y_2y_3=\\x_1x_2(x_3-y_3)+x_1(x_2-y_2)y_3+(x_1-y_1)y_2y_3</span><br><span class="line">   $$</span><br><span class="line"></span><br><span class="line">2. 我们断言如果对于所有 $$\hat \pi$$ 和所有 $$i$$ 满足 $$\sum_a(\pi^*(a\mid x)-\hat \pi(a\mid x))Q_&#123;\pi^*&#125;^i(x,a)\ge 0$$，那么 $$\pi^*$$ 一定是一个均衡。 </span><br><span class="line"></span><br><span class="line">这个证明是说，如果 $$\pi^*$$ 满足这个条件，就一定有它的value对于换一个 $$\pi^i$$ 的value相比，代入LemmaH1，大于等于零。</span><br><span class="line"></span><br><span class="line">3. 我们得到推论，如果不是nash均衡，那么存在 $$i,\hat \pi$$，使得这个量小于零。</span><br><span class="line">4. 我们证明如果 $$\pi_\mu^*=F(\mu)=\mu$$，那么 $$\mu$$ 就是 $$r^i(h,a)$$ 游戏的nash均衡，否则存在 $$i,\hat \pi,\tilde x$$ 满足 $$\sum_&#123;a&#125;(\pi_\mu^*(a\mid \tilde x)-\hat \pi(a\mid \tilde x))Q_&#123;\pi_\mu^*&#125;^i(\tilde x,a)&lt;0$$</span><br><span class="line"></span><br><span class="line">于是我们记  $$\hat \pi_&#123;\alpha&#125;$$ 只在状态 $$\tilde x$$ 上使得 $$(1-\alpha) \pi_\mu^*+\alpha \hat \pi$$，其它地方都是 $$\pi_\mu^*$$ ，原文接下来就是证明了</span><br><span class="line">$$</span><br><span class="line">V_&#123;\mu,\pi_\mu^*&#125;^i(h_&#123;init&#125;)-V_&#123;\mu,\hat \pi_\alpha&#125;^i(h_&#123;init&#125;)\le \underbrace&#123;c \alpha^2+d \alpha&#125;_&#123;c&gt;0,d&lt;0&#125;&lt;0</span><br><span class="line">$$</span><br><span class="line">也就是说，$$\pi_&#123;\mu&#125;^*$$ 不是 $$r^i(h,a)$$ 的均衡会推出 $$\pi_&#123;\mu&#125;^*$$ 不是 $$r_&#123;\mu,\pi&#125;^i(h,a)$$ 的均衡，而后者是矛盾的。证明的展开的方法是前面类似trick的延续。</span><br><span class="line"></span><br><span class="line">&gt; 但这里high level的idea是什么呢？微调策略以观察其对收益的影响？不是很好理解。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">最后把上面的结论总和起来，假设策略 $$\pi^*$$ 在内部的话，</span><br><span class="line"></span><br><span class="line">1. **前提和性质**：</span><br><span class="line">   - $$F(\cdot)$$ 是一个在单纯形内部的连续映射。</span><br><span class="line">   - 对于所有 $$\mu \notin \Pi^*$$，有一个不等式，表示偏离最优策略的价值函数 $$\Xi$$ 在策略 $$\mu$$ 下的值总是低于在 $$F(\mu)$$ 下的值。</span><br><span class="line">   - $$\mu \to \min_&#123;\pi^* \in \Pi^*&#125; \Xi(\pi^*, F(\mu))$$ 是一个在单纯形边界上无穷大的正函数，并且在 $$\mu$$ 上连续。</span><br><span class="line">   - 定义 $$\mu\to \Delta V(\mu)=\min_&#123;\pi^* \in \Pi^*&#125; \Xi(\pi^*, F(\mu))-\min_&#123;\pi^* \in \Pi^*&#125; \Xi(\pi^*, \mu)$$.</span><br><span class="line">   - 定义 $$\bar \Omega_c=\&#123;\mu\mid \min_&#123;\pi^*\in \Pi^*&#125; \Xi(\pi^*,\mu)\le c\&#125;$$ 且 $$\Omega_c=\&#123;\mu\mid \min_&#123;\pi^*\in \Pi^*&#125; \Xi(\pi^*,\mu)&lt; c\&#125;$$，这两个集合有界且闭，都是紧集。（原始论文这里应该有一点小错误？可能是这么修正的吧，望大佬指清）</span><br><span class="line">2. **收敛性**：</span><br><span class="line">   - 假设 $$C = \min_&#123;\pi^* \in \Pi^*&#125; \Xi(\pi^*, \pi_0)$$，并且由于 $$\Delta V(\mu) &lt; 0$$，序列 $$\min_&#123;\pi^* \in \Pi^*&#125; \Xi(\pi^*, \pi_k)$$ 收敛于 $$c$$。</span><br><span class="line">3. **c=0**：</span><br><span class="line">   - 假设 $$c &gt; 0$$，那么所有 $$\pi_k $$ 都在闭集 $$\Omega_&#123;C,c&#125; = \bar&#123;\Omega&#125;_C \setminus \Omega_c$$ 中。</span><br><span class="line">   - $$\Omega_&#123;C,c&#125;$$ 是紧集，$$\Delta V(\cdot)$$ 的像也是紧集 $$K$$，且 $$k_&#123;\max&#125; = \sup_&#123;x \in K&#125; &lt; 0$$。</span><br><span class="line">   - 这意味着对于所有 $$k$$，$$\Delta V(\pi_k) \leq k_&#123;\max&#125;$$</span><br><span class="line">   - $$\min_&#123;\pi^*\in \Pi^*&#125; \Xi(\pi^*,\pi_k) \le \min_&#123;\pi^*\in \Pi^*&#125; \Xi(\pi^*,\pi_0)+\sum_&#123;i=0&#125;^&#123;k-1&#125;\Delta V(\pi_i)\le C+k\times k_&#123;max&#125;&lt;c$$。对于某个 $$k$$ 是能成立的，这和 $$c$$ 是最小值是矛盾的。</span><br><span class="line">   - 所以只能 $$c=0$$</span><br><span class="line"></span><br><span class="line">因此，通过以上分析，策略序列 $$\pi_k$$ 收敛到一个纳什均衡。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">碎碎念：</span><br><span class="line"></span><br><span class="line">为什么 $$\pi,Q$$ 并不完全是对偶的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; Piliouras, G. and Shamma, J. S. Optimization despite chaos: Convex relaxations to complex limit sets via Poincar´e recurrence. In ACM-SIAM Symposium on Discrete Algo rithms (SODA), 2014.</span><br><span class="line"></span><br><span class="line">&gt; Doubly Optimal No-Regret Learning in Monotone Games</span><br><span class="line"></span><br><span class="line">&gt;Monotone Games - A Unified Approach to Games with Strategic Complements and Substitutes</span><br><span class="line">&gt;</span><br><span class="line">&gt;online monotone Games</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/09/10/Finding%20Equilibrium%20via%20Regularization/" title="Finding Equilibrium via Regularization" target="_blank" rel="external">http://emoairx.github.io/blog/2024/09/10/Finding Equilibrium via Regularization/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2024/08/29/diary/diary240829/" title="240829 - LLM 泡沫?"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
