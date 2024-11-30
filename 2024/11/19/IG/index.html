@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>底层码农视角下的自然梯度下降法 | emoairx</title>
+  <meta name="description" content="虽然很simple，但似乎对于不懂数学的底层码农，如何用我会的数学描述出来已经很艰难了。 我觉得我学不会英语了，我也学不会数学了。 还是补点基础吧   \theta_{k+1}&#x3D;\theta_k-\alpha_k \nabla J(\theta_k)随着距离在某些地方发生变化，梯度下降的方向是能量下降最快的方向并不一定是事实。 比如说我拿KL散度当距离，拿单纯形当参数，一个值越接近零其实反而越">
+<meta property="og:type" content="article">
+<meta property="og:title" content="底层码农视角下的自然梯度下降法">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/11/19/IG/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="虽然很simple，但似乎对于不懂数学的底层码农，如何用我会的数学描述出来已经很艰难了。 我觉得我学不会英语了，我也学不会数学了。 还是补点基础吧   \theta_{k+1}&#x3D;\theta_k-\alpha_k \nabla J(\theta_k)随着距离在某些地方发生变化，梯度下降的方向是能量下降最快的方向并不一定是事实。 比如说我拿KL散度当距离，拿单纯形当参数，一个值越接近零其实反而越">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-19T05:04:49.972Z">
+<meta property="article:modified_time" content="2024-11-30T06:31:29.137Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="IG">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="几何">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/11/19/IG/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IG/" rel="tag">IG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">85</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%9C%80%E4%BC%98%E4%BC%A0%E8%BE%93/" rel="tag">最优传输</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/IG/" style="font-size: 13px;">IG</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%A0%E4%BD%95/" style="font-size: 13.4px;">几何</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.6px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%9C%80%E4%BC%98%E4%BC%A0%E8%BE%93/" style="font-size: 13px;">最优传输</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.6px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/11/">November 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/10/">October 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/08/">August 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/19/IG/" class="title">底层码农视角下的自然梯度下降法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-19T05:04:49.972Z" itemprop="datePublished">2024-11-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/15/OT-2/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-15T13:38:26.501Z" itemprop="datePublished">2024-11-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/12/%E5%8A%B3%E5%8A%A8%E8%AF%BE%E5%B0%B1%E4%B8%9A%E7%AC%94%E8%AE%B0/" class="title">就业相关国内劳动法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-12T11:08:19.142Z" itemprop="datePublished">2024-11-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/10/23/%E7%BC%96%E8%AF%91/" class="title">编译原理-理论</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-23T11:40:03.043Z" itemprop="datePublished">2024-10-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/10/17/Optimal%20Transport/" class="title">找不到工作的底层码农视角下的最优传输(1)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-17T08:13:16.426Z" itemprop="datePublished">2024-10-17</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-IG" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      底层码农视角下的自然梯度下降法
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/11/19/IG/" class="article-date">
+	  <time datetime="2024-11-19T05:04:49.972Z" itemprop="datePublished">2024-11-19</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/IG/" rel="tag">IG</a>, <a class="article-tag-link-link" href="/blog/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/11/19/IG/" class="leancloud_visitors"  data-flag-title="底层码农视角下的自然梯度下降法">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/11/19/IG/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p> 虽然很simple，但似乎对于不懂数学的底层码农，如何用我会的数学描述出来已经很艰难了。</p>
+<p>我觉得我学不会英语了，我也学不会数学了。</p>
+<p>还是补点基础吧</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\theta_{k+1}=\theta_k-\alpha_k \nabla J(\theta_k)</script><p>随着距离在某些地方发生变化，梯度下降的方向是能量下降最快的方向并不一定是事实。</p>
+<p>比如说我拿KL散度当距离，拿单纯形当参数，一个值越接近零其实反而越精细，微小的参数改动就会导致KL距离大幅度的变化，因为任何两个分布的距离衡量方式变了。这似乎让梯度下降在概率空间中显得不那么自然。</p>
+<p>于是自然的想法是，我去修正我的参数的比例关系，使得无论如何我都只尝试从单纯形上去做最速下降，比如单纯性上距离的度量一般就选用KL散度。</p>
+<p><strong>KL散度</strong>：<script type="math/tex">D_{KL}(P||Q)=\sum P(x) \log \frac{P(x)}{Q(x)}</script>，这里 <script type="math/tex">P,Q</script> 是两个带参数的分布。</p>
+<blockquote>
+<p>其实KL散度和熵差不多。</p>
+<p><a target="_blank" rel="noopener" href="https://bluefisher.github.io/2020/02/16/Natural-Gradient-Descent/">Natural Gradient Descent | Fisher’s Blog</a></p>
+</blockquote>
+<p>这时候我们的问题就是找一个参数向量的方向 <script type="math/tex">d</script>，使得 <script type="math/tex">J(\theta+d)</script> 最小，满足 <script type="math/tex">KL(p_\theta||p_{\theta+d})=c</script>，其中 <script type="math/tex">c</script> 是一个常数。</p>
+<p>先来看看怎么求解这个问题。</p>
+<blockquote>
+<p>好像不太知道KL散度对参数是怎么影响的，一个直接的想法就是对KL散度做近似。</p>
+</blockquote>
+<p>于是我们对它泰勒展开，注意我们变化是影响两个概率分布的参数，我们把概率分布看成一个点，那么 <script type="math/tex">P_\theta(x)=p(x\mid \theta), P_{\theta+\delta\theta}(x)=p(x\mid \theta+\delta \theta)</script>，那么</p>
+<script type="math/tex; mode=display">
+\log P_{\theta+\delta\theta}(x)\approx \log P(x)+\nabla _\theta \log P_\theta(x)\cdot \delta\theta +\frac{1}{2}\delta\theta ^T \mathbf {H_\theta}\log P_\theta(x) \delta\theta</script><p>其中 <script type="math/tex">\mathbf H_\theta \log P_\theta(x)</script> 就是关于 <script type="math/tex">\theta</script> 的 Hessian矩阵。</p>
+<p><strong>score function</strong>：我们一般习惯把 <script type="math/tex">s_\theta(x)=\nabla _\theta \log P_\theta(x)</script> 叫做score function，表示似然函数对参数 <script type="math/tex">\theta</script> 的梯度。</p>
+<script type="math/tex; mode=display">
+\nabla_\theta \log P_\theta(x)=\frac{\nabla_\theta P_\theta(x)}{P_\theta(x)}</script><p>这玩意儿的性质决定了它的期望值是零</p>
+<script type="math/tex; mode=display">
+\int P_\theta(x) \nabla_\theta \log P_\theta(x)\\=
+\int \nabla_\theta P_\theta(x)=\nabla_\theta \int P_\theta(x)=\nabla_\theta 1=0</script><blockquote>
+<p>不知道有没有缺少什么数学严谨性，还有一种理解方式是把那个极限拆开成两个概率分布的差，算一下也是1-1=0。</p>
+<p>那么如果第二个参数不变，只变化第一个参数呢？好像不知道会变成什么样子，感觉是大差不差的但是到底差多少不知道。</p>
+</blockquote>
+<p>注意到这时候算全体的期望还是零，所以我们就继续用第二个泰勒展开项。</p>
+<p><strong>Fisher Information matrix</strong></p>
+<p>对于第二项 <script type="math/tex">\mathbf H_\theta \log P_\theta(x)</script>，如果 <script type="math/tex">\theta</script> 是参数向量，写成坐标分量形式就是</p>
+<script type="math/tex; mode=display">
+\mathbf H_\theta \log P_\theta(x)=\left(\frac{\partial \log P_\theta(x)}{\partial \theta_i\partial \theta_j}\right)_{i,j}</script><p>由于我们还是最后要积分一下要看整体，所以哦我们还是尝试看这个海森矩阵的期望。具体而言，我们尝试去求这个东西逐项的期望。</p>
+<script type="math/tex; mode=display">
+\mathbf F(\theta)=\int P_\theta(x) \mathbf H_\theta \log P_\theta(x) \mathrm dx</script><p>我们下面也会不加区分地写成 <script type="math/tex">\mathbf I(\theta)</script>，写成坐标分量形式就是</p>
+<script type="math/tex; mode=display">
+\mathbf F(\theta)_{ij}=\int P_\theta(x)\frac{\partial \log P_\theta(x)}{\partial \theta_i\partial \theta_j} dx</script><p>后面这个能怎么化简一下呢？能不能把那个海森矩阵换个简单的形式写一下？</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&\quad \mathbf H_\theta \log P_\theta(x)=\nabla _\theta \nabla _\theta \log P_\theta(x)\\
+&=\nabla_\theta \frac{\nabla _\theta P_\theta(x)}{P_\theta(x)}\\
+&=\frac{P_\theta(x) \nabla_\theta\nabla _\theta P_\theta(x)-(\nabla _\theta P_\theta(x))^2}{P_\theta(x)^2}\\
+&=\frac{\nabla_\theta\nabla_\theta P_\theta(x)}{P_\theta(x)}-(\nabla _\theta \log P_\theta(x))^2
+\\
+\end{align*}</script><p>注意到如果这时候我们求一个东西的期望</p>
+<script type="math/tex; mode=display">
+\int P_\theta(x) \frac{\nabla_\theta \nabla _\theta P_\theta(x)}{P_\theta(x)} dx\\
+=\int \nabla _\theta\nabla _\theta P_\theta(x) dx\\
+=\nabla_\theta \nabla _\theta \int P_\theta(x) dx=0</script><p>所以在期望意义上我们就知道</p>
+<script type="math/tex; mode=display">
+\mathbf F(\theta)=\int P_\theta(x) \mathbf H_\theta \log P_\theta(x) \mathrm dx\\
+=-\int P_\theta(x) (\nabla_\theta \log P_\theta(x))^2 \mathrm dx</script><p>无论怎么表示，我们都把这个求期望后的量的坐标分量 <script type="math/tex">\mathbf F(\theta)_{ij}</script> 定义为 <strong>Fisher Information matrix</strong>。</p>
+<p><strong>KL散度的二阶泰勒展开</strong></p>
+<p>综上所述我们得到了KL散度的二阶泰勒展开</p>
+<script type="math/tex; mode=display">
+D_{KL}(P_\theta || P_{\theta+\delta\theta})\approx \frac{1}{2} \delta \theta^T \mathbf F(\theta) \delta \theta</script><blockquote>
+<p>值得一提的是，对于另一种对称的推导我们也能得到同样的结论</p>
+<p>为了推导KL散度 <script type="math/tex">KL(P_{\theta+\delta\theta}, P_\theta)</script> 的二阶泰勒展开，我们从KL散度的定义出发：</p>
+<script type="math/tex; mode=display">
+KL(P_{\theta+\delta\theta}, P_\theta) = \mathbb{E}_{P_{\theta+\delta\theta}} \left[ \log P_{\theta+\delta\theta}(x) - \log P_\theta(x) \right].</script><p>首先，对 <script type="math/tex">\log P_{\theta+\delta\theta}(x)</script> 进行泰勒展开：</p>
+<script type="math/tex; mode=display">
+\log P_{\theta+\delta\theta}(x) \approx \log P_\theta(x) + \nabla_\theta \log P_\theta(x) \cdot \delta\theta + \frac{1}{2} \delta\theta^T H_\theta \log P_\theta(x) \delta\theta,</script><p>其中 <script type="math/tex">H_\theta</script> 是 <script type="math/tex">\log P_\theta(x)</script> 的海森矩阵。</p>
+<p>将其代入KL散度的表达式中：</p>
+<script type="math/tex; mode=display">
+KL(P_{\theta+\delta\theta}, P_\theta) \approx \mathbb{E}_{P_{\theta+\delta\theta}} \left[ \nabla_\theta \log P_\theta(x) \cdot \delta\theta + \frac{1}{2} \delta\theta^T H_\theta \log P_\theta(x) \delta\theta \right].</script><p>接下来，将 <script type="math/tex">\mathbb{E}_{P_{\theta+\delta\theta}}</script> 展开为 <script type="math/tex">\mathbb{E}_{P_\theta}</script> 的函数：</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{P_{\theta+\delta\theta}} [A] \approx \mathbb{E}_{P_\theta} [A] + \delta\theta^T \mathbb{E}_{P_\theta} [A \nabla_\theta \log P_\theta(x)] + \frac{1}{2} \delta\theta^T \mathbb{E}_{P_\theta} [A H_\theta \log P_\theta(x)] \delta\theta.</script><p>代入上式并忽略高阶小项，得到：</p>
+<script type="math/tex; mode=display">
+KL(P_{\theta+\delta\theta}, P_\theta) \approx \frac{1}{2} \delta\theta^T I(\theta) \delta\theta,</script><p>其中 <script type="math/tex">I(\theta)</script> 是Fisher信息矩阵，定义为：</p>
+<script type="math/tex; mode=display">
+I(\theta) = \mathbb{E}_{P_\theta} \left[ \nabla_\theta \log P_\theta(x) \nabla_\theta \log P_\theta(x)^T \right].</script><p>因此，KL散度 <script type="math/tex">KL(P_{\theta+\delta\theta}, P_\theta)</script> 的二阶泰勒展开为：</p>
+<script type="math/tex; mode=display">
+KL(P_{\theta+\delta\theta}, P_\theta) \approx \frac{1}{2} \delta\theta^T I(\theta) \delta\theta.</script></blockquote>
+<p>这个公式的成立基于多元函数的泰勒展开。</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{P_{\theta+\delta}}[A] \approx \mathbb{E}_{P_{\theta}}[A] + \delta\theta^T \nabla_\theta \mathbb{E}_{P_{\theta}}[A] + \frac{1}{2}\delta\theta^T H_\theta \mathbb{E}_{P_{\theta}}[A] \delta\theta</script><p>我们可以从概率分布的参数化形式出发，理解其推导过程。</p>
+<hr>
+<blockquote>
+<p>FIM是统计模型中自然出现的度量。它提供了参数空间的内在几何结构，反映了模型参数对数据分布的敏感性。</p>
+</blockquote>
+<p>回到之前的问题</p>
+<blockquote>
+<p>找一个参数向量的方向 <script type="math/tex">d</script>，使得 <script type="math/tex">J(\theta+d)</script> 最小，满足 <script type="math/tex">KL(p_\theta||p_{\theta+d})=c</script>，其中 <script type="math/tex">c</script> 是一个常数。</p>
+</blockquote>
+<p>使用拉格朗日乘子法</p>
+<script type="math/tex; mode=display">
+\min J(\theta+d)+\lambda (D_{KL}(P_\theta||p_{\theta+d})-c)\\
+\approx \min_{d}J(\theta)+\nabla_\theta J(\theta)^Td+\frac{1}{2}\lambda d^T\mathbf Fd-\lambda c</script><p>解得</p>
+<script type="math/tex; mode=display">
+d=-\frac{1}{2\lambda} \mathbf F^{-1} \nabla_\theta J(\theta)</script><hr>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/666201805">自然梯度下降 - 知乎</a></p>
+<p><strong>度量</strong></p>
+<p>直观上来看，FIM似乎是某种KL散度的近似，但是却有诸如对称等性质，于是我们也尝试把 <script type="math/tex">\mathbf I</script> 看成某种对称的度量。由于这种非常优秀的度量的存在，我们尝试把整个参数空间看成某种流形，每个参数上可以找一个切空间。</p>
+<p>我们知道我们定义直接的方向导数是</p>
+<script type="math/tex; mode=display">
+\nabla_v L(p)=\lim_{h\to 0} \frac{L(p+hv)-L(p)}{h}</script><p>进而定义Riemannian gradient：</p>
+<script type="math/tex; mode=display">
+\nabla _M L(p)= \nabla _v (L(\exp_p(v)))\bigg |_{v=0}</script><p>进而借由Riemannian exponential map定义Riemannian gradient：</p>
+<script type="math/tex; mode=display">
+p_{t+1}=\exp_{p_t}{(-\alpha_t \nabla_M L(p_t))}</script><p>这里的 <script type="math/tex">exp:T_p\to M</script> 是把切空间映射到流形上的</p>
+<blockquote>
+<p>但是据说这个计算解需要一个二阶微分方程，直观上是对的，测地线保持内积不变，但是没仔细check过</p>
+</blockquote>
+<p>但是从切空间到流形的映射是困难的，鉴于沿着测地线走比较困难，于是就继续尝试做一阶近似，换言之我用一个新的映射（欧几里德回缩映射） <script type="math/tex">R_p(v)=p+v</script> 来近似 exp。</p>
+<p>于是自然梯度下降法就是</p>
+<script type="math/tex; mode=display">
+\theta_{t+1}=\theta_t-\alpha_t ^{NG}\nabla L_\theta(\theta_t)</script><p>其中自然梯度 <script type="math/tex">{}^{NG}\nabla</script> 定义为</p>
+<script type="math/tex; mode=display">
+{}^{NG}\nabla  L_\theta(\theta):=g_\theta^{-1} \nabla_\theta L_\theta(\theta)</script><p>展开为</p>
+<script type="math/tex; mode=display">
+\theta_{t+1}=\theta_t-\alpha_t g_\theta^{-1}(\theta_t)\nabla_\theta L_\theta(\theta_t)</script><p>可以代入 <script type="math/tex">g_\theta=\mathbf I</script>。</p>
+<p>之所以这么定义，是因为它意味着梯度下降最快的方向。</p>
+<p><strong>为什么自然梯度方向是最速方向</strong></p>
+<p>和上面KL散度一样，我们希望 <script type="math/tex">||d||^2=d^T\mathbf gd\le 1</script> 同时最小化 <script type="math/tex">f(x+\epsilon d)</script>，就变成了</p>
+<script type="math/tex; mode=display">
+\min_{d}f(\theta)+\nabla_\theta f(\theta)^Td+\frac{1}{2}\lambda d^T\mathbf gd-\lambda c</script><p>从而解得</p>
+<script type="math/tex; mode=display">
+d=-\frac{1}{2\lambda} \mathbf g^{-1} \nabla_\theta J(\theta)</script><p>这个观点下，也只是意味着把Fisher Information matrix用作了黎曼度量。之所以用它作为黎曼度量是值得考虑的。</p>
+<hr>
+<p><strong>另一个空间</strong></p>
+<p>既然有了黎曼度量，我们很自然的就能定义两个组参数变化之间的内积。对于在 <script type="math/tex">\theta</script> 处展开的切空间上的两个向量 <script type="math/tex">\delta\theta_1,\delta\theta_2</script>，可以定义</p>
+<script type="math/tex; mode=display">
+\left<\delta\theta_1,\delta\theta_2\right>\  =\delta\theta_1^T I(\theta)\delta\theta_2</script><p>有了内积，我们很自然地想定义两个参数上的联络也就是导数，同样的我们给这组导数施加一些非常简单的条件。</p>
+<blockquote>
+<p>其实我不知道，真不知道，我甚至不知道torsion-free是什么意思，为什么要这样一个setting，但是好像无论如何大家都在用这个东西。我也不知道为什么唯一，但是这好像是个定理的结论。</p>
+<p>度量兼容指的是向量沿测地线平移内积不变。</p>
+</blockquote>
+<p>一个严格凸且光滑的生成函数 <script type="math/tex">F</script> 可以构建一个 Hessian 结构，黎曼度量 <script type="math/tex">g</script> 也叫Hessian度量，可以定义为 <script type="math/tex">F</script> 的 Hessian 矩阵。生成函数根据 Legendre-Fenchel对偶变化可以得到对偶函数 <script type="math/tex">F^*</script>，也能得到一个 <script type="math/tex">g^*</script> 表示某种对偶 Hessian度量。联络和对偶联络是各自空间的平直联络，Christoffel符号为零。</p>
+<blockquote>
+<p>据说存在唯一的 torsion-free affine connection和度量兼容，这就是Levi-Civita联络 <script type="math/tex">{}^{LC}\nabla</script>，所以如果对于一个配备了一组 torsion-free flat connections 流形 <script type="math/tex">M</script>，据说 <script type="math/tex">(\nabla,\nabla^*)</script> 满足 <script type="math/tex">\frac{\nabla+\nabla^*}{2}={}^{LC}\nabla</script>，这玩意儿我不知道为什么对。</p>
+</blockquote>
+<p>我们之前说到</p>
+<script type="math/tex; mode=display">
+{}^{NG}\nabla  L_\theta(\theta):=g_\theta^{-1} \nabla_\theta L_\theta(\theta)</script><p>那么猜想在它的对偶做下降的时候应该是</p>
+<script type="math/tex; mode=display">
+NG^*:\eta_{t+1}=\eta_t-\alpha_t(g^*_\eta)^{-1}(\eta_t)\nabla_\eta L_\theta(\theta(\eta_t))
+\\
+=\eta_t-\alpha_t(g^*_\eta)^{-1}(\eta_t)\nabla_\eta L_\eta(\eta_t)</script><p>当然这里 <script type="math/tex">\eta=\nabla F(\theta)</script>，<script type="math/tex">\theta=\nabla F^*(\eta)</script>，不严谨地可以理解为</p>
+<script type="math/tex; mode=display">
+g_\eta^*(\eta)=\frac{d\theta}{d\eta }=\nabla^2 F^*(\eta)=(\nabla^2F(\theta))^{-1}</script><p>换一个角度 <script type="math/tex">g_\theta(\theta)=\nabla^2F(\theta)=\nabla_\theta \nabla_\theta F(\theta)=\nabla_\theta \eta</script>。</p>
+<script type="math/tex; mode=display">
+\nabla_\theta L_\theta(\theta)=\nabla_\theta (L_\eta(\eta(\theta)))=(\nabla_\theta \eta)(\nabla _\eta L_\eta(\eta))</script><p>从而我们有</p>
+<script type="math/tex; mode=display">
+{}^{NG}\nabla L_\theta(\theta):=g_\theta^{-1}(\theta)\nabla _\theta L_\theta(\theta)\\
+=(\nabla_\theta \eta)^{-1} (\nabla _\theta \eta)\nabla _\eta L_\eta(\eta)\\
+=\nabla _\eta L_\eta(\eta)</script><p>结论是在自然梯度下降法等价于对偶参数的常规梯度下降。一个好处是能把由于计算hessian矩阵导致的二阶优化变成一阶优化。</p>
+<p>所以现在兜兜转转问题来到了，什么是另一个空间。</p>
+<p><strong>example</strong></p>
+<p>对于 bernoulli family，直接参数化为选择 <script type="math/tex">p</script> 表示随机变量为1的概率。似然函数 <script type="math/tex">L(p)=p(1-p)</script>，对数似然函数 <script type="math/tex">\log L(p)=\log p-\log (1-p)</script>。</p>
+<p>于是似然函数的二阶梯度是 <script type="math/tex">\frac{1}{p(1-p)}</script>，其中一个可以诱导的凸函数取熵函数 <script type="math/tex">F(p)=p\log p+(1-p)\log (1-p)</script>, ，定义在 <script type="math/tex">[0,1]</script>，<script type="math/tex">\nabla^2 F^*(p)=\frac{1}{p(1-p)}</script></p>
+<p>其对偶函数 <script type="math/tex">F^*(\theta)=\log (1+e^\theta)</script>，定义在 <script type="math/tex">\mathbb R</script> 上，<script type="math/tex">\nabla^2 F^*(\theta)=\frac{e^{-\theta}}{(1+e^{-\theta})^2}</script>。</p>
+<p>另外一个例子，如果我是单纯形，参数就是 <script type="math/tex">\pi</script>，我取势能函数 <script type="math/tex">\psi</script> 为负的香农熵作为一个势能函数，在这个势能函数意义下。</p>
+<p>我要得到 <script type="math/tex">\sup_{Q} \left<\pi,Q\right>-\pi\log \pi</script> ，那么 <script type="math/tex">Q=\log \pi</script>，所以我与其在原始空间中做自然梯度下降，不如在 log 空间中做普通的梯度下降。</p>
+<p>所以也可以 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/473071562">【凸优化算法】两种视角看待Mirror Descent - 知乎</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/11/19/IG/" title="底层码农视角下的自然梯度下降法" target="_blank" rel="external">http://emoairx.github.io/blog/2024/11/19/IG/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/blog/2024/11/15/OT-2/" title="(no title)"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

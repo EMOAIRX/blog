@@ -1,1 +1,0 @@
-{"input_file":null,"cache_file":null,"output_file":null,"convert_to_json":true,"task_name":["criteria_v0.1","if_v0.1","math_v0.1"],"model_name":null,"name":"llama-3-70b-instruct","endpoints":[{"api_base":null,"api_key":null}],"parallel":50,"temperature":0,"max_token":512,"max_retry":2,"retry_sleep":10,"error_output":"$ERROR$"}

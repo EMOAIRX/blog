@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>一些几何概念堆砌 | emoairx</title>
+  <meta name="description" content="From 梁老的[微分几何与广义相对论] 拓扑 函数的连续性 任何一个开集的逆映射都是开的。点连续 任何 f(x)\in G&#39; \in \mathscr S ，存在 G\in \mathscr T, x\in G, f[G]\in G&#39; 。拓扑空间的连通性 除了 \empty,X 外没有既开又闭的子集。集合的紧致性 任一开覆盖都有有限子覆盖。同胚是定义在拓扑空间和拓扑空间上的。 流形 微分流形从拓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些几何概念堆砌">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/10/04/dg/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="From 梁老的[微分几何与广义相对论] 拓扑 函数的连续性 任何一个开集的逆映射都是开的。点连续 任何 f(x)\in G&#39; \in \mathscr S ，存在 G\in \mathscr T, x\in G, f[G]\in G&#39; 。拓扑空间的连通性 除了 \empty,X 外没有既开又闭的子集。集合的紧致性 任一开覆盖都有有限子覆盖。同胚是定义在拓扑空间和拓扑空间上的。 流形 微分流形从拓">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-04T08:45:59.924Z">
+<meta property="article:modified_time" content="2024-11-30T06:31:20.806Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="几何">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/10/04/dg/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IG/" rel="tag">IG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">85</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%9C%80%E4%BC%98%E4%BC%A0%E8%BE%93/" rel="tag">最优传输</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/IG/" style="font-size: 13px;">IG</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%A0%E4%BD%95/" style="font-size: 13.4px;">几何</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.6px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%9C%80%E4%BC%98%E4%BC%A0%E8%BE%93/" style="font-size: 13px;">最优传输</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.6px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/11/">November 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/10/">October 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/08/">August 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/19/IG/" class="title">底层码农视角下的自然梯度下降法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-19T05:04:49.972Z" itemprop="datePublished">2024-11-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/15/OT-2/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-15T13:38:26.501Z" itemprop="datePublished">2024-11-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/12/%E5%8A%B3%E5%8A%A8%E8%AF%BE%E5%B0%B1%E4%B8%9A%E7%AC%94%E8%AE%B0/" class="title">就业相关国内劳动法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-12T11:08:19.142Z" itemprop="datePublished">2024-11-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/10/23/%E7%BC%96%E8%AF%91/" class="title">编译原理-理论</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-23T11:40:03.043Z" itemprop="datePublished">2024-10-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/10/17/Optimal%20Transport/" class="title">找不到工作的底层码农视角下的最优传输(1)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-17T08:13:16.426Z" itemprop="datePublished">2024-10-17</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-dg" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一些几何概念堆砌
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/10/04/dg/" class="article-date">
+	  <time datetime="2024-10-04T08:45:59.924Z" itemprop="datePublished">2024-10-04</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/10/04/dg/" class="leancloud_visitors"  data-flag-title="一些几何概念堆砌">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/10/04/dg/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>From 梁老的[微分几何与广义相对论]</p>
+<p><strong>拓扑</strong></p>
+<p>函数的<strong>连续性</strong> 任何一个开集的逆映射都是开的。<strong>点连续</strong> 任何 <script type="math/tex">f(x)\in G' \in \mathscr S</script> ，存在 <script type="math/tex">G\in \mathscr T, x\in G, f[G]\in G'</script> 。拓扑空间的<strong>连通性</strong> 除了 <script type="math/tex">\empty,X</script> 外<strong>没有既开又闭</strong>的子集。集合的<strong>紧致性</strong> 任一开覆盖都有有限子覆盖。同胚是定义在<strong>拓扑空间</strong>和<strong>拓扑空间</strong>上的。</p>
+<p><strong>流形</strong></p>
+<p>微分流形从拓扑中定义。首先是 <script type="math/tex">(M,\mathscr T)</script> 的这个集合有开覆盖<script type="math/tex">\bigcup_\alpha O_\alpha</script> ，开覆盖的每一个集合 <script type="math/tex">O_\alpha</script> 存在一个和 <script type="math/tex">V_\alpha</script> 的<strong>同胚</strong>映射 <script type="math/tex">\psi_\alpha</script>，这里 <script type="math/tex">V_\alpha</script> 又得是 <script type="math/tex">R^n</script> 的<strong>通常拓扑</strong>衡量的开子集。同时，如果两个开集非空，那么他们的复合的同胚映射 <script type="math/tex">\psi_\beta\circ \psi_\alpha^{-1}</script> 作为一个 <script type="math/tex">R^n\to R^n</script> 的函数是 <script type="math/tex">C^{\infty}</script> 光滑的。</p>
+<p>上面的定义算光滑微分流形，物理中的流形一般还需要作为拓扑空间是 Hausdorff的 和 第二可数，简称流形。</p>
+<script type="math/tex; mode=display">O_\alpha$$ 中的元素可以利用 $$\psi_\alpha$$ 这个映射获得坐标。也即 $$(O_\alpha,\psi_\alpha)$$ 构成一个**坐标系**。进一步我们也就有了坐标变换函数 $$\psi_\beta\circ \psi_\alpha^{-1}$$。这个坐标系在数学上叫做 chart（图），坐标系的集合叫做 atlas，第二个光滑的条件叫做相容性条件（compatibility）。一般就取最大的相容的坐标系会最好。
+
+然后就有微分同胚的概念，和同胚的差别还在于希望这个映射（已经定义了流形了）是 $$C^\infty$$ 的。微分同胚是流形间的关系，同胚是拓扑空间中的关系。
+
+这样的映射 $$M\to M'$$ 有一个特例是 $$M'=R$$，则我们可以定义标量场，一般我们认为是光滑函数。
+
+
+
+最早定义了拓扑空间，让后就能定义流形，因为得有开集和映射我就有了到 $$R^n$$ 的坐标的方法，开集中的一个元素叫做一个点。接着我定义了标量函数，我还定义了矢量的概念。
+
+**矢量**
+
+矢量是一个作用在标量函数上的算子，流形上一点的适量空间是 $$R^n$$ 的。在一点的映射函数 $$\psi$$ ，有一组很自然的矢量，这是说如果给定一个标量函数，我可以对应于坐标空间得到一组偏导数，有趣的是这些矢量恰好构成了一组基。
+
+接着我们定义了曲线，或者说参数曲线，于是就有了切矢的概念，切矢也是说曲线上的一个矢量，类似于全导数了。如果把曲线理解成带参数的映射而不是映射的像本身，那么曲线的切矢因为依赖于参数化，也就只有一个切矢。而非无数平行的。$$V_p$$ 的每个矢量都是某个曲线的切矢，于是我们就知道了为什么叫切空间。
+
+**矢量场**
+
+记得一个点上的矢量是一个定义域在标量函数上的一个线性算子？所以矢量场是这些线性算子的集合，定义域还是在标量函数上。点上的矢量是一个点的作用，矢量场就是对整个函数的一个大的作用，最终把 $$f$$ 变成 $$v(f)$$。可以理解为一个矢量给定了一个方向，然后就可以对这个函数在这个方向求导得到一个数。既然有了矢量场，就可以有对易子，也是个矢量场。
+
+**对偶矢量场**
+
+对偶矢量场在某个点上的定义是一个把矢量映射到常数的东西，类比于 $$df$$ 这个东西，给定一个函数，再给一个矢量，我就能求这个对偶矢量场在这个矢量上的值，偏导数的符号恰好理解成一个抽象矢量的基矢方向，而 $$df$$ 这个就恰好可以理解成一个内在的属性，可以代入一个矢量得到一个值，但是又满足线性性质，是一个线性空间。
+
+**张量与度规**
+
+在空间上于是可以定义张量场 $$\mathscr T_M(k,l)$$，张量是一些对偶矢量和矢量的积，张量可以定义简并操作，也可以定义“作用”，作用可以理解成作张量积之后简并。线性映射是一个（1，1）张量，度规metric是一个（0，2）张量，度规是可以理解成 $$V\to V^*$$，也就是一个线性空间到其对偶的映射。$$(k,l)$$ 这种张量还是可以写成抽象指标的形式，大概是 $$T_{cd}^{ab}$$ 这种，然后具体指标（分量）用 $$T_{\mu \nu}^{\alpha \beta}$$ 这样来表示。有了度规，就可以 $$w^a=\delta_{ab}w_b$$。
+
+对于张量，用圆括号表示对称部分，用方括号表示反对称部分。 $$T_{(ab)}:=\frac{1}{2}(T_{ab}+T_{ba})$$，$$T_{[ab]}:=\frac{1}{2}(T_{ab}-T_{ba})$$。度量张量可以把一个逆变指标变成协变指标，$$v_\mu= g_{\mu\nu}v^{\nu}$$。没错我们发现这个抽象指标是一个很厉害的东西。
+
+**导数算符**
+
+为了看这个抽象指标有多厉害，我们不由自主地想要定义导数算符 $$\nabla$$，除了各种线性，莱布尼兹，各种缩并交换，以及无绕性之外，最关键的就是这个对于任何一个标量函数 $$v(f)=v^a\nabla_a f$$，就是定义。
+
+> 推广的时候gradient of a function f看成一个dual vector field而不是vector filed，而一般在欧氏空间是因为又了度规，所以不区分vector filed和dual vector filed。用起来发现dual更方便。
+
+注意我本身是不知道矢量作用于一个函数会发生什么的，但是我能证明矢量是一个线性空间，并且可以被这些偏导数的记号线性表出。所以这个 $$\nabla$$ 主要要考虑的就是和这些偏导数兼容。$$v(f)=\vec v\cdot \vec \nabla f=v^a\nabla _a f$$。还有一个性质是 $$\nabla_a \nabla _b f=:T_{ab}=T_{ba}$$，加上这条无绕，更强一点。有可能有很多满足情况的 $$\nabla$$，因为把它作用在非标量函数（如矢量场，对偶矢量场）上可能会不一样。但是，我们发现</script><p>[(\tilde \nabla_a -\nabla_a ) \omega_b]_p=[(\tilde \nabla_a -\nabla_a ) \omega_b’]_p</p>
+<script type="math/tex; mode=display">
+两个 $$\nabla$$ 的差也是一个导数算符，所以对于 $$p$$ 点的一个dual vector，可以自然地把它延拓成一个dual vector field（其他地方都无所谓），注意，所以这个 $$[(\tilde \nabla_a -\nabla_a ) \omega_b]_p$$ 天生的就是一个p点的 tensor of type (0,2)。</script><p>\tilde \nabla<em>a -\nabla_a :\mathscr T</em>{V<em>p}(0,1)\to T</em>{V_p}(0,2)</p>
+<script type="math/tex; mode=display">
+也就是 $$T_{V_p}(1,2)$$。妙啊。也就是在 $$p$$ 点，$$(\tilde \nabla _a-\nabla _a) \omega_b= C_{ab}^c \omega_c$$ 。如果torsion free，就有 $$C_{ab}^c=C_{ba}^c$$。进一步可以发现对于(1,0)是 $$\nabla_av ^b=\tilde \nabla_av^b+C_{ac}^b v^c$$，更多的也有。如果写得非常具体，那么 $$\partial$$ 这个导数的坐标分量等于坐标分量的偏导数。为了表示非常具体的 $$\partial _a$$，我们用 $$\nabla _a \omega_b = \partial_a \omega_b - \Gamma^c_{ab}\omega _c$$，这里 $$\Gamma$$ 我们用克式符(Christoffel symbol)，抽象指标算tensor，但是坐标相关，每个坐标下定义一个tensor满足tensor变化率但是两个不同的坐标系下会有不同的克式符。因为是tensor，所以我们把 $$\nabla_a ,\partial_a,\Gamma$$ 都能联系起来。
+
+**平移**
+
+定义是说 $$T^b\nabla _b v^a=0$$，$$T$$ 是切矢，大概是说沿着这个矢量不变（平移）。我们发现在给定坐标系具体分量的展开后，得到的是一个常微分方程，也就是给定了边界条件，也就有唯一的解。于是我们根据这个，发现给了一条曲线 $$v^a\in V_p$$ 和 $$u^a \in V_q$$ 可以被联系起来。因为有导数算符，又因为有一个曲线，就大概可以理解成把一个矢量平移到另一个切空间。一般的平移是曲线依赖的，但是也比没有好啊，所以这个 $$\nabla_a$$ 念作 grad a 叫做两个切空间的联络。
+
+**度量适配**
+
+对于两个附加结构，我们定义的$$(M,\nabla_a,g_{ab})$$ 需要考虑度量和联络的适配。
+
+我们希望沿线平移后，$$T^c\nabla _c(g_{ab} v^au^b)=0$$ ，就是这两个保持内积。用莱布尼兹法则化简后，等价于 $$\nabla_a g_{bc}=0$$。
+
+Derivative operator associated with a metric，事实上给定一个度量，存在且唯一一个导数算符。怎么找，随便拉一个 $$\tilde \nabla$$，然后算一个 $$C^c_{ab}$$，算出来就找到了。还能证明唯一。所以广义黎曼空间 $$(M,g_{ab})$$ 默认适配 $$\nabla _a$$。
+
+> 遗憾的是先给connection，再找metric，答案是no。有一个反例，但我不知道
+
+最后是分量在真实计算的表达式。</script><p>F^\sigma<em>{\mu\nu}=\Gamma^c</em>{ab}(dx^\sigma)_c(\frac{\partial}{\partial x^\mu})^a(\frac{\partial}{\partial x^\nu})^b</p>
+<script type="math/tex; mode=display">
+代入 $$\Gamma_{ab}^c$$ 在 $$\partial$$ 下给定metric的展开，就知道在给定</script><p>\Gamma<em>{\mu \nu}^\sigma = \frac{1}{2} g^{\rho \sigma} \left( g</em>{\sigma \mu, \nu} + g<em>{\nu \mu, \sigma} - g</em>{\nu \sigma, \mu} \right)</p>
+<script type="math/tex; mode=display">
+四维时空，但是时空对称，有40个分量×
+
+**测地线**
+
+还记得你说的 $$T^b\nabla _b v^a=0$$ 是曲线的平移，那么 $$T^b\nabla _a T^a=0$$ 就是一条测地线。
+
+这个可以在分量展开</script><p>T^b\nabla<em>b v^a=T^b(\partial_b v^a+\Gamma^a</em>{bc}v^c)\<br>=T^\mu\frac{\partial v^a}{\partial x^\mu} +T^\mu\Gamma^a<em>{\mu\nu}v^\nu\<br>=\frac{dx^\mu}{dt}\frac{\partial v^a}{\partial x^\mu} +\frac{dx^\mu}{dt}\Gamma^a</em>{\mu\nu}v^\nu\</p>
+<p>$$<br>利用测地线我可以把流形上的一个开的集变成一个坐标系下。具体来说是把一个切空间中的矢量映射到一个流形上的点。如果恰好把测地线映射到直线，这样的坐标系叫做黎曼法坐标系，这玩意儿还有逆像。</p>
+<p><strong>黎曼曲率张量</strong></p>
+<p>大概是说 <script type="math/tex">(\nabla_a \nabla_b-\nabla_b\nabla_a)\omega_c=R_{abc}^d\omega_d</script> ，然后定义这个 <script type="math/tex">R</script> 是黎曼曲率张量，也可以因为有 <script type="math/tex">g_{ab}</script> 可以有一些缩并，缩并成里奇张量，外尔张量等等，不展开细节了。</p>
+<hr>
+<p>后面有机会再看吧，应该已经足够我大致明白什么是微分几何了。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/10/04/dg/" title="一些几何概念堆砌" target="_blank" rel="external">http://emoairx.github.io/blog/2024/10/04/dg/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2024/10/17/Optimal%20Transport/" title="找不到工作的底层码农视角下的最优传输(1)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2024/09/23/diary/diary240924/" title="240924 - o1"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

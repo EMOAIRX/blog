@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>找不到工作的底层码农视角下的最优传输(1) | emoairx</title>
+  <meta name="description" content="OT的目的不过就是想要知道概率分布到另一个概率分布的最优方法，就好像把一些地方的土木从一个地方运到另一个地方来造长城，怎么搬运最短，遗憾的是中国的古人没有总结出一套完整的数学理论。但是蒙日提出来了这个问题  蒙日问题(MP)：是定义了 T_{\sharp} 作为一个传输的映射，最优传输就是这个映射的解  \inf\{ M(T):&#x3D;\int_X c(x,T(x))d \mu(x)\mid   T_{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="找不到工作的底层码农视角下的最优传输(1)">
+<meta property="og:url" content="http://emoairx.github.io/blog/2024/10/17/Optimal%20Transport/index.html">
+<meta property="og:site_name" content="Emoairx">
+<meta property="og:description" content="OT的目的不过就是想要知道概率分布到另一个概率分布的最优方法，就好像把一些地方的土木从一个地方运到另一个地方来造长城，怎么搬运最短，遗憾的是中国的古人没有总结出一套完整的数学理论。但是蒙日提出来了这个问题  蒙日问题(MP)：是定义了 T_{\sharp} 作为一个传输的映射，最优传输就是这个映射的解  \inf\{ M(T):&#x3D;\int_X c(x,T(x))d \mu(x)\mid   T_{">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-17T08:13:16.426Z">
+<meta property="article:modified_time" content="2024-11-30T11:36:20.644Z">
+<meta property="article:author" content="emoairx">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="几何">
+<meta property="article:tag" content="最优传输">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://emoairx.github.io/blog/2024/10/17/Optimal%20Transport/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Emoairx" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/blog/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">emoairx</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PKU,EECS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/blog/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-pkuinfo">
+          <a href="/blog/info">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.PKUinfo</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>只是一些简单的生活分享吧</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/ICS/" rel="tag">ICS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/IG/" rel="tag">IG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" rel="tag">TCS基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/cs285/" rel="tag">cs285</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BD%9C%E4%B8%9A/" rel="tag">作业</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" rel="tag">凸分析与优化方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%9C%B0%E6%A6%82/" rel="tag">地概</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a><span class="tag-list-count">85</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%9C%80%E4%BC%98%E4%BC%A0%E8%BE%93/" rel="tag">最优传输</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%A8%8B%E8%AE%BE/" rel="tag">程设</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%AE%97%E5%88%86/" rel="tag">算分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%BB%8F%E5%8E%9F/" rel="tag">经原</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E9%9F%B3%E6%95%B0/" rel="tag">音数</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/blog/tags/ICS/" style="font-size: 13.2px;">ICS</a> <a href="/blog/tags/IG/" style="font-size: 13px;">IG</a> <a href="/blog/tags/NLP/" style="font-size: 13px;">NLP</a> <a href="/blog/tags/TCS%E5%9F%BA%E7%A1%80/" style="font-size: 13px;">TCS基础</a> <a href="/blog/tags/cs285/" style="font-size: 13px;">cs285</a> <a href="/blog/tags/%E4%BD%9C%E4%B8%9A/" style="font-size: 13.2px;">作业</a> <a href="/blog/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/blog/tags/%E5%87%A0%E4%BD%95/" style="font-size: 13.4px;">几何</a> <a href="/blog/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 13px;">凸优化</a> <a href="/blog/tags/%E5%87%B8%E5%88%86%E6%9E%90%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/" style="font-size: 13px;">凸分析与优化方法</a> <a href="/blog/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" style="font-size: 13.2px;">博弈论</a> <a href="/blog/tags/%E5%9C%B0%E6%A6%82/" style="font-size: 13px;">地概</a> <a href="/blog/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.6px;">强化学习</a> <a href="/blog/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 14px;">日记</a> <a href="/blog/tags/%E6%9C%80%E4%BC%98%E4%BC%A0%E8%BE%93/" style="font-size: 13px;">最优传输</a> <a href="/blog/tags/%E6%B8%B8%E8%AE%B0/" style="font-size: 13.6px;">游记</a> <a href="/blog/tags/%E7%A8%8B%E8%AE%BE/" style="font-size: 13.2px;">程设</a> <a href="/blog/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13.8px;">笔记</a> <a href="/blog/tags/%E7%AE%97%E5%88%86/" style="font-size: 13px;">算分</a> <a href="/blog/tags/%E7%BB%8F%E5%8E%9F/" style="font-size: 13px;">经原</a> <a href="/blog/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 13.6px;">随笔</a> <a href="/blog/tags/%E9%9F%B3%E6%95%B0/" style="font-size: 13px;">音数</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/11/">November 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/10/">October 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/08/">August 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/07/">July 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/06/">June 2024</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/05/">May 2024</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/04/">April 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2024/01/">January 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/12/">December 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/10/">October 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/04/">April 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/02/">February 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/01/">January 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">December 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/11/">November 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/10/">October 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/09/">September 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">August 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/07/">July 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/06/">June 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/05/">May 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/04/">April 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/03/">March 2022</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/11/">November 2021</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/19/IG/" class="title">底层码农视角下的自然梯度下降法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-19T05:04:49.972Z" itemprop="datePublished">2024-11-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/15/OT-2/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-15T13:38:26.501Z" itemprop="datePublished">2024-11-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/11/12/%E5%8A%B3%E5%8A%A8%E8%AF%BE%E5%B0%B1%E4%B8%9A%E7%AC%94%E8%AE%B0/" class="title">就业相关国内劳动法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-11-12T11:08:19.142Z" itemprop="datePublished">2024-11-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/10/23/%E7%BC%96%E8%AF%91/" class="title">编译原理-理论</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-23T11:40:03.043Z" itemprop="datePublished">2024-10-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/blog/2024/10/17/Optimal%20Transport/" class="title">找不到工作的底层码农视角下的最优传输(1)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-10-17T08:13:16.426Z" itemprop="datePublished">2024-10-17</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.8/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Optimal Transport" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      找不到工作的底层码农视角下的最优传输(1)
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/blog/2024/10/17/Optimal%20Transport/" class="article-date">
+	  <time datetime="2024-10-17T08:13:16.426Z" itemprop="datePublished">2024-10-17</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/blog/tags/%E5%87%A0%E4%BD%95/" rel="tag">几何</a>, <a class="article-tag-link-link" href="/blog/tags/%E6%9C%80%E4%BC%98%E4%BC%A0%E8%BE%93/" rel="tag">最优传输</a>, <a class="article-tag-link-link" href="/blog/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/blog/2024/10/17/Optimal%20Transport/" class="leancloud_visitors"  data-flag-title="找不到工作的底层码农视角下的最优传输(1)">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/blog/2024/10/17/Optimal%20Transport/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>OT的目的不过就是想要知道概率分布到另一个概率分布的最优方法，就好像把一些地方的土木从一个地方运到另一个地方来造长城，怎么搬运最短，遗憾的是中国的古人没有总结出一套完整的数学理论。但是蒙日提出来了这个问题</p>
+<hr>
+<p>蒙日问题(MP)：是定义了 <script type="math/tex">T_{\sharp}</script> 作为一个传输的映射，最优传输就是这个映射的解</p>
+<script type="math/tex; mode=display">
+\inf\{ M(T):=\int_X c(x,T(x))d \mu(x)\mid   T_{\sharp} \mu = \nu \}</script><p>这里的 <script type="math/tex">c</script> 就是两个点的传输距离。然而这个问题是非常难的，主要在于所有这个传输映射的全集甚至可能是太奇异了。于是Kantorovich把这个问题换成了下面这个更容易解的问题（KP）</p>
+<script type="math/tex; mode=display">
+\inf \{\int _{X\times Y} c(x,y)d \gamma(x,y)\mid \gamma \in \Pi(\mu,\nu)\}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\Pi(\mu,\nu)=\{\gamma\in P(X\times Y) \mid \pi_{X{\sharp}}=\mu,\pi_{Y{\sharp}}=\nu\}</script><p>这个问题会更容易解，因为这个 <script type="math/tex">\Pi</script> 是凸集，而这个优化问题对 <script type="math/tex">\gamma</script> 来说其实是一个线性的。可能不存在最有传输映射，但是最优传输方案一定存在。</p>
+<p><strong>KP解存在性</strong></p>
+<blockquote>
+<p>可以跳过这一步，数学上的严密性罢了，但是能进一步理解对偶</p>
+</blockquote>
+<p>这里面核心的定理是说，如果 <script type="math/tex">X</script> 和 <script type="math/tex">Y</script> 是<strong>紧</strong>度量空间，在上面定义的两个概率函数，以及一个连续代价函数 <script type="math/tex">c:X\times Y\to R</script> ，那么KP问题存在一个解。</p>
+<p>核心是Weierstrass定理，说一个函数 <script type="math/tex">f:X\to R\cup \{+\infty\}</script> 如果是<strong>下半连续</strong>，并且 <script type="math/tex">X</script> 是紧的，那么就存在点 <script type="math/tex">\bar x\in X</script> 满足 <script type="math/tex">f(\bar x)=\min_{x\in X} f(x)</script> 。</p>
+<p>我们先考虑代价函数 <script type="math/tex">c</script> 的<strong>连续性</strong>，不过由于正无穷等原因，我们尝试把函数的收敛定义的更广义（我不清楚是不是这个原因），我们得考虑这个测度空间的对偶，从而引出weak*收敛。</p>
+<blockquote>
+<p>弱收敛是是指，对于固定的对偶空间中的元素，他们的内积收敛。弱*收敛则定义在其对偶空间的弱收敛。</p>
+</blockquote>
+<p><strong>测度</strong>：有限带符号测度的定义是说度量空间 <script type="math/tex">X</script> 上的一个映射 <script type="math/tex">\lambda</script> ，对任何 Borel集 <script type="math/tex">A\subset X</script> ，给出一个实数<script type="math/tex">\lambda(A_i)</script>，对于任意可数不交并 <script type="math/tex">A=\bigcup_i A_i</script>，满足 <script type="math/tex">\sum_i|\lambda(A_i)|<+\infty</script> 并且 <script type="math/tex">\lambda(A)=\sum_i \lambda(A_i)</script>。这样能给出 <script type="math/tex">X</script> 上有限带符号测度的集合 <script type="math/tex">\mathcal M(x)</script>，一个正的有限标量测度 <script type="math/tex">|\lambda|\in \mathcal M_+(X)</script>定义是 <script type="math/tex">|\lambda|(A):=\sup\{\sum_i |\lambda(A_i)|\}</script>，所有可能的分割。一个正测度满足 <script type="math/tex">\mu(X)=1,\mu\in \mathcal M_+(X)</script>，那么这个测度叫<strong>概率测度</strong>。</p>
+<blockquote>
+<p>Borel集是从开集开始的一种sigma代数，对补集，可数并，可数交封闭。</p>
+</blockquote>
+<p><strong>连续函数空间</strong>：对于度量空间 <script type="math/tex">X</script>，可以定义 <script type="math/tex">C_0(X)</script> 作为无穷远处为零的<strong>连续函数</strong>空间，方法是首先要 <script type="math/tex">f\in C(X)</script>，并且对于任何 <script type="math/tex">f\in C_0(X)</script> 都可以对任何 <script type="math/tex">\epsilon>0</script>，满足存在紧集 <script type="math/tex">K\subset X</script>，且 <script type="math/tex">X\setminus K</script> 都满足 <script type="math/tex">|f|<\epsilon</script>。如果我们定义 <script type="math/tex">C_0(X)</script> 的上确界范数定义为 <script type="math/tex">||f||_{\infty}:=\sup_{x\in X} f(x)</script>，则能得到 <script type="math/tex">C_0(X)</script> 在上确界范数下是一个 Banach 空间。类似我们定义 <script type="math/tex">C_b(X):=\{f\in C(X),\exists M,\forall x\in X,|f(x)|\le M\}</script>，这个叫有界连续函数。这里 <script type="math/tex">C_0(X)</script> 是 <script type="math/tex">C_b(X)</script> 的闭子集，两者都可以作为 <script type="math/tex">\mathcal M(X)</script> 的对偶空间。</p>
+<blockquote>
+<p>Banach空间是一个完备的赋范向量空间，完备性意味着任何柯西列在空间中收敛到极限。</p>
+</blockquote>
+<p><strong>有界连续函数的紧性</strong>：一个有界连续函数空间 <script type="math/tex">C_b(X)</script> 在上确界范数下是一个紧的度量空间。证明则是考虑任何一个柯西列 <script type="math/tex">\{f_n\}</script>，利用 <script type="math/tex">n,m>n_0</script> 可以很小，推出任何 <script type="math/tex">x</script>， <script type="math/tex">\{f_n(x)\}</script> 是 <script type="math/tex">R</script> 中的柯西列，由 <script type="math/tex">R</script> 的紧性，从而定义一个新的函数 <script type="math/tex">f</script>。而对于充分大的 <script type="math/tex">n</script>，<script type="math/tex">f(x)\le |f(x)-f_n(x)|+|f_n(x)|\le \epsilon/4+||f_n(x)||_{\infty}</script>，可知有界，同时对于 <script type="math/tex">d(y,x)<\delta</script>， <script type="math/tex">|f(y)-f(x)|\le |f(y)-f_n(y)|+|f_n(y)-f_n(x)|+|f_n(x)-f(x)|\le 3\epsilon/4</script>，从而连续。所以是紧的，且紧性只依赖于 <script type="math/tex">R</script> 的紧性。</p>
+<p><strong>对偶性</strong>：Riesz表示定理在这里是说，对于可分局部紧的度量空间 <script type="math/tex">X</script>，若 <script type="math/tex">\mathcal X=C_0(X)</script>，对于其对偶 <script type="math/tex">\xi\in \mathcal X'</script>，存在唯一的 <script type="math/tex">\lambda \in \mathcal M(X)</script>，满足 <script type="math/tex">\left<\xi,\varphi\right>=\int \varphi d\lambda</script> 对于每一个 <script type="math/tex">\varphi\in \mathcal X</script> 都成立。进一步有 <script type="math/tex">\mathcal X'</script> 同构于 <script type="math/tex">\mathcal M(X)</script>，<script type="math/tex">\mathcal X'</script> 中范数定义为 <script type="math/tex">||\lambda||:=|\lambda|(X),\forall \lambda \in \mathcal M(X)\cong X'</script>。这说明测度空间和连续函数空间 <script type="math/tex">C_0</script> 是对偶的。同样也对 <script type="math/tex">C_b</script> 成立。</p>
+<blockquote>
+<p><script type="math/tex">X</script> 是度量空间， <script type="math/tex">\mathcal X=C_0(X)</script> 是其上面的连续函数集合，<script type="math/tex">\mathcal X'</script> 是对偶，是一个连续线性泛函的集合，<script type="math/tex">\lambda \in \mathcal M(X)</script> 是一个测度，于是这里说一个连续线性泛函的这个空间，也就是函数的对偶空间和测度的空间是同构的，每个线性泛函对应唯一的一个测度。</p>
+<p>如果在微分几何中考虑，连续函数是一个标量函数，测度是一个作用在标量函数上的东西，标量函数是(0,0)，测度作用在标量函数上，所以是(0,1)型张量。左边内积部分 <script type="math/tex">\xi</script> 是一个(0,1)张量作用在函数上，<script type="math/tex">\varphi</script> 是一个 (0,0) 张量。泛函作用在函数上输出标量，测度对函数的积分输出标量。</p>
+<p>于是一个测度的范数定义成在全空间上的全变差。</p>
+<p>此处我不知道证明</p>
+</blockquote>
+<p><strong>连续性条件证明</strong></p>
+<p>到这里我们就可以定义测度序列的弱收敛了，也就是 <script type="math/tex">\mathcal M(X)</script> 中测度序列 <script type="math/tex">\{\mu_n\}</script> 在 <script type="math/tex">C_0</script> 或 <script type="math/tex">C_b</script> 下弱收敛。如果 <script type="math/tex">X</script> 紧集则 <script type="math/tex">C_0(X)=C_b(X)=C(X)</script> ，而我们要证明的存在性里面是紧的，所以因为任何一个概率测度弱收敛，则</p>
+<script type="math/tex; mode=display">\mu_n\rightharpoonup \mu$$，对于 $$c \in C(X\times Y)$$，有 $$\lim \left<\mu_n,c\right>=\left<\mu,c\right>$$，所以这个内积，也就是这个代价函数是连续的。
+
+>把柯西列收敛到柯西列的函数是连续函数
+
+**紧性条件证明**
+
+接下来我们考虑这个空间的紧性，取一些满足我们要求的联合概率分布的一个序列 $$\{\gamma_n\}$$，作为概率测度他们在 $$\mathcal M(X\times Y)$$ 中是有界的，而其对偶空间 $$C(X\times Y)$$ 是一个可分的（因为紧）banach空间，Banach-Alaoglu定理表明可分banach空间的对偶空间是弱*紧的。固定 $$\varphi \in C(X)$$，有 $$\int\varphi(x) d_{\gamma_{n_k}}=\int\varphi(x) d_{\mu}$$，取极限后又对任何成立。（其实就是 $$(\pi_x)_{\sharp}\gamma_{n_k} =\mu$$）所以 $$(\pi_x)_{\sharp}\gamma =\mu$$，同理另一侧，所以 $$\gamma\in \Pi(\mu,\nu)$$。也就是这个空间是紧的。
+
+所以得证。
+
+通过一些一系列的放松条件（但是太难了），$$X$$,$$Y$$ 只要是完备可分度量空间，Polish空间，但是度量要紧的，连续函数可以只是下半连续代价函数，也就是Polish空间下半连续代价函数也就足够又KP解的存在性。
+
+---
+
+简单想我们考虑深度学习里怎么用这个方法，把空间离散化，$$X$$ 是数据点，$$\mu=\sum \mu_i\delta_{x_i}$$，这里的 $$\delta$$ 狄拉克函数，那么 $$\gamma=\sum_{i,j} \gamma_{ij} \delta _{x_i}\delta_{x_j}$$。然后可以线性规划。但是这个维度吧，在深度学习中，这个是 $$O(N^2)$$ 的变量，很慢，Monge的映射只有 $$O(N)$$，所以还是会觉得应该简化。
+
+一种常见的简化方法叫做 **对偶**。
+
+**拉格朗日乘子**
+
+前面提到我们应该是有</script><p>\begin{align<em>}<br>\int<em>X \varphi \, d\mu &amp;= \int</em>{X \times Y} \varphi(x) \, d\gamma(x, y) \<br>\int<em>Y \psi \, d\nu &amp;= \int</em>{X \times Y} \psi(y) \, d\gamma(x, y)<br>\end{align</em>}</p>
+<script type="math/tex; mode=display">
+换言之</script><p>\sup<em>{\varphi,\psi}\int_X \varphi \, d\mu + \int_Y \psi \, d\nu - \int</em>{X \times Y} (\varphi(x) + \psi(y)) \, d\gamma(x, y)=\cases{0,\gamma\in\Pi(\mu,\nu)\+\infty,\text{others}}</p>
+<script type="math/tex; mode=display">
+把这个作为一个惩罚函数，用拉格朗日乘子。在很宽泛的条件下我们有</script><p>\begin{align<em>}<br>\min<em>\gamma \int</em>{X \times Y} c \, d\gamma + \sup<em>{\varphi, \psi} \left( \int_X \varphi \, d\mu + \int_Y \psi \, d\nu - \int</em>{X \times Y} (\varphi + \psi) \, d\gamma \right)<br>\end{align</em>}</p>
+<script type="math/tex; mode=display">
+变成</script><p>\begin{align<em>}<br>\sup<em>{\varphi, \psi} \left( \int_X \varphi \, d\mu + \int_Y \psi \, d\nu + \inf</em>\gamma \int_{X \times Y} (c(x,y) - (\varphi(x) + \psi(y))) \, d\gamma \right)<br>\end{align</em>}</p>
+<script type="math/tex; mode=display">
+所以</script><p>\inf<em>{\gamma \geq 0} \int</em>{X \times Y} (c - \varphi \oplus \psi) \, d\gamma =<br>\begin{cases}<br>\text{something}, &amp; \varphi \oplus \psi \leq c \text{ 在 } X \times Y \text{ 上}, \<br>-\infty, &amp; \varphi \oplus \psi &gt; c,<br>\end{cases}</p>
+<script type="math/tex; mode=display">
+
+于是对偶问题(DP)变成了</script><p>\max { \int_X\varphi d\mu+\int_Y\psi d\nu:\varphi\oplus\psi\le c}</p>
+<script type="math/tex; mode=display">
+
+> 这里的 $$\psi,\varphi$$ 被称为 Kantorovich potential。遗憾的是这个可容许的空间并不是紧的，很难直接说这个解的存在性。但我们依然可以证明DP问题解的存在性
+>
+> 如果是最大化倒是可以理解，因为肯定大了才能恰好切到，但上面那个所以是不是不是很成立。怎么理解这个问题是一个对偶问题呢，个人觉得最本质的在于建立起两个一阶的和一个二阶的概率的联系，也就是这个不等号。
+
+---
+
+目标：DP解的存在性
+
+**c-transform**
+
+勒让德对偶</script><p>\bar f(y)=\sup_x\left<x,y\right>-f(x)</x,y\right></p>
+<script type="math/tex; mode=display">
+给出了函数的所有的supporting plane，求两次勒让德对偶就变成了最小凸函数，其实就是把这一系列的直线的包络。
+
+而 c-transform则是</script><p>f^c(y)=\sup_xc(x,y)-f(x)</p>
+<script type="math/tex; mode=display">
+如果定义函数 $$\Gamma_y=c(x,y)-f(x)$$ 是关于 $$x$$ 的函数，就是求这些函数的包络。可以通过分解成supporting curves，来把原来函数还原出来。
+
+---
+
+**Theorem**: 给定紧度量空间 $$X$$,$$Y$$ 和定义在上面的**连续**代价函数 $$c$$，两个 c-convex或者c-bar-convex的函数 $$\psi,\varphi$$，则对偶问题存在解。
+
+> 证明会用到连续模等工具，c变换保持连续模，则两个序列 $$\psi_n,\varphi_n$$ 与代价函数连续模相同，所以等度连续，调整一个函数使其最小值为零，另一个函数对应增大。那么最小值为零的那个函数因为等度连续，最大值也不会很大，和所属空间的直径有关。至少是有一致界，同样对于c-transform，其对偶也有一致有界。所以一致收敛+等度连续 -> 一致收敛，所以解存在。
+
+大概是如果我知道 $$\psi=\varphi^c,\varphi=\psi^\bar c$$，如果你有精确的算法算这个c-transform，那么可能迭代3次就行。但是很难算这个transform就是了。
+
+原问题与对偶问题等价性则是构造性的，一方面直接能得到 (DP)<=(KP) ，反方向的证明用到的一个概念叫做循环单调性。简单来说最后是在给定支撑集的意义下，构造出了一组对偶的 $$\varphi$$ 和 $$\psi$$，就是 $$\varphi\oplus\psi=c$$。
+
+TODO
+
+> 一种常见的验证计算出来的和最优传输的距离的方法是，对于连续代价函数c，其支撑集是c-循环单调。这个计算的代价不高，somehow可以放到loss function里。
+
+**Theorem**: 给定紧度量空间 $$X$$,$$Y$$ 和定义在上面的一致连续且有界的代价函数 $$c$$，则 max(DP)=min(KP)。
+
+---
+
+**Brenier problem**
+
+我们前面已经得到了对偶问题，在一些比较好的条件下</script><p>\varphi^c(y)=\inf _{y} c(x,y)-\varphi(x)</p>
+<script type="math/tex; mode=display">
+对右侧求导等于零，</script><p>\nabla c(x,y)-\nabla \varphi(x)=0</p>
+<script type="math/tex; mode=display">
+取 $$c(x,y)= h(x-y)$$，其中 $$h$$ 是一个凸函数，它上面的梯度算子可逆，那么就有</script><p>x-y=(\nabla h)^{-1}\nabla \varphi(x)</p>
+<script type="math/tex; mode=display">
+从而这是一个最优传输映射。比如取 $$h=\frac{1}{2}|x-y|^2$$， $$T(x)=\nabla (\frac{1}{2}||x||^2-\varphi(x))</script><p>Brenier formulation，<strong>Theorem</strong>:  <script type="math/tex">T(x)=\nabla u</script>。</p>
+<ol>
+<li><p><strong>设定</strong>：考虑<script type="math/tex">X = Y = \mathbb{R}^d</script>，假设<script type="math/tex">\mu</script>和<script type="math/tex">\nu</script>都是有限二阶矩的概率测度，且<script type="math/tex">\mu</script>不将质量赋予小集（Hausdorff维数至多为(d-1)的集合）。成本函数为<script type="math/tex">c(x, y) = \frac{1}{2} \|x - y\|^2</script>。</p>
+</li>
+<li><p><strong>最优传输映射</strong>：</p>
+<ul>
+<li>对于每个在<script type="math/tex">\Pi(\mu, \nu)</script>上最小化<script type="math/tex">\mathcal{K}</script>的<script type="math/tex">\pi^\dagger</script>，存在一个在<script type="math/tex">\mathcal{T}</script>上最小化<script type="math/tex">\mathcal{M}</script>的<script type="math/tex">T</script>，使得<script type="math/tex">\pi^\dagger = (\text{Id}, T)_{\sharp}\mu</script>。</li>
+<li>对于每个<script type="math/tex">T \in \mathcal{T}</script>，<script type="math/tex">T</script>在<script type="math/tex">\mathcal{T}</script>上最小化<script type="math/tex">\mathcal{M}</script>当且仅当<script type="math/tex">T = \nabla \varphi</script>，其中<script type="math/tex">\varphi</script>是某个适当的下半连续凸函数，且<script type="math/tex">\varphi \in L_1(\mu)</script>。</li>
+</ul>
+</li>
+<li><p><strong>唯一性</strong>：</p>
+<ul>
+<li>在<script type="math/tex">\mathcal{T}</script>上存在一个唯一的（<script type="math/tex">\mu</script>-几乎处处）<script type="math/tex">\mathcal{M}</script>的最小化器。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>在最优传输问题中，Brenier定理指出，对于在欧几里得空间上的两个概率测度（一个是绝对连续的），存在一个唯一的（几乎处处）梯度映射，该映射可以通过一个凸函数的梯度来实现。这个凸函数就是所谓的Brenier势。最优传输映射是Brenier势的梯度。</p>
+</blockquote>
+<p>也可以看成三个方向：</p>
+<script type="math/tex; mode=display">\nabla u=T,\nabla(\Omega)=\Omega^*,\det D^2 u=\frac{f}{g \cdot \nabla u}$$，第三个是蒙日-安培方程。
+
+> 对偶的观点容易看出来凸函数对偶是函数，在原空间的一条直线，在另一个空间是一个点，如果是支撑，在另一个空间则是epigraph上的点。同理，原空间的个点在对偶空间是一个直线。保凸可以通过凸函数最原始的定义来看，具体是epigraph是凸的得到函数是凸的。
+>
+> 勒让德对偶另一重意思是 $$x\to y$$ 意味着 $$\varphi(x)+\varphi^c(y)=\left<x,y\right>$$，以及两个凸函数 $$u$$ 和 $$u^*$$ 的梯度其实是互逆的。
+
+可以证明存在性和唯一性。
+
+**Brenier极分解**：某种条件下，任何一个微分同胚变化 $$\xi$$，一定存在一个 $$u$$，和对应的 volume-perseving的 $$s$$，使得 $$T=(\nabla u)\circ s$$，其中 $$u$$ 是一个最优传输映射的brenier势，$$s$$ 是一个保体积的映射。
+
+>听着有点像把一个矢量场分解成无散场和无旋场 
+>
+>Brenier极分解至少是实矩阵极分解和Hodge-Helmholtz分解的推广。
+
+如果说 $$\xi$$ 把 $$L_{\Omega}$$ 映到 $$\mu$$ 上，证明是说构造一个 $$u^*$$ 这样的凸函数，使得 $$u^*$$ 把 $$\mu$$ push到 $$L_\Omega$$ 上。
+
+那么让 $$s = u^* \circ \xi$$ ，会发现 $$s$$ 是 $$L_{\Omega} \to L_{\Omega}$$ 的。而定义 $$u$$ 是 $$u^*$$ 的对偶。
+
+---
+
+**最优传输映射如何推广到球面上**
+
+球面上也可以定义切平面，一个平面的球极坐标表示为</script><p>\pi:={\rho(\vec x) \vec x\mid \rho(\vec x)=\frac{h}{\left&lt;\vec{x},{\vec y}\right&gt;} }</p>
+<script type="math/tex; mode=display">
+很容易理解，就是上面的点的高度和 $$y$$ 内积就是 $$h$$，直观上想把 $$h$$ 作为高度。
+
+所以我们定义球面凸函数的 Legendre对偶（x和y都是矢量）</script><p>\rho^<em>(y)=\sup<em>{x\in S^2} \rho(x)\left&lt;\vec x,\vec y \right&gt;\<br>\rho(x)=\inf</em>{y\in S^2} \frac{\rho^</em>(y)}{\left<x,y\right>}</x,y\right></p>
+<script type="math/tex; mode=display">
+直接推导可以发现</script><p>-\log \frac{1}{\rho(x)}+\log \frac{1}{\rho^*(y)}=\log \frac{1}{\left<x,y\right>}</x,y\right></p>
+<script type="math/tex; mode=display">
+所以如果把 $$\varphi:=\log \rho,\psi=-\log \rho^*,c=-\log \left<x,y\right>$$，就回到了c-transform。所以同样的把最优传输里的Monge问题，Kantorovich对偶形式，用进去。
+
+---
+
+> 透镜设计，很有趣，但是skip
+
+---
+
+**流体力学解释最优传输**
+
+如果我们能得到一组概率测度，这族概率测度是Wasserstein Space的测地线。
+
+我们先来考虑流体力学中对于恒定密度无粘性不可压缩理想流体的研究：
+
+对流体力学我们有两套观点，Euler观点（定义了 $$v(t,x)$$ 和 $$\rho(t,x)$$） Lagrange观点（定义了位置 $$\gamma(t,x)$$），转化公式是</script><p>\cases{\frac{d}{dt} \gamma_x(t)=v_t(\gamma_x(t))\\gamma_x(0)=x}</p>
+<script type="math/tex; mode=display">
+**不可压缩流体**，速度场散度为零，$$\nabla \cdot \mathbf v = 0</script><p>物质导数，考虑 <script type="math/tex">\varphi=\varphi(x,t)</script>，关于位置和时间，<script type="math/tex">\frac{D\varphi}{Dt}=\frac{\partial \varphi}{\partial t}+v\cdot \nabla \varphi</script>，这个是链式法则的推论。</p>
+<p>牛顿第二定律，不考虑粘性效应，只考虑表面力（如压强）和体作用力（如重力）</p>
+<script type="math/tex; mode=display">
+F_{\Omega}=\int_\Omega \rho g \mathrm d\Omega\\
+F_{S}=\int_{S=\partial \Omega} - p\vec n\mathrm dS</script><p>那么</p>
+<script type="math/tex; mode=display">
+\int_\Omega \rho g \mathrm d\Omega+\int_{S} - p\vec n\mathrm dS=\int_\Omega \rho \frac{Dv}{dt} \mathrm d \Omega</script><p>点点成立，运用stokes定理，于是有（流体动量演化的Euler方程）</p>
+<script type="math/tex; mode=display">
+\rho\frac{Dv}{Dt}=-\nabla p + \rho g</script><blockquote>
+<p>如果考虑粘性之后会得到NS方程, <script type="math/tex">\rho\frac{Dv}{Dt}=-\nabla p + \rho g+\mu\nabla ^2v</script></p>
+</blockquote>
+<p>所谓的欧拉方程是就是在 <script type="math/tex">\Omega \subset R^n</script> 中不可压缩无粘性流体的牛顿第二定律方程加上无散度性质，我们考虑证明其能量守恒，在最简单的版本无外力。</p>
+<p>直接考虑对时间的导数，由于 <script type="math/tex">\rho</script> 对时间是不变的（但是不严格似乎）</p>
+<script type="math/tex; mode=display">
+\frac{d }{d t}(\frac{1}{2}\rho \mathbf v\cdot \mathbf v)=\rho \mathbf v\cdot \frac{\partial \mathbf v}{\partial t}=-\rho v \cdot (v\cdot \nabla v)-v\cdot \nabla p</script><p>一方面就是对于标量场 <script type="math/tex">p</script>，矢量场 <script type="math/tex">v</script>，</p>
+<script type="math/tex; mode=display">
+\nabla \cdot (pv)= v\cdot \nabla p+ p(\nabla \cdot v)=v\cdot \nabla p</script><p>从而(考虑特殊的边界条件，在 <script type="math/tex">\Omega</script> 的边缘我们一定有<script type="math/tex">v</script> 和 <script type="math/tex">\Omega</script> 边界相切)</p>
+<script type="math/tex; mode=display">
+\int_\Omega v\cdot \nabla p=\int_{\partial \Omega}\left<pv,n\right> ds=0</script><p>另一方面</p>
+<script type="math/tex; mode=display">
+\int_\Omega v\cdot (v\cdot \nabla v)=\int_{\Omega} \sum _{ij}v_jv_i\frac{\partial v^i}{\partial x^j}= \frac{1}{2}\int\sum_{ij}\frac{\partial v_i^2}{\partial x^j}v_j\\
+=\frac{1}{2}\int_\Omega v\cdot \nabla ||v||^2=0</script><p>最后一步是因为这个 <script type="math/tex">||v||^2</script> 是一个标量函数，所以适用于之前的 <script type="math/tex">\nabla\cdot  (pv)=v\cdot \nabla p+p(\nabla \cdot v)</script></p>
+<p>所以合起来 <script type="math/tex">\frac{d}{dt} E=0</script></p>
+<blockquote>
+<p>这一项我大致的理解是说，如果我去看整体的变化，那么一部分是流动导致的，沿着方向有一些进来有一些出去，一部分是散度导致的，有一些扩张和收缩。</p>
+<p>Hodge 分解说 <script type="math/tex">k</script> 形式的 <script type="math/tex">w=d\alpha +\delta \beta+\gamma</script>z。</p>
+</blockquote>
+<p><strong>可压缩流体的连续性方程</strong></p>
+<p>大概是 <script type="math/tex">\nabla \cdot (\rho_t v_t)+\partial_t \rho_t=0</script>。他是质量守恒的微分表示，密度变化率和动量的散度有关。</p>
+<p>这个方程有经典解，分布解，弱解……</p>
+<p>如果由 <script type="math/tex">v_t</script> 诱导的微分自同胚群 <script type="math/tex">g_t</script> 把初始测度 <script type="math/tex">\rho_0</script> 传输到 <script type="math/tex">\rho_t</script>，那么 <script type="math/tex">(v_t,\rho_t)</script> 是连续性方程的唯一解。（为什么是唯一的？）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/699714951">【流体力学】连续性方程 - 知乎</a></p>
+<script type="math/tex; mode=display">
+\frac{d\rho}{dt}=-\rho \nabla \cdot v\\\frac{\partial \rho}{\partial t}+v\cdot \nabla \rho+\rho \nabla \cdot v=\frac{\partial \rho}{\partial t}+\nabla (\rho \cdot v) = 0</script></blockquote>
+<p><strong>Arnold几何化理论</strong></p>
+<p>不可压缩流体力学中，Euler方程视为保体积微分同胚群中的测地线方程。用 <script type="math/tex">\{g_t\}_{t\ge 0}</script> 表示一个微分同胚族。它是保体积的。</p>
+<script type="math/tex; mode=display">
+\frac{\partial }{\partial  t} \log \det (D_x g_t)=(\nabla \cdot v)(t,g_t(x))</script><blockquote>
+<p>暂时不知道怎么推，但是假装是对的的话那么这个映射就是保体积的。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+v(t,g_t(x))=\frac{d}{dt} g(t,x)\iff v(t,y)=\frac{\partial g}{\partial t} \circ g^{-1}(t,y)</script><p>求两次偏导，只考虑压强的话，</p>
+<script type="math/tex; mode=display">
+\frac{d^2}{dt^2} g_t(x)= -\nabla p (t,g_t(x))</script><p>用 <script type="math/tex">G(\Omega)</script> 表示一般情况下所有保持体积的微分同胚群，则 <script type="math/tex">g(t)</script> 是黎曼流形上的一条路径。我们说其实只有压力场的话，是一条测地线。</p>
+<p>首先它定义在哪里，定义在所有保体积的微分同胚群上，<script type="math/tex">g\in G(\Omega)</script>，我有两个点一个是 <script type="math/tex">g_0</script>，一个是 <script type="math/tex">g_1</script>，那么这个 <script type="math/tex">g(t),t\in [0,1]</script> 就是一个曲线。之前说到 <script type="math/tex">g</script> 是保体积的要求速度场无散，<script type="math/tex">\nabla \cdot v=0</script>，也就是 <script type="math/tex">\nabla \cdot \left[\frac{\partial g}{\partial t} \circ g^{-1}\right] = 0</script>，就是说 <script type="math/tex">\frac{\partial g}{\partial t} =\vec w \circ g</script>，其中 <script type="math/tex">\vec w</script> 是一个无散的，换言之和切空间垂直的就要求旋度为零，是一个梯度场，不妨设 <script type="math/tex">\nabla p \circ g</script>，测地线要求加速度永远和这个切线垂直，惊奇地发现这个就是之前的不可压缩流体Euler发成中的Lagrange公式。</p>
+<blockquote>
+<p>我数学不好，不知道什么同调，就先这么写着。我也不知道测地线为什么这么要求的，我也不知道这样为什么这个分解就是对的，我也还不知道为什么可以继承平方可积函数的黎曼度量来定义。</p>
+<p>因为是用过程中的速度平方来定义距离 <script type="math/tex">[\int_{t_0}^{t_1} |\dot g(t)|^2 dt]^{1/2}</script>，这个理解成速度场决定的动能随时间的积分，所以在某些条件下（似乎得首先让压力场关于时间一致有界，取一些特殊的比较短程）我们觉得这里的能量是最小的。</p>
+</blockquote>
+<hr>
+<p><strong>依赖时间的最优传输</strong></p>
+<p>就是把时间积分起来，把所有可能的点积分起来，最开始是一个恒同映射。如果轨迹可微，就是把路径的代价和速度代价构建一个联系。如果对于所有 <script type="math/tex">x,y</script> 满足 <script type="math/tex">c(x,y)=\inf C[z_t]_{0\le t\le 1}</script> ，那么可以把和时间有关的代价和与实践无关的代价联系在一起。</p>
+<p><strong>凸函数最优轨迹</strong></p>
+<p>对于 <script type="math/tex">R^n</script> 中最优传输映射，如果传输代价是严格凸函数，利用jensen不等式取等条件来看，其最优传输中 <script type="math/tex">\dot z_t</script> 是常数，也就是 <script type="math/tex">z_t=x+t(y-x)</script>。</p>
+<blockquote>
+<p>是的，这段话非常不清晰，不知道这样的笔记怎么看都是不对的。</p>
+</blockquote>
+<p><strong>定理 11.1（依赖时间的最优传输）</strong></p>
+<p>考虑在 <script type="math/tex">\mathbb{R}^n</script> 上的传输代价函数 <script type="math/tex">c(x, y) = c(x - y)</script>，其中 <script type="math/tex">c</script> 严格凸，<script type="math/tex">c(0) = 0</script>。设 <script type="math/tex">\mu, \nu</script> 是在 <script type="math/tex">\mathbb{R}^n</script> 中的概率测度，相对于 Lebesgue 测度绝对连续，令</p>
+<script type="math/tex; mode=display">
+C([z_t]) = \int_0^1 c(z_t) \, dt.</script><p>令 <script type="math/tex">\psi</script> 是 <script type="math/tex">(d\mu</script>-几乎处处) 唯一的 <script type="math/tex">c</script>-凹函数，其梯度 <script type="math/tex">\nabla \psi</script> 满足</p>
+<script type="math/tex; mode=display">
+[id - \nabla c^*(\nabla \psi)]_{\sharp} \mu = \nu.</script><p>那么依赖时间的最优传输问题 (11.2) 的解由下式给出：</p>
+<script type="math/tex; mode=display">
+T_t(x) = x - t \nabla c^*(\nabla \psi(x)), \quad 0 \leq t \leq 1.</script><blockquote>
+<p>他说在最优传输中激波不会出现。对于可压缩流体确实会出现激波在有限时间之内出现（两个轨道并在一起了，不再是微分同胚）但是在最优传输中不会出现。如果交叉的话看一下三角形不等式，违背了最优性。</p>
+</blockquote>
+<p><strong>测地线轨迹的Euler表示</strong></p>
+<p>最优传输映射的流体力学方程，一个是质量守恒，一个是加速度为零</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho v) = 0 & \rho_0 = \mu \\
+\frac{\partial v}{\partial t} + v \cdot \nabla v = \textcolor{red}{0}.
+\end{cases}</script><blockquote>
+<p>对于不同的传输代价得到的方程是同一个方程，传输代价隐藏在初始条件的速度场里。</p>
+</blockquote>
+<p>初始速度场是 <script type="math/tex">v(t=0,\cdot )\nabla c^{-1}(\nabla \psi)</script>，数值上，似乎还是要用蒙日安培方程，依然要有势能函数。</p>
+<p><strong>McCann平移</strong></p>
+<p>就是 <script type="math/tex">Id</script> 和 <script type="math/tex">\nabla \psi</script> 的一个线性插值，实质上给出了 Wasserstein空间上的测地线。</p>
+<blockquote>
+<p>保体积的微分同胚群定义了测地线</p>
+<p>概率测度构成的空间给出了测地线</p>
+</blockquote>
+<p>于是Wasserstein Distance看起来还是</p>
+<script type="math/tex; mode=display">
+\mathcal{W}_2(\mu, \rho_t)^2 = \int_{\mathbb{R}^n} \left| x - \left[(1-t)x + t \nabla \varphi(x)\right] \right|^2 \, d\mu(x)
+\\
+= t^2 \int_{\mathbb{R}^n} \left| x - \nabla \varphi(x) \right|^2 \, d\mu(x) = t^2 \mathcal{W}_2(\mu, \nu)^2.</script><blockquote>
+<p>问题是，如何用物理的方法求出这个最优传输的解？这还是不知道</p>
+<p>在Wasserstein空间的两个点 <script type="math/tex">\mu,\nu</script> 之间有一个路径，因为 <script type="math/tex">(\nabla \psi)_(\mu)=\nu</script>，所以这两点之间的最短路径的一种看法就是利用 McCann平移，定义中间的过程为 <script type="math/tex">(1-t) Id+t \nabla \psi</script>。这是一个作用在概率测度上，得到一个概率测度的算子。</p>
+<p>这种观点定义的Wasserstein距离如上述所提，在保体积微分同胚群的空间里去看，是一个最优传输。</p>
+</blockquote>
+<h3 id="Wasserstein空间"><a href="#Wasserstein空间" class="headerlink" title="Wasserstein空间"></a>Wasserstein空间</h3><p>第二种观点看Wasserstein空间，可以从最小作用量来看</p>
+<script type="math/tex; mode=display">
+A[\rho,v]=\int_{0}^1 (\int_{R^n} \rho_t(x)|v_t(x)|^2 dx)dt</script><p>实际上，Wasserstein上，研究两个测度之间所有的流场，使得流场的总动能达到全局最小，最小的总动能被定义为两个测度之间的Wasserstein距离。</p>
+<p>另一种看这条路径的方法是，我们走的是一个平移变化。根据质量守恒的连续性方程 <script type="math/tex">\nabla \cdot (\rho_t v_t)+\partial_t \rho_t=0</script>，很自然地要求在路径上某一点的切向量要形如 <script type="math/tex">-\nabla \cdot (\rho_t v_t)</script> 的标量场，是某个概率密度。但也就是实际上是一个 <script type="math/tex">v_t</script> 定义了一个矢量，不过满足这样条件的矢量 <script type="math/tex">v</script> 实际上是有无限多的，假设 <script type="math/tex">v_0</script> 是某个特殊的满足条件的速度矢量场，那么 <script type="math/tex">v=v_0+\epsilon \rho^{-1}\cdot w</script> 对于任何无散向量场 <script type="math/tex">w</script> 都成立。</p>
+<p>一种<strong>不知道自不自然</strong>的方法是定义切向量的范数为（但是奇妙的是这种定义方法能和上面等价）</p>
+<script type="math/tex; mode=display">
+\left\| \frac{\partial \rho}{\partial t} \right\|_{\rho}^2 = \inf_{v \in L^2(d\rho; \mathbb{R}^n)} \left\{ \int \rho |v|^2; \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho v) = 0 \right\}.</script><p>也就是在所有可能的从一个概率密度到另一个微小改变的概率密度的变化，这些所有变化里面那个动能最小的。</p>
+<p>我们断言这个最小动能的 <script type="math/tex">v_0</script> 其实也是个梯度场，因为它动能最小，所以必然有 <script type="math/tex">\int \rho |v_0|^2 \leq \int \rho \left| v_0 + \varepsilon \frac{w}{\rho} \right|^2</script>，取变分得到 <script type="math/tex">\int v_0 \cdot w = 0</script>，在 L2 意义下和任何无散向量场正交。</p>
+<p>我的Wasserstein Distance在这种观点下有（Benamou-Brenier定理，证明略）</p>
+<script type="math/tex; mode=display">
+\mathcal{W}_2(\rho_0, \rho_1) = \inf \left\{ \int_0^1 \left\| \frac{\partial \rho}{\partial t} \right\|_{\rho(t)}^2 \, dt; \, \rho(0) = \rho_0, \, \rho(1) = \rho_1 \right\},\\
+\left\| \frac{\partial \rho}{\partial t} \right\| = \int \rho |\nabla u|^2, \quad -\nabla \cdot (\rho \nabla u) = \frac{\partial \rho}{\partial t}.</script><p>不过至少现在我们有Riemann度量结构了，毕竟如果你切空间的模长按这个定义，我两个切向量的标量积就应该是</p>
+<script type="math/tex; mode=display">
+\left< \frac{\partial \rho}{\partial t_1},\frac{\partial \rho}{\partial t_2} \right> = \int \rho \left<\nabla u_1,\nabla u_2\right></script><blockquote>
+<p>原始你看最优传输你是在所有保体积的微分同胚群下看的，当时的切向量是个无散场导出的东西，现在在Wasserstein空间看切向量反而是一个梯度场导出的东西了。</p>
+<p>看着很对偶，毕竟一个是在看映射，一个是在看概率。</p>
+</blockquote>
+<p>好，接下来应该就可以尝试看看Villani的Introduction了。希望能从中理解梯度流的概念。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://emoairx.github.io/blog/2024/10/17/Optimal%20Transport/" title="找不到工作的底层码农视角下的最优传输(1)" target="_blank" rel="external">http://emoairx.github.io/blog/2024/10/17/Optimal Transport/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/blog/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">emoairx</span><small class="ml-1x">PKU,EECS</small></a></h3>
+        <div>春天来了，冬天还会远吗~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/blog/2024/10/23/%E7%BC%96%E8%AF%91/" title="编译原理-理论"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/blog/2024/10/04/dg/" title="一些几何概念堆砌"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/emoairx" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/blog/js/plugin.min.js"></script>
+
+
+<script src="/blog/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/blog/',
+        CONTENT_URL: '/blog/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/blog/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'AONthdWWfk53xtyouAX8NhIf-gzGzoHsz',
+    appKey: '7lxwWP9F0g0a68t0qEPsTFR9',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
